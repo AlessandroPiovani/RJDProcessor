@@ -9,7 +9,7 @@ check_character <- function(arg) {
 
 # The variables values are available in files.
 # input_mode = TS_regressor_file the start date is the same as the input data series
-# input_mode = TODO JD_regressor_file file conteining both dates and data
+# input_mode = TODO JD_regressor_file file containing both dates and data
 getUserDefinedTdVariables_info <- function(jmodel ,input_mode=c("TS_regressor_file", "JD_regressor_file", ))
 {
   var_info_list = list()
@@ -50,96 +50,6 @@ getUserDefinedTdVariables_info <- function(jmodel ,input_mode=c("TS_regressor_fi
   }  
   return(var_info_list)
 }  
-
-  
-getUserDef_var_as_mts<-function(var_info_list, directory, series_name)
-{
-  var_info <- var_info_list[[series_name]]
-  
-  if(is.null(var_info) || length(var_info)==0)
-  {
-    return(NA)
-  }  
-  # browser()
-  
-  time_series_list <-list()
-  # Itera attraverso gli elementi di var_info_list
-  for (i in seq_along(var_info)) {
-    
-    user_def_var <- var_info[[i]]
-    # Costruisci il percorso completo del file
-    full_file_path <- file.path(directory, user_def_var$file_name)
-    
-    # Leggi i dati dal file
-    data <- scan(full_file_path, what = numeric(), sep = "\n")
-    
-    # Definisci la data di inizio e la frequenza
-    data_date <- as.Date(user_def_var$start)
-    y <- as.integer(format(data_date, "%Y"))
-    m <- as.integer(format(data_date, "%m"))
-    start_date <- c(y, m)
-    
-    frequency  <- user_def_var$frequency
-    
-    # Crea la serie temporale
-    time_series <- ts(data, start = start_date, frequency = frequency)
-    
-    # Aggiungi la serie temporale alla lista
-    time_series_list[[user_def_var$file_name]] <- time_series
-  }
-  
-  # Converti la lista di serie temporali in una mts
-  mts_object <- do.call(ts.union, time_series_list)
-  
-  # Restituisci la mts
-  return(mts_object)
-}
-
-
-
-getUserDef_var_as_mts2<-function(var_info, directory)
-{
-
-  if(is.null(var_info) || length(var_info)==0)
-  {
-    return(NA)
-  }  
-  # browser()
-  
-  time_series_list <-list()
-  # Itera attraverso gli elementi di var_info_list
-  for (i in seq_along(var_info)) {
-    
-    user_def_var <- var_info[[i]]
-    # Costruisci il percorso completo del file
-    full_file_path <- file.path(directory, user_def_var$file_name)
-    
-    # Leggi i dati dal file
-    data <- scan(full_file_path, what = numeric(), sep = "\n")
-    
-    # Definisci la data di inizio e la frequenza
-    data_date <- as.Date(user_def_var$start)
-    y <- as.integer(format(data_date, "%Y"))
-    m <- as.integer(format(data_date, "%m"))
-    start_date <- c(y, m)
-    
-    frequency  <- user_def_var$frequency
-    
-    # Crea la serie temporale
-    time_series <- ts(data, start = start_date, frequency = frequency)
-    
-    # Aggiungi la serie temporale alla lista
-    time_series_list[[user_def_var$file_name]] <- time_series
-  }
-  
-  # Converti la lista di serie temporali in una mts
-  mts_object <- do.call(ts.union, time_series_list)
-  
-  # Restituisci la mts
-  return(mts_object)
-}
-
-
 
 
 span_unpack <- function(span_string) {
@@ -371,45 +281,6 @@ difference_objects_preserving_name_and_spec <- function(object, basic){
   return(object)
 }
 
-
-
-
-# costruito su misura per SITIC
-read_dati_grezzi <- function(file_name_with_path)
-{
-    # Importa il file CSV
-    data <- read.csv(file_name_with_path, header = FALSE, sep = ";", dec = ",", quote = "")
-    
-    # Rimuovi le virgolette dai nomi delle colonne e dai valori
-    names(data) <- gsub("\"", "", names(data))
-    data[] <- lapply(data, function(x) gsub("\"", "", x))
-    
-    # Converti le date nel formato "ANNOqMESE" in un formato R
-    timestamps   <- as.Date(gsub("([0-9]+)q([0-9]+)", "\\1-\\2-01", data[[1]]))
-    
-    # Rimuovi il valore NA che corrisponde al nome della colonna delle date
-    timestamps   <- timestamps[-1]
-    # Rimuovi la colonna delle date
-    data <- data[,-1]
-    
-    series_names <-unlist(as.list(data[1,]))
-    # Rimuovi la riga dei nomi
-    data <- data[-1,]
-    
-    
-    # Crea un oggetto mts
-    mts <- matrix(NA, ncol = length(series_names), nrow = length(timestamps))
-    colnames(mts) <- series_names
-    rownames(mts) <- as.character(timestamps)
-    
-    
-    # Ciclo per creare un oggetto ts per ogni colonna
-    for (i in 1:ncol(mts)) {
-      mts[, i] <- ts(data[, i], start = timestamps[1], frequency = 4)
-    }
-    
-    return(mts)
-}    
 
 NA_not_as_char <- function(json)
 { 

@@ -1,4 +1,4 @@
-setwd("C:\\Users\\UTENTE\\Desktop\\MigrazioneFAT-RJDemetra_TEST_2\\")
+setwd("C:\\Users\\UTENTE\\Desktop\\MigrazioneFAT-RJDemetra_TEST_3\\")
 
 # Carica il pacchetto RJDemetra
 #install.packages("RJDemetra")
@@ -11,7 +11,7 @@ source("Extended_tramoseats_spec.R")
 source("JD_JSON.R")
 
 
-JD_JSON_file <- "C:\\Users\\UTENTE\\Desktop\\MigrazioneFAT-RJDemetra_TEST_2\\specifications_new_full.txt"
+JD_JSON_file <- "C:\\Users\\UTENTE\\Desktop\\MigrazioneFAT-RJDemetra_TEST_3\\specifications_new_full.txt"
 
 from_full_to_reduced_JD_JSON_file(JD_JSON_file)
 

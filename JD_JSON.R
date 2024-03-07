@@ -1,4 +1,4 @@
-setwd("C:\\Users\\UTENTE\\Desktop\\MigrazioneFAT-RJDemetra_TEST_2\\")
+setwd("C:\\Users\\UTENTE\\Desktop\\MigrazioneFAT-RJDemetra_TEST_3\\")
 
 # Carica il pacchetto RJDemetra
 #install.packages("RJDemetra")
@@ -8,14 +8,6 @@ require(rjson)
 
 source("utility_functions.R")
 source("Extended_tramoseats_spec.R")
-
-
-input_data_file_name_and_path <- "C:\\Users\\UTENTE\\Desktop\\MigrazioneFAT-RJDemetra\\SITIC-FAT\\grezzi.csv"
-regr_directory                <- "C:\\Users\\UTENTE\\Desktop\\MigrazioneFAT-RJDemetra\\SITIC-FAT\\regr"
-models_specifications         <- "C:\\Users\\UTENTE\\Desktop\\MigrazioneFAT-RJDemetra\\specifications.txt"
-
-
-
 
 
 JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_file, regr_directory=NA)

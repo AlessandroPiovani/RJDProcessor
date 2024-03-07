@@ -85,7 +85,7 @@ get_basic_spec <- function(spec)
   }else if(spec == "RSA1")
   {
     # TODO
-    paste("not implemented yet")
+    print("not implemented yet")
   }
   
   #...

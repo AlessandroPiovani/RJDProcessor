@@ -1,4 +1,9 @@
 source("basic_spec.R")
+
+#source("Data_reader_ext_reg") # customize your ext_reg data_reader with a tailored readere
+source("Data_reader_ext_reg_tsplus.R")
+
+
 require(RJDemetra)
 
 
@@ -133,14 +138,10 @@ setMethod("initialize", "Extended_tramoseats_spec",
                                 "easter.duration", "outlier.first", "outlier.last", "outlier.exclFirst", "outlier.exclLast", 
                                 "arima.p", "arima.d", "arima.q", "arima.bp", "arima.bd", "arima.bq",
                                 "seats.predictionLength")
-            
             numeric_args_with_NA_integer <- c("estimate.tol", "transform.fct", "outlier.cv", "outlier.tcrate", "automdl.cancel", "automdl.ub1", "automdl.ub2", "automdl.armalimit", "automdl.reducecv", "automdl.ljungboxlimit", "fcst.horizon", "seats.trendBoundary", "seats.seasdBoundary", "seats.seasdBoundary1", "seats.seasTol", "seats.maBoundary")
             
-            for (arg_name in integer_args_to_check) {
-              
-              # if(arg_name=="estimate.exclFirst"){
-              #    browser()
-              # }
+            for (arg_name in integer_args_to_check) 
+            {
               if (!is.na(eval(parse(text = arg_name))) && is.numeric(eval(parse(text = arg_name))) && all(eval(parse(text = arg_name)) %% 1 == 0)) {
                 assign(arg_name, as.integer(eval(parse(text = arg_name))))
               } else if (is.na(eval(parse(text = arg_name))))
@@ -149,6 +150,8 @@ setMethod("initialize", "Extended_tramoseats_spec",
               }  
             } 
             
+            # Some numeric arguments have NA_integer_ as missing value. Sometimes simple NA is passed (i.e. when data are read from JSON),
+            # so simple NAs have to be replaced with NA_integer_in some fields
             for (arg_name in numeric_args_with_NA_integer) {
               if (is.na(eval(parse(text = arg_name))))
               {
@@ -162,8 +165,8 @@ setMethod("initialize", "Extended_tramoseats_spec",
             .Object@series_name <- series_name
             .Object@spec        <- spec
             
-            # All the following rows are replaced by the dynamic evaluation below them
-            # This is done because if an argument is not specified, we want the default given by spec and not NA
+            # All the following rows are replaced by the dynamic evaluation below this commented rows
+            # This is done because if an argument is not specified, we want the default given by the basic_spec (e.g. "RSA0") and not NA
             # 
             # .Object@preliminary.check <- preliminary.check
             # .Object@estimate.from <- estimate.from
@@ -241,24 +244,49 @@ setMethod("initialize", "Extended_tramoseats_spec",
             # .Object@seats.maBoundary <- seats.maBoundary
             # .Object@seats.method <- seats.method
             
+            # Set the default value as it is in the basic_spec (e.g. "RSA0") instead of NA if an argument is not specified 
+            attributes <- c("preliminary.check", "estimate.from", "estimate.to",
+                            "estimate.first", "estimate.last", "estimate.exclFirst",
+                            "estimate.exclLast", "estimate.tol", "estimate.eml",
+                            "estimate.urfinal", "transform.function", "transform.fct",
+                            "usrdef.outliersEnabled", "usrdef.outliersType",
+                            "usrdef.outliersDate", "usrdef.outliersCoef", "userdef.varFromFile",
+                            "userdef.varFromFile.infoList", "usrdef.varEnabled",
+                            "usrdef.var", "usrdef.varType", "usrdef.varCoef",
+                            "tradingdays.mauto", "tradingdays.pftd", "tradingdays.option",
+                            "tradingdays.leapyear", "tradingdays.stocktd",
+                            "tradingdays.test", "easter.type", "easter.julian", 
+                            "easter.duration", "easter.test", "outlier.enabled",
+                            "outlier.from", "outlier.to", "outlier.first", "outlier.last",
+                            "outlier.exclFirst", "outlier.exclLast", "outlier.ao",
+                            "outlier.tc", "outlier.ls", "outlier.so", "outlier.usedefcv",
+                            "outlier.cv", "outlier.eml", "outlier.tcrate", "automdl.enabled",
+                            "automdl.acceptdefault", "automdl.cancel", "automdl.ub1",
+                            "automdl.ub2", "automdl.armalimit", "automdl.reducecv",
+                            "automdl.ljungboxlimit", "automdl.compare", "arima.mu",
+                            "arima.p", "arima.d", "arima.q", "arima.bp", "arima.bd", "arima.bq", 
+                            "arima.coefEnabled", "arima.coef", "arima.coefType", "fcst.horizon",
+                            "seats.predictionLength", "seats.approx", "seats.trendBoundary",
+                            "seats.seasdBoundary", "seats.seasdBoundary1", "seats.seasTol", 
+                            "seats.maBoundary", "seats.method")
             
-            attributes <- c("preliminary.check", "estimate.from", "estimate.to", "estimate.first", "estimate.last", "estimate.exclFirst", "estimate.exclLast", "estimate.tol", "estimate.eml", "estimate.urfinal", "transform.function", "transform.fct", "usrdef.outliersEnabled", "usrdef.outliersType", "usrdef.outliersDate", "usrdef.outliersCoef", "userdef.varFromFile", "userdef.varFromFile.infoList", "usrdef.varEnabled", "usrdef.var", "usrdef.varType", "usrdef.varCoef", "tradingdays.mauto", "tradingdays.pftd", "tradingdays.option", "tradingdays.leapyear", "tradingdays.stocktd", "tradingdays.test", "easter.type", "easter.julian", "easter.duration", "easter.test", "outlier.enabled", "outlier.from", "outlier.to", "outlier.first", "outlier.last", "outlier.exclFirst", "outlier.exclLast", "outlier.ao", "outlier.tc", "outlier.ls", "outlier.so", "outlier.usedefcv", "outlier.cv", "outlier.eml", "outlier.tcrate", "automdl.enabled", "automdl.acceptdefault", "automdl.cancel", "automdl.ub1", "automdl.ub2", "automdl.armalimit", "automdl.reducecv", "automdl.ljungboxlimit", "automdl.compare", "arima.mu", "arima.p", "arima.d", "arima.q", "arima.bp", "arima.bd", "arima.bq", "arima.coefEnabled", "arima.coef", "arima.coefType", "fcst.horizon", "seats.predictionLength", "seats.approx", "seats.trendBoundary", "seats.seasdBoundary", "seats.seasdBoundary1", "seats.seasTol", "seats.maBoundary", "seats.method")
             basic_spec <- get_basic_spec("RSA0")
 
-            for (attr in attributes) {
-              if (!all(is.na(eval(parse(text = attr))))) {
-                slot(.Object, attr) <- eval(parse(text = attr))
-              }else{
-                if(attr %in% integer_args_to_check){ 
+            for (attr in attributes)
+            {
+              attr_value <- eval(parse(text = attr))
+              if (!all(is.na(attr_value))) 
+              {
+                slot(.Object, attr) <- attr_value
+              }else
+              {
+                if(attr %in% integer_args_to_check)
+                { 
                   basic_spec[[attr]]<-as.integer(basic_spec[[attr]])  
                 }
                 slot(.Object, attr) <- basic_spec[[attr]]
               }
             }
-            
-            
-            
-            
             
             return(.Object)
           })
@@ -599,7 +627,10 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, basic_spec="RSA0"
           warning("Impossible to read external variables without specifying series name! The procedure ends without considering extrernal variables", call=TRUE)
         }else
         { 
-          vars_mts          <- getUserDef_var_as_mts(all_jmodel_vars, regr_directory, series_name) # Read as example but not used now 
+          #vars_mts          <- getUserDef_var_as_mts(all_jmodel_vars[[series_name]], regr_directory) # Read as example but not used now 
+          ext_regr_data_reader <- Data_reader_ext_reg(all_jmodel_vars[[series_name]], regr_directory)
+          vars_mts             <- read_ext_reg_data(ext_regr_data_reader) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+          
           user_def_var_info <- get_user_def_var_info(regarima_spec) # si può prendere anche dal workspace?
           usrdef.varType <- user_def_var_info$type
           usrdef.varCoef <- user_def_var_info$coef
@@ -780,8 +811,11 @@ to_tramoseats_spec_args<-function(extended_tramoseats_spec, regr_directory)
   #Usa gli elementi estratti da Extended_tramoseats_spec per preparare i regressori esterni
   if(!(is.null(userdef.varFromFile) || userdef.varFromFile == FALSE)){
     if(!is.null(userdef.varFromFile.infoList)){
-      mts <- getUserDef_var_as_mts2(userdef.varFromFile.infoList, regr_directory)  
-      extended_tramoseats_spec[["usrdef.var"]] <- mts
+      #mts <- getUserDef_var_as_mts(userdef.varFromFile.infoList, regr_directory)  
+      ext_regr_data_reader <- Data_reader_ext_reg(userdef.varFromFile.infoList, regr_directory)
+      vars_mts             <- read_ext_reg_data(ext_regr_data_reader) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      
+      extended_tramoseats_spec[["usrdef.var"]] <- vars_mts
     }  
   }
   
