@@ -2,7 +2,7 @@
 
 
 
-workspace_to_JSON <- function(input_workspace_directory = NA, regr_directory = NA, spec_file_name = "specifications_new.txt", old_spec_file_name = NA, diff=TRUE)
+workspace_to_JSON <- function(input_workspace_directory = NA, regr_directory = NA, spec_file_name = "specifications_new.txt", save_old_spec=TRUE ,old_spec_file_name = NA, diff=TRUE)
 {  
 
     
@@ -29,7 +29,7 @@ workspace_to_JSON <- function(input_workspace_directory = NA, regr_directory = N
     compute(ws)
     
     series_spec_list  <-  extended_tramoseats_spec_list(workspace = ws, regr_directory = regr_directory)
-    
+
     
     # Definisci il nome del file
     # spec_file_name <- "specifications_new.txt"
@@ -42,6 +42,8 @@ workspace_to_JSON <- function(input_workspace_directory = NA, regr_directory = N
     n <- length(series_spec_list)
     
     # Itera attraverso ciascuna specifica nella lista, tranne l'ultima, che verrà stampata dopo il for, senza virgola finale
+    
+    
     for (i in seq_len(n - 1)) {
       # Ottieni la specifica corrente
       current_spec <- series_spec_list[[i]]
@@ -65,14 +67,22 @@ workspace_to_JSON <- function(input_workspace_directory = NA, regr_directory = N
     # Chiudi il file
     close(con)
     
-    if(is.na(old_spec_file_name))
-    {
-      old_spec_file_name <- sub("\\.\\w+$", "_old\\0", spec_file_name)
-
-        
-    }  
     
-    file.copy(from = spec_file_name, to = old_spec_file_name, overwrite = TRUE)
+    if(save_old_spec == TRUE)
+    {
+      if(is.na(old_spec_file_name))
+      {
+        old_spec_file_name <- sub("\\.\\w+$", "_old\\0", spec_file_name)
+        cat("You have not specified a name for old specification file, the name of your file will be: ", old_spec_file_name)
+      }
+      file.copy(from = spec_file_name, to = old_spec_file_name, overwrite = TRUE)
+    } else
+    {
+      if(!is.na(old_spec_file_name))
+        warning("save_old_spec argument is set to FALSE, the old_spec_file_name file will not be produced")
+    } 
+      
+      
     
 
 

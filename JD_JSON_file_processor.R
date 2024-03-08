@@ -18,7 +18,7 @@ source("Data_reader_ext_reg_tsplus.R")   #substitute with custom data_reader if 
 
 
 
-JD_JSON_file_processor <- function(input_data_file_name, spec_file_name, regr_directory=NA)
+JD_JSON_file_processor <- function(input_data_file_name, spec_file_name, series_to_proc_names=NA, regr_directory=NA)
 {
     if(is.na(regr_directory))
     {
@@ -37,45 +37,49 @@ JD_JSON_file_processor <- function(input_data_file_name, spec_file_name, regr_di
     series_names <- colnames(mts_input_time_series) # sostituirlo con un vettore di serie che si vogliono destagionalizzare e aggiustare il codice nel for
     for (i in 1:ncol(mts_input_time_series)) {
       
-      # Estrai la serie dalla matrice mts
-      series <- mts_input_time_series[, i]
+      # browser()
+      if(all(is.na(series_to_proc_names)) || series_names[i] %in% series_to_proc_names)
+      {
+          
+          # Estrai la serie dalla matrice mts
+          series <- mts_input_time_series[, i]  
       
-      # Trova l'indice del primo valore non-NA nella serie
-      start_index <- which(!is.na(series))[1]
-      
-      # Estrai la parte della serie che inizia dal primo valore non-NA
-      series <- gsub(",", ".", series)
-      series_trimmed <- as.numeric(series[start_index:length(series)])
-      
-      # Calcola lo start basato sul primo valore non-NA
-      start_date <- timestamps[start_index]
-      
-      # Estrai l'anno e il mese dalla data
-      year  <- as.integer(substr(start_date, 1, 4))  # Estrai i primi 4 caratteri (anno) e convertili in intero
-      month <- as.integer(substr(start_date, 6, 7))  # Estrai i caratteri 6 e 7 (mese) e convertili in intero
-      
-      # Crea l'array start
-      start <- c(year, month)
-      
-      # Costruisci l'oggetto ts
-      ts_obj  <- ts(series_trimmed, start = start, frequency = 12)
-      
-      ts_name <- series_names[i]
-    
-      
-      extended_tramoseats_spec_list <- read_spec_list_from_json_file(spec_file_name, spec_format="list")
-      extended_tramoseats_spec_obj  <- extended_tramoseats_spec_list[[ts_name]]  
-      
-      
-      tramoseats_spec_args <- to_tramoseats_spec_args(extended_tramoseats_spec_obj, regr_directory =  regr_directory)
-      
-    
-      spec <- do.call(RJDemetra::tramoseats_spec, tramoseats_spec_args)
-      sa <- tramoseats(ts_obj, spec = spec)
-      
-      
-      add_sa_item(wk, "sa1", sa, ts_name)
-      
+          # Trova l'indice del primo valore non-NA nella serie
+          start_index <- which(!is.na(series))[1]
+          
+          # Estrai la parte della serie che inizia dal primo valore non-NA
+          series <- gsub(",", ".", series)
+          series_trimmed <- as.numeric(series[start_index:length(series)])
+          
+          # Calcola lo start basato sul primo valore non-NA
+          start_date <- timestamps[start_index]
+          
+          # Estrai l'anno e il mese dalla data
+          year  <- as.integer(substr(start_date, 1, 4))  # Estrai i primi 4 caratteri (anno) e convertili in intero
+          month <- as.integer(substr(start_date, 6, 7))  # Estrai i caratteri 6 e 7 (mese) e convertili in intero
+          
+          # Crea l'array start
+          start <- c(year, month)
+          
+          # Costruisci l'oggetto ts
+          ts_obj  <- ts(series_trimmed, start = start, frequency = 12)
+          
+          ts_name <- series_names[i]
+        
+          
+          extended_tramoseats_spec_list <- read_spec_list_from_json_file(spec_file_name, spec_format="list")
+          extended_tramoseats_spec_obj  <- extended_tramoseats_spec_list[[ts_name]]  
+          
+          
+          tramoseats_spec_args <- to_tramoseats_spec_args(extended_tramoseats_spec_obj, regr_directory =  regr_directory)
+          
+        
+          spec <- do.call(RJDemetra::tramoseats_spec, tramoseats_spec_args)
+          sa <- tramoseats(ts_obj, spec = spec)
+          
+          
+          add_sa_item(wk, "sa1", sa, ts_name)
+      }  
       
       
     }
@@ -123,7 +127,7 @@ JD_JSON_file_processor <- function(input_data_file_name, spec_file_name, regr_di
     dev.off()
     close.connection(zz)
     
-
+    return(model)
 }
 
 

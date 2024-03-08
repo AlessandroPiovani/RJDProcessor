@@ -1,3 +1,6 @@
+setwd("C:\\Users\\UTENTE\\Desktop\\MigrazioneFAT-RJDemetra_TEST_3\\")
+
+
 library(RJDemetra)
 library(rjson)
 
@@ -10,7 +13,6 @@ source("JD_JSON.R")
 
 
 
-setwd("C:\\Users\\UTENTE\\Desktop\\MigrazioneFAT-RJDemetra_TEST_3\\")
 
 ############################### Input defintion ################################
 
@@ -28,7 +30,8 @@ spec_file_name <- "specifications_new.txt"
 
 workspace_to_JSON(input_workspace_directory, regr_directory, spec_file_name = "specifications_new.txt", old_spec_file_name = "specifications_old.txt", diff=diff)
 
-JD_JSON_file_processor(input_data_file_name, spec_file_name , regr_directory=regr_directory)
+series_to_proc_names <- c("FATEXP_13", "FATEXP_17", "C_DEFL") # NA to process all the series
+model<-JD_JSON_file_processor(input_data_file_name, spec_file_name , regr_directory=regr_directory, series_to_proc_names = series_to_proc_names)
   
 from_reduced_to_full_JD_JSON_file(spec_file_name)
 
