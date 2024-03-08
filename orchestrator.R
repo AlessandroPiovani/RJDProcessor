@@ -24,6 +24,10 @@ JD_JSON_file_full_reduced <- "C:\\Users\\UTENTE\\Desktop\\MigrazioneFAT-RJDemetr
 
 diff <- TRUE # Reduced JSON if diff=TRUE, Full JSON format otherwise
 
+
+
+
+
 ############################## Operational flow ################################
 
 spec_file_name <- "specifications_new.txt"
