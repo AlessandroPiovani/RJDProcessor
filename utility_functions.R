@@ -7,50 +7,6 @@ check_character <- function(arg) {
   
 }
 
-# The variables values are available in files.
-# input_mode = TS_regressor_file the start date is the same as the input data series
-# input_mode = TODO JD_regressor_file file containing both dates and data
-getUserDefinedTdVariables_info <- function(jmodel ,input_mode=c("TS_regressor_file", "JD_regressor_file", ))
-{
-  var_info_list = list()
-  #browser()
-  for(name in names(jmodel[[1]]))
-  {
-    jSA_series      <- jmodel[[1]][[name]]
-    jRegression     <- jSA_series$spec$getRegression()
-    jCalendar       <- jRegression$getCalendar()
-    jTradingDays    <- jCalendar$getTradingDays()
-    jUserVarsString <- jTradingDays$getUserVariables()
-    
-    if(length(jUserVarsString)>0)
-    {
-      var_info_list[[name]] = list()
-      
-      file_list = list()
-      i=1
-      for(varString in jUserVarsString)
-      {
-        file_name <- tolower(sub(".*\\.(.*?)_\\d+$", "\\1", varString))
-        file_name <- paste0(file_name, ".txt")
-        # file_list[[i]] = list(file_name = nome_file, start=list(start(get_ts(jSA_series))) ,frequency=frequency(get_ts(jSA_series)))
-        # browser()
-        
-        year  <- start(get_ts(jSA_series))[1]
-        month <- start(get_ts(jSA_series))[2]
-        start_date <- as.Date(paste(year, month, "01", sep = "-"))
-        
-        
-        start_date <- format(start_date, "%Y-%m-%d")
-        file_list[[i]] = list(file_name = file_name, start = start_date ,frequency=frequency(get_ts(jSA_series)))
-        
-        i=i+1
-      }
-      var_info_list[[name]] <- append(var_info_list[[name]], file_list)
-    }  
-  }  
-  return(var_info_list)
-}  
-
 
 span_unpack <- function(span_string) {
   # Inizializza la lista di output

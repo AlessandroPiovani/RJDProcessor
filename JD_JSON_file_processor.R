@@ -18,7 +18,7 @@ source("Data_reader_ext_reg_tsplus.R")   #substitute with custom data_reader if 
 
 
 
-JD_JSON_file_processor <- function(input_data_file_name, spec_file_name, series_to_proc_names=NA, regr_directory=NA)
+JD_JSON_file_processor <- function(input_provider, ext_var_provider, spec_file_name, series_to_proc_names=NA, regr_directory=NA)#, data_reader_ext_reg = NA)
 {
     if(is.na(regr_directory))
     {
@@ -28,10 +28,10 @@ JD_JSON_file_processor <- function(input_data_file_name, spec_file_name, series_
     wk <- new_workspace()
     new_multiprocessing(wk, "sa1")
     
-    
-    input_data_reader     <- Data_reader(input_data_file_name)
-    mts_input_time_series <- read_data  (input_data_reader) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    
+    #browser()
+
+    mts_input_time_series <- input_provider@read_data() #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        
     
     timestamps   <- rownames(mts_input_time_series)
     series_names <- colnames(mts_input_time_series) # sostituirlo con un vettore di serie che si vogliono destagionalizzare e aggiustare il codice nel for
@@ -71,7 +71,7 @@ JD_JSON_file_processor <- function(input_data_file_name, spec_file_name, series_
           extended_tramoseats_spec_obj  <- extended_tramoseats_spec_list[[ts_name]]  
           
           
-          tramoseats_spec_args <- to_tramoseats_spec_args(extended_tramoseats_spec_obj, regr_directory =  regr_directory)
+          tramoseats_spec_args <- to_tramoseats_spec_args(extended_tramoseats_spec_obj, ext_var_provider)
           
         
           spec <- do.call(RJDemetra::tramoseats_spec, tramoseats_spec_args)
@@ -129,7 +129,5 @@ JD_JSON_file_processor <- function(input_data_file_name, spec_file_name, series_
     
     return(model)
 }
-
-
 
 

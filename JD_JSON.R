@@ -112,23 +112,25 @@ JD_JSON_to_materialized_workspace <- function(JSON_file, input_data_file, regr_d
 
 
 
-# e.g. workspace_xml_file_name = "C:\\Users\\UTENTE\\Desktop\\MigrazioneFAT-RJDemetra\\WorkspaceFAT-container\\WS-FAT.xml"
-JD_JSON_from_materialized_workspace <- function(workspace_xml_file_name, regr_directory=NA, JSON_file_name = "JD_JSON_specification.txt", diff=TRUE)
+# e.g. workspace_xml_file_name = "C:\\Users\\UTENTE\\Desktop\\MigrazioneFAT-RJDemetra\\WorkspaceFAT-container\\"
+JD_JSON_from_materialized_workspace <- function(workspace_directory, ext_reg_input_provider, regr_directory=NA, JSON_file_name = "JD_JSON_specification.txt", diff=TRUE)
 {
-  ws<-load_workspace(file = workspace_xml_file_name)
-  series_spec_list <- JD_JSON_from_virtual_workspace(ws, regr_directory=regr_directory, JSON_file_name = JSON_file_name, diff=diff)
-  return(series_spec_list)  
+  ws<-load_workspace(file = workspace_directory)
+  series_spec_list <- JD_JSON_from_virtual_workspace(ws, ext_reg_input_provider, JSON_file_name = JSON_file_name, diff=diff)
+  #return(series_spec_list)  
 }
 
 
 
 
-JD_JSON_from_virtual_workspace <- function(ws, regr_directory=NA, JSON_file_name = "JD_JSON_specification.txt", diff=TRUE)
+JD_JSON_from_virtual_workspace <- function(ws, ext_reg_input_provider, JSON_file_name = "JD_JSON_specification.txt", diff=TRUE)
 {
   compute(ws)
   
-  series_spec_list  <-  extended_tramoseats_spec_list(workspace = ws, regr_directory = regr_directory)
+  series_spec_list  <-  extended_tramoseats_spec_list(workspace = ws, ext_reg_input_provider)
   
+  
+  #browser()
   # Definisci il nome del file
   #file_name <- "specifications_new.txt"
   #diff <- TRUE

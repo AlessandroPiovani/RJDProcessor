@@ -5,7 +5,8 @@
 setClass("Data_reader_ext_reg", 
          slots = list(
            var_info  = "ANY",
-           source    = "ANY"   # in our case source is a directory path
+           source    = "ANY",   # in our case source is a directory path
+           read_ext_reg_data = "function"
          ))
 
 # read_data method, IT MUST RETURN AN mts OBJECT!!! MODIFY THIS METHOD TO CUSTOMIZE INPUT
@@ -61,13 +62,11 @@ setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg"),
 Data_reader_ext_reg <- function(var_info, source) {
   
   # Crea un oggetto della classe Csv_istat_format_data_reader
-  obj <- new("Data_reader_ext_reg", var_info=var_info, source=source)
-  
+  obj <- new("Data_reader_ext_reg", var_info=var_info, source=source, read_ext_reg_data = function() read_ext_reg_data(obj))
+
   # Restituisci l'oggetto creato
   return(obj)
 }
-
-
 
 
 

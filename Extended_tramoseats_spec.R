@@ -553,27 +553,31 @@ to_named_list <- function(object) {
 
 
 
-extended_tramoseats_spec_list <-  function(workspace, regr_directory=NA, ...)
+extended_tramoseats_spec_list <-  function(workspace, data_reader, ...)
 {
   compute(workspace)
   
+  
+  
+  #jmodel          <- RJDemetra::get_jmodel(workspace, progress_bar = TRUE) # to retrieve external regressors by name
+  cat("Loading models\n")
+  m <- get_model(workspace, progress_bar = TRUE)
+  
+  
+  cat("Loading external variables\n")
+  all_model_vars_info <- data_reader@read_ext_reg_info(workspace)
+  #all_jmodel_vars <- getUserDefinedTdVariables_info(jmodel) # per editare la scrittura
+
   #browser()
   
-  jmodel          <- RJDemetra::get_jmodel(workspace, progress_bar = TRUE) # to retrieve external regressors by name
-  m               <- get_model(workspace, progress_bar = TRUE)
-  
-  print("Models loaded")
-  
-  all_jmodel_vars <- getUserDefinedTdVariables_info(jmodel)
-
   extended_tramoseats_spec_list <- list()
   for (series_name in names(m[[1]]))
   {
     series        <-  m[[1]][[series_name]]
-    basic_spec    <- get_jspec(jmodel[[1]][[series_name]])$toString()  
+    #basic_spec    <- get_jspec(jmodel[[1]][[series_name]])$toString()  
     
     #browser()
-    spec <- from_SA_spec(series, series_name = series_name, basic_spec="RSA0", regr_directory = regr_directory, all_jmodel_vars=all_jmodel_vars)
+    spec <- from_SA_spec(series, series_name = series_name, basic_spec="RSA0", all_model_ext_vars_info = all_model_vars_info, data_reader = data_reader)
     spec <- list(spec)
     extended_tramoseats_spec_list <- append(extended_tramoseats_spec_list ,spec)
   }
@@ -587,11 +591,15 @@ extended_tramoseats_spec_list <-  function(workspace, regr_directory=NA, ...)
 
 
 
-
-from_SA_spec <- function(SA_spec, series_name = NA_character_, basic_spec="RSA0", regr_directory = getwd(), all_jmodel_vars=NULL, userdef.varFromFile=TRUE)
+# From SA_spec relies on Workspace to assign a value to the custom fields of Extended_tramoseats_spec (in particular the filename)
+from_SA_spec <- function(SA_spec, series_name = NA_character_, basic_spec="RSA0", userdef.varFromFile=TRUE, all_model_ext_vars_info=NULL, data_reader=NULL ,workspace=NA)
 {  
-    #browser()  
- 
+    #browser()
+    if(is.null(all_model_ext_vars_info) && !is.na(workspace)) # passing the variables pre_computed is more efficient because they are computed one time for a list of series
+    {
+      all_model_ext_vars_info = data_reader@read_ext_reg_info(workspace)
+    }  
+  
     if(!is.null(SA_spec$regarima$specification))#added for diff #tramoseats_spec object
     {
       regarima_spec <- SA_spec$regarima$specification
@@ -620,23 +628,25 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, basic_spec="RSA0"
       usrdef.varCoef <- NA
       userdef.varFromFile.infoList <- NULL
       
-      if(!is.null(all_jmodel_vars))
+      if(!is.null(all_model_ext_vars_info))
       {
         if(is.na(series_name))
         {
           warning("Impossible to read external variables without specifying series name! The procedure ends without considering extrernal variables", call=TRUE)
         }else
         { 
-          #vars_mts          <- getUserDef_var_as_mts(all_jmodel_vars[[series_name]], regr_directory) # Read as example but not used now 
-          ext_regr_data_reader <- Data_reader_ext_reg(all_jmodel_vars[[series_name]], regr_directory)
-          vars_mts             <- read_ext_reg_data(ext_regr_data_reader) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+          #ext_regr_data_reader <- Data_reader_ext_reg(all_jmodel_vars[[series_name]], regr_directory)
+          #ext_regr_data_reader <- data_reader(all_jmodel_vars[[series_name]], regr_directory)
+          #vars_mts             <- read_ext_reg_data(ext_regr_data_reader) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
           
+          #browser()
+          vars_mts             <- data_reader@read_ext_reg_data(all_model_ext_vars_info, series_name) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
           user_def_var_info <- get_user_def_var_info(regarima_spec) # si può prendere anche dal workspace?
           usrdef.varType <- user_def_var_info$type
           usrdef.varCoef <- user_def_var_info$coef
           
-          #browser()
-          userdef.varFromFile.infoList = all_jmodel_vars[[series_name]] 
+          userdef.varFromFile.infoList = all_model_ext_vars_info[[series_name]] 
           #browser()
           if (!inherits(vars_mts, c("ts", "mts")) && is.na(vars_mts))  {  userdef.varFromFile = FALSE  } #se è un problema togliere questa riga
         }
@@ -794,12 +804,13 @@ read_spec_list_from_json_file <- function(file_name, spec_format="Extended_tramo
 
 
 
-to_tramoseats_spec_args<-function(extended_tramoseats_spec, regr_directory)
+to_tramoseats_spec_args<-function(extended_tramoseats_spec, ext_regr_data_reader)
 {
   
   # Estrai gli elementi che ci sono in Extended_tramoseats_spec e non in tramoseats_spec
   userdef.varFromFile          <- extended_tramoseats_spec$userdef.varFromFile
   userdef.varFromFile.infoList <- extended_tramoseats_spec$userdef.varFromFile.infoList
+  series_name                  <- extended_tramoseats_spec$series_name
   
   # Rimuovi gli elementi che ci sono in Extended_tramoseats_spec e non in tramoseats_spec
   extended_tramoseats_spec <- extended_tramoseats_spec[ ! names(extended_tramoseats_spec) %in% c("series_name") ] # è già memorizzato in ts_name; lo tolgo 
@@ -812,8 +823,14 @@ to_tramoseats_spec_args<-function(extended_tramoseats_spec, regr_directory)
   if(!(is.null(userdef.varFromFile) || userdef.varFromFile == FALSE)){
     if(!is.null(userdef.varFromFile.infoList)){
       #mts <- getUserDef_var_as_mts(userdef.varFromFile.infoList, regr_directory)  
-      ext_regr_data_reader <- Data_reader_ext_reg(userdef.varFromFile.infoList, regr_directory)
-      vars_mts             <- read_ext_reg_data(ext_regr_data_reader) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      #browser()
+      #ext_regr_data_reader <- Data_reader_ext_reg2(regr_directory)
+      
+      # the  ext_regr_provider wants a named list of info as an input
+      info_list <- list()
+      info_list[[series_name]]  <- userdef.varFromFile.infoList
+      
+      vars_mts                  <- ext_regr_data_reader@read_ext_reg_data(info_list, series_name) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       
       extended_tramoseats_spec[["usrdef.var"]] <- vars_mts
     }  
