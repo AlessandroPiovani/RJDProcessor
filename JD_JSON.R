@@ -10,58 +10,66 @@ source("utility_functions.R")
 source("Extended_tramoseats_spec.R")
 
 
-JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_file, regr_directory=NA)
+JD_JSON_to_virtual_workspace <- function(JSON_file, input_provider, ext_reg_provider=NA, series_to_proc_names=NA)
 {
+  
   
   wk <- new_workspace()
   new_multiprocessing(wk, "sa1")
   
+  #browser()
   
-  mts_input_time_series <- read_dati_grezzi(input_data_file)
+  mts_input_time_series <- input_provider@read_data() #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   
   
   timestamps   <- rownames(mts_input_time_series)
-  series_names <- colnames(mts_input_time_series) # sostituirlo con un vettore di serie che si vogliono destagionalizzare e aggiustare il codice nel for
-  for (i in 1:ncol(mts_input_time_series)) 
-  {
-    # Estrai la serie dalla matrice mts
-    series <- mts_input_time_series[, i]
+  series_names <- colnames(mts_input_time_series) # sostituirlo con un vettore di serie che si vogliono destagionalizzare e aggiustare il codice nel for, per ora risolto con if nel for (che va anche bene)
+  for (i in 1:ncol(mts_input_time_series)) {
     
-    # Trova l'indice del primo valore non-NA nella serie
-    start_index <- which(!is.na(series))[1]
+    # browser()
+    if(all(is.na(series_to_proc_names)) || series_names[i] %in% series_to_proc_names)
+    {
+      
+      # Estrai la serie dalla matrice mts
+      series <- mts_input_time_series[, i]  
+      
+      # Trova l'indice del primo valore non-NA nella serie
+      start_index <- which(!is.na(series))[1]
+      
+      # Estrai la parte della serie che inizia dal primo valore non-NA
+      series <- gsub(",", ".", series)
+      series_trimmed <- as.numeric(series[start_index:length(series)])
+      
+      # Calcola lo start basato sul primo valore non-NA
+      start_date <- timestamps[start_index]
+      
+      # Estrai l'anno e il mese dalla data
+      year  <- as.integer(substr(start_date, 1, 4))  # Estrai i primi 4 caratteri (anno) e convertili in intero
+      month <- as.integer(substr(start_date, 6, 7))  # Estrai i caratteri 6 e 7 (mese) e convertili in intero
+      
+      # Crea l'array start
+      start <- c(year, month)
+      
+      # Costruisci l'oggetto ts
+      ts_obj  <- ts(series_trimmed, start = start, frequency = 12)
+      
+      ts_name <- series_names[i]
+      
+      
+      extended_tramoseats_spec_list <- read_spec_list_from_json_file(spec_file_name, spec_format="list")
+      extended_tramoseats_spec_obj  <- extended_tramoseats_spec_list[[ts_name]]  
+      
+      
+      tramoseats_spec_args <- to_tramoseats_spec_args(extended_tramoseats_spec_obj, ext_reg_provider)
+      
+      
+      spec <- do.call(RJDemetra::tramoseats_spec, tramoseats_spec_args)
+      sa <- tramoseats(ts_obj, spec = spec)
+      
+      
+      add_sa_item(wk, "sa1", sa, ts_name)
+    }  
     
-    # Estrai la parte della serie che inizia dal primo valore non-NA
-    series <- gsub(",", ".", series)
-    series_trimmed <- as.numeric(series[start_index:length(series)])
-    
-    # Calcola lo start basato sul primo valore non-NA
-    start_date <- timestamps[start_index]
-    
-    # Estrai l'anno e il mese dalla data
-    year  <- as.integer(substr(start_date, 1, 4))  # Estrai i primi 4 caratteri (anno) e convertili in intero
-    month <- as.integer(substr(start_date, 6, 7))  # Estrai i caratteri 6 e 7 (mese) e convertili in intero
-    
-    # Crea l'array start
-    start <- c(year, month)
-    
-    # Costruisci l'oggetto ts
-    ts_obj  <- ts(series_trimmed, start = start, frequency = 12)
-    
-    ts_name <- series_names[i]
-    
-    
-    extended_tramoseats_spec_list <- read_spec_list_from_json_file(JSON_file, spec_format = "list")
-    extended_tramoseats_spec_obj  <- extended_tramoseats_spec_list[[ts_name]]  
-    
-    
-    tramoseats_spec_args <- to_tramoseats_spec_args(extended_tramoseats_spec_obj, regr_directory)
-    
-    
-    spec <- do.call(RJDemetra::tramoseats_spec, tramoseats_spec_args)
-    sa <- tramoseats(ts_obj, spec = spec)
-    
-    
-    add_sa_item(wk, "sa1", sa, ts_name)
     
   }
   return(wk)
@@ -71,43 +79,42 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_file, regr_direct
 
 
 
-
-JD_JSON_to_materialized_workspace <- function(JSON_file, input_data_file, regr_directory=NA, workspace_dir=NA)
+JD_JSON_to_materialized_workspace <- function(workspace_dir=NA, JSON_file, input_provider, ext_reg_provider=NA, series_to_proc_names=NA)
 {
-  
-  wk <- JD_JSON_to_virtual_workspace(JSON_file, input_data_file, regr_directory = regr_directory)
+  wk <- JD_JSON_to_virtual_workspace(JSON_file, input_provider, ext_reg_provider, series_to_proc_names)
   
   if(is.na(workspace_dir))
   {
     workspace_dir <- "output_workspace_container"
-    if (!file.exists(workspace_dir)) {
-      # Crea la nuova cartella
-      dir.create(workspace_dir)
-    }
-    
-    # Ottieni il percorso completo della nuova cartella
-    dir_path <- file.path(getwd(), workspace_dir)
-    dir_path <- gsub("/", "\\\\", dir_path)
   }
-  else
-  {
-    # Estrai il nome della directory
-    workspace_dir <- basename(percorso)
-    
-    # Verifica se il percorso contiene un percorso completo o solo il nome della directory
-    if (dirname(percorso) == ".") {
-      # Se il percorso è solo il nome della directory, setta dir_path a getwd()
-      dir_path <- getwd()
-    } else {
-      # Altrimenti, estrai il percorso della directory (esclusa la directory stessa)
-      dir_path <- dirname(percorso)
-    }
+  
+  #browser()
+  # Estrai il nome della directory
+  workspace_dir <- basename(workspace_dir)
+  
+  # Verifica se il percorso contiene un percorso completo o solo il nome della directory
+  if (dirname(workspace_dir) == ".") {
+    # Se il percorso è solo il nome della directory, setta dir_path a getwd()
+    dir_path <- getwd()
+  } else {
+    # Altrimenti, estrai il percorso della directory (esclusa la directory stessa)
+    dir_path <- dirname(workspace_dir)
   }
+  
+  if (!file.exists(file.path(dir_path, workspace_dir))) {
+    # Se non esiste, crea la directory in dir_path
+    dir.create(file.path(dir_path, workspace_dir))
+  }
+  dir_path <- file.path(dir_path, workspace_dir)  
+  
     
   compute(wk)
   #model=get_model(wk)
   
-  save_workspace(wk, file.path(dir_path, "workspace.xml"))
+  workspace_file_path <- file.path(dir_path, "workspace.xml")
+  save_workspace(wk, workspace_file_path)
+  
+  return(wk) #
 }  
 
 

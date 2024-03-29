@@ -28,15 +28,13 @@ diff <- TRUE # Reduced JSON if diff=TRUE, Full JSON format otherwise
 
 spec_file_name <- "specifications_new.txt"
 
-#workspace_to_JSON(input_workspace_directory, regr_directory, spec_file_name = "specifications_new.txt", old_spec_file_name = "specifications_old.txt", diff=diff) # per programma istat
 
 ext_reg_input_provider = Data_reader_ext_reg2(regr_directory)
 JD_JSON_from_materialized_workspace(input_workspace_directory, ext_reg_input_provider, JSON_file_name = "specifications_new.txt", diff=TRUE)
   
-series_to_proc_names <- c("FATEXP_13", "FATEXP_17", "C_DEFL", "FATEXP_14") # NA to process all the series
-
+series_to_proc_names <- c("FATEXP_13", "C_DEFL", "FATEXP_14") # NA to process all the series
 input_provider = Data_reader(input_source = input_data_file_name)
-model<-JD_JSON_file_processor(input_provider, ext_reg_input_provider, spec_file_name, series_to_proc_names = NA) #series_to_proc_names)
+model <- JD_JSON_file_processor(input_provider = input_provider, ext_var_provider = ext_reg_input_provider, spec_file_name = spec_file_name, output_workspace_dir = "output_workspace_container" ,series_to_proc_names = series_to_proc_names) #output_workspace_dir can be omitted
   
 from_reduced_to_full_JD_JSON_file(spec_file_name)
 
