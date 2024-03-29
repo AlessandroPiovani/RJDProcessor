@@ -10,7 +10,7 @@ source("utility_functions.R")
 source("Extended_tramoseats_spec.R")
 
 
-JD_JSON_to_virtual_workspace <- function(JSON_file, input_provider, ext_reg_provider=NA, series_to_proc_names=NA)
+JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_provider, ext_reg_provider=NA, series_to_proc_names=NA)
 {
   
   
@@ -19,7 +19,7 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_provider, ext_reg_prov
   
   #browser()
   
-  mts_input_time_series <- input_provider@read_data() #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  mts_input_time_series <- input_data_provider@read_data() #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   
   
   timestamps   <- rownames(mts_input_time_series)
@@ -79,9 +79,9 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_provider, ext_reg_prov
 
 
 
-JD_JSON_to_materialized_workspace <- function(workspace_dir=NA, JSON_file, input_provider, ext_reg_provider=NA, series_to_proc_names=NA)
+JD_JSON_to_materialized_workspace <- function(workspace_dir=NA, JSON_file, input_data_provider, ext_reg_provider=NA, series_to_proc_names=NA)
 {
-  wk <- JD_JSON_to_virtual_workspace(JSON_file, input_provider, ext_reg_provider, series_to_proc_names)
+  wk <- JD_JSON_to_virtual_workspace(JSON_file, input_data_provider, ext_reg_provider, series_to_proc_names)
   
   if(is.na(workspace_dir))
   {
@@ -135,12 +135,6 @@ JD_JSON_from_virtual_workspace <- function(ws, ext_reg_input_provider, JSON_file
   compute(ws)
   
   series_spec_list  <-  extended_tramoseats_spec_list(workspace = ws, ext_reg_input_provider)
-  
-  
-  #browser()
-  # Definisci il nome del file
-  #file_name <- "specifications_new.txt"
-  #diff <- TRUE
   
   # Apri il file in modalità scrittura
   con <- file(JSON_file_name, "w")
@@ -280,8 +274,6 @@ from_full_to_reduced_JD_JSON_file<-function(JD_JSON_file, output_file_name=NA, i
     #browser()
     
     spec   <- extended_tramoseats_spec_list[[i]]
-    #spec   <- spec[!unlist(lapply(spec, is.na))]     # Remove NA elements. It is important because Extended_tramoseats_spec wants typed NA insetead of generic NA present in spec read from JSON, so it returns an error 
-    #spec <- spec[!unlist(lapply(spec, function(x) is.na(x) || identical(x, NA)))]
     spec <- spec[!unlist(lapply(spec, function(x) all(is.na(x))))]
     
 

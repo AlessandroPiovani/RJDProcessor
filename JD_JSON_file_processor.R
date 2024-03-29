@@ -1,27 +1,14 @@
-
-# Carica il pacchetto RJDemetra
-#install.packages("RJDemetra")
 require(RJDemetra)
-#install.packages("rjson")
 require(rjson)
 
 source("utility_functions.R")
-source("Extended_tramoseats_spec.R")
-source("basic_spec.R")
 source("JD_JSON.R")
 
-#source("Data_reader") #substitute with a specific Data reader
-source("Data_reader_csv_istat_format.R") #substitute with custom data_reader if this format does not fit your needs
-source("Data_reader_ext_reg_tsplus.R")   #substitute with custom data_reader if this format does not fit your needs
 
-
-
-
-
-JD_JSON_file_processor <- function(input_provider, ext_var_provider, spec_file_name, output_workspace_dir=NA, series_to_proc_names=NA)#, data_reader_ext_reg = NA)
+JD_JSON_file_processor <- function(input_data_provider, ext_reg_provider, spec_file_name, output_workspace_dir=NA, series_to_proc_names=NA)
 {
     #browser()
-    wk <- JD_JSON_to_materialized_workspace(workspace_dir=output_workspace_dir, JSON_file = JSON_file, input_provider = input_provider, ext_reg_provider= ext_var_provider, series_to_proc_names = series_to_proc_names)
+    wk <- JD_JSON_to_materialized_workspace(workspace_dir=output_workspace_dir, JSON_file = JSON_file, input_data_provider = input_data_provider, ext_reg_provider= ext_reg_provider, series_to_proc_names = series_to_proc_names)
     
     model=get_model(wk)
     

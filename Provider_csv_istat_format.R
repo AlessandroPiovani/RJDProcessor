@@ -1,5 +1,5 @@
 # Definizione della classe S4
-setClass("Data_reader", 
+setClass("Provider_csv_istat_format", 
          slots = list(
            input_source     = "ANY",
            read_data        = "function"
@@ -8,7 +8,7 @@ setClass("Data_reader",
 
 # read_data method, IT MUST RETURN AN mts OBJECT!!! MODIFY THIS METHOD TO CUSTOMIZE INPUT
 setGeneric("read_data", function(object) standardGeneric("read_data"))
-setMethod ("read_data", signature("Data_reader"),
+setMethod ("read_data", signature("Provider_csv_istat_format"),
           function(object) {
             
               # Leggi i dati dal file specificato nel campo file_name_with_path 
@@ -48,10 +48,10 @@ setMethod ("read_data", signature("Data_reader"),
           })
 
 # Definizione del costruttore R-like
-Data_reader <- function(input_source = NA) {
+Provider_csv_istat_format <- function(input_source = NA) {
 
-  # Crea un oggetto della classe Csv_istat_format_data_reader
-  obj <- new("Data_reader", input_source = input_source, read_data = function() read_data(obj))
+  # Crea un oggetto della classe Provider_csv_istat_format
+  obj <- new("Provider_csv_istat_format", input_source = input_source, read_data = function() read_data(obj))
   
   return(obj)
 }

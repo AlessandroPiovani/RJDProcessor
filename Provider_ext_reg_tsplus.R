@@ -2,7 +2,7 @@
 
 
 # Definizione della classe S4
-setClass("Data_reader_ext_reg2", 
+setClass("Provider_ext_reg_tsplus", 
          slots = list(
            input_source      = "ANY",   # in our case source is a directory path where the regressors are allocated
            read_ext_reg_data = "function",
@@ -11,7 +11,7 @@ setClass("Data_reader_ext_reg2",
 
 # read_data method, IT MUST RETURN AN mts OBJECT!!! MODIFY THIS METHOD TO CUSTOMIZE INPUT
 setGeneric("read_ext_reg_data", function(object, var_info=NULL, time_series_info=NULL) standardGeneric("read_ext_reg_data"))
-setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg2", "ANY", "ANY"),
+setMethod ("read_ext_reg_data", signature("Provider_ext_reg_tsplus", "ANY", "ANY"),
            function(object, var_info=NULL, time_series_info=NULL) {
              
              series_name <- time_series_info
@@ -69,7 +69,7 @@ setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg2", "ANY", "ANY"),
 
 # read_ext_reg_info method, IT MUST RETURN A LIST of information on external regressors
 setGeneric("read_ext_reg_info", function(object, var_info_container) standardGeneric("read_ext_reg_info"))
-setMethod ("read_ext_reg_info", signature("Data_reader_ext_reg2", "ANY"),
+setMethod ("read_ext_reg_info", signature("Provider_ext_reg_tsplus", "ANY"),
            function(object, var_info_container) {
              
              workspace <- var_info_container 
@@ -84,9 +84,9 @@ setMethod ("read_ext_reg_info", signature("Data_reader_ext_reg2", "ANY"),
 
 
 # Definizione del costruttore R-like
-Data_reader_ext_reg2 <- function(input_source) {
+Provider_ext_reg_tsplus <- function(input_source) {
   
-  obj <- new("Data_reader_ext_reg2", input_source = input_source, read_ext_reg_data = function(...) read_ext_reg_data(obj, ...), read_ext_reg_info = function(...) read_ext_reg_info(obj,...))
+  obj <- new("Provider_ext_reg_tsplus", input_source = input_source, read_ext_reg_data = function(...) read_ext_reg_data(obj, ...), read_ext_reg_info = function(...) read_ext_reg_info(obj,...))
   
   # Restituisci l'oggetto creato
   return(obj)
