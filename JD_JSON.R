@@ -43,6 +43,13 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_provider, ext_reg
       # Calcola lo start basato sul primo valore non-NA
       start_date <- timestamps[start_index]
       
+      # auto detect of frequency
+      d1         <- as.Date(timestamps[start_index])
+      d2         <- as.Date(timestamps[start_index+1])
+      month_diff <- abs(as.numeric(format(d1, "%m")) - as.numeric(format(d2, "%m")))
+      freq       <- 12/month_diff
+      
+      
       # Estrai l'anno e il mese dalla data
       year  <- as.integer(substr(start_date, 1, 4))  # Estrai i primi 4 caratteri (anno) e convertili in intero
       month <- as.integer(substr(start_date, 6, 7))  # Estrai i caratteri 6 e 7 (mese) e convertili in intero
@@ -50,8 +57,11 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_provider, ext_reg
       # Crea l'array start
       start <- c(year, month)
       
+      #browser()
+      
+      
       # Costruisci l'oggetto ts
-      ts_obj  <- ts(series_trimmed, start = start, frequency = 12)
+      ts_obj  <- ts(series_trimmed, start = start, frequency = freq)
       
       ts_name <- series_names[i]
       
@@ -64,6 +74,7 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_provider, ext_reg
       
       
       spec <- do.call(RJDemetra::tramoseats_spec, tramoseats_spec_args)
+      #browser()
       sa <- tramoseats(ts_obj, spec = spec)
       
       
@@ -135,6 +146,7 @@ JD_JSON_from_virtual_workspace <- function(ws, ext_reg_input_provider, JSON_file
   compute(ws)
   
   series_spec_list  <-  extended_tramoseats_spec_list(workspace = ws, ext_reg_input_provider)
+  
   
   # Apri il file in modalità scrittura
   con <- file(JSON_file_name, "w")

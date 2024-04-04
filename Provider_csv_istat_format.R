@@ -37,10 +37,16 @@ setMethod ("read_data", signature("Provider_csv_istat_format"),
               colnames(mts) <- series_names
               rownames(mts) <- as.character(timestamps)
               
+              # auto detection of the time series frequency
+              d1         <- as.Date(timestamps[1])
+              d2         <- as.Date(timestamps[2])
+              month_diff <- abs(as.numeric(format(d1, "%m")) - as.numeric(format(d2, "%m")))
+              freq       <- 12/month_diff
+              
               
               # Ciclo per creare un oggetto ts per ogni colonna
               for (i in 1:ncol(mts)) {
-                mts[, i] <- ts(data[, i], start = timestamps[1], frequency = 4)
+                mts[, i] <- ts(data[, i], start = timestamps[1], frequency = freq)
               }
               
               return(mts)

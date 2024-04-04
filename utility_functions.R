@@ -272,4 +272,12 @@ convert_numerics_to_integers <- function(json_data, fields_to_convert=NA) {
   return(json_data)
 }
 
-
+# get_userdef_var <- function(userdef.varFromFile, vars_mts, regarima_spec, series_name)
+# {
+#   if(userdef.varFromFile==TRUE){
+#     return(vars_mts)
+#   } else{
+#    return(NA)
+#   }
+#    
+# }  

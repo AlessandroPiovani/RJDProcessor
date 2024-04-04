@@ -399,7 +399,7 @@ setMethod("to_JD_JSON", "Extended_tramoseats_spec", function(object, indent = FA
     # Aggiungi andare a capo dopo la parentesi quadra seguita dalla virgola
     json_spec <- gsub("\\],", "\\],\n", json_spec)
     # Aggiungi andare a capo prima delle parentesi graffe chiuse, a meno che non siano seguite da una parentesi quadra chiusa
-    json_spec <- gsub("\\}(?!\\])", "\n}", json_spec, perl = TRUE)
+    json_spec <- gsub("\\}(?!\\])", "\n}", json_spec, perl = TRUE) # without PERL: json_spec <- gsub("}([^\\]])", "\n}\\1", json_spec)
     # Aggiungi degli spazi dopo le virgole, ma solo quando non sono seguite da un carattere di nuova riga
     json_spec <- gsub(",([^\\r\\n])", ", \\1", json_spec)
     
@@ -631,11 +631,11 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, basic_spec="RSA0"
         }else
         { 
 
-          vars_mts             <- provider_ext_reg@read_ext_reg_data(all_model_ext_vars_info, series_name) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+          vars_mts          <- provider_ext_reg@read_ext_reg_data(all_model_ext_vars_info, series_name) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
           user_def_var_info <- get_user_def_var_info(regarima_spec) # si può prendere anche dal workspace?
-          usrdef.varType <- user_def_var_info$type
-          usrdef.varCoef <- user_def_var_info$coef
+          usrdef.varType    <- user_def_var_info$type
+          usrdef.varCoef    <- user_def_var_info$coef
           
           userdef.varFromFile.infoList = all_model_ext_vars_info[[series_name]] 
           #browser()
@@ -675,7 +675,7 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, basic_spec="RSA0"
       usrdef.varEnabled      = regarima_spec$regression$userdef$specification$variables,
       userdef.varFromFile    = userdef.varFromFile,
       userdef.varFromFile.infoList = userdef.varFromFile.infoList,
-      usrdef.var             = ifelse(userdef.varFromFile==TRUE, NA,vars_mts), # !!!
+      usrdef.var             = ifelse(userdef.varFromFile==TRUE, NA,vars_mts), #get_userdef_var(userdef.varFromFile, vars_mts, regarima_spec, series_name),#, # !!!
       usrdef.varType         = usrdef.varType, #ifelse(is.na(vars_mts), NA, regarima_spec$regression$userdef$variables$description$type), # prima era "Undefined"
       usrdef.varCoef         = usrdef.varCoef, #ifelse(regarima_spec$regression$userdef$specification$variables.coef, regarima_spec$regression$userdef$variables$description$coeff, NA),
       tradingdays.mauto    = regarima_spec$regression$trading.days$automatic,
@@ -742,7 +742,7 @@ read_spec_list_from_json_file <- function(file_name, spec_format="Extended_tramo
   
   # Carica la libreria rjson
   library(rjson)
-  ##browser()
+  #browser()
   
   # Leggi il contenuto del file specifications.txt
   json_text <- readLines(file_name)
