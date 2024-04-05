@@ -118,7 +118,7 @@ JD_JSON_to_materialized_workspace <- function(workspace_dir=NA, JSON_file, input
   }
   dir_path <- file.path(dir_path, workspace_dir)  
   
-    
+  
   compute(wk)
   #model=get_model(wk)
   
@@ -145,7 +145,7 @@ JD_JSON_from_virtual_workspace <- function(ws, ext_reg_input_provider, JSON_file
 {
   compute(ws)
   
-  series_spec_list  <-  extended_tramoseats_spec_list(workspace = ws, ext_reg_input_provider)
+  series_spec_list  <-  extended_tramoseats_spec_list_from_workspace(workspace = ws, ext_reg_input_provider)
   
   
   # Apri il file in modalità scrittura
@@ -217,7 +217,7 @@ from_reduced_to_full_JD_JSON_file <- function(JD_JSON_file, output_file_name=NA,
   if(is.na(output_file_name))
   {
     output_file_name <- gsub("\\.(\\w+)$", "_full.\\1", JD_JSON_file)
-
+    
   }  
   # Apri il file in modalità scrittura
   con <- file(output_file_name, "w")
@@ -226,7 +226,7 @@ from_reduced_to_full_JD_JSON_file <- function(JD_JSON_file, output_file_name=NA,
   
   
   extended_tramoseats_spec_list <- read_spec_list_from_json_file(JD_JSON_file, spec_format="list")
-
+  
   n <- length(extended_tramoseats_spec_list)
   
   for(i in seq_len(n - 1))
@@ -236,11 +236,11 @@ from_reduced_to_full_JD_JSON_file <- function(JD_JSON_file, output_file_name=NA,
     #spec   <- convert_numerics_to_integers(spec) #metterlo nel costruttore?
     #browser()
     spec   <- do.call(Extended_tramoseats_spec, spec)
-
+    
     json_spec <- to_JD_JSON(spec, indent = indent, diff = FALSE)
     writeLines(json_spec, con, sep = ",\n\n\n")
   }  
-
+  
   #browser()
   spec   <- extended_tramoseats_spec_list[[n]]
   #spec   <- convert_numerics_to_integers(spec)
@@ -257,7 +257,7 @@ from_reduced_to_full_JD_JSON_file <- function(JD_JSON_file, output_file_name=NA,
   # Chiudi il file
   close(con)
   closeAllConnections()
-
+  
 }
 
 
@@ -288,7 +288,7 @@ from_full_to_reduced_JD_JSON_file<-function(JD_JSON_file, output_file_name=NA, i
     spec   <- extended_tramoseats_spec_list[[i]]
     spec <- spec[!unlist(lapply(spec, function(x) all(is.na(x))))]
     
-
+    
     
     #spec   <- convert_numerics_to_integers(spec) #metterlo nel costruttore?
     #browser()

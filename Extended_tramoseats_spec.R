@@ -91,7 +91,7 @@ setClass(
 
 # Costruttore
 
-  #costruttore initialize per la classe
+#costruttore initialize per la classe
 setMethod("initialize", "Extended_tramoseats_spec",
           function(.Object, series_name, spec = "RSA0", preliminary.check = NA,
                    estimate.from = NA_character_, estimate.to = NA_character_,
@@ -130,9 +130,9 @@ setMethod("initialize", "Extended_tramoseats_spec",
             
             # Convert possible numeric arguments to integer if they are compatible
             integer_args_to_check <- c( "estimate.first", "estimate.last", "estimate.exclFirst", "estimate.exclLast", "tradingdays.stocktd",
-                                "easter.duration", "outlier.first", "outlier.last", "outlier.exclFirst", "outlier.exclLast", 
-                                "arima.p", "arima.d", "arima.q", "arima.bp", "arima.bd", "arima.bq",
-                                "seats.predictionLength")
+                                        "easter.duration", "outlier.first", "outlier.last", "outlier.exclFirst", "outlier.exclLast", 
+                                        "arima.p", "arima.d", "arima.q", "arima.bp", "arima.bd", "arima.bq",
+                                        "seats.predictionLength")
             numeric_args_with_NA_integer <- c("estimate.tol", "transform.fct", "outlier.cv", "outlier.tcrate", "automdl.cancel", "automdl.ub1", "automdl.ub2", "automdl.armalimit", "automdl.reducecv", "automdl.ljungboxlimit", "fcst.horizon", "seats.trendBoundary", "seats.seasdBoundary", "seats.seasdBoundary1", "seats.seasTol", "seats.maBoundary")
             
             for (arg_name in integer_args_to_check) 
@@ -155,7 +155,7 @@ setMethod("initialize", "Extended_tramoseats_spec",
             }   
             
             
- 
+            
             
             .Object@series_name <- series_name
             .Object@spec        <- spec
@@ -266,7 +266,7 @@ setMethod("initialize", "Extended_tramoseats_spec",
                             "seats.maBoundary", "seats.method")
             
             basic_spec <- get_basic_spec("RSA0")
-
+            
             for (attr in attributes)
             {
               attr_value <- eval(parse(text = attr))
@@ -289,42 +289,42 @@ setMethod("initialize", "Extended_tramoseats_spec",
 
 
 
-  # Costruttore R-like: 
-        # Funzione di aiuto per creare un oggetto Extended_tramoseats
+# Costruttore R-like: 
+# Funzione di aiuto per creare un oggetto Extended_tramoseats
 Extended_tramoseats_spec_helper <- function(series_name = NULL, spec = NULL, preliminary.check = NA,
-                                        estimate.from = NA_character_, estimate.to = NA_character_,
-                                        estimate.first = NA_integer_, estimate.last = NA_integer_,
-                                        estimate.exclFirst = NA_integer_, estimate.exclLast = NA_integer_,
-                                        estimate.tol = NA_integer_, estimate.eml = NA,
-                                        estimate.urfinal = NA_integer_, transform.function = NA,
-                                        transform.fct = NA_integer_, usrdef.outliersEnabled = NA,
-                                        usrdef.outliersType = NA, usrdef.outliersDate = NA,
-                                        usrdef.outliersCoef = NA, userdef.varFromFile = FALSE,
-                                        userdef.varFromFile.infoList = NULL, usrdef.varEnabled = NA,
-                                        usrdef.var = NA, usrdef.varType = NA, usrdef.varCoef = NA,
-                                        tradingdays.mauto = NA, tradingdays.pftd = NA_integer_,
-                                        tradingdays.option = NA, tradingdays.leapyear = NA,
-                                        tradingdays.stocktd = NA_integer_, tradingdays.test = NA,
-                                        easter.type = NA, easter.julian = NA, easter.duration = NA_integer_,
-                                        easter.test = NA, outlier.enabled = NA, outlier.from = NA_character_,
-                                        outlier.to = NA_character_, outlier.first = NA_integer_,
-                                        outlier.last = NA_integer_, outlier.exclFirst = NA_integer_,
-                                        outlier.exclLast = NA_integer_, outlier.ao = NA, outlier.tc = NA,
-                                        outlier.ls = NA, outlier.so = NA, outlier.usedefcv = NA,
-                                        outlier.cv = NA_integer_, outlier.eml = NA, outlier.tcrate = NA_integer_,
-                                        automdl.enabled = NA, automdl.acceptdefault = NA,
-                                        automdl.cancel = NA_integer_, automdl.ub1 = NA_integer_,
-                                        automdl.ub2 = NA_integer_, automdl.armalimit = NA_integer_,
-                                        automdl.reducecv = NA_integer_, automdl.ljungboxlimit = NA_integer_,
-                                        automdl.compare = NA, arima.mu = NA, arima.p = NA_integer_,
-                                        arima.d = NA_integer_, arima.q = NA_integer_, arima.bp = NA_integer_,
-                                        arima.bd = NA_integer_, arima.bq = NA_integer_,
-                                        arima.coefEnabled = NA, arima.coef = NA, arima.coefType = NA,
-                                        fcst.horizon = NA_integer_, seats.predictionLength = NA_integer_,
-                                        seats.approx = NA, seats.trendBoundary = NA_integer_,
-                                        seats.seasdBoundary = NA_integer_, seats.seasdBoundary1 = NA_integer_,
-                                        seats.seasTol = NA_integer_, seats.maBoundary = NA_integer_,
-                                        seats.method = NA) {
+                                            estimate.from = NA_character_, estimate.to = NA_character_,
+                                            estimate.first = NA_integer_, estimate.last = NA_integer_,
+                                            estimate.exclFirst = NA_integer_, estimate.exclLast = NA_integer_,
+                                            estimate.tol = NA_integer_, estimate.eml = NA,
+                                            estimate.urfinal = NA_integer_, transform.function = NA,
+                                            transform.fct = NA_integer_, usrdef.outliersEnabled = NA,
+                                            usrdef.outliersType = NA, usrdef.outliersDate = NA,
+                                            usrdef.outliersCoef = NA, userdef.varFromFile = FALSE,
+                                            userdef.varFromFile.infoList = NULL, usrdef.varEnabled = NA,
+                                            usrdef.var = NA, usrdef.varType = NA, usrdef.varCoef = NA,
+                                            tradingdays.mauto = NA, tradingdays.pftd = NA_integer_,
+                                            tradingdays.option = NA, tradingdays.leapyear = NA,
+                                            tradingdays.stocktd = NA_integer_, tradingdays.test = NA,
+                                            easter.type = NA, easter.julian = NA, easter.duration = NA_integer_,
+                                            easter.test = NA, outlier.enabled = NA, outlier.from = NA_character_,
+                                            outlier.to = NA_character_, outlier.first = NA_integer_,
+                                            outlier.last = NA_integer_, outlier.exclFirst = NA_integer_,
+                                            outlier.exclLast = NA_integer_, outlier.ao = NA, outlier.tc = NA,
+                                            outlier.ls = NA, outlier.so = NA, outlier.usedefcv = NA,
+                                            outlier.cv = NA_integer_, outlier.eml = NA, outlier.tcrate = NA_integer_,
+                                            automdl.enabled = NA, automdl.acceptdefault = NA,
+                                            automdl.cancel = NA_integer_, automdl.ub1 = NA_integer_,
+                                            automdl.ub2 = NA_integer_, automdl.armalimit = NA_integer_,
+                                            automdl.reducecv = NA_integer_, automdl.ljungboxlimit = NA_integer_,
+                                            automdl.compare = NA, arima.mu = NA, arima.p = NA_integer_,
+                                            arima.d = NA_integer_, arima.q = NA_integer_, arima.bp = NA_integer_,
+                                            arima.bd = NA_integer_, arima.bq = NA_integer_,
+                                            arima.coefEnabled = NA, arima.coef = NA, arima.coefType = NA,
+                                            fcst.horizon = NA_integer_, seats.predictionLength = NA_integer_,
+                                            seats.approx = NA, seats.trendBoundary = NA_integer_,
+                                            seats.seasdBoundary = NA_integer_, seats.seasdBoundary1 = NA_integer_,
+                                            seats.seasTol = NA_integer_, seats.maBoundary = NA_integer_,
+                                            seats.method = NA) {
   
   new("Extended_tramoseats_spec", series_name = series_name, spec = spec, preliminary.check = preliminary.check,
       estimate.from = estimate.from, estimate.to = estimate.to, estimate.first = estimate.first,
@@ -358,7 +358,7 @@ Extended_tramoseats_spec_helper <- function(series_name = NULL, spec = NULL, pre
       seats.maBoundary = seats.maBoundary, seats.method = seats.method)
 }
 
-        # Definizione dell'alias di funzione (costruttore R-like)
+# Definizione dell'alias di funzione (costruttore R-like)
 Extended_tramoseats_spec <- Extended_tramoseats_spec_helper
 
 
@@ -371,8 +371,8 @@ Extended_tramoseats_spec <- Extended_tramoseats_spec_helper
 # basic_spec di default "RSA0", funzionalità di costruzione file su basic_spec diverse non ancora implementata
 setGeneric("to_JD_JSON", function(object, indent = FALSE, diff = TRUE, basic_spec="RSA0") standardGeneric("to_JD_JSON"))
 setMethod("to_JD_JSON", "Extended_tramoseats_spec", function(object, indent = FALSE, diff = TRUE, basic_spec="RSA0") {
-#to_JD_JSON <- function(object, indent = FALSE, diff = TRUE)
-#{  
+  #to_JD_JSON <- function(object, indent = FALSE, diff = TRUE)
+  #{  
   require(rjson)
   
   if(diff == TRUE)
@@ -413,7 +413,7 @@ setMethod("to_JD_JSON", "Extended_tramoseats_spec", function(object, indent = FA
       return(match)
     })
   }
-
+  
   return(json_spec)
 })
 
@@ -512,7 +512,7 @@ setMethod ("from_JD_JSON", "Extended_tramoseats_spec", function(object, json) {
   
   # Costruisci un nuovo oggetto Extended_tramoseats_spec
   do.call("Extended_tramoseats_spec", args)
-
+  
 })
 
 
@@ -548,7 +548,7 @@ to_named_list <- function(object) {
 
 
 
-extended_tramoseats_spec_list <-  function(workspace, provider_ext_reg, ...)
+extended_tramoseats_spec_list_from_workspace <-  function(workspace, provider_ext_reg, ...)
 {
   compute(workspace)
   
@@ -562,7 +562,7 @@ extended_tramoseats_spec_list <-  function(workspace, provider_ext_reg, ...)
   cat("Loading external variables\n")
   all_model_vars_info <- provider_ext_reg@read_ext_reg_info(workspace)
   #all_jmodel_vars <- getUserDefinedTdVariables_info(jmodel) # per editare la scrittura
-
+  
   #browser()
   
   extended_tramoseats_spec_list <- list()
@@ -589,151 +589,151 @@ extended_tramoseats_spec_list <-  function(workspace, provider_ext_reg, ...)
 # From SA_spec relies on Workspace to assign a value to the custom fields of Extended_tramoseats_spec (in particular the filename)
 from_SA_spec <- function(SA_spec, series_name = NA_character_, basic_spec="RSA0", userdef.varFromFile=TRUE, all_model_ext_vars_info=NULL, provider_ext_reg=NULL ,workspace=NA)
 {  
-    #browser()
-    if(is.null(all_model_ext_vars_info) && !is.na(workspace)) # passing the variables pre_computed is more efficient because they are computed one time for a list of series
-    {
-      all_model_ext_vars_info = provider_ext_reg@read_ext_reg_info(workspace)
-    }  
+  #browser()
+  if(is.null(all_model_ext_vars_info) && !is.na(workspace)) # passing the variables pre_computed is more efficient because they are computed one time for a list of series
+  {
+    all_model_ext_vars_info = provider_ext_reg@read_ext_reg_info(workspace)
+  }  
   
-    if(!is.null(SA_spec$regarima$specification))#added for diff #tramoseats_spec object
+  if(!is.null(SA_spec$regarima$specification))#added for diff #tramoseats_spec object
+  {
+    regarima_spec <- SA_spec$regarima$specification
+    seats_spec    <- SA_spec$decomposition$specification
+  } else #regarima object
+  {
+    regarima_spec <- SA_spec$regarima
+    seats_spec    <- SA_spec$seats
+  }
+  
+  if(nrow(regarima_spec$estimate) == 3)
+  {
+    regarima_spec <- simplify_leaves(regarima_spec)
+    seats_spec    <- simplify_leaves(seats_spec)
+  }  
+  
+  
+  estimate_span_details <- span_unpack_into_spec(span = regarima_spec$estimate$span)  
+  outliers_span_details <- span_unpack_into_spec(span = regarima_spec$outliers$span)  
+  
+  
+  if(userdef.varFromFile == TRUE)
+  {
+    vars_mts       <- NA #ts()
+    usrdef.varType <- NA
+    usrdef.varCoef <- NA
+    userdef.varFromFile.infoList <- NULL
+    
+    if(!is.null(all_model_ext_vars_info))
     {
-      regarima_spec <- SA_spec$regarima$specification
-      seats_spec    <- SA_spec$decomposition$specification
-    } else #regarima object
-    {
-      regarima_spec <- SA_spec$regarima
-      seats_spec    <- SA_spec$seats
-    }
-    
-    if(nrow(regarima_spec$estimate) == 3)
-    {
-      regarima_spec <- simplify_leaves(regarima_spec)
-      seats_spec    <- simplify_leaves(seats_spec)
-    }  
-    
-    
-    estimate_span_details <- span_unpack_into_spec(span = regarima_spec$estimate$span)  
-    outliers_span_details <- span_unpack_into_spec(span = regarima_spec$outliers$span)  
-    
-    
-    if(userdef.varFromFile == TRUE)
-    {
-      vars_mts       <- NA #ts()
-      usrdef.varType <- NA
-      usrdef.varCoef <- NA
-      userdef.varFromFile.infoList <- NULL
-      
-      if(!is.null(all_model_ext_vars_info))
+      if(is.na(series_name))
       {
-        if(is.na(series_name))
-        {
-          warning("Impossible to read external variables without specifying series name! The procedure ends without considering extrernal variables", call=TRUE)
-        }else
-        { 
-
-          vars_mts          <- provider_ext_reg@read_ext_reg_data(all_model_ext_vars_info, series_name) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-          user_def_var_info <- get_user_def_var_info(regarima_spec) # si può prendere anche dal workspace?
-          usrdef.varType    <- user_def_var_info$type
-          usrdef.varCoef    <- user_def_var_info$coef
-          
-          userdef.varFromFile.infoList = all_model_ext_vars_info[[series_name]] 
-          #browser()
-          if (!inherits(vars_mts, c("ts", "mts")) && is.na(vars_mts))  {  userdef.varFromFile = FALSE  } #se è un problema togliere questa riga
-        }
+        warning("Impossible to read external variables without specifying series name! The procedure ends without considering extrernal variables", call=TRUE)
+      }else
+      { 
+        
+        vars_mts          <- provider_ext_reg@read_ext_reg_data(all_model_ext_vars_info, series_name) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        
+        user_def_var_info <- get_user_def_var_info(regarima_spec) # si può prendere anche dal workspace?
+        usrdef.varType    <- user_def_var_info$type
+        usrdef.varCoef    <- user_def_var_info$coef
+        
+        userdef.varFromFile.infoList = all_model_ext_vars_info[[series_name]] 
+        #browser()
+        if (!inherits(vars_mts, c("ts", "mts")) && is.na(vars_mts))  {  userdef.varFromFile = FALSE  } #se è un problema togliere questa riga
       }
     }
-    else # userdef.varFromFile == FALSE  (metterle prima dell'if come inizializzazione per maggiore chiarezza?)
-    {
-      # TODO
-      vars_mts <- ts()      #SA_spec$...
-      usrdef.varType <- NA  #get_user_def_var_info$Type ?
-      usrdef.varCoef <- NA  #get_user_def_var_info$Coef ?
-      userdef.varFromFile.infoList <- NULL
-    } 
-    
-    
-    extended_tramoseats_spec <- Extended_tramoseats_spec(
-      spec               = ifelse(basic_spec=="TS", "RSA0", basic_spec), 
-      series_name        = series_name, # ISTAT custom field
-      preliminary.check  = regarima_spec$estimate$preliminary.check, 
-      estimate.from      = estimate_span_details$from,      #regarima_spec$span$d1[1],
-      estimate.to        = estimate_span_details$to,        #regarima_spec$span$d0[1],
-      estimate.first     = estimate_span_details$first,     #ifelse(!is.na(regarima_spec$span$d1[1]) || !is.na(regarima_spec$span$d0[1]) || !is.na(regarima_spec$span$n1[1]),NA_integer_,regarima_spec$span$n0[1]),
-      estimate.last      = estimate_span_details$last,      #ifelse(!is.na(regarima_spec$span$d1[1]) || !is.na(regarima_spec$span$d0[1]), NA_integer_, regarima_spec$span$n1[1]),
-      estimate.exclFirst = estimate_span_details$exclFirst, #ifelse((!is.na(regarima_spec$span$d1[1]) || !is.na(regarima_spec$span$d0[1]) || !is.na(regarima_spec$span$n0[1]) || !is.na(regarima_spec$span$n1[1])) && regarima_spec$span$type[1]!="All",  0, regarima_spec$span$n0[1]),
-      estimate.exclLast  = estimate_span_details$exclLast,  #ifelse((!is.na(regarima_spec$span$d1[1]) || !is.na(regarima_spec$span$d0[1]) || !is.na(regarima_spec$span$n0[1]) || !is.na(regarima_spec$span$n1[1])) && regarima_spec$span$type[1]!="All",  0, regarima_spec$span$n1[1]),  
-      estimate.tol       = regarima_spec$estimate$tolerance,
-      estimate.eml       = regarima_spec$estimate$exact_ml,
-      estimate.urfinal   = regarima_spec$estimate$urfinal,
-      transform.function = regarima_spec$transform$tfunction,
-      transform.fct      = regarima_spec$transform$fct,
-      usrdef.outliersEnabled = regarima_spec$regression$userdef$specification$outlier,
-      usrdef.outliersType    = get_outliers_info(regarima_spec)$type, #not working ->ifelse(!is.null(regarima_spec$regression$userdef$outliers$type), regarima_spec$regression$userdef$outliers$type, NA),
-      usrdef.outliersDate    = get_outliers_info(regarima_spec)$date,  #ifelse(regarima_spec$regression$userdef$specification$outlier==TRUE, regarima_spec$regression$userdef$outliers$date, NA),
-      usrdef.outliersCoef    = get_outliers_info(regarima_spec)$coeff, #ifelse(regarima_spec$regression$userdef$specification$outlier.coef, regarima_spec$regression$userdef$outliers$coeff,NA),
-      usrdef.varEnabled      = regarima_spec$regression$userdef$specification$variables,
-      userdef.varFromFile    = userdef.varFromFile,
-      userdef.varFromFile.infoList = userdef.varFromFile.infoList,
-      usrdef.var             = ifelse(userdef.varFromFile==TRUE, NA,vars_mts), #get_userdef_var(userdef.varFromFile, vars_mts, regarima_spec, series_name),#, # !!!
-      usrdef.varType         = usrdef.varType, #ifelse(is.na(vars_mts), NA, regarima_spec$regression$userdef$variables$description$type), # prima era "Undefined"
-      usrdef.varCoef         = usrdef.varCoef, #ifelse(regarima_spec$regression$userdef$specification$variables.coef, regarima_spec$regression$userdef$variables$description$coeff, NA),
-      tradingdays.mauto    = regarima_spec$regression$trading.days$automatic,
-      tradingdays.pftd     = regarima_spec$regression$trading.days$pftd,
-      tradingdays.option   = regarima_spec$regression$trading.days$option,
-      tradingdays.leapyear = regarima_spec$regression$trading.days$leapyear,
-      tradingdays.stocktd  = regarima_spec$regression$trading.days$stocktd,
-      tradingdays.test     = regarima_spec$regression$trading.days$test,
-      easter.type          = regarima_spec$regression$easter$type,
-      easter.julian        = regarima_spec$regression$easter$julian,
-      easter.duration      = regarima_spec$regression$easter$duration,
-      easter.test          = regarima_spec$regression$easter$test,
-      outlier.enabled   = regarima_spec$outliers$enabled,
-      outlier.from      = outliers_span_details$from,      #regarima_spec$span$d1[2],
-      outlier.to        = outliers_span_details$to,        #regarima_spec$span$d0[2],
-      outlier.first     = outliers_span_details$first,     #ifelse( !is.na(regarima_spec$span$d1[2]) || !is.na(regarima_spec$span$d0[2]) || !is.na(regarima_spec$span$n1[2]),NA_integer_,regarima_spec$span$n0[2]),
-      outlier.last      = outliers_span_details$last,      #ifelse( !is.na(regarima_spec$span$d1[2]) || !is.na(regarima_spec$span$d0[2]), NA_integer_, regarima_spec$span$n1[2]),
-      outlier.exclFirst = outliers_span_details$exclFirst, #ifelse((!is.na(regarima_spec$span$d1[2]) || !is.na(regarima_spec$span$d0[2]) || !is.na(regarima_spec$span$n0[2]) || !is.na(regarima_spec$span$n1[2])) && !(regarima_spec$span$type[2] %in% c("From", "To", "Between")),  NA_integer_, regarima_spec$span$n0[2]),
-      outlier.exclLast  = outliers_span_details$exclLast,  #ifelse((!is.na(regarima_spec$span$d1[2]) || !is.na(regarima_spec$span$d0[2]) || !is.na(regarima_spec$span$n0[2]) || !is.na(regarima_spec$span$n1[2])) && !(regarima_spec$span$type[2] %in% c("From", "To", "Between")),  NA_integer_, regarima_spec$span$n1[2]),
-      outlier.ao       = regarima_spec$outliers$ao,
-      outlier.tc       = regarima_spec$outliers$tc,
-      outlier.ls       = regarima_spec$outliers$ls,
-      outlier.so       = regarima_spec$outliers$so,
-      outlier.usedefcv = regarima_spec$outliers$usedefcv,
-      outlier.cv       = regarima_spec$outliers$cv,
-      outlier.eml      = regarima_spec$outliers$eml,
-      outlier.tcrate   = regarima_spec$outliers$tcrate,
-      automdl.enabled  = regarima_spec$arima$specification$enabled,
-      automdl.acceptdefault = regarima_spec$arima$specification$automdl.acceptdefault,
-      automdl.cancel   = regarima_spec$arima$specification$automdl.cancel,
-      automdl.ub1      = regarima_spec$arima$specification$automdl.ub1,
-      automdl.ub2      = regarima_spec$arima$specification$automdl.ub2,
-      automdl.armalimit= regarima_spec$arima$specification$automdl.armalimit,
-      automdl.reducecv = regarima_spec$arima$specification$automdl.reducecv,
-      automdl.ljungboxlimit = regarima_spec$arima$specification$automdl.ljungboxlimit,
-      automdl.compare  = regarima_spec$arima$specification$compare,
-      arima.mu = regarima_spec$arima$specification$arima.mu,
-      arima.p  = regarima_spec$arima$specification$arima.p,
-      arima.d  = regarima_spec$arima$specification$arima.d,
-      arima.q  = regarima_spec$arima$specification$arima.q,
-      arima.bp = regarima_spec$arima$specification$arima.bp,
-      arima.bd = regarima_spec$arima$specification$arima.bd,
-      arima.bq = regarima_spec$arima$specification$arima.bq,
-      arima.coef        = get_arima_coef_info(regarima_spec)$value, #ifelse(is.na(regarima_spec$arima$coefficients), NA, regarima_spec$arima$coefficients$Value),
-      arima.coefEnabled = regarima_spec$arima$specification$arima.coef,
-      arima.coefType    = get_arima_coef_info(regarima_spec)$type, #ifelse(regarima_spec$arima$specification$arima.coef, regarima_spec$arima$coefficients$Type, NA), # controllare
-      fcst.horizon      = regarima_spec$forecast$horizon,
-      seats.predictionLength = seats_spec$seats.predictionLength,
-      seats.approx           = seats_spec$seats.approx,
-      seats.trendBoundary    = seats_spec$seats.trendBoundary,
-      seats.seasdBoundary    = seats_spec$seats.seasdBoundary,
-      seats.seasdBoundary1   = seats_spec$seats.seasdBoundary1,
-      seats.seasTol          = seats_spec$seats.seasTol,
-      seats.maBoundary       = seats_spec$seats.maBoundary,
-      seats.method           = seats_spec$seats.method 
-    )
-    
-    return(extended_tramoseats_spec)
+  }
+  else # userdef.varFromFile == FALSE  (metterle prima dell'if come inizializzazione per maggiore chiarezza?)
+  {
+    # TODO
+    vars_mts <- ts()      #SA_spec$...
+    usrdef.varType <- NA  #get_user_def_var_info$Type ?
+    usrdef.varCoef <- NA  #get_user_def_var_info$Coef ?
+    userdef.varFromFile.infoList <- NULL
+  } 
+  
+  
+  extended_tramoseats_spec <- Extended_tramoseats_spec(
+    spec               = ifelse(basic_spec=="TS", "RSA0", basic_spec), 
+    series_name        = series_name, # ISTAT custom field
+    preliminary.check  = regarima_spec$estimate$preliminary.check, 
+    estimate.from      = estimate_span_details$from,      #regarima_spec$span$d1[1],
+    estimate.to        = estimate_span_details$to,        #regarima_spec$span$d0[1],
+    estimate.first     = estimate_span_details$first,     #ifelse(!is.na(regarima_spec$span$d1[1]) || !is.na(regarima_spec$span$d0[1]) || !is.na(regarima_spec$span$n1[1]),NA_integer_,regarima_spec$span$n0[1]),
+    estimate.last      = estimate_span_details$last,      #ifelse(!is.na(regarima_spec$span$d1[1]) || !is.na(regarima_spec$span$d0[1]), NA_integer_, regarima_spec$span$n1[1]),
+    estimate.exclFirst = estimate_span_details$exclFirst, #ifelse((!is.na(regarima_spec$span$d1[1]) || !is.na(regarima_spec$span$d0[1]) || !is.na(regarima_spec$span$n0[1]) || !is.na(regarima_spec$span$n1[1])) && regarima_spec$span$type[1]!="All",  0, regarima_spec$span$n0[1]),
+    estimate.exclLast  = estimate_span_details$exclLast,  #ifelse((!is.na(regarima_spec$span$d1[1]) || !is.na(regarima_spec$span$d0[1]) || !is.na(regarima_spec$span$n0[1]) || !is.na(regarima_spec$span$n1[1])) && regarima_spec$span$type[1]!="All",  0, regarima_spec$span$n1[1]),  
+    estimate.tol       = regarima_spec$estimate$tolerance,
+    estimate.eml       = regarima_spec$estimate$exact_ml,
+    estimate.urfinal   = regarima_spec$estimate$urfinal,
+    transform.function = regarima_spec$transform$tfunction,
+    transform.fct      = regarima_spec$transform$fct,
+    usrdef.outliersEnabled = regarima_spec$regression$userdef$specification$outlier,
+    usrdef.outliersType    = get_outliers_info(regarima_spec)$type, #not working ->ifelse(!is.null(regarima_spec$regression$userdef$outliers$type), regarima_spec$regression$userdef$outliers$type, NA),
+    usrdef.outliersDate    = get_outliers_info(regarima_spec)$date,  #ifelse(regarima_spec$regression$userdef$specification$outlier==TRUE, regarima_spec$regression$userdef$outliers$date, NA),
+    usrdef.outliersCoef    = get_outliers_info(regarima_spec)$coeff, #ifelse(regarima_spec$regression$userdef$specification$outlier.coef, regarima_spec$regression$userdef$outliers$coeff,NA),
+    usrdef.varEnabled      = regarima_spec$regression$userdef$specification$variables,
+    userdef.varFromFile    = userdef.varFromFile,
+    userdef.varFromFile.infoList = userdef.varFromFile.infoList,
+    usrdef.var             = ifelse(userdef.varFromFile==TRUE, NA,vars_mts), #get_userdef_var(userdef.varFromFile, vars_mts, regarima_spec, series_name),#, # !!!
+    usrdef.varType         = usrdef.varType, #ifelse(is.na(vars_mts), NA, regarima_spec$regression$userdef$variables$description$type), # prima era "Undefined"
+    usrdef.varCoef         = usrdef.varCoef, #ifelse(regarima_spec$regression$userdef$specification$variables.coef, regarima_spec$regression$userdef$variables$description$coeff, NA),
+    tradingdays.mauto    = regarima_spec$regression$trading.days$automatic,
+    tradingdays.pftd     = regarima_spec$regression$trading.days$pftd,
+    tradingdays.option   = regarima_spec$regression$trading.days$option,
+    tradingdays.leapyear = regarima_spec$regression$trading.days$leapyear,
+    tradingdays.stocktd  = regarima_spec$regression$trading.days$stocktd,
+    tradingdays.test     = regarima_spec$regression$trading.days$test,
+    easter.type          = regarima_spec$regression$easter$type,
+    easter.julian        = regarima_spec$regression$easter$julian,
+    easter.duration      = regarima_spec$regression$easter$duration,
+    easter.test          = regarima_spec$regression$easter$test,
+    outlier.enabled   = regarima_spec$outliers$enabled,
+    outlier.from      = outliers_span_details$from,      #regarima_spec$span$d1[2],
+    outlier.to        = outliers_span_details$to,        #regarima_spec$span$d0[2],
+    outlier.first     = outliers_span_details$first,     #ifelse( !is.na(regarima_spec$span$d1[2]) || !is.na(regarima_spec$span$d0[2]) || !is.na(regarima_spec$span$n1[2]),NA_integer_,regarima_spec$span$n0[2]),
+    outlier.last      = outliers_span_details$last,      #ifelse( !is.na(regarima_spec$span$d1[2]) || !is.na(regarima_spec$span$d0[2]), NA_integer_, regarima_spec$span$n1[2]),
+    outlier.exclFirst = outliers_span_details$exclFirst, #ifelse((!is.na(regarima_spec$span$d1[2]) || !is.na(regarima_spec$span$d0[2]) || !is.na(regarima_spec$span$n0[2]) || !is.na(regarima_spec$span$n1[2])) && !(regarima_spec$span$type[2] %in% c("From", "To", "Between")),  NA_integer_, regarima_spec$span$n0[2]),
+    outlier.exclLast  = outliers_span_details$exclLast,  #ifelse((!is.na(regarima_spec$span$d1[2]) || !is.na(regarima_spec$span$d0[2]) || !is.na(regarima_spec$span$n0[2]) || !is.na(regarima_spec$span$n1[2])) && !(regarima_spec$span$type[2] %in% c("From", "To", "Between")),  NA_integer_, regarima_spec$span$n1[2]),
+    outlier.ao       = regarima_spec$outliers$ao,
+    outlier.tc       = regarima_spec$outliers$tc,
+    outlier.ls       = regarima_spec$outliers$ls,
+    outlier.so       = regarima_spec$outliers$so,
+    outlier.usedefcv = regarima_spec$outliers$usedefcv,
+    outlier.cv       = regarima_spec$outliers$cv,
+    outlier.eml      = regarima_spec$outliers$eml,
+    outlier.tcrate   = regarima_spec$outliers$tcrate,
+    automdl.enabled  = regarima_spec$arima$specification$enabled,
+    automdl.acceptdefault = regarima_spec$arima$specification$automdl.acceptdefault,
+    automdl.cancel   = regarima_spec$arima$specification$automdl.cancel,
+    automdl.ub1      = regarima_spec$arima$specification$automdl.ub1,
+    automdl.ub2      = regarima_spec$arima$specification$automdl.ub2,
+    automdl.armalimit= regarima_spec$arima$specification$automdl.armalimit,
+    automdl.reducecv = regarima_spec$arima$specification$automdl.reducecv,
+    automdl.ljungboxlimit = regarima_spec$arima$specification$automdl.ljungboxlimit,
+    automdl.compare  = regarima_spec$arima$specification$compare,
+    arima.mu = regarima_spec$arima$specification$arima.mu,
+    arima.p  = regarima_spec$arima$specification$arima.p,
+    arima.d  = regarima_spec$arima$specification$arima.d,
+    arima.q  = regarima_spec$arima$specification$arima.q,
+    arima.bp = regarima_spec$arima$specification$arima.bp,
+    arima.bd = regarima_spec$arima$specification$arima.bd,
+    arima.bq = regarima_spec$arima$specification$arima.bq,
+    arima.coef        = get_arima_coef_info(regarima_spec)$value, #ifelse(is.na(regarima_spec$arima$coefficients), NA, regarima_spec$arima$coefficients$Value),
+    arima.coefEnabled = regarima_spec$arima$specification$arima.coef,
+    arima.coefType    = get_arima_coef_info(regarima_spec)$type, #ifelse(regarima_spec$arima$specification$arima.coef, regarima_spec$arima$coefficients$Type, NA), # controllare
+    fcst.horizon      = regarima_spec$forecast$horizon,
+    seats.predictionLength = seats_spec$seats.predictionLength,
+    seats.approx           = seats_spec$seats.approx,
+    seats.trendBoundary    = seats_spec$seats.trendBoundary,
+    seats.seasdBoundary    = seats_spec$seats.seasdBoundary,
+    seats.seasdBoundary1   = seats_spec$seats.seasdBoundary1,
+    seats.seasTol          = seats_spec$seats.seasTol,
+    seats.maBoundary       = seats_spec$seats.maBoundary,
+    seats.method           = seats_spec$seats.method 
+  )
+  
+  return(extended_tramoseats_spec)
 }
 
 # if spec_format=="Extended_tramoseats_spec" the function returns a list of "Extended_tramoseats_object", if spec_format=="list", the elements of the list are named lists with the same names of the objects elements.
@@ -770,27 +770,27 @@ read_spec_list_from_json_file <- function(file_name, spec_format="Extended_tramo
   i=1
   for (json in json_array) 
   {
-      json <- NA_not_as_char(json)
-      
-      #browser()
-      if(spec_format=="Extended_tramoseats_spec")
-      {
-        json  <- do.call(Extended_tramoseats_spec, json)
-        series_name <- json@series_name
-      } else {series_name <- json$series_name}
-      
-      
-      if(!is.null(series_name)){
-        json_list[[series_name]]=json
-      } else{
-        json_list[[as.character(i)]]=json
-        i=i+1
-      }
-      
+    json <- NA_not_as_char(json)
+    
+    #browser()
+    if(spec_format=="Extended_tramoseats_spec")
+    {
+      json  <- do.call(Extended_tramoseats_spec, json)
+      series_name <- json@series_name
+    } else {series_name <- json$series_name}
+    
+    
+    if(!is.null(series_name)){
+      json_list[[series_name]]=json
+    } else{
+      json_list[[as.character(i)]]=json
+      i=i+1
+    }
+    
   }
   
   return(json_list)
-
+  
 }
 
 
@@ -813,7 +813,7 @@ to_tramoseats_spec_args<-function(extended_tramoseats_spec, provider_ext_reg)
   #Usa gli elementi estratti da Extended_tramoseats_spec per preparare i regressori esterni
   if(!(is.null(userdef.varFromFile) || userdef.varFromFile == FALSE)){
     if(!is.null(userdef.varFromFile.infoList)){
-
+      
       # the  ext_regr_provider wants a named list of info as an input
       info_list <- list()
       info_list[[series_name]]  <- userdef.varFromFile.infoList
@@ -826,7 +826,7 @@ to_tramoseats_spec_args<-function(extended_tramoseats_spec, provider_ext_reg)
   
   tramoseats_spec <- extended_tramoseats_spec
   return(tramoseats_spec)
-    
+  
 }
 
 
