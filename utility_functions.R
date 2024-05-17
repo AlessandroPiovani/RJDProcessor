@@ -225,14 +225,17 @@ simplify_leaves <- function(input_list) {
 difference_objects_preserving_name_and_spec <- function(object, basic){
   #browser()
   series_name <- object@series_name # to be written in first position also if it is the same in the two objects
+  method      <- object@method      # to be written also if it is the same in the two objects
   spec        <- object@spec        # to be written also if it is the same in the two objects
   
   #original_object <- object
   object <- difference_objects(object, basic) 
   
   object$series_name <- NULL
+  object$method <- NULL
   object$spec <- NULL
-  first_positions <- list(series_name=series_name, spec=spec)
+  
+  first_positions <- list(series_name=series_name, method=method, spec=spec)
   object          <- c(first_positions, object)
   return(object)
 }

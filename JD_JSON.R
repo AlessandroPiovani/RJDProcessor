@@ -43,7 +43,7 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_provider, ext_reg
       # Calcola lo start basato sul primo valore non-NA
       start_date <- timestamps[start_index]
       
-      # auto detect of frequency
+      # auto detection of frequency
       d1         <- as.Date(timestamps[start_index])
       d2         <- as.Date(timestamps[start_index+1])
       month_diff <- abs(as.numeric(format(d1, "%m")) - as.numeric(format(d2, "%m")))
@@ -146,7 +146,6 @@ JD_JSON_from_virtual_workspace <- function(ws, ext_reg_input_provider, JSON_file
   compute(ws)
   
   series_spec_list  <-  extended_tramoseats_spec_list_from_workspace(workspace = ws, ext_reg_input_provider)
-  
   
   # Apri il file in modalità scrittura
   con <- file(JSON_file_name, "w")

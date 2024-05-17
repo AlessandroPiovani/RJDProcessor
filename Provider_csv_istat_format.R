@@ -2,14 +2,15 @@
 setClass("Provider_csv_istat_format", 
          slots = list(
            input_source     = "ANY",
-           read_data        = "function"
+           read_data        = "function",
+           ...              = "ANY"
          ))
 
 
 # read_data method, IT MUST RETURN AN mts OBJECT!!! MODIFY THIS METHOD TO CUSTOMIZE INPUT
-setGeneric("read_data", function(object) standardGeneric("read_data"))
+setGeneric("read_data", function(object, ...) standardGeneric("read_data"))
 setMethod ("read_data", signature("Provider_csv_istat_format"),
-          function(object) {
+          function(object, ...) {
             
               # Leggi i dati dal file specificato nel campo file_name_with_path 
               # Importa il file CSV
@@ -54,7 +55,7 @@ setMethod ("read_data", signature("Provider_csv_istat_format"),
           })
 
 # Definizione del costruttore R-like
-Provider_csv_istat_format <- function(input_source = NA) {
+Provider_csv_istat_format <- function(input_source = NA, ...) {
 
   # Crea un oggetto della classe Provider_csv_istat_format
   obj <- new("Provider_csv_istat_format", input_source = input_source, read_data = function() read_data(obj))

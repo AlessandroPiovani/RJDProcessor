@@ -1,6 +1,7 @@
 [
 {
 "series_name":"FATEXP_10", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -81,6 +82,7 @@
 
 {
 "series_name":"FATEXP_11", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -161,6 +163,7 @@
 
 {
 "series_name":"FATEXP_13", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -241,6 +244,7 @@
 
 {
 "series_name":"FATEXP_14", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -260,9 +264,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -325,6 +330,7 @@
 
 {
 "series_name":"FATEXP_15", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -405,6 +411,7 @@
 
 {
 "series_name":"FATEXP_16", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -485,6 +492,7 @@
 
 {
 "series_name":"FATEXP_17", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -565,6 +573,7 @@
 
 {
 "series_name":"FATEXP_18", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -645,6 +654,7 @@
 
 {
 "series_name":"FATEXP_19", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -725,6 +735,7 @@
 
 {
 "series_name":"FATEXP_20", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -805,6 +816,7 @@
 
 {
 "series_name":"FATEXP_21", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -885,6 +897,7 @@
 
 {
 "series_name":"FATEXP_22", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -965,6 +978,7 @@
 
 {
 "series_name":"FATEXP_23", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -1045,6 +1059,7 @@
 
 {
 "series_name":"FATEXP_24", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -1125,6 +1140,7 @@
 
 {
 "series_name":"FATEXP_25", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -1205,6 +1221,7 @@
 
 {
 "series_name":"FATEXP_26", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -1285,6 +1302,7 @@
 
 {
 "series_name":"FATEXP_27", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -1365,6 +1383,7 @@
 
 {
 "series_name":"FATEXP_28", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -1445,6 +1464,7 @@
 
 {
 "series_name":"FATEXP_29", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -1464,9 +1484,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -1529,6 +1550,7 @@
 
 {
 "series_name":"FATEXP_31", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -1609,6 +1631,7 @@
 
 {
 "series_name":"FATEXP_32", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -1689,6 +1712,7 @@
 
 {
 "series_name":"FATEXP_33", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -1769,6 +1793,7 @@
 
 {
 "series_name":"FATEXP_C", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -1788,9 +1813,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -1853,6 +1879,7 @@
 
 {
 "series_name":"C_DEFL", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -1872,13 +1899,15 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdu02m.txt", 
+"container":"tdu02m.txt", 
 "start":"2002-01-01", 
-"frequency":12
+"frequency":12, 
+"n_var":1
 }, {
-"file_name":"lym_02.txt", 
+"container":"lym_02.txt", 
 "start":"2002-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":["Calendar", "Calendar"], 
@@ -1941,6 +1970,7 @@
 
 {
 "series_name":"DIVIZ08", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -1960,9 +1990,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -2025,6 +2056,7 @@
 
 {
 "series_name":"DIVID08", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -2044,9 +2076,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -2109,6 +2142,7 @@
 
 {
 "series_name":"DIVIE08", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -2128,9 +2162,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -2193,6 +2228,7 @@
 
 {
 "series_name":"DIVIZ10", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -2212,9 +2248,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -2277,6 +2314,7 @@
 
 {
 "series_name":"DIVID10", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -2296,9 +2334,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -2361,6 +2400,7 @@
 
 {
 "series_name":"DIVIE10", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -2380,9 +2420,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -2445,6 +2486,7 @@
 
 {
 "series_name":"DIVIZ11", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -2464,9 +2506,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -2529,6 +2572,7 @@
 
 {
 "series_name":"DIVID11", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -2548,9 +2592,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -2613,6 +2658,7 @@
 
 {
 "series_name":"DIVIE11", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -2632,9 +2678,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -2697,6 +2744,7 @@
 
 {
 "series_name":"DIVIZ13", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -2716,9 +2764,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -2781,6 +2830,7 @@
 
 {
 "series_name":"DIVID13", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -2800,9 +2850,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -2865,6 +2916,7 @@
 
 {
 "series_name":"DIVIE13", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -2884,9 +2936,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -2949,6 +3002,7 @@
 
 {
 "series_name":"DIVIZ14", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -2968,9 +3022,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -3033,6 +3088,7 @@
 
 {
 "series_name":"DIVID14", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -3052,9 +3108,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -3117,6 +3174,7 @@
 
 {
 "series_name":"DIVIE14", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -3136,9 +3194,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -3201,6 +3260,7 @@
 
 {
 "series_name":"DIVIZ15", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -3220,9 +3280,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -3285,6 +3346,7 @@
 
 {
 "series_name":"DIVID15", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -3304,9 +3366,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -3369,6 +3432,7 @@
 
 {
 "series_name":"DIVIE15", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -3388,9 +3452,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -3453,6 +3518,7 @@
 
 {
 "series_name":"DIVIZ16", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -3472,9 +3538,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -3537,6 +3604,7 @@
 
 {
 "series_name":"DIVID16", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -3556,9 +3624,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -3621,6 +3690,7 @@
 
 {
 "series_name":"DIVIE16", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -3640,9 +3710,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -3705,6 +3776,7 @@
 
 {
 "series_name":"DIVIZ17", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -3724,9 +3796,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -3789,6 +3862,7 @@
 
 {
 "series_name":"DIVID17", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -3808,9 +3882,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -3873,6 +3948,7 @@
 
 {
 "series_name":"DIVIE17", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -3892,9 +3968,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -3957,6 +4034,7 @@
 
 {
 "series_name":"DIVIZ18", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -3976,9 +4054,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -4041,6 +4120,7 @@
 
 {
 "series_name":"DIVID18", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -4060,9 +4140,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -4125,6 +4206,7 @@
 
 {
 "series_name":"DIVIE18", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -4144,9 +4226,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -4209,6 +4292,7 @@
 
 {
 "series_name":"DIVID19", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -4228,9 +4312,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -4293,6 +4378,7 @@
 
 {
 "series_name":"DIVIZ20", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -4312,9 +4398,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -4377,6 +4464,7 @@
 
 {
 "series_name":"DIVID20", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -4396,9 +4484,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -4461,6 +4550,7 @@
 
 {
 "series_name":"DIVIE20", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -4480,9 +4570,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -4545,6 +4636,7 @@
 
 {
 "series_name":"DIVIZ21", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -4564,9 +4656,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -4629,6 +4722,7 @@
 
 {
 "series_name":"DIVID21", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -4648,9 +4742,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -4713,6 +4808,7 @@
 
 {
 "series_name":"DIVIE21", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -4732,9 +4828,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -4797,6 +4894,7 @@
 
 {
 "series_name":"DIVIZ22", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -4816,9 +4914,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -4881,6 +4980,7 @@
 
 {
 "series_name":"DIVID22", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -4900,9 +5000,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -4965,6 +5066,7 @@
 
 {
 "series_name":"DIVIE22", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -4984,9 +5086,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -5049,6 +5152,7 @@
 
 {
 "series_name":"DIVIZ23", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -5068,9 +5172,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -5133,6 +5238,7 @@
 
 {
 "series_name":"DIVID23", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -5152,9 +5258,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -5217,6 +5324,7 @@
 
 {
 "series_name":"DIVIE23", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -5236,9 +5344,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -5301,6 +5410,7 @@
 
 {
 "series_name":"DIVIZ24", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -5320,9 +5430,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -5385,6 +5496,7 @@
 
 {
 "series_name":"DIVID24", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -5404,9 +5516,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -5469,6 +5582,7 @@
 
 {
 "series_name":"DIVIE24", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -5488,9 +5602,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -5553,6 +5668,7 @@
 
 {
 "series_name":"DIVIZ25", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -5572,9 +5688,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -5637,6 +5754,7 @@
 
 {
 "series_name":"DIVID25", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -5656,9 +5774,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -5721,6 +5840,7 @@
 
 {
 "series_name":"DIVIE25", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -5740,9 +5860,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -5805,6 +5926,7 @@
 
 {
 "series_name":"DIVIZ26", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -5824,9 +5946,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -5889,6 +6012,7 @@
 
 {
 "series_name":"DIVID26", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -5908,9 +6032,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -5973,6 +6098,7 @@
 
 {
 "series_name":"DIVIE26", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -5992,9 +6118,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -6057,6 +6184,7 @@
 
 {
 "series_name":"DIVIZ27", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -6076,9 +6204,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -6141,6 +6270,7 @@
 
 {
 "series_name":"DIVID27", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -6160,9 +6290,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -6225,6 +6356,7 @@
 
 {
 "series_name":"DIVIE27", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -6244,9 +6376,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -6309,6 +6442,7 @@
 
 {
 "series_name":"DIVIZ28", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -6328,9 +6462,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -6393,6 +6528,7 @@
 
 {
 "series_name":"DIVID28", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -6412,9 +6548,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -6477,6 +6614,7 @@
 
 {
 "series_name":"DIVIE28", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -6496,9 +6634,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -6561,6 +6700,7 @@
 
 {
 "series_name":"DIVIZ29", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -6580,9 +6720,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -6645,6 +6786,7 @@
 
 {
 "series_name":"DIVID29", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -6664,9 +6806,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -6729,6 +6872,7 @@
 
 {
 "series_name":"DIVIE29", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -6748,9 +6892,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -6813,6 +6958,7 @@
 
 {
 "series_name":"DIVIZ30", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -6832,9 +6978,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -6897,6 +7044,7 @@
 
 {
 "series_name":"DIVIZ31", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -6916,9 +7064,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -6981,6 +7130,7 @@
 
 {
 "series_name":"DIVID31", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -7000,9 +7150,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -7065,6 +7216,7 @@
 
 {
 "series_name":"DIVIE31", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -7084,9 +7236,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -7149,6 +7302,7 @@
 
 {
 "series_name":"DIVIZ32", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -7168,9 +7322,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -7233,6 +7388,7 @@
 
 {
 "series_name":"DIVID32", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -7252,9 +7408,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -7317,6 +7474,7 @@
 
 {
 "series_name":"DIVIE32", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -7336,9 +7494,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -7401,6 +7560,7 @@
 
 {
 "series_name":"DIVIZ33", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -7420,9 +7580,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -7485,6 +7646,7 @@
 
 {
 "series_name":"DIVID33", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -7504,9 +7666,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -7569,6 +7732,7 @@
 
 {
 "series_name":"MIGSZ_1", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -7588,9 +7752,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -7653,6 +7818,7 @@
 
 {
 "series_name":"NONDUNAZ", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -7672,9 +7838,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw00.txt", 
+"container":"tdmnw00.txt", 
 "start":"2000-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -7737,6 +7904,7 @@
 
 {
 "series_name":"NONDUEST", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -7756,9 +7924,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw00.txt", 
+"container":"tdmnw00.txt", 
 "start":"2000-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -7821,6 +7990,7 @@
 
 {
 "series_name":"ENERGNAZ", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -7840,9 +8010,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw00.txt", 
+"container":"tdmnw00.txt", 
 "start":"2000-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -7905,6 +8076,7 @@
 
 {
 "series_name":"ENERGEST", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -7985,6 +8157,7 @@
 
 {
 "series_name":"MIGSZ_2", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -8004,9 +8177,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -8069,6 +8243,7 @@
 
 {
 "series_name":"DUREVNAZ", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -8088,9 +8263,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw00.txt", 
+"container":"tdmnw00.txt", 
 "start":"2000-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -8153,6 +8329,7 @@
 
 {
 "series_name":"DUREVEST", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -8172,9 +8349,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw00.txt", 
+"container":"tdmnw00.txt", 
 "start":"2000-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -8237,6 +8415,7 @@
 
 {
 "series_name":"MIGSZ_3", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -8256,9 +8435,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -8321,6 +8501,7 @@
 
 {
 "series_name":"INVESNAZ", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -8340,9 +8521,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw00.txt", 
+"container":"tdmnw00.txt", 
 "start":"2000-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -8405,6 +8587,7 @@
 
 {
 "series_name":"INVESEST", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -8424,9 +8607,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw00.txt", 
+"container":"tdmnw00.txt", 
 "start":"2000-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -8489,6 +8673,7 @@
 
 {
 "series_name":"MIGSZ_4", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -8508,9 +8693,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -8573,6 +8759,7 @@
 
 {
 "series_name":"INTERNAZ", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -8592,9 +8779,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw00.txt", 
+"container":"tdmnw00.txt", 
 "start":"2000-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 
@@ -8657,6 +8845,7 @@
 
 {
 "series_name":"INTEREST", 
+"method":"TS", 
 "spec":"RSA0", 
 "preliminary.check":true, 
 "estimate.from":"NA", 
@@ -8676,9 +8865,10 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw00.txt", 
+"container":"tdmnw00.txt", 
 "start":"2000-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.var":"NA", 
 "usrdef.varType":"Calendar", 

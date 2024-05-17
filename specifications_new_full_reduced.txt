@@ -1,6 +1,7 @@
 [
 {
 "series_name":"FATEXP_10", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -12,6 +13,7 @@
 
 {
 "series_name":"FATEXP_11", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -23,6 +25,7 @@
 
 {
 "series_name":"FATEXP_13", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -34,6 +37,7 @@
 
 {
 "series_name":"FATEXP_14", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -41,9 +45,10 @@
 "usrdef.outliersDate":["2020-03-01", "2020-05-01", "2017-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -54,6 +59,7 @@
 
 {
 "series_name":"FATEXP_15", 
+"method":"TS", 
 "spec":"RSA0", 
 "usrdef.outliersEnabled":true, 
 "usrdef.outliersType":["AO", "LS", "AO", "AO", "AO"], 
@@ -68,6 +74,7 @@
 
 {
 "series_name":"FATEXP_16", 
+"method":"TS", 
 "spec":"RSA0", 
 "usrdef.outliersEnabled":true, 
 "usrdef.outliersType":["AO", "TC", "AO", "AO", "AO"], 
@@ -78,6 +85,7 @@
 
 {
 "series_name":"FATEXP_17", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "arima.mu":false
@@ -86,6 +94,7 @@
 
 {
 "series_name":"FATEXP_18", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -97,6 +106,7 @@
 
 {
 "series_name":"FATEXP_19", 
+"method":"TS", 
 "spec":"RSA0", 
 "usrdef.outliersEnabled":true, 
 "usrdef.outliersType":["AO", "TC", "TC", "AO", "AO", "AO", "AO"], 
@@ -107,6 +117,7 @@
 
 {
 "series_name":"FATEXP_20", 
+"method":"TS", 
 "spec":"RSA0", 
 "usrdef.outliersEnabled":true, 
 "usrdef.outliersType":["AO", "LS", "AO", "AO"], 
@@ -117,6 +128,7 @@
 
 {
 "series_name":"FATEXP_21", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -128,6 +140,7 @@
 
 {
 "series_name":"FATEXP_22", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -139,6 +152,7 @@
 
 {
 "series_name":"FATEXP_23", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -150,6 +164,7 @@
 
 {
 "series_name":"FATEXP_24", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -161,6 +176,7 @@
 
 {
 "series_name":"FATEXP_25", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -172,6 +188,7 @@
 
 {
 "series_name":"FATEXP_26", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -183,6 +200,7 @@
 
 {
 "series_name":"FATEXP_27", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -195,6 +213,7 @@
 
 {
 "series_name":"FATEXP_28", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -207,6 +226,7 @@
 
 {
 "series_name":"FATEXP_29", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -214,9 +234,10 @@
 "usrdef.outliersDate":["2009-04-01", "2020-03-01", "2020-04-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -226,6 +247,7 @@
 
 {
 "series_name":"FATEXP_31", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -237,6 +259,7 @@
 
 {
 "series_name":"FATEXP_32", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -248,6 +271,7 @@
 
 {
 "series_name":"FATEXP_33", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -259,15 +283,17 @@
 
 {
 "series_name":"FATEXP_C", 
+"method":"TS", 
 "spec":"RSA0", 
 "usrdef.outliersEnabled":true, 
 "usrdef.outliersType":["LS", "AO"], 
 "usrdef.outliersDate":["2009-01-01", "2020-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -278,6 +304,7 @@
 
 {
 "series_name":"C_DEFL", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -285,13 +312,15 @@
 "usrdef.outliersDate":["2007-12-01", "2008-11-01", "2020-03-01", "2020-04-01", "2020-05-01", "2020-06-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdu02m.txt", 
+"container":"tdu02m.txt", 
 "start":"2002-01-01", 
-"frequency":12
+"frequency":12, 
+"n_var":1
 }, {
-"file_name":"lym_02.txt", 
+"container":"lym_02.txt", 
 "start":"2002-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":["Calendar", "Calendar"], 
 "tradingdays.option":"UserDefined", 
@@ -301,13 +330,15 @@
 
 {
 "series_name":"DIVIZ08", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -319,6 +350,7 @@
 
 {
 "series_name":"DIVID08", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -326,9 +358,10 @@
 "usrdef.outliersDate":["2020-04-01", "2020-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -339,6 +372,7 @@
 
 {
 "series_name":"DIVIE08", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -346,9 +380,10 @@
 "usrdef.outliersDate":["2007-08-01", "2020-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -358,6 +393,7 @@
 
 {
 "series_name":"DIVIZ10", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -365,9 +401,10 @@
 "usrdef.outliersDate":["2010-06-01", "2007-12-01", "2020-04-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -377,6 +414,7 @@
 
 {
 "series_name":"DIVID10", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -384,9 +422,10 @@
 "usrdef.outliersDate":"2020-04-01", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -397,6 +436,7 @@
 
 {
 "series_name":"DIVIE10", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -404,9 +444,10 @@
 "usrdef.outliersDate":["2010-06-01", "2007-12-01", "2006-02-01", "2017-01-01", "2020-01-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -416,6 +457,7 @@
 
 {
 "series_name":"DIVIZ11", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -423,9 +465,10 @@
 "usrdef.outliersDate":"2008-09-01", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -435,6 +478,7 @@
 
 {
 "series_name":"DIVID11", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -442,9 +486,10 @@
 "usrdef.outliersDate":["2013-10-01", "2014-07-01", "2009-02-01", "2011-04-01", "2020-03-01", "2020-04-01", "2020-11-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -454,6 +499,7 @@
 
 {
 "series_name":"DIVIE11", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -461,9 +507,10 @@
 "usrdef.outliersDate":"2006-04-01", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -473,6 +520,7 @@
 
 {
 "series_name":"DIVIZ13", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -480,9 +528,10 @@
 "usrdef.outliersDate":["2015-08-01", "2009-08-01", "2008-12-01", "2005-08-01", "2020-04-01", "2020-03-01", "2020-08-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -493,6 +542,7 @@
 
 {
 "series_name":"DIVID13", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -500,9 +550,10 @@
 "usrdef.outliersDate":["2009-08-01", "2008-08-01", "2005-08-01", "2015-08-01", "2020-04-01", "2020-03-01", "2020-08-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -513,6 +564,7 @@
 
 {
 "series_name":"DIVIE13", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -520,9 +572,10 @@
 "usrdef.outliersDate":["2008-12-01", "2009-08-01", "2005-08-01", "2015-08-01", "2020-04-01", "2020-05-01", "2020-08-01", "2020-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -533,6 +586,7 @@
 
 {
 "series_name":"DIVIZ14", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -540,9 +594,10 @@
 "usrdef.outliersDate":["2009-03-01", "2020-04-01", "2020-11-01", "2020-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -554,6 +609,7 @@
 
 {
 "series_name":"DIVID14", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -561,9 +617,10 @@
 "usrdef.outliersDate":["2020-04-01", "2020-03-01", "2020-11-01", "2020-08-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -573,6 +630,7 @@
 
 {
 "series_name":"DIVIE14", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -580,9 +638,10 @@
 "usrdef.outliersDate":["2009-03-01", "2020-04-01", "2020-03-01", "2020-11-01", "2020-06-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -592,6 +651,7 @@
 
 {
 "series_name":"DIVIZ15", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -599,9 +659,10 @@
 "usrdef.outliersDate":["2009-04-01", "2009-01-01", "2008-08-01", "2010-01-01", "2020-04-01", "2020-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -613,6 +674,7 @@
 
 {
 "series_name":"DIVID15", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -620,9 +682,10 @@
 "usrdef.outliersDate":["2009-10-01", "2009-04-01", "2020-04-01", "2020-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -633,6 +696,7 @@
 
 {
 "series_name":"DIVIE15", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -640,9 +704,10 @@
 "usrdef.outliersDate":["2009-03-01", "2010-01-01", "2009-01-01", "2009-08-01", "2006-08-01", "2020-04-01", "2020-03-01", "2020-05-01", "2020-08-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -653,6 +718,7 @@
 
 {
 "series_name":"DIVIZ16", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -660,9 +726,10 @@
 "usrdef.outliersDate":["2009-08-01", "2020-04-01", "2020-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -672,6 +739,7 @@
 
 {
 "series_name":"DIVID16", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -679,9 +747,10 @@
 "usrdef.outliersDate":["2006-08-01", "2007-12-01", "2008-12-01", "2020-04-01", "2020-03-01", "2020-08-01", "2020-05-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -692,6 +761,7 @@
 
 {
 "series_name":"DIVIE16", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -699,9 +769,10 @@
 "usrdef.outliersDate":["2008-08-01", "2009-01-01", "2006-08-01", "2005-05-01", "2020-04-01", "2020-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -711,6 +782,7 @@
 
 {
 "series_name":"DIVIZ17", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -718,9 +790,10 @@
 "usrdef.outliersDate":["2006-07-01", "2012-01-01", "2005-12-01", "2020-04-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -731,6 +804,7 @@
 
 {
 "series_name":"DIVID17", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -738,9 +812,10 @@
 "usrdef.outliersDate":["2017-12-01", "2012-01-01", "2008-10-01", "2020-04-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -750,6 +825,7 @@
 
 {
 "series_name":"DIVIE17", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -757,9 +833,10 @@
 "usrdef.outliersDate":["2012-01-01", "2015-12-01", "2008-10-01", "2010-01-01", "2020-04-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -770,6 +847,7 @@
 
 {
 "series_name":"DIVIZ18", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -777,9 +855,10 @@
 "usrdef.outliersDate":["2006-07-01", "2020-04-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -790,6 +869,7 @@
 
 {
 "series_name":"DIVID18", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -797,9 +877,10 @@
 "usrdef.outliersDate":["2006-03-01", "2005-12-01", "2008-03-01", "2005-07-01", "2009-06-01", "2020-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -809,6 +890,7 @@
 
 {
 "series_name":"DIVIE18", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -816,9 +898,10 @@
 "usrdef.outliersDate":["2009-03-01", "2020-04-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -829,6 +912,7 @@
 
 {
 "series_name":"DIVID19", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -836,9 +920,10 @@
 "usrdef.outliersDate":["2020-04-01", "2020-03-01", "2020-06-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -848,6 +933,7 @@
 
 {
 "series_name":"DIVIZ20", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -855,9 +941,10 @@
 "usrdef.outliersDate":["2008-11-01", "2013-07-01", "2009-01-01", "2009-03-01", "2008-10-01", "2020-04-01", "2020-05-01", "2020-06-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -868,6 +955,7 @@
 
 {
 "series_name":"DIVID20", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -875,9 +963,10 @@
 "usrdef.outliersDate":["2008-12-01", "2008-11-01", "2020-04-01", "2020-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -888,6 +977,7 @@
 
 {
 "series_name":"DIVIE20", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -895,9 +985,10 @@
 "usrdef.outliersDate":["2008-11-01", "2008-10-01", "2020-04-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -907,6 +998,7 @@
 
 {
 "series_name":"DIVIZ21", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -914,9 +1006,10 @@
 "usrdef.outliersDate":["2015-02-01", "2018-09-01", "2010-03-01", "2011-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -926,6 +1019,7 @@
 
 {
 "series_name":"DIVID21", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -933,9 +1027,10 @@
 "usrdef.outliersDate":["2005-11-01", "2020-04-01", "2019-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -945,6 +1040,7 @@
 
 {
 "series_name":"DIVIE21", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -952,9 +1048,10 @@
 "usrdef.outliersDate":["2018-09-01", "2010-10-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -964,6 +1061,7 @@
 
 {
 "series_name":"DIVIZ22", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -971,9 +1069,10 @@
 "usrdef.outliersDate":["2020-03-01", "2020-04-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -984,6 +1083,7 @@
 
 {
 "series_name":"DIVID22", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -991,9 +1091,10 @@
 "usrdef.outliersDate":["2009-01-01", "2008-10-01", "2011-08-01", "2020-04-01", "2020-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1004,6 +1105,7 @@
 
 {
 "series_name":"DIVIE22", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1011,9 +1113,10 @@
 "usrdef.outliersDate":["2005-12-01", "2008-12-01", "2020-04-01", "2020-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1024,6 +1127,7 @@
 
 {
 "series_name":"DIVIZ23", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1031,9 +1135,10 @@
 "usrdef.outliersDate":["2009-08-01", "2008-01-01", "2014-01-01", "2020-04-01", "2020-03-01", "2020-05-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1043,6 +1148,7 @@
 
 {
 "series_name":"DIVID23", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1050,9 +1156,10 @@
 "usrdef.outliersDate":["2012-02-01", "2020-04-01", "2020-03-01", "2020-08-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1063,6 +1170,7 @@
 
 {
 "series_name":"DIVIE23", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1070,9 +1178,10 @@
 "usrdef.outliersDate":["2009-01-01", "2011-12-01", "2009-08-01", "2006-12-01", "2008-08-01", "2020-03-01", "2020-04-01", "2020-05-01", "2020-06-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1083,6 +1192,7 @@
 
 {
 "series_name":"DIVIZ24", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1090,9 +1200,10 @@
 "usrdef.outliersDate":["2009-08-01", "2008-12-01", "2009-03-01", "2008-10-01", "2020-04-01", "2020-01-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1103,6 +1214,7 @@
 
 {
 "series_name":"DIVID24", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1110,9 +1222,10 @@
 "usrdef.outliersDate":["2008-12-01", "2009-08-01", "2007-12-01", "2017-08-01", "2008-10-01", "2020-04-01", "2020-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1125,6 +1238,7 @@
 
 {
 "series_name":"DIVIE24", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1132,9 +1246,10 @@
 "usrdef.outliersDate":["2009-09-01", "2020-04-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1145,6 +1260,7 @@
 
 {
 "series_name":"DIVIZ25", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1152,9 +1268,10 @@
 "usrdef.outliersDate":["2009-01-01", "2006-12-01", "2009-04-01", "2020-04-01", "2020-03-01", "2020-05-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1165,6 +1282,7 @@
 
 {
 "series_name":"DIVID25", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1172,9 +1290,10 @@
 "usrdef.outliersDate":["2008-12-01", "2008-01-01", "2009-03-01", "2012-01-01", "2013-03-01", "2020-04-01", "2020-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1186,6 +1305,7 @@
 
 {
 "series_name":"DIVIE25", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1193,9 +1313,10 @@
 "usrdef.outliersDate":["2009-01-01", "2008-08-01", "2009-03-01", "2006-12-01", "2020-04-01", "2020-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1205,6 +1326,7 @@
 
 {
 "series_name":"DIVIZ26", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1212,9 +1334,10 @@
 "usrdef.outliersDate":"2020-04-01", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1224,6 +1347,7 @@
 
 {
 "series_name":"DIVID26", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1231,9 +1355,10 @@
 "usrdef.outliersDate":["2005-03-01", "2013-12-01", "2015-10-01", "2020-04-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1243,6 +1368,7 @@
 
 {
 "series_name":"DIVIE26", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1250,9 +1376,10 @@
 "usrdef.outliersDate":["2006-09-01", "2020-04-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1262,6 +1389,7 @@
 
 {
 "series_name":"DIVIZ27", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1269,9 +1397,10 @@
 "usrdef.outliersDate":["2007-02-01", "2020-04-01", "2020-03-01", "2019-12-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1282,6 +1411,7 @@
 
 {
 "series_name":"DIVID27", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1289,9 +1419,10 @@
 "usrdef.outliersDate":["2008-02-01", "2009-08-01", "2009-12-01", "2009-01-01", "2020-04-01", "2020-03-01", "2020-07-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1303,6 +1434,7 @@
 
 {
 "series_name":"DIVIE27", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1310,9 +1442,10 @@
 "usrdef.outliersDate":["2008-12-01", "2020-04-01", "2020-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1323,6 +1456,7 @@
 
 {
 "series_name":"DIVIZ28", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1330,9 +1464,10 @@
 "usrdef.outliersDate":["2009-02-01", "2009-09-01", "2009-08-01", "2008-08-01", "2020-04-01", "2020-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1342,6 +1477,7 @@
 
 {
 "series_name":"DIVID28", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1349,9 +1485,10 @@
 "usrdef.outliersDate":["2010-06-01", "2010-08-01", "2015-06-01", "2008-11-01", "2020-04-01", "2020-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1361,6 +1498,7 @@
 
 {
 "series_name":"DIVIE28", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1368,9 +1506,10 @@
 "usrdef.outliersDate":["2009-06-01", "2009-01-01", "2009-10-01", "2008-07-01", "2009-08-01", "2008-06-01", "2020-04-01", "2020-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1382,6 +1521,7 @@
 
 {
 "series_name":"DIVIZ29", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1389,9 +1529,10 @@
 "usrdef.outliersDate":["2007-12-01", "2008-12-01", "2008-08-01", "2008-11-01", "2012-02-01", "2020-04-01", "2020-03-01", "2020-05-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1402,6 +1543,7 @@
 
 {
 "series_name":"DIVID29", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1409,9 +1551,10 @@
 "usrdef.outliersDate":["2008-12-01", "2008-08-01", "2020-04-01", "2020-03-01", "2020-05-01", "2021-09-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1423,6 +1566,7 @@
 
 {
 "series_name":"DIVIE29", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1430,9 +1574,10 @@
 "usrdef.outliersDate":["2009-01-01", "2008-11-01", "2013-09-01", "2008-08-01", "2020-04-01", "2020-03-01", "2020-05-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1443,6 +1588,7 @@
 
 {
 "series_name":"DIVIZ30", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1450,9 +1596,10 @@
 "usrdef.outliersDate":"2020-04-01", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1462,6 +1609,7 @@
 
 {
 "series_name":"DIVIZ31", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1469,9 +1617,10 @@
 "usrdef.outliersDate":["2009-01-01", "2009-08-01", "2008-08-01", "2007-10-01", "2009-04-01", "2020-04-01", "2020-03-01", "2020-08-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1483,6 +1632,7 @@
 
 {
 "series_name":"DIVID31", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1490,9 +1640,10 @@
 "usrdef.outliersDate":["2008-08-01", "2007-08-01", "2020-04-01", "2020-03-01", "2020-08-01", "2020-06-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1502,6 +1653,7 @@
 
 {
 "series_name":"DIVIE31", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1509,9 +1661,10 @@
 "usrdef.outliersDate":["2009-01-01", "2009-08-01", "2008-10-01", "2008-08-01", "2009-12-01", "2020-04-01", "2020-03-01", "2020-08-01", "2020-05-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1521,6 +1674,7 @@
 
 {
 "series_name":"DIVIZ32", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1528,9 +1682,10 @@
 "usrdef.outliersDate":["2009-08-01", "2007-05-01", "2006-04-01", "2006-01-01", "2005-11-01", "2020-04-01", "2020-05-01", "2020-07-01", "2020-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1540,6 +1695,7 @@
 
 {
 "series_name":"DIVID32", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1547,9 +1703,10 @@
 "usrdef.outliersDate":["2017-12-01", "2009-08-01", "2008-08-01", "2007-06-01", "2020-04-01", "2020-03-01", "2020-08-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1559,6 +1716,7 @@
 
 {
 "series_name":"DIVIE32", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1566,9 +1724,10 @@
 "usrdef.outliersDate":["2020-04-01", "2020-03-01", "2020-06-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1578,6 +1737,7 @@
 
 {
 "series_name":"DIVIZ33", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1585,9 +1745,10 @@
 "usrdef.outliersDate":["2006-06-01", "2006-07-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1597,6 +1758,7 @@
 
 {
 "series_name":"DIVID33", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1604,9 +1766,10 @@
 "usrdef.outliersDate":["2006-11-01", "2012-06-01", "2006-10-01", "2007-01-01", "2008-08-01", "2009-08-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1618,6 +1781,7 @@
 
 {
 "series_name":"MIGSZ_1", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1625,9 +1789,10 @@
 "usrdef.outliersDate":["2009-03-01", "2015-02-01", "2020-04-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1638,6 +1803,7 @@
 
 {
 "series_name":"NONDUNAZ", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1645,9 +1811,10 @@
 "usrdef.outliersDate":["2001-12-01", "2004-05-01", "2009-02-01", "2020-03-01", "2020-04-01", "2020-11-01", "2021-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw00.txt", 
+"container":"tdmnw00.txt", 
 "start":"2000-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1657,6 +1824,7 @@
 
 {
 "series_name":"NONDUEST", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1664,9 +1832,10 @@
 "usrdef.outliersDate":["2002-01-01", "2009-03-01", "2020-03-01", "2020-04-01", "2020-05-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw00.txt", 
+"container":"tdmnw00.txt", 
 "start":"2000-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1676,6 +1845,7 @@
 
 {
 "series_name":"ENERGNAZ", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1683,9 +1853,10 @@
 "usrdef.outliersDate":["2003-09-01", "2020-03-01", "2020-04-01", "2020-05-01", "2020-06-01", "2020-11-01", "2013-05-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw00.txt", 
+"container":"tdmnw00.txt", 
 "start":"2000-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1695,6 +1866,7 @@
 
 {
 "series_name":"ENERGEST", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1706,6 +1878,7 @@
 
 {
 "series_name":"MIGSZ_2", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1713,9 +1886,10 @@
 "usrdef.outliersDate":["2009-01-01", "2009-08-01", "2020-04-01", "2020-03-01", "2020-06-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1725,6 +1899,7 @@
 
 {
 "series_name":"DUREVNAZ", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1732,9 +1907,10 @@
 "usrdef.outliersDate":["2001-12-01", "2002-11-01", "2005-08-01", "2007-08-01", "2006-08-01", "2010-08-01", "2020-03-01", "2020-04-01", "2020-05-01", "2020-08-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw00.txt", 
+"container":"tdmnw00.txt", 
 "start":"2000-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1744,6 +1920,7 @@
 
 {
 "series_name":"DUREVEST", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1751,9 +1928,10 @@
 "usrdef.outliersDate":["2009-08-01", "2003-02-01", "2008-11-01", "2000-09-01", "2020-03-01", "2020-04-01", "2020-05-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw00.txt", 
+"container":"tdmnw00.txt", 
 "start":"2000-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1763,6 +1941,7 @@
 
 {
 "series_name":"MIGSZ_3", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1770,9 +1949,10 @@
 "usrdef.outliersDate":["2009-01-01", "2008-08-01", "2009-08-01", "2020-04-01", "2020-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1783,6 +1963,7 @@
 
 {
 "series_name":"INVESNAZ", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1790,9 +1971,10 @@
 "usrdef.outliersDate":["2010-06-01", "2004-10-01", "2010-01-01", "2009-04-01", "2020-03-01", "2020-04-01", "2020-05-01", "2020-06-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw00.txt", 
+"container":"tdmnw00.txt", 
 "start":"2000-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1802,6 +1984,7 @@
 
 {
 "series_name":"INVESEST", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1809,9 +1992,10 @@
 "usrdef.outliersDate":["2009-01-01", "2020-03-01", "2020-04-01", "2020-05-01", "2020-06-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw00.txt", 
+"container":"tdmnw00.txt", 
 "start":"2000-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1821,6 +2005,7 @@
 
 {
 "series_name":"MIGSZ_4", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1828,9 +2013,10 @@
 "usrdef.outliersDate":["2008-11-01", "2009-03-01", "2009-08-01", "2008-12-01", "2020-04-01", "2020-03-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw05.txt", 
+"container":"tdmnw05.txt", 
 "start":"2005-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1841,6 +2027,7 @@
 
 {
 "series_name":"INTERNAZ", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1848,9 +2035,10 @@
 "usrdef.outliersDate":["2008-01-01", "2008-11-01", "2020-03-01", "2020-04-01", "2020-05-01", "2020-08-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw00.txt", 
+"container":"tdmnw00.txt", 
 "start":"2000-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
@@ -1862,6 +2050,7 @@
 
 {
 "series_name":"INTEREST", 
+"method":"TS", 
 "spec":"RSA0", 
 "transform.function":"Log", 
 "usrdef.outliersEnabled":true, 
@@ -1869,9 +2058,10 @@
 "usrdef.outliersDate":["2000-12-01", "2008-11-01", "2009-01-01", "2017-12-01", "2020-03-01", "2020-04-01", "2020-05-01", "2020-06-01"], 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"file_name":"tdmnw00.txt", 
+"container":"tdmnw00.txt", 
 "start":"2000-01-01", 
-"frequency":12}], 
+"frequency":12, 
+"n_var":1}], 
 "usrdef.varEnabled":true, 
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 

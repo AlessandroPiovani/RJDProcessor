@@ -6,38 +6,40 @@ setClass("Provider_ext_reg_tsplus",
          slots = list(
            input_source      = "ANY",   # in our case source is a directory path where the regressors are allocated
            read_ext_reg_data = "function",
-           read_ext_reg_info = "function"
+           read_ext_reg_info = "function",
+           ...               = "ANY"
          ))
 
 # read_data method, IT MUST RETURN AN mts OBJECT!!! MODIFY THIS METHOD TO CUSTOMIZE INPUT
-setGeneric("read_ext_reg_data", function(object, var_info=NULL, time_series_info=NULL) standardGeneric("read_ext_reg_data"))
+setGeneric("read_ext_reg_data", function(object, var_info=NULL, time_series_info=NULL, ...) standardGeneric("read_ext_reg_data"))
 setMethod ("read_ext_reg_data", signature("Provider_ext_reg_tsplus", "ANY", "ANY"),
-           function(object, var_info=NULL, time_series_info=NULL) {
+           function(object, var_info=NULL, time_series_info=NULL, ...) {
+             
              
              series_name <- time_series_info
-             
-             #var_info  = object@var_info
-             #source    = object@source
+
              reg_directory   <- object@input_source
-             #browser()
 
              if(is.null(var_info) || length(var_info)==0)
              {
                return(NA)
              }
-             #browser()
+
+             ts_list <-list()
              
-             time_series_list <-list()
+             
+             mts_total <- NA
              # Itera attraverso gli elementi di var_info_list
-             for (i in seq_along(var_info[[series_name]])) {
+             for (i in seq_along(var_info[[series_name]])) 
+             {
                
-               #browser()
+               ##browser()
                user_def_var <- var_info[[series_name]][[i]]
+               
                # Costruisci il percorso completo del file
-               full_file_path <- file.path(reg_directory, user_def_var$file_name)
+               full_file_path <- file.path(reg_directory, user_def_var$container)
                
                # Leggi i dati dal file
-               # data <- scan(full_file_path, what = numeric(), sep = "\n")
                data <- read.table(full_file_path, header = FALSE, sep = "\t")
                
                # Definisci la data di inizio e la frequenza
@@ -48,84 +50,90 @@ setMethod ("read_ext_reg_data", signature("Provider_ext_reg_tsplus", "ANY", "ANY
                
                frequency  <- user_def_var$frequency
                
-               
-               # if(series_name=="VATPIA")
-               # {   
-               #   browser()
-               # }
-               
-               # Crea la serie temporale
-               time_series <- stats::ts(data, start = start_date, frequency = frequency)
-               
-               #if(ncol(time_series)>1) # last comment
-               #{ 
-                 #colnames_to_append <- paste(colnames(time_series), user_def_var$file_name, sep = "_")
-                 # append file_name only if it is not already present
-                 #colnames(time_series) <- ifelse(grepl(user_def_var$file_name, colnames(time_series)), colnames(time_series), colnames_to_append)
-                 #browser()
-                 #print("a")
-                 colnames(time_series) <- paste(colnames(time_series), user_def_var$file_name, sep = "_")
-               #}
-               # 
-               # Aggiungi la serie temporale alla lista
-               time_series_list[[user_def_var$file_name]] <- time_series
-             }
-             #browser()
-             # Converti la lista di serie temporali in una mts
+               mts_file<-NA
+               # ITERA SULLE COLONNE DEL FILE
+               for (j in 1:ncol(data)) 
+               {
+                   # Ottieni il nome della colonna
+                   column_name <- user_def_var$container
+                   column_name <- gsub("\\.txt", "", column_name)
 
-             #if(length(time_series_list)!=1) #mts object obtained by ts_union loses its name if it is made by only one element, so I restore it
-             #{
-                mts_object <- do.call(ts.union, time_series_list)
-             #}
-             #else #mts object obtained by ts_union loses its name if it is made by only one element, so I restore it
-             #{
-               #browser()
-             # mts_object <- matrix(as.vector(time_series_list[[1]]), ncol =  1)
-             # mts_object <- ts(mts_object, start = start_date ,frequency = frequency)
-             #  colnames(mts_object) <- names(c(time_series_list[1]))
+                   # Ottieni i dati della colonna
+                   column_data <- data[[j]]
+                   
+                   # create a dummy variable allowing to work with an MTS instead of a TS. Working with MTS allows to set the series names
+                   if(j==1 && length(ts_list)==0)
+                   {
+                     dummy <- ts(data = column_data, class="ts", frequency = frequency, start = start_date)
+                     ts_list <- list("dummy"=dummy)
+                     mts_file_col_names <- c("dummy")
+                   }
+                   
+                   # Case of the 6 Trading Days variables in one file
+                   if(user_def_var$n_var > 1)
+                   {
+                     column_name <- paste(column_name, "_", j, sep="")
+                   }   
+                   mts_file_col_names <- c(mts_file_col_names, column_name)
+                   
+                   time_series_new <- ts(column_data, start = start_date, frequency = frequency)
+                   
+                   ts_list[[column_name]] <- time_series_new
+               } 
+             }
+             
+             # DUBBI PARTONO QUI
+             if(length(ts_list)>0)
+             {
+               mts_file <- do.call(ts.union, ts_list)
                
-             #} 
-             if(is.null(mts_object))
-             {
-               mts_object = NA
+               colnames(mts_file) <- mts_file_col_names
+               mts_file <- mts_file[,-1]
+               if(all(is.na(mts_total)))
+               {   
+                 mts_total <- mts_file#NA
+               }else
+               {
+                 mts_total <- cbind(mts_total, mts_file)
+               }   
+               mts_file<-NA
              }
-  
-             # if(series_name=="VATAIC")
-             # {
-             #    browser()
-             # }
              
-             # Fix mts_column names (if in the case of 6 variables filename is repetaed before and after the variable number)     
-             # browser()
-             if (all(!is.na(mts_object)) && ncol(mts_object) > 1) 
+             #browser()
+             if(length(class(mts_total)=="ts")==1 && class(mts_total)=="ts")
              {
-                colnames(mts_object) <- sub(".*\\.(V[1-6]_.*$)", "\\1", colnames(mts_object))             
+               #browser()
+               data_ts <- as.vector(mts_total)
+               dim(data_ts) <- c(length(mts_total), 1)
+               dimnames(data_ts) <- list(NULL, column_name)
+               mts_total <- ts(data = data_ts, start = start_date, frequency = frequency, class=c("mts", "ts", "matrix"), names=c(column_name))
              }
-                
-             # Restituisci la mts
-             return(mts_object)
+ 
              
+             return(mts_total)    
+                 
+               
            })
 
 # read_ext_reg_info method, IT MUST RETURN A LIST of information on external regressors
-setGeneric("read_ext_reg_info", function(object, var_info_container) standardGeneric("read_ext_reg_info"))
+setGeneric("read_ext_reg_info", function(object, var_info_container, ...) standardGeneric("read_ext_reg_info"))
 setMethod ("read_ext_reg_info", signature("Provider_ext_reg_tsplus", "ANY"),
-           function(object, var_info_container) {
+           function(object, var_info_container, ...) {
              
              workspace <- var_info_container 
-                   
+             
              jmodel <- RJDemetra::get_jmodel(workspace, progress_bar = TRUE) # to retrieve external regressors by name
-
+             
              all_jmodel_vars <- getUserDefinedTdVariables_info(jmodel) # per editare la scrittura
              return(all_jmodel_vars)
-
+             
            })
 
 
 # Definizione del costruttore R-like
-Provider_ext_reg_tsplus <- function(input_source) {
+Provider_ext_reg_tsplus <- function(input_source, ...) {
   
-  obj <- new("Provider_ext_reg_tsplus", input_source = input_source, read_ext_reg_data = function(...) read_ext_reg_data(obj, ...), read_ext_reg_info = function(...) read_ext_reg_info(obj,...))
+  obj <- new("Provider_ext_reg_tsplus", input_source = input_source, read_ext_reg_data = function(...) read_ext_reg_data(obj, ...), read_ext_reg_info = function(...) read_ext_reg_info(obj,...),...)
   
   # Restituisci l'oggetto creato
   return(obj)
@@ -153,7 +161,28 @@ Provider_ext_reg_tsplus <- function(input_source) {
 getUserDefinedTdVariables_info <- function(jmodel ,input_mode=c("TS_regressor_file", "JD_regressor_file", ))
 {
   var_info_list = list()
-  #browser()
+  
+  
+  get_repeat_counts <- function(jUser_Td_VarsString) {
+    # Controlla se jUser_Td_VarsString è una singola stringa
+    if (is.character(jUser_Td_VarsString) && length(jUser_Td_VarsString) == 1) {
+      return(1)  # Restituisce un vettore di un solo elemento con il valore 1
+    } else {
+      # Estrai il prefisso di ogni elemento
+      prefixes <- gsub("^(.*)_\\d+$", "\\1", jUser_Td_VarsString)
+      # Conta le ripetizioni dei prefissi
+      repeat_counts <- table(prefixes)
+      # Creazione del vettore di risultati
+      result <- integer(length(prefixes))
+      # Assegna il numero di ripetizioni per ogni variabile al vettore di risultati
+      for (i in seq_along(prefixes)) {
+        result[i] <- repeat_counts[prefixes[i]]
+      }
+      return(result)  # Restituisce un vettore con il numero di variabili ripetute
+    }
+  }
+  repeated_vars <- c()
+  
   require(rJava)
   for(name in names(jmodel[[1]]))
   {
@@ -166,9 +195,8 @@ getUserDefinedTdVariables_info <- function(jmodel ,input_mode=c("TS_regressor_fi
     
     idx_file_list = 1
     
-      
     usrDefVarCount    <- jRegression$getUserDefinedVariablesCount()
-   
+    
     if(usrDefVarCount > 0)
     {
       var_info_list[[name]] = list()
@@ -189,7 +217,7 @@ getUserDefinedTdVariables_info <- function(jmodel ,input_mode=c("TS_regressor_fi
         start_date <- as.Date(paste(year, month, "01", sep = "-"))
         
         start_date <- format(start_date, "%Y-%m-%d")
-        current    <- list(file_name = file_name, start = start_date, frequency=frequency(get_ts(jSA_series)))#, type="userdef")
+        current    <- list(container = file_name, start = start_date, frequency=frequency(get_ts(jSA_series)), n_var=1) #, type="userdef")
         if (!identical(current, previous)) # for the 6 variables case: all the variables belong to the same file, so the fileinfo will be replicated 6 time, but i save only one of them not incrementing idx_file_list
         {
           file_list[[idx_file_list]] <- current
@@ -201,9 +229,9 @@ getUserDefinedTdVariables_info <- function(jmodel ,input_mode=c("TS_regressor_fi
         
       }
       #var_info_list[[name]] <- append(var_info_list[[name]], file_list)
-        
-    }  
       
+    }  
+    
     
     if(length(jUser_Td_VarsString)>0)
     {
@@ -211,12 +239,17 @@ getUserDefinedTdVariables_info <- function(jmodel ,input_mode=c("TS_regressor_fi
       # {
       #   var_info_list[[name]] = list()
       # }
-
+      
+      #browser()
       #i = length(var_info_list[[name]])+1 # if some usrDefVar have been already added, I start adding the TD user defined vars after them
-      i = idx_file_list
+      i       = idx_file_list
+      repeated_vars <- get_repeat_counts(jUser_Td_VarsString) 
+      r_idx = 1 # repeated_vars index
+      
       previous=list()
       for(varString in jUser_Td_VarsString)
       {
+        #browser()
         file_name <- tolower(sub(".*\\.(.*?)_\\d+$", "\\1", varString))
         file_name <- paste0(file_name, ".txt")
         
@@ -225,23 +258,28 @@ getUserDefinedTdVariables_info <- function(jmodel ,input_mode=c("TS_regressor_fi
         month <- start(get_ts(jSA_series))[2]
         start_date <- as.Date(paste(year, month, "01", sep = "-"))
         
+        #browser()
+        
         
         start_date <- format(start_date, "%Y-%m-%d")
-        current = list(file_name = file_name, start = start_date, frequency=frequency(get_ts(jSA_series)))#, type="td")
+        current = list(container = file_name, start = start_date, frequency=frequency(get_ts(jSA_series)), n_var=repeated_vars[r_idx]) # type="td")
+        r_idx <- r_idx + 1
         if (!identical(current, previous))  # for the 6 variables case: all the variables belong to the same file, so the fileinfo will be replicated 6 time, but i save only one of them not incrementing i
         {
           file_list[[i]] = current
           previous       = file_list[[i]]
           i=i+1
         }
-         
       }
     }
     var_info_list[[name]] <- append(var_info_list[[name]], file_list)
     
   }  
-
+  
   return(var_info_list)
 }  
+
+
+
 
 

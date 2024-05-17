@@ -37,7 +37,8 @@ JD_JSON_file_processor <- function(input_data_provider, ext_reg_provider, spec_f
     dev.off()
     close.connection(zz)
     
-    return(model)
+    #return(model)
+    return(wk)
 }
 
 
