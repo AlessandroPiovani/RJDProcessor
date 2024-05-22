@@ -5,12 +5,21 @@ source("utility_functions.R")
 source("JD_JSON.R")
 
 
-JD_JSON_file_processor <- function(input_data_provider, ext_reg_provider, spec_file_name, output_workspace_dir=NA, series_to_proc_names=NA)
+JD_JSON_file_processor <- function(input_data_provider, ext_reg_provider, spec_file_name, output_workspace_dir=NA, series_to_proc_names=NA, java_processing=TRUE)
 {
     #browser()
     wk <- JD_JSON_to_materialized_workspace(workspace_dir=output_workspace_dir, JSON_file = JSON_file, input_data_provider = input_data_provider, ext_reg_provider= ext_reg_provider, series_to_proc_names = series_to_proc_names)
     
-    model=get_model(wk)
+    
+    if(java_processing==FALSE)
+    {
+      model=get_model(wk)
+    } else
+    {
+      j_model <- get_jmodel(wk)
+      model   <- get_r_model_from_j_model(j_model)  
+    } 
+        
     
     zz <- file("elaborazione.out", open="wt")
     sink(zz, type)
@@ -40,5 +49,7 @@ JD_JSON_file_processor <- function(input_data_provider, ext_reg_provider, spec_f
     #return(model)
     return(wk)
 }
+
+
 
 

@@ -131,21 +131,23 @@ JD_JSON_to_materialized_workspace <- function(workspace_dir=NA, JSON_file, input
 
 
 # e.g. workspace_xml_file_name = "C:\\Users\\UTENTE\\Desktop\\MigrazioneFAT-RJDemetra\\WorkspaceFAT-container\\"
-JD_JSON_from_materialized_workspace <- function(workspace_directory, ext_reg_input_provider, regr_directory=NA, JSON_file_name = "JD_JSON_specification.txt", diff=TRUE)
+JD_JSON_from_materialized_workspace <- function(workspace_directory, ext_reg_input_provider, regr_directory=NA, JSON_file_name = "JD_JSON_specification.txt", diff=TRUE, java_processing = TRUE)
 {
   ws<-load_workspace(file = workspace_directory)
-  series_spec_list <- JD_JSON_from_virtual_workspace(ws, ext_reg_input_provider, JSON_file_name = JSON_file_name, diff=diff)
+  series_spec_list <- JD_JSON_from_virtual_workspace(ws, ext_reg_input_provider, JSON_file_name = JSON_file_name, diff=diff, java_processing = java_processing)
   #return(series_spec_list)  
 }
 
 
 
 
-JD_JSON_from_virtual_workspace <- function(ws, ext_reg_input_provider, JSON_file_name = "JD_JSON_specification.txt", diff=TRUE)
+JD_JSON_from_virtual_workspace <- function(ws, ext_reg_input_provider, JSON_file_name = "JD_JSON_specification.txt", diff=TRUE, java_processing=TRUE)
 {
   compute(ws)
   
-  series_spec_list  <-  extended_tramoseats_spec_list_from_workspace(workspace = ws, ext_reg_input_provider)
+  series_spec_list  <-  extended_tramoseats_spec_list_from_workspace(workspace = ws, ext_reg_input_provider, java_processing=java_processing)
+  
+  #browser()
   
   # Apri il file in modalità scrittura
   con <- file(JSON_file_name, "w")
@@ -318,5 +320,4 @@ from_full_to_reduced_JD_JSON_file<-function(JD_JSON_file, output_file_name=NA, i
   
   
 }
-
 

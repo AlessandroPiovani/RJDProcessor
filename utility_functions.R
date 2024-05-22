@@ -225,6 +225,7 @@ simplify_leaves <- function(input_list) {
 difference_objects_preserving_name_and_spec <- function(object, basic){
   #browser()
   series_name <- object@series_name # to be written in first position also if it is the same in the two objects
+  frequency   <- object@frequency   # to be written also if it is the same in the two objects
   method      <- object@method      # to be written also if it is the same in the two objects
   spec        <- object@spec        # to be written also if it is the same in the two objects
   
@@ -232,10 +233,11 @@ difference_objects_preserving_name_and_spec <- function(object, basic){
   object <- difference_objects(object, basic) 
   
   object$series_name <- NULL
-  object$method <- NULL
-  object$spec <- NULL
+  object$frequency   <- NULL  
+  object$method      <- NULL
+  object$spec        <- NULL
   
-  first_positions <- list(series_name=series_name, method=method, spec=spec)
+  first_positions <- list(series_name=series_name, frequency=frequency, method=method, spec=spec)
   object          <- c(first_positions, object)
   return(object)
 }
@@ -284,3 +286,24 @@ convert_numerics_to_integers <- function(json_data, fields_to_convert=NA) {
 #   }
 #    
 # }  
+
+
+get_r_model_from_j_model <- function(j_model)
+{
+  #browser()
+  model=list()
+  k=1
+  for(sa_name in names(j_model))
+  { 
+    sa <- j_model[[sa_name]]
+    model[[sa_name]] <- sa
+    for (j_time_series_name in names(sa)) {
+      #browser()
+      #print(j_time_series_name)
+      r_time_series    <- jSA2R(sa[[j_time_series_name]]) #error with FATEXP_14
+      model[[sa_name]][[j_time_series_name]] <- r_time_series
+    }
+  }
+  return(model)
+}
+

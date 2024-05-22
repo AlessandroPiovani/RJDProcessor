@@ -7,6 +7,7 @@ setClass(
   "Extended_tramoseats_spec",
   slots = list(
     series_name             = "character",    # ISTAT custom field
+    frequency               = "integer",
     method                  = "character",
     spec                    = "character",
     preliminary.check       = "logical",
@@ -94,7 +95,7 @@ setClass(
 
 #costruttore initialize per la classe
 setMethod("initialize", "Extended_tramoseats_spec",
-          function(.Object, series_name, method ="TS" ,spec = "RSA0", preliminary.check = NA,
+          function(.Object, series_name, frequency=NA_integer_, method ="TS" ,spec = "RSA0", preliminary.check = NA,
                    estimate.from = NA_character_, estimate.to = NA_character_,
                    estimate.first = NA_integer_, estimate.last = NA_integer_,
                    estimate.exclFirst = NA_integer_, estimate.exclLast = NA_integer_,
@@ -130,7 +131,7 @@ setMethod("initialize", "Extended_tramoseats_spec",
             
             
             # Convert possible numeric arguments to integer if they are compatible
-            integer_args_to_check <- c( "estimate.first", "estimate.last", "estimate.exclFirst", "estimate.exclLast", "tradingdays.stocktd",
+            integer_args_to_check <- c( "frequency", "estimate.first", "estimate.last", "estimate.exclFirst", "estimate.exclLast", "tradingdays.stocktd",
                                         "easter.duration", "outlier.first", "outlier.last", "outlier.exclFirst", "outlier.exclLast", 
                                         "arima.p", "arima.d", "arima.q", "arima.bp", "arima.bd", "arima.bq",
                                         "seats.predictionLength")
@@ -159,6 +160,7 @@ setMethod("initialize", "Extended_tramoseats_spec",
             
             
             .Object@series_name <- series_name
+            .Object@frequency   <- frequency
             .Object@method      <- method
             .Object@spec        <- spec
             
@@ -293,7 +295,7 @@ setMethod("initialize", "Extended_tramoseats_spec",
 
 # Costruttore R-like: 
 # Funzione di aiuto per creare un oggetto Extended_tramoseats
-Extended_tramoseats_spec_helper <- function(series_name = NULL, method="TS" ,spec = NULL, preliminary.check = NA,
+Extended_tramoseats_spec_helper <- function(series_name = NULL, frequency=NA_integer_, method="TS" ,spec = NULL, preliminary.check = NA,
                                             estimate.from = NA_character_, estimate.to = NA_character_,
                                             estimate.first = NA_integer_, estimate.last = NA_integer_,
                                             estimate.exclFirst = NA_integer_, estimate.exclLast = NA_integer_,
@@ -328,7 +330,7 @@ Extended_tramoseats_spec_helper <- function(series_name = NULL, method="TS" ,spe
                                             seats.seasTol = NA_integer_, seats.maBoundary = NA_integer_,
                                             seats.method = NA) {
   
-  new("Extended_tramoseats_spec", series_name = series_name, method=method, spec = spec, preliminary.check = preliminary.check,
+  new("Extended_tramoseats_spec", series_name = series_name, frequency=frequency, method=method, spec = spec, preliminary.check = preliminary.check,
       estimate.from = estimate.from, estimate.to = estimate.to, estimate.first = estimate.first,
       estimate.last = estimate.last, estimate.exclFirst = estimate.exclFirst, estimate.exclLast = estimate.exclLast,
       estimate.tol = estimate.tol, estimate.eml = estimate.eml, estimate.urfinal = estimate.urfinal,
@@ -377,7 +379,7 @@ setMethod("to_JD_JSON", "Extended_tramoseats_spec", function(object, indent = FA
   #{  
   require(rjson)
   
-  #browser()
+  # browser()
   if(diff == TRUE)
   {  
     #browser()
@@ -432,6 +434,7 @@ setMethod ("from_JD_JSON", "Extended_tramoseats_spec", function(object, json) {
   # Inizializza gli argomenti per il costruttore
   args <- list(
     series_name = json_list$series_name,
+    frequency   = frequency,
     method = json_list$method,
     spec = json_list$spec,
     preliminary.check = json_list$preliminary.check,
@@ -552,16 +555,22 @@ to_named_list <- function(object) {
 
 
 
-extended_tramoseats_spec_list_from_workspace <-  function(workspace, provider_ext_reg, method="TS", ...)
+extended_tramoseats_spec_list_from_workspace <-  function(workspace, provider_ext_reg, method="TS", java_processing=TRUE ,...)
 {
   compute(workspace)
   
   
-  
   #jmodel          <- RJDemetra::get_jmodel(workspace, progress_bar = TRUE) # to retrieve external regressors by name
   cat("Loading models\n")
-  m <- get_model(workspace, progress_bar = TRUE)
-  
+  if(java_processing == FALSE)
+  {
+    m <- get_model(workspace, progress_bar = TRUE)
+  }else  
+  {
+    #browser()
+    m <- get_jmodel(workspace, progress_bar = TRUE)
+    m <- get_r_model_from_j_model(m)
+  }
   
   cat("Loading external variables\n")
   all_model_vars_info <- provider_ext_reg@read_ext_reg_info(workspace)
@@ -573,10 +582,12 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, provider_ex
   for (series_name in names(m[[1]]))
   {
     series        <-  m[[1]][[series_name]]
-    #basic_spec    <- get_jspec(jmodel[[1]][[series_name]])$toString()  
+    frequency     <-  frequency(get_ts(series))
     
+    #basic_spec    <- get_jspec(jmodel[[1]][[series_name]])$toString()  
+
     #browser()
-    spec <- from_SA_spec(series, series_name = series_name, method = method, basic_spec="RSA0", all_model_ext_vars_info = all_model_vars_info, provider_ext_reg = provider_ext_reg)
+    spec <- from_SA_spec(series, series_name = series_name, frequency = frequency, method = method, basic_spec="RSA0", all_model_ext_vars_info = all_model_vars_info, provider_ext_reg = provider_ext_reg)
     spec <- list(spec)
     extended_tramoseats_spec_list <- append(extended_tramoseats_spec_list ,spec)
   }
@@ -591,7 +602,7 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, provider_ex
 
 
 # From SA_spec relies on Workspace to assign a value to the custom fields of Extended_tramoseats_spec (in particular the filename)
-from_SA_spec <- function(SA_spec, series_name = NA_character_, method = "TSS" ,basic_spec="RSA0", userdef.varFromFile=TRUE, all_model_ext_vars_info=NULL, provider_ext_reg=NULL ,workspace=NA)
+from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_integer_  ,method = "TS" ,basic_spec="RSA0", userdef.varFromFile=TRUE, all_model_ext_vars_info=NULL, provider_ext_reg=NULL ,workspace=NA)
 {  
   #browser()
   if(is.null(all_model_ext_vars_info) && !is.na(workspace)) # passing the variables pre_computed is more efficient because they are computed one time for a list of series
@@ -635,7 +646,7 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, method = "TSS" ,b
       }else
       { 
         
-        vars_mts          <- provider_ext_reg@read_ext_reg_data(all_model_ext_vars_info, series_name) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        vars_mts          <- provider_ext_reg@read_ext_reg_data(all_model_ext_vars_info, series_name, frequency=frequency) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         
         user_def_var_info <- get_user_def_var_info(regarima_spec) # si può prendere anche dal workspace?
         usrdef.varType    <- user_def_var_info$type
@@ -660,6 +671,7 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, method = "TSS" ,b
   extended_tramoseats_spec <- Extended_tramoseats_spec(
     spec               = ifelse(basic_spec=="TS", "RSA0", basic_spec), 
     series_name        = series_name, # custom field
+    frequency          = frequency,   # custom field
     method             = method,      # custom field
     preliminary.check  = regarima_spec$estimate$preliminary.check, 
     estimate.from      = estimate_span_details$from,      #regarima_spec$span$d1[1],
@@ -807,10 +819,12 @@ to_tramoseats_spec_args<-function(extended_tramoseats_spec, provider_ext_reg)
   userdef.varFromFile          <- extended_tramoseats_spec$userdef.varFromFile
   userdef.varFromFile.infoList <- extended_tramoseats_spec$userdef.varFromFile.infoList
   series_name                  <- extended_tramoseats_spec$series_name
+  frequency                    <- extended_tramoseats_spec$frequency
   method                       <- extended_tramoseats_spec$method  
   
   # Rimuovi gli elementi che ci sono in Extended_tramoseats_spec e non in tramoseats_spec
   extended_tramoseats_spec <- extended_tramoseats_spec[ ! names(extended_tramoseats_spec) %in% c("series_name") ] # è già memorizzato in ts_name; lo tolgo 
+  extended_tramoseats_spec <- extended_tramoseats_spec[ ! names(extended_tramoseats_spec) %in% c("frequency") ]  
   extended_tramoseats_spec <- extended_tramoseats_spec[ ! names(extended_tramoseats_spec) %in% c("method") ]
   extended_tramoseats_spec <- extended_tramoseats_spec[ ! names(extended_tramoseats_spec) %in% c("userdef.varFromFile") ]
   extended_tramoseats_spec <- extended_tramoseats_spec[ ! names(extended_tramoseats_spec) %in% c("userdef.varFromFile.infoList") ]
@@ -825,7 +839,7 @@ to_tramoseats_spec_args<-function(extended_tramoseats_spec, provider_ext_reg)
       info_list <- list()
       info_list[[series_name]]  <- userdef.varFromFile.infoList
       
-      vars_mts                  <- provider_ext_reg@read_ext_reg_data(info_list, series_name) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      vars_mts                  <- provider_ext_reg@read_ext_reg_data(info_list, series_name, frequency) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       
       extended_tramoseats_spec[["usrdef.var"]] <- vars_mts
     }  
@@ -845,9 +859,6 @@ to_SA_spec<-function(extended_tramoseats_spec)
   tramoseats_spec      <- do.call(RJDemetra::tramoseats_spec, tramoseats_spec_args)
   return(tramoseats_spec)
 }
-
-
-
 
 
 

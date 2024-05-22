@@ -11,9 +11,9 @@ setClass("Provider_ext_reg_tsplus",
          ))
 
 # read_data method, IT MUST RETURN AN mts OBJECT!!! MODIFY THIS METHOD TO CUSTOMIZE INPUT
-setGeneric("read_ext_reg_data", function(object, var_info=NULL, time_series_info=NULL, ...) standardGeneric("read_ext_reg_data"))
-setMethod ("read_ext_reg_data", signature("Provider_ext_reg_tsplus", "ANY", "ANY"),
-           function(object, var_info=NULL, time_series_info=NULL, ...) {
+setGeneric("read_ext_reg_data", function(object, var_info=NULL, time_series_info=NULL, frequency= NA_integer_, ...) standardGeneric("read_ext_reg_data"))
+setMethod ("read_ext_reg_data", signature("Provider_ext_reg_tsplus", "ANY", "ANY", "ANY"),
+           function(object, var_info=NULL, time_series_info=NULL, frequency=NA_integer_, ...) {
              
              
              series_name <- time_series_info
@@ -48,8 +48,20 @@ setMethod ("read_ext_reg_data", signature("Provider_ext_reg_tsplus", "ANY", "ANY
                m <- as.integer(format(data_date, "%m"))
                start_date <- c(y, m)
                
-               frequency  <- user_def_var$frequency
-               
+          
+              # frequency  <- user_def_var$frequency # if I passed the frequency as a metadata
+               if(is.na(frequency)) # Auto detect of frequency, not possible for TS txt format (this if is never used)
+               {
+                 #Auto detect of frequency from the data
+                 browser()
+                 timestamps  <- rownames(data)
+                 start_index <- which(!is.na(series))[1]
+                 d1          <- as.Date(timestamps[start_index])
+                 d2          <- as.Date(timestamps[start_index+1])
+                 month_diff  <- abs(as.numeric(format(d1, "%m")) - as.numeric(format(d2, "%m")))
+                 frequency   <- 12/month_diff
+               }
+                 
                mts_file<-NA
                # ITERA SULLE COLONNE DEL FILE
                for (j in 1:ncol(data)) 
@@ -217,7 +229,7 @@ getUserDefinedTdVariables_info <- function(jmodel ,input_mode=c("TS_regressor_fi
         start_date <- as.Date(paste(year, month, "01", sep = "-"))
         
         start_date <- format(start_date, "%Y-%m-%d")
-        current    <- list(container = file_name, start = start_date, frequency=frequency(get_ts(jSA_series)), n_var=1) #, type="userdef")
+        current    <- list(container = file_name, start = start_date, n_var=1) #frequency=frequency(get_ts(jSA_series)), #, type="userdef")
         if (!identical(current, previous)) # for the 6 variables case: all the variables belong to the same file, so the fileinfo will be replicated 6 time, but i save only one of them not incrementing idx_file_list
         {
           file_list[[idx_file_list]] <- current
@@ -262,7 +274,7 @@ getUserDefinedTdVariables_info <- function(jmodel ,input_mode=c("TS_regressor_fi
         
         
         start_date <- format(start_date, "%Y-%m-%d")
-        current = list(container = file_name, start = start_date, frequency=frequency(get_ts(jSA_series)), n_var=repeated_vars[r_idx]) # type="td")
+        current = list(container = file_name, start = start_date, n_var=repeated_vars[r_idx]) ##frequency=frequency(get_ts(jSA_series)), # type="td") 
         r_idx <- r_idx + 1
         if (!identical(current, previous))  # for the 6 variables case: all the variables belong to the same file, so the fileinfo will be replicated 6 time, but i save only one of them not incrementing i
         {
