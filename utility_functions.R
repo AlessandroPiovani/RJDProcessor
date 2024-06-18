@@ -288,22 +288,3 @@ convert_numerics_to_integers <- function(json_data, fields_to_convert=NA) {
 # }  
 
 
-get_r_model_from_j_model <- function(j_model)
-{
-  #browser()
-  model=list()
-  k=1
-  for(sa_name in names(j_model))
-  { 
-    sa <- j_model[[sa_name]]
-    model[[sa_name]] <- sa
-    for (j_time_series_name in names(sa)) {
-      #browser()
-      #print(j_time_series_name)
-      r_time_series    <- jSA2R(sa[[j_time_series_name]]) #error with FATEXP_14
-      model[[sa_name]][[j_time_series_name]] <- r_time_series
-    }
-  }
-  return(model)
-}
-

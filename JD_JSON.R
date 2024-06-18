@@ -10,16 +10,16 @@ source("utility_functions.R")
 source("Extended_tramoseats_spec.R")
 
 
-JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_provider, ext_reg_provider=NA, series_to_proc_names=NA)
+JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_reader, ext_reg_data_reader=NA, series_to_proc_names=NA)
 {
-  
   
   wk <- new_workspace()
   new_multiprocessing(wk, "sa1")
   
   #browser()
   
-  mts_input_time_series <- input_data_provider@read_data() #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  
+  mts_input_time_series <- input_data_reader@read_data() #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   
   
   timestamps   <- rownames(mts_input_time_series)
@@ -70,7 +70,7 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_provider, ext_reg
       extended_tramoseats_spec_obj  <- extended_tramoseats_spec_list[[ts_name]]  
       
       
-      tramoseats_spec_args <- to_tramoseats_spec_args(extended_tramoseats_spec_obj, ext_reg_provider)
+      tramoseats_spec_args <- to_tramoseats_spec_args(extended_tramoseats_spec_obj, ext_reg_data_reader)
       
       
       spec <- do.call(RJDemetra::tramoseats_spec, tramoseats_spec_args)
@@ -90,9 +90,9 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_provider, ext_reg
 
 
 
-JD_JSON_to_materialized_workspace <- function(workspace_dir=NA, JSON_file, input_data_provider, ext_reg_provider=NA, series_to_proc_names=NA)
+JD_JSON_to_materialized_workspace <- function(workspace_dir=NA, JSON_file, input_data_reader, ext_reg_data_reader=NA, series_to_proc_names=NA)
 {
-  wk <- JD_JSON_to_virtual_workspace(JSON_file, input_data_provider, ext_reg_provider, series_to_proc_names)
+  wk <- JD_JSON_to_virtual_workspace(JSON_file, input_data_reader, ext_reg_data_reader, series_to_proc_names)
   
   if(is.na(workspace_dir))
   {
@@ -131,21 +131,21 @@ JD_JSON_to_materialized_workspace <- function(workspace_dir=NA, JSON_file, input
 
 
 # e.g. workspace_xml_file_name = "C:\\Users\\UTENTE\\Desktop\\MigrazioneFAT-RJDemetra\\WorkspaceFAT-container\\"
-JD_JSON_from_materialized_workspace <- function(workspace_directory, ext_reg_input_provider, regr_directory=NA, JSON_file_name = "JD_JSON_specification.txt", diff=TRUE, java_processing = TRUE)
+JD_JSON_from_materialized_workspace <- function(workspace_directory, ext_reg_input_data_reader, regr_directory=NA, JSON_file_name = "JD_JSON_specification.txt", diff=TRUE, java_processing = TRUE)
 {
   ws<-load_workspace(file = workspace_directory)
-  series_spec_list <- JD_JSON_from_virtual_workspace(ws, ext_reg_input_provider, JSON_file_name = JSON_file_name, diff=diff, java_processing = java_processing)
+  series_spec_list <- JD_JSON_from_virtual_workspace(ws, ext_reg_input_data_reader, JSON_file_name = JSON_file_name, diff=diff, java_processing = java_processing)
   #return(series_spec_list)  
 }
 
 
 
 
-JD_JSON_from_virtual_workspace <- function(ws, ext_reg_input_provider, JSON_file_name = "JD_JSON_specification.txt", diff=TRUE, java_processing=TRUE)
+JD_JSON_from_virtual_workspace <- function(ws, ext_reg_input_data_reader, JSON_file_name = "JD_JSON_specification.txt", diff=TRUE, java_processing=TRUE)
 {
   compute(ws)
   
-  series_spec_list  <-  extended_tramoseats_spec_list_from_workspace(workspace = ws, ext_reg_input_provider, java_processing=java_processing)
+  series_spec_list  <-  extended_tramoseats_spec_list_from_workspace(workspace = ws, ext_reg_input_data_reader, java_processing=java_processing)
   
   #browser()
   
