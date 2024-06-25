@@ -41,7 +41,17 @@ setMethod ("read_data", signature("Data_reader_list"),
              end_date   <- all_dates_chr[which.max(all_dates)]
              
              # Create a complete sequence of dates
-             complete_dates <- seq.Date(from = as.Date(start_date, format= date_format), to = as.Date(end_date, format= date_format), by = "month")
+             
+             # auto detection of the time series month diff between observations
+             d1         <- as.Date(all_dates_chr[1])
+             d2         <- as.Date(all_dates_chr[2])
+             month_diff <- abs(as.numeric(format(d1, "%m")) - as.numeric(format(d2, "%m")))
+             if(month_diff==1)
+             { month_diff <- "month"}
+             else
+             { month_diff <- paste(str(month_diff),"months")}   
+             
+             complete_dates <- seq.Date(from = as.Date(start_date, format= date_format), to = as.Date(end_date, format= date_format), by = month_diff)
              complete_dates <- format(complete_dates, "%Y-%m-%d")
              
              # Create an empty matrix with NA
