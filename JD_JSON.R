@@ -278,14 +278,14 @@ from_full_to_reduced_JD_JSON_file<-function(JD_JSON_file, output_file_name=NA, i
   
   writeLines("[\n", con, sep = "")
   
-  browser()
+  #browser()
   extended_tramoseats_spec_list <- read_spec_list_from_json_file(JD_JSON_file, spec_format="list")
   
   n <- length(extended_tramoseats_spec_list)
   
   for(i in seq_len(n - 1))
   {
-    browser()
+    #browser()
     
     spec   <- extended_tramoseats_spec_list[[i]]
     spec <- spec[!unlist(lapply(spec, function(x) all(is.na(x))))]
