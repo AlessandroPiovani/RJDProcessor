@@ -26,10 +26,10 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_reader, ext_reg_d
   series_names <- colnames(mts_input_time_series) # sostituirlo con un vettore di serie che si vogliono destagionalizzare e aggiustare il codice nel for, per ora risolto con if nel for (che va anche bene)
   for (i in 1:ncol(mts_input_time_series)) {
     
-    # browser()
+    #browser()
     if(all(is.na(series_to_proc_names)) || series_names[i] %in% series_to_proc_names)
     {
-      
+      #browser()
       # Estrai la serie dalla matrice mts
       series <- mts_input_time_series[, i]  
       
@@ -158,10 +158,11 @@ JD_JSON_from_virtual_workspace <- function(ws, ext_reg_input_data_reader, JSON_f
   # Itera attraverso ciascuna specifica nella lista, tranne l'ultima, che verrà stampata dopo il for, senza virgola finale
   for (i in seq_len(n - 1)) {
     # Ottieni la specifica corrente
+    #browser()
     current_spec <- series_spec_list[[i]]
     
     # Converti la specifica in formato JSON
-    json_spec <- to_JD_JSON(current_spec, indent = TRUE, diff=diff)
+    json_spec <- to_JD_JSON(current_spec, indent = TRUE, diff=diff, basic_spec = current_spec@spec)
     
     # Scrivi la specifica nel file
     writeLines(json_spec, con, sep = ",\n\n\n")
@@ -189,7 +190,7 @@ JD_JSON_from_virtual_workspace <- function(ws, ext_reg_input_data_reader, JSON_f
 }
 
 
-from_reduced_to_full_JD_JSON_obj<-function(JD_JSON_string, basic_spec="RSA_0")
+from_reduced_to_full_JD_JSON_obj<-function(JD_JSON_string, basic_spec="RSA0")
 {
   basic_spec   <- from_SA_spec(SA_spec = tramoseats_spec(basic_spec), userdef.varFromFile = FALSE)
   full_JD_JSON <- merge_objects_precedence_to_reduced(JD_JSON_obj, basic = basic_spec)
@@ -264,7 +265,7 @@ from_reduced_to_full_JD_JSON_file <- function(JD_JSON_file, output_file_name=NA,
 
 
 
-from_full_to_reduced_JD_JSON_file<-function(JD_JSON_file, output_file_name=NA, indent= TRUE, basic_spec="RSA0")
+from_full_to_reduced_JD_JSON_file<-function(JD_JSON_file, output_file_name=NA, indent= TRUE, basic_spec=NA)
 {
   # Definisci il nome del file
   if(is.na(output_file_name))
@@ -277,25 +278,33 @@ from_full_to_reduced_JD_JSON_file<-function(JD_JSON_file, output_file_name=NA, i
   
   writeLines("[\n", con, sep = "")
   
-  
+  browser()
   extended_tramoseats_spec_list <- read_spec_list_from_json_file(JD_JSON_file, spec_format="list")
   
   n <- length(extended_tramoseats_spec_list)
   
   for(i in seq_len(n - 1))
   {
-    #browser()
+    browser()
     
     spec   <- extended_tramoseats_spec_list[[i]]
     spec <- spec[!unlist(lapply(spec, function(x) all(is.na(x))))]
     
+    #browser()
+    if( is.na(basic_spec) )
+    {
+      basic_spec_f <- spec[["spec"]]
+    } else
+    {
+      basic_spec_f <- basic_spec
+    }
     
     
     #spec   <- convert_numerics_to_integers(spec) #metterlo nel costruttore?
     #browser()
     spec   <- do.call(Extended_tramoseats_spec, spec)
     
-    json_spec <- to_JD_JSON(spec, indent = indent, diff = TRUE, basic_spec=basic_spec)
+    json_spec <- to_JD_JSON(spec, indent = indent, diff = TRUE, basic_spec=basic_spec_f)
     writeLines(json_spec, con, sep = ",\n\n\n")
   }  
   
@@ -303,10 +312,18 @@ from_full_to_reduced_JD_JSON_file<-function(JD_JSON_file, output_file_name=NA, i
   spec   <- extended_tramoseats_spec_list[[n]]
   spec   <- spec[!unlist(lapply(spec, function(x) all(is.na(x))))]
   
+  if(is.na(basic_spec))
+  {
+    basic_spec_f <- spec[["spec"]]
+  } else
+  {
+    basic_spec_f <- basic_spec
+  }
+  
   #spec   <- convert_numerics_to_integers(spec)
   spec   <- do.call(Extended_tramoseats_spec, spec)
-  #browser()
-  json_spec <- to_JD_JSON(spec, indent = indent, diff = TRUE, basic_spec=basic_spec)
+
+  json_spec <- to_JD_JSON(spec, indent = indent, diff = TRUE, basic_spec=basic_spec_f)
   writeLines(json_spec, con, sep = "")
   
   writeLines("\n]", con, sep = "")

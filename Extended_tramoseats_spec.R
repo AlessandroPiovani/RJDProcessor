@@ -269,7 +269,8 @@ setMethod("initialize", "Extended_tramoseats_spec",
                             "seats.seasdBoundary", "seats.seasdBoundary1", "seats.seasTol", 
                             "seats.maBoundary", "seats.method")
             
-            basic_spec <- get_basic_spec("RSA0")
+            #basic_spec <- get_basic_spec("RSA0")
+            basic_spec <- get_basic_spec(spec)
             
             for (attr in attributes)
             {
@@ -382,9 +383,12 @@ setMethod("to_JD_JSON", "Extended_tramoseats_spec", function(object, indent = FA
   # browser()
   if(diff == TRUE)
   {  
+    
+    
     #browser()
-    RSA0   <- from_SA_spec(SA_spec = tramoseats_spec("RSA0"), method="TS", userdef.varFromFile = FALSE)
-    object <- difference_objects_preserving_name_and_spec(object, basic = RSA0)
+    basic_spec_instance   <- from_SA_spec(SA_spec = tramoseats_spec(basic_spec), method="TS", userdef.varFromFile = FALSE)
+  
+    object       <- difference_objects_preserving_name_and_spec(object, basic = basic_spec_instance)
   }
   else
   {
@@ -584,10 +588,12 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
     series        <-  m[[1]][[series_name]]
     frequency     <-  frequency(get_ts(series))
     
-    #basic_spec    <- get_jspec(jmodel[[1]][[series_name]])$toString()  
 
-    #browser()
-    spec <- from_SA_spec(series, series_name = series_name, frequency = frequency, method = method, basic_spec="RSA0", all_model_ext_vars_info = all_model_vars_info, data_reader_ext_reg = data_reader_ext_reg)
+
+    basic_spec    <- get_jspec(m[[1]][[series_name]])$toString()
+    #if(basic_spec=="TS") { basic_spec<-"RSA0" } #TS=custom spec --> by default set "RSA0" #encpded in the constructor call of Extended_tramoseats_spec 
+    
+    spec <- from_SA_spec(series, series_name = series_name, frequency = frequency, method = method, basic_spec=basic_spec, all_model_ext_vars_info = all_model_vars_info, data_reader_ext_reg = data_reader_ext_reg)
     spec <- list(spec)
     extended_tramoseats_spec_list <- append(extended_tramoseats_spec_list ,spec)
   }
