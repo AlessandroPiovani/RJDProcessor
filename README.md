@@ -10,6 +10,9 @@
 
 <p align="justify">Processing of multiple time series is possible by storing their specifications in JSON files, and interoperability with other JDemetra+ software is guaranteed because RJDProcessor can read workspaces and is able to produce them as an output.</p>
 
+<p align="justify">RJDProcessor also offers tools to migrate from TS+ software (Gomez and Maravall, Bank of Spain) to JDemetra+/rjdverse.</p>
+
+
 <h2><b>Documentation</b></h1>
 
 See the files in **Documentation folder** to understand how to use the package, starting from **RJDemetra_tools_for_statistical_production.pdf**
