@@ -4,8 +4,11 @@ Title: RJDProcessor
 Version: 0.1.0
 Author: Alessandro Piovani
 Maintainer: <alessandro.piovani@istat.it>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description:
+    The rjdverse libraries are the officially recommended R software for seasonal adjustment in the European Central Bank and Statistical System.
+	The RJDProcessor library integrates the rjdverse packages into a fully R-based production pipeline, ready to be used and easily extendable by methodologists.
+	It offers the capability to manage the entire seasonal adjustment process: acquisition, processing, storage, automation, and not just seasonal adjustment of the data.
+	Processing of multiple time series is possible by storing their specifications in JSON files, and interoperability with other JDemetra+ software is guaranteed because RJDProcessor can read workspaces and is able to produce them as an output.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
