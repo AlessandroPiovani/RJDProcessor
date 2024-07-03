@@ -1,0 +1,26 @@
+{
+    "id": "90C42C10",
+    "path": "~/RJDProcessor/R/Data_reader_csv.R",
+    "project_path": "R/Data_reader_csv.R",
+    "type": "r_source",
+    "hash": "2231725542",
+    "contents": "",
+    "dirty": false,
+    "created": 1719931231100.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "11,29",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1719926742,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1719926742,
+    "read_only": false,
+    "read_only_alternatives": []
+}

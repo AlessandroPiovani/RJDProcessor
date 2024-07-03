@@ -1,0 +1,26 @@
+{
+    "id": "CFAD93F9",
+    "path": "~/RJDProcessor/build_package.R",
+    "project_path": "build_package.R",
+    "type": "r_source",
+    "hash": "3992161327",
+    "contents": "",
+    "dirty": false,
+    "created": 1719932629129.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "17,7",
+        "scrollLine": "3"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1719935440,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1719935440561,
+    "read_only": false,
+    "read_only_alternatives": []
+}

@@ -1,0 +1,1682 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<informationSet xmlns="ec/tss.core">
+    <item name="metadata">
+        <subset>
+            <item name="timestamp">
+                <string>30-mag-2024 2.48.56</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa1">
+        <subset>
+            <item name="ts">
+                <ts name="grezzi_trim-paper&#xA;AER">
+                    <freq>4</freq>
+                    <firstYear>2002</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>100.7 118.7 132.3 110.1 102.9 116.8 130.4 112.4 96.0 112.8 127.8 112.4 104.6 128.1 135.7 114.1 104.2 133.2 142.3 121.8 113.4 133.7 145.4 122.0 114.8 129.5 136.5 94.7 77.2 94.7 108.5 96.4 87.7 100.9 114.7 100.4 89.1 109.0 124.5 105.1 93.6 106.7 127.5 105.2 89.9 106.1 123.8 99.2 91.8 103.1 122.2 96.2 88.9 103.0 117.1 91.0 81.6 98.9 111.9 89.9 86.2 104.9 118.8 97.7 91.5 107.6 122.6 101.7 98.0 113.2 127.3 108.6 74.1 23.6 43.8 34.9 30.8 46.1 60.4 63.7 65.1 103.5 112.0 102.0 107.2 110.3 122.2</data>
+                    <metaData>
+                        <property name="@timestamp" value="Thu May 30 02:41:39 CEST 2024"/>
+                        <property name="@source" value="XCLPRVDR"/>
+                        <property name="@id" value="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=C%3A%5CUsers%5CUTENTE%5CDesktop%5CMigrazioneFAT-RJDemetra_TEST_3%5CXLSX-FAS%5Cgrezzi_trim_FAS.xlsx&amp;frequency=Quarterly#seriesName=AER&amp;sheetName=grezzi_trim-paper"/>
+                    </metaData>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec1</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="mu">
+        <param type="Estimated">
+            <value>1.259165189601566</value>
+        </param>
+    </item>
+    <item name="phi">
+        <params>
+            <coef type="Estimated">
+                <value>-0.6751904744414216</value>
+                <stde>0.08827062177993125</stde>
+                <tstat>-7.649096163894128</tstat>
+            </coef>
+        </params>
+    </item>
+    <item name="d">
+        <integer>0</integer>
+    </item>
+    <item name="btheta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.3785193714611982</value>
+                <stde>0.11252574767859627</stde>
+                <tstat>-3.3638467574759074</tstat>
+            </coef>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="outliers">
+        <strings>
+            <items>TC.2020-04-01 LS.2022-04-01 LS.2020-01-01 LS.2008-10-01 TC.2021-01-01</items>
+        </strings>
+    </item>
+    <item name="coefficients">
+        <subset>
+            <item name="TC (2020-04-01)">
+                <double>-57.8558759550499</double>
+            </item>
+            <item name="LS (2022-04-01)">
+                <double>32.28360991038992</double>
+            </item>
+            <item name="LS (2020-01-01)">
+                <double>-33.96733906466503</double>
+            </item>
+            <item name="LS (2008-10-01)">
+                <double>-26.35862060372864</double>
+            </item>
+            <item name="TC (2021-01-01)">
+                <double>-14.78324407143879</double>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+            <item name="policy">
+                <string>Complete</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa2">
+        <subset>
+            <item name="ts">
+                <ts name="grezzi_trim-paper&#xA;G451">
+                    <freq>4</freq>
+                    <firstYear>2010</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>124.9 108.5 89.8 111.2 112.8 113.4 90.8 103.4 91.2 92.2 71.4 84.0 82.8 87.4 72.3 86.7 86.5 93.5 77.8 92.0 98.2 102.9 88.3 110.6 115.7 126.6 100.6 126.7 129.0 132.4 103.2 134.3 133.3 138.0 102.8 135.4 133.2 139.8 109.3 142.8 106.8 76.5 111.0 133.9 133.9 133.6 98.8 116.9 122.9 126.3 108.8 139.9 156.8 158.4 131.8</data>
+                    <metaData>
+                        <property name="@timestamp" value="Thu May 30 02:41:39 CEST 2024"/>
+                        <property name="@source" value="XCLPRVDR"/>
+                        <property name="@id" value="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=C%3A%5CUsers%5CUTENTE%5CDesktop%5CMigrazioneFAT-RJDemetra_TEST_3%5CXLSX-FAS%5Cgrezzi_trim_FAS.xlsx&amp;frequency=Quarterly#seriesName=G451&amp;sheetName=grezzi_trim-paper"/>
+                    </metaData>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec1</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Log</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="theta">
+        <params>
+            <coef type="Estimated">
+                <value>0.19143054206856674</value>
+                <stde>0.13506269211435964</stde>
+                <tstat>1.4173458197211084</tstat>
+            </coef>
+        </params>
+    </item>
+    <item name="btheta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.4374053115401029</value>
+                <stde>0.12932401940864183</stde>
+                <tstat>-3.382243403353996</tstat>
+            </coef>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="outliers">
+        <strings>
+            <items>AO.2020-04-01 TC.2020-01-01</items>
+        </strings>
+    </item>
+    <item name="coefficients">
+        <subset>
+            <item name="AO (2020-04-01)">
+                <double>-0.5118167807370442</double>
+            </item>
+            <item name="TC (2020-01-01)">
+                <double>-0.3151085285886168</double>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+            <item name="policy">
+                <string>Complete</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa3">
+        <subset>
+            <item name="ts">
+                <ts name="grezzi_trim-paper&#xA;G453">
+                    <freq>4</freq>
+                    <firstYear>2010</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>91.4 97.4 92.7 107.2 95.4 102.2 97.0 112.4 95.8 95.9 91.5 106.2 88.6 97.8 94.7 106.2 90.8 98.5 93.7 102.6 94.6 102.9 95.6 106.9 96.5 106.3 96.9 107.8 101.2 105.8 97.6 111.4 100.4 110.1 99.6 111.6 100.2 107.2 98.9 113.6 88.0 77.8 100.4 109.7 99.3 111.3 107.7 126.0 113.0 125.7 117.5 135.4 127.2 133.5 124.3</data>
+                    <metaData>
+                        <property name="@timestamp" value="Thu May 30 02:41:39 CEST 2024"/>
+                        <property name="@source" value="XCLPRVDR"/>
+                        <property name="@id" value="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=C%3A%5CUsers%5CUTENTE%5CDesktop%5CMigrazioneFAT-RJDemetra_TEST_3%5CXLSX-FAS%5Cgrezzi_trim_FAS.xlsx&amp;frequency=Quarterly#seriesName=G453&amp;sheetName=grezzi_trim-paper"/>
+                    </metaData>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec1</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="theta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.27843684362051807</value>
+                <stde>0.14685532086848652</stde>
+                <tstat>-1.8959942477662548</tstat>
+            </coef>
+        </params>
+    </item>
+    <item name="btheta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.6248351470393689</value>
+                <stde>0.1328409883722343</stde>
+                <tstat>-4.703632174796199</tstat>
+            </coef>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="outliers">
+        <strings>
+            <items>AO.2020-04-01 TC.2020-01-01</items>
+        </strings>
+    </item>
+    <item name="coefficients">
+        <subset>
+            <item name="AO (2020-04-01)">
+                <double>-24.235096706638817</double>
+            </item>
+            <item name="TC (2020-01-01)">
+                <double>-13.88864212651527</double>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+            <item name="policy">
+                <string>Complete</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa4">
+        <subset>
+            <item name="ts">
+                <ts name="grezzi_trim-paper&#xA;G454">
+                    <freq>4</freq>
+                    <firstYear>2010</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>140.0 212.8 141.9 94.0 127.6 192.8 131.1 88.2 116.6 143.0 104.5 70.8 82.4 127.3 96.4 63.4 87.3 126.6 89.8 67.3 91.6 134.1 99.6 74.7 103.0 144.0 101.3 76.9 109.9 151.2 106.3 81.8 108.7 149.5 108.4 85.5 121.7 145.9 109.9 87.7 98.6 112.1 128.3 82.7 122.8 164.5 124.8 89.9 130.0 170.1 126.5 105.5 153.3 182.0 137.1</data>
+                    <metaData>
+                        <property name="@timestamp" value="Thu May 30 02:41:39 CEST 2024"/>
+                        <property name="@source" value="XCLPRVDR"/>
+                        <property name="@id" value="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=C%3A%5CUsers%5CUTENTE%5CDesktop%5CMigrazioneFAT-RJDemetra_TEST_3%5CXLSX-FAS%5Cgrezzi_trim_FAS.xlsx&amp;frequency=Quarterly#seriesName=G454&amp;sheetName=grezzi_trim-paper"/>
+                    </metaData>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec1</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Log</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="phi">
+        <params>
+            <coef type="Estimated">
+                <value>-0.5377271546271425</value>
+                <stde>0.1386083227387347</stde>
+                <tstat>-3.87947234337951</tstat>
+            </coef>
+            <coef type="Estimated">
+                <value>0.08346259889084233</value>
+                <stde>0.16217877623217508</stde>
+                <tstat>0.5146333005457958</tstat>
+            </coef>
+            <coef type="Estimated">
+                <value>-0.468591136414349</value>
+                <stde>0.1423542476427016</stde>
+                <tstat>-3.2917257066362877</tstat>
+            </coef>
+        </params>
+    </item>
+    <item name="d">
+        <integer>0</integer>
+    </item>
+    <item name="btheta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.35978768504128794</value>
+                <stde>0.170848942927302</stde>
+                <tstat>-2.105881832668882</tstat>
+            </coef>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="outliers">
+        <strings>
+            <items>AO.2020-04-01 LS.2012-04-01 AO.2020-01-01</items>
+        </strings>
+    </item>
+    <item name="coefficients">
+        <subset>
+            <item name="AO (2020-04-01)">
+                <double>-0.3421317574922126</double>
+            </item>
+            <item name="LS (2012-04-01)">
+                <double>-0.19021378681511794</double>
+            </item>
+            <item name="AO (2020-01-01)">
+                <double>-0.1738963306054521</double>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+            <item name="policy">
+                <string>Complete</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa5">
+        <subset>
+            <item name="ts">
+                <ts name="grezzi_trim-paper&#xA;H49">
+                    <freq>4</freq>
+                    <firstYear>2010</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>88.4 91.9 90.0 100.6 95.0 96.8 91.6 98.6 93.5 98.0 93.7 100.3 93.2 98.1 94.4 102.5 96.0 100.1 96.1 102.2 98.1 100.4 98.0 103.5 98.9 101.2 97.8 102.1 103.8 105.2 100.8 107.4 107.8 106.7 101.2 107.3 109.3 107.3 104.1 108.6 104.3 81.1 93.3 98.0 96.9 102.0 106.8 116.3 119.1 120.4 118.9 125.4 137.7 126.7 121.3</data>
+                    <metaData>
+                        <property name="@timestamp" value="Thu May 30 02:41:39 CEST 2024"/>
+                        <property name="@source" value="XCLPRVDR"/>
+                        <property name="@id" value="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=C%3A%5CUsers%5CUTENTE%5CDesktop%5CMigrazioneFAT-RJDemetra_TEST_3%5CXLSX-FAS%5Cgrezzi_trim_FAS.xlsx&amp;frequency=Quarterly#seriesName=H49&amp;sheetName=grezzi_trim-paper"/>
+                    </metaData>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec1</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="mu">
+        <param type="Estimated">
+            <value>104.62816275617199</value>
+        </param>
+    </item>
+    <item name="phi">
+        <params>
+            <coef type="Estimated">
+                <value>-0.8649986053739831</value>
+                <stde>0.06189888700430611</stde>
+                <tstat>-13.974380594497731</tstat>
+            </coef>
+        </params>
+    </item>
+    <item name="d">
+        <integer>0</integer>
+    </item>
+    <item name="bphi">
+        <params>
+            <coef type="Estimated">
+                <value>-0.8844735936980144</value>
+                <stde>0.058830448394746555</stde>
+                <tstat>-15.034282719779442</tstat>
+            </coef>
+        </params>
+    </item>
+    <item name="bd">
+        <integer>0</integer>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="outliers">
+        <strings>
+            <items>TC.2020-04-01 AO.2023-01-01 AO.2020-07-01</items>
+        </strings>
+    </item>
+    <item name="coefficients">
+        <subset>
+            <item name="TC (2020-04-01)">
+                <double>-23.62171856918059</double>
+            </item>
+            <item name="AO (2023-01-01)">
+                <double>11.150120135744721</double>
+            </item>
+            <item name="AO (2020-07-01)">
+                <double>5.854296084992552</double>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+            <item name="policy">
+                <string>Complete</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa6">
+        <subset>
+            <item name="ts">
+                <ts name="grezzi_trim-paper&#xA;H52">
+                    <freq>4</freq>
+                    <firstYear>2010</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>80.8 91.2 95.6 93.3 88.4 98.6 99.3 96.3 87.7 98.5 98.1 95.7 87.8 97.7 100.8 96.4 89.9 99.5 102.7 98.1 92.7 102.2 103.4 101.7 92.9 102.1 102.9 103.8 97.6 107.7 107.9 106.3 100.0 110.2 111.1 110.8 100.5 113.1 112.4 111.3 95.5 82.4 101.6 102.8 98.5 117.0 130.3 135.8 126.8 151.1 154.1 143.3 123.7 135.7 135.5</data>
+                    <metaData>
+                        <property name="@timestamp" value="Thu May 30 02:41:39 CEST 2024"/>
+                        <property name="@source" value="XCLPRVDR"/>
+                        <property name="@id" value="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=C%3A%5CUsers%5CUTENTE%5CDesktop%5CMigrazioneFAT-RJDemetra_TEST_3%5CXLSX-FAS%5Cgrezzi_trim_FAS.xlsx&amp;frequency=Quarterly#seriesName=H52&amp;sheetName=grezzi_trim-paper"/>
+                    </metaData>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec1</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Log</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="phi">
+        <params>
+            <coef type="Estimated">
+                <value>-1.2733472424177805</value>
+                <stde>0.13838477131703875</stde>
+                <tstat>-9.201498331782108</tstat>
+            </coef>
+            <coef type="Estimated">
+                <value>0.10859534068803202</value>
+                <stde>0.2384719515111841</stde>
+                <tstat>0.45537993042732744</tstat>
+            </coef>
+            <coef type="Estimated">
+                <value>0.3629035032363099</value>
+                <stde>0.14313963976984467</stde>
+                <tstat>2.53531099994261</tstat>
+            </coef>
+        </params>
+    </item>
+    <item name="d">
+        <integer>0</integer>
+    </item>
+    <item name="btheta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.29051811734739963</value>
+                <stde>0.1825980073612808</stde>
+                <tstat>-1.5910256718880431</tstat>
+            </coef>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="outliers">
+        <strings>
+            <items>AO.2020-04-01</items>
+        </strings>
+    </item>
+    <item name="coefficients">
+        <subset>
+            <item name="AO (2020-04-01)">
+                <double>-0.21935333749355268</double>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+            <item name="policy">
+                <string>Complete</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa7">
+        <subset>
+            <item name="ts">
+                <ts name="grezzi_trim-paper&#xA;I">
+                    <freq>4</freq>
+                    <firstYear>2010</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>79.7 101.2 119.3 91.7 80.8 103.6 120.8 89.5 83.2 104.8 122.8 88.8 79.0 102.0 121.7 87.3 80.2 102.5 118.8 88.1 77.1 104.3 130.1 88.5 79.9 104.1 133.6 88.7 81.1 110.8 137.0 90.7 82.3 113.7 139.3 93.3 84.6 113.8 141.5 95.4 64.7 32.6 106.3 47.6 36.0 65.2 134.9 86.3 75.8 124.2 163.5 107.8 100.2 144.2 177.4</data>
+                    <metaData>
+                        <property name="@timestamp" value="Thu May 30 02:41:39 CEST 2024"/>
+                        <property name="@source" value="XCLPRVDR"/>
+                        <property name="@id" value="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=C%3A%5CUsers%5CUTENTE%5CDesktop%5CMigrazioneFAT-RJDemetra_TEST_3%5CXLSX-FAS%5Cgrezzi_trim_FAS.xlsx&amp;frequency=Quarterly#seriesName=I&amp;sheetName=grezzi_trim-paper"/>
+                    </metaData>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec2</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="d">
+        <integer>0</integer>
+    </item>
+    <item name="btheta">
+        <params>
+            <coef type="Estimated">
+                <value>0.8103766644695903</value>
+                <stde>0.09150365335677907</stde>
+                <tstat>8.85622196208796</tstat>
+            </coef>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="outliers">
+        <strings>
+            <items>TC.2020-04-01 TC.2023-01-01 LS.2021-07-01 AO.2020-07-01 AO.2021-04-01 AO.2014-07-01 TC.2013-01-01 AO.2016-04-01</items>
+        </strings>
+    </item>
+    <item name="user1">
+        <subset>
+            <item name="name">
+                <string>TLS.TLS_1</string>
+            </item>
+            <item name="effect">
+                <string>Trend</string>
+            </item>
+        </subset>
+    </item>
+    <item name="coefficients">
+        <subset>
+            <item name="TLS@TLS_1">
+                <double>-16.30332141060606</double>
+            </item>
+            <item name="TC (2020-04-01)">
+                <double>-65.55883427850968</double>
+            </item>
+            <item name="TC (2023-01-01)">
+                <double>23.44142409505948</double>
+            </item>
+            <item name="LS (2021-07-01)">
+                <double>13.099677612086147</double>
+            </item>
+            <item name="AO (2020-07-01)">
+                <double>23.839487639840385</double>
+            </item>
+            <item name="AO (2021-04-01)">
+                <double>-17.76821212132607</double>
+            </item>
+            <item name="AO (2014-07-01)">
+                <double>-7.323662664074421</double>
+            </item>
+            <item name="TC (2013-01-01)">
+                <double>-4.874651887028496</double>
+            </item>
+            <item name="AO (2016-04-01)">
+                <double>-3.577881336427119</double>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Severe</string>
+            </item>
+            <item name="policy">
+                <string>Interactive</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa8">
+        <subset>
+            <item name="ts">
+                <ts name="grezzi_trim-paper&#xA;INF">
+                    <freq>4</freq>
+                    <firstYear>2000</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>100.5 97.5 94.3 110.5 101.2 102.0 97.0 111.3 104.8 106.0 102.8 115.5 104.9 107.9 105.6 118.7 111.8 112.0 107.4 121.1 111.0 115.4 114.0 124.9 117.0 118.6 113.2 131.3 117.4 121.2 114.9 133.9 117.8 120.9 114.0 129.1 113.2 116.3 108.9 122.2 110.5 115.2 109.6 126.7 108.7 113.5 108.7 123.7 106.5 110.5 103.3 117.2 101.1 103.4 98.3 110.0 97.3 99.8 94.1 107.7 97.1 97.4 94.0 111.5 97.5 98.6 95.3 111.0 98.7 99.5 94.9 110.5 99.6 99.8 94.6 110.0 99.7 99.0 96.1 109.7 97.6 90.3 95.8 109.3 100.4 101.0 98.3 118.3 105.5 106.0 105.6 126.1 110.2 113.1 108.2</data>
+                    <metaData>
+                        <property name="@timestamp" value="Thu May 30 02:41:39 CEST 2024"/>
+                        <property name="@source" value="XCLPRVDR"/>
+                        <property name="@id" value="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=C%3A%5CUsers%5CUTENTE%5CDesktop%5CMigrazioneFAT-RJDemetra_TEST_3%5CXLSX-FAS%5Cgrezzi_trim_FAS.xlsx&amp;frequency=Quarterly#seriesName=INF&amp;sheetName=grezzi_trim-paper"/>
+                    </metaData>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec1</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Log</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="theta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.3168965500708728</value>
+                <stde>0.1019616180092624</stde>
+                <tstat>-3.1079984435131784</tstat>
+            </coef>
+        </params>
+    </item>
+    <item name="btheta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.4676341824139376</value>
+                <stde>0.09553418407238352</stde>
+                <tstat>-4.8949408733069255</tstat>
+            </coef>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="outliers">
+        <strings>
+            <items>AO.2020-04-01</items>
+        </strings>
+    </item>
+    <item name="coefficients">
+        <subset>
+            <item name="AO (2020-04-01)">
+                <double>-0.08606411096914006</double>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+            <item name="policy">
+                <string>Complete</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa9">
+        <subset>
+            <item name="ts">
+                <ts name="grezzi_trim-paper&#xA;ING">
+                    <freq>4</freq>
+                    <firstYear>2000</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>84.4 87.6 84.8 100.9 89.4 93.0 88.2 102.3 89.3 92.7 89.5 105.6 91.4 94.4 90.7 104.9 93.3 98.2 93.6 108.0 93.4 98.7 95.1 110.2 101.8 107.9 98.6 109.7 107.9 111.3 101.6 113.6 110.8 115.3 104.2 107.3 96.3 100.0 91.1 101.6 96.2 106.1 99.3 109.8 103.3 111.8 102.0 108.5 100.0 104.7 97.2 104.5 95.1 101.7 96.5 102.1 95.9 100.9 96.6 103.2 97.3 103.1 96.9 102.7 98.8 104.2 96.9 103.3 103.8 106.6 99.5 107.9 106.7 110.9 102.0 109.4 106.5 110.5 102.7 108.3 101.1 91.7 102.0 107.2 106.9 121.1 114.2 122.8 127.9 140.3 127.2 130.3 134.5 136.9 125.2</data>
+                    <metaData>
+                        <property name="@timestamp" value="Thu May 30 02:41:39 CEST 2024"/>
+                        <property name="@source" value="XCLPRVDR"/>
+                        <property name="@id" value="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=C%3A%5CUsers%5CUTENTE%5CDesktop%5CMigrazioneFAT-RJDemetra_TEST_3%5CXLSX-FAS%5Cgrezzi_trim_FAS.xlsx&amp;frequency=Quarterly#seriesName=ING&amp;sheetName=grezzi_trim-paper"/>
+                    </metaData>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec1</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Log</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="phi">
+        <params>
+            <coef type="Estimated">
+                <value>-0.8567863729570885</value>
+                <stde>0.055285789481236886</stde>
+                <tstat>-15.497406856202499</tstat>
+            </coef>
+        </params>
+    </item>
+    <item name="d">
+        <integer>0</integer>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="outliers">
+        <strings>
+            <items>AO.2020-04-01 LS.2008-10-01 LS.2009-01-01</items>
+        </strings>
+    </item>
+    <item name="coefficients">
+        <subset>
+            <item name="AO (2020-04-01)">
+                <double>-0.17605772312652113</double>
+            </item>
+            <item name="LS (2008-10-01)">
+                <double>-0.08043187957586823</double>
+            </item>
+            <item name="LS (2009-01-01)">
+                <double>-0.0678810873788312</double>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+            <item name="policy">
+                <string>Complete</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa10">
+        <subset>
+            <item name="ts">
+                <ts name="grezzi_trim-paper&#xA;M">
+                    <freq>4</freq>
+                    <firstYear>2010</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>105.6 112.4 99.1 128.1 106.7 110.1 95.9 124.5 106.1 107.4 93.0 116.6 101.6 105.8 94.0 112.3 99.7 102.5 90.3 112.3 91.7 99.9 92.4 116.0 92.1 100.2 91.9 115.1 92.3 100.4 92.5 115.9 92.2 99.7 89.1 117.5 87.2 99.9 90.3 114.7 84.6 75.7 84.6 109.6 89.0 92.9 88.5 116.1 94.2 100.4 94.9 120.3 102.7 106.3 98.4</data>
+                    <metaData>
+                        <property name="@timestamp" value="Thu May 30 02:41:39 CEST 2024"/>
+                        <property name="@source" value="XCLPRVDR"/>
+                        <property name="@id" value="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=C%3A%5CUsers%5CUTENTE%5CDesktop%5CMigrazioneFAT-RJDemetra_TEST_3%5CXLSX-FAS%5Cgrezzi_trim_FAS.xlsx&amp;frequency=Quarterly#seriesName=M&amp;sheetName=grezzi_trim-paper"/>
+                    </metaData>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec1</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="theta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.53143950495133</value>
+                <stde>0.12226781163504404</stde>
+                <tstat>-4.346520133505116</tstat>
+            </coef>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="outliers">
+        <strings>
+            <items>AO.2020-04-01</items>
+        </strings>
+    </item>
+    <item name="coefficients">
+        <subset>
+            <item name="AO (2020-04-01)">
+                <double>-18.30851049243925</double>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+            <item name="policy">
+                <string>Complete</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa11">
+        <subset>
+            <item name="ts">
+                <ts name="grezzi_trim-paper&#xA;N">
+                    <freq>4</freq>
+                    <firstYear>2010</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>89.5 108.7 111.3 111.7 94.8 113.1 114.8 108.6 95.2 108.2 108.5 108.5 90.4 105.0 104.3 103.0 89.5 102.6 102.8 101.0 89.4 101.0 104.4 105.2 88.0 100.8 102.9 103.3 91.8 104.3 107.1 107.2 95.4 107.3 109.2 110.4 95.4 109.0 110.5 109.5 90.4 72.2 86.1 91.8 82.8 92.2 98.8 103.8 93.2 106.9 110.5 111.1 100.7 110.2 113.2</data>
+                    <metaData>
+                        <property name="@timestamp" value="Thu May 30 02:41:39 CEST 2024"/>
+                        <property name="@source" value="XCLPRVDR"/>
+                        <property name="@id" value="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=C%3A%5CUsers%5CUTENTE%5CDesktop%5CMigrazioneFAT-RJDemetra_TEST_3%5CXLSX-FAS%5Cgrezzi_trim_FAS.xlsx&amp;frequency=Quarterly#seriesName=N&amp;sheetName=grezzi_trim-paper"/>
+                    </metaData>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec1</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="theta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.1765735172391885</value>
+                <stde>0.13871890469862536</stde>
+                <tstat>-1.2728871931536976</tstat>
+            </coef>
+        </params>
+    </item>
+    <item name="btheta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.6488624784609284</value>
+                <stde>0.11053517322243084</stde>
+                <tstat>-5.870190090128299</tstat>
+            </coef>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="outliers">
+        <strings>
+            <items>TC.2020-04-01</items>
+        </strings>
+    </item>
+    <item name="coefficients">
+        <subset>
+            <item name="TC (2020-04-01)">
+                <double>-30.301025354861334</double>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+            <item name="policy">
+                <string>Complete</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa12">
+        <subset>
+            <item name="ts">
+                <ts name="grezzi_trim-paper&#xA;POS">
+                    <freq>4</freq>
+                    <firstYear>2001</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>106.3 110.4 104.5 112.1 108.9 114.3 105.7 114.8 111.0 115.8 108.5 115.4 113.2 121.7 113.4 123.7 124.6 124.9 107.2 131.2 127.1 124.4 106.0 133.4 130.9 126.7 111.3 134.9 132.0 128.1 111.6 128.0 122.0 122.1 103.9 121.4 123.5 119.8 103.8 118.4 115.1 117.8 106.0 117.7 108.8 105.4 93.8 111.7 108.2 102.3 92.3 108.2 101.4 99.7 91.1 101.7 99.8 98.9 89.8 111.5 101.0 103.3 92.2 118.9 103.2 102.2 99.6 115.4 108.7 106.5 100.1 119.9 106.9 114.4 101.4 130.2 109.1 103.3 114.7 145.8 132.5 131.4 128.4 144.8 141.7 137.8 129.2 150.7 143.5 138.2 130.4</data>
+                    <metaData>
+                        <property name="@timestamp" value="Thu May 30 02:41:39 CEST 2024"/>
+                        <property name="@source" value="XCLPRVDR"/>
+                        <property name="@id" value="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=C%3A%5CUsers%5CUTENTE%5CDesktop%5CMigrazioneFAT-RJDemetra_TEST_3%5CXLSX-FAS%5Cgrezzi_trim_FAS.xlsx&amp;frequency=Quarterly#seriesName=POS&amp;sheetName=grezzi_trim-paper"/>
+                    </metaData>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec1</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Log</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="theta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.5944356458336097</value>
+                <stde>0.09017638565346836</stde>
+                <tstat>-6.591921394121063</tstat>
+            </coef>
+        </params>
+    </item>
+    <item name="btheta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.4975643582080194</value>
+                <stde>0.09756018673877598</stde>
+                <tstat>-5.100075910476491</tstat>
+            </coef>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="outliers">
+        <strings>
+            <items>LS.2020-07-01</items>
+        </strings>
+    </item>
+    <item name="coefficients">
+        <subset>
+            <item name="LS (2020-07-01)">
+                <double>0.15373645861448745</double>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+            <item name="policy">
+                <string>Complete</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa13">
+        <subset>
+            <item name="ts">
+                <ts name="grezzi_trim-paper&#xA;RIP">
+                    <freq>4</freq>
+                    <firstYear>2001</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>85.2 87.6 80.3 96.4 84.9 88.7 84.7 101.8 88.0 92.6 87.5 102.3 91.6 97.2 89.0 104.1 91.8 99.2 89.1 108.6 97.9 102.0 93.9 111.8 102.3 106.9 96.5 113.4 104.4 108.6 99.4 115.7 102.3 105.7 96.1 115.2 104.2 108.5 99.9 119.9 100.2 110.7 100.8 119.8 104.2 103.6 94.9 112.7 94.2 103.1 95.6 109.1 93.5 100.6 92.1 106.0 94.2 102.5 93.5 109.8 93.5 102.2 92.3 108.9 97.8 101.6 93.6 112.4 99.1 103.6 94.4 115.7 96.8 104.8 98.0 119.7 89.4 75.5 93.7 108.7 92.5 98.2 96.6 119.6 101.6 108.3 104.6 124.6 113.0 115.8 112.2</data>
+                    <metaData>
+                        <property name="@timestamp" value="Thu May 30 02:41:39 CEST 2024"/>
+                        <property name="@source" value="XCLPRVDR"/>
+                        <property name="@id" value="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=C%3A%5CUsers%5CUTENTE%5CDesktop%5CMigrazioneFAT-RJDemetra_TEST_3%5CXLSX-FAS%5Cgrezzi_trim_FAS.xlsx&amp;frequency=Quarterly#seriesName=RIP&amp;sheetName=grezzi_trim-paper"/>
+                    </metaData>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec1</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="theta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.5238914889011576</value>
+                <stde>0.0964746101494024</stde>
+                <tstat>-5.4303561122439294</tstat>
+            </coef>
+        </params>
+    </item>
+    <item name="btheta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.44867918229448145</value>
+                <stde>0.10790124571715058</stde>
+                <tstat>-4.1582391316467</tstat>
+            </coef>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="outliers">
+        <strings>
+            <items>AO.2020-04-01 LS.2020-01-01 LS.2012-04-01</items>
+        </strings>
+    </item>
+    <item name="coefficients">
+        <subset>
+            <item name="AO (2020-04-01)">
+                <double>-20.22344831680011</double>
+            </item>
+            <item name="LS (2020-01-01)">
+                <double>-12.751231007353711</double>
+            </item>
+            <item name="LS (2012-04-01)">
+                <double>-7.845545527261434</double>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+            <item name="policy">
+                <string>Complete</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa14">
+        <subset>
+            <item name="ts">
+                <ts name="grezzi_trim-paper&#xA;MAR">
+                    <freq>4</freq>
+                    <firstYear>2000</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>74.9 88.5 109.2 86.6 81.9 96.2 112.2 87.3 81.4 96.2 109.0 85.4 80.1 89.3 111.5 87.9 85.1 97.2 111.0 91.3 80.2 96.9 123.9 87.1 76.7 96.9 125.3 89.4 85.3 107.4 135.0 96.3 92.2 112.3 142.3 97.3 77.4 99.7 119.6 87.4 90.4 111.2 125.9 99.8 88.6 105.9 117.8 106.7 90.5 99.3 122.8 104.7 90.2 101.6 115.3 96.7 88.6 98.2 112.4 102.9 89.7 97.5 109.4 103.4 84.5 92.2 102.1 103.9 87.6 99.9 113.6 105.0 86.5 95.4 110.6 104.5 84.3 98.6 113.8 116.5 93.1 50.7 59.9 52.2 47.1 57.9 74.5 77.2 67.8 97.6 124.0 109.2 99.1 123.6 134.6</data>
+                    <metaData>
+                        <property name="@timestamp" value="Thu May 30 02:41:39 CEST 2024"/>
+                        <property name="@source" value="XCLPRVDR"/>
+                        <property name="@id" value="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=C%3A%5CUsers%5CUTENTE%5CDesktop%5CMigrazioneFAT-RJDemetra_TEST_3%5CXLSX-FAS%5Cgrezzi_trim_FAS.xlsx&amp;frequency=Quarterly#seriesName=MAR&amp;sheetName=grezzi_trim-paper"/>
+                    </metaData>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec1</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="theta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.4254999518907737</value>
+                <stde>0.0997838300827529</stde>
+                <tstat>-4.264217474293153</tstat>
+            </coef>
+        </params>
+    </item>
+    <item name="btheta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.2750286359388363</value>
+                <stde>0.10694814901808163</stde>
+                <tstat>-2.571607255141344</tstat>
+            </coef>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="outliers">
+        <strings>
+            <items>LS.2020-04-01 AO.2022-07-01 TC.2009-01-01</items>
+        </strings>
+    </item>
+    <item name="coefficients">
+        <subset>
+            <item name="LS (2020-04-01)">
+                <double>-63.01357868493785</double>
+            </item>
+            <item name="AO (2022-07-01)">
+                <double>17.41052464230228</double>
+            </item>
+            <item name="TC (2009-01-01)">
+                <double>-18.880879335362486</double>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+            <item name="policy">
+                <string>Complete</string>
+            </item>
+        </subset>
+    </item>
+    <item name="domainspecs">
+        <subset>
+            <item name="spec1">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Auto</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="mu">
+        <param/>
+    </item>
+    <item name="theta">
+        <params>
+            <coef/>
+        </params>
+    </item>
+    <item name="btheta">
+        <params>
+            <coef/>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>true</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="outlier">
+<subset>
+    <item name="types">
+        <strings>
+            <items>AO TC LS</items>
+        </strings>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="calendar">
+        <subset>
+            <item name="td">
+                <subset>
+                    <item name="mauto">
+                        <string>FTest</string>
+                    </item>
+                    <item name="option">
+                        <string>TradingDays</string>
+                    </item>
+                    <item name="leapyear">
+                        <boolean>true</boolean>
+                    </item>
+                    <item name="testtype">
+                        <string>Separate_T</string>
+                    </item>
+                </subset>
+            </item>
+            <item name="easter">
+                <subset>
+                    <item name="type">
+                        <string>IncludeEaster</string>
+                    </item>
+                    <item name="test">
+                        <boolean>true</boolean>
+                    </item>
+                </subset>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="spec2">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Auto</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="mu">
+        <param/>
+    </item>
+    <item name="theta">
+        <params>
+            <coef/>
+        </params>
+    </item>
+    <item name="btheta">
+        <params>
+            <coef/>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>true</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="outlier">
+<subset>
+    <item name="types">
+        <strings>
+            <items>AO TC LS</items>
+        </strings>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="calendar">
+        <subset>
+            <item name="td">
+                <subset>
+                    <item name="mauto">
+                        <string>FTest</string>
+                    </item>
+                    <item name="option">
+                        <string>TradingDays</string>
+                    </item>
+                    <item name="leapyear">
+                        <boolean>true</boolean>
+                    </item>
+                    <item name="testtype">
+                        <string>Separate_T</string>
+                    </item>
+                </subset>
+            </item>
+            <item name="easter">
+                <subset>
+                    <item name="type">
+                        <string>IncludeEaster</string>
+                    </item>
+                    <item name="test">
+                        <boolean>true</boolean>
+                    </item>
+                </subset>
+            </item>
+        </subset>
+    </item>
+    <item name="user1">
+        <subset>
+            <item name="name">
+                <string>TLS.TLS_1</string>
+            </item>
+            <item name="effect">
+                <string>Trend</string>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+        </subset>
+    </item>
+</informationSet>

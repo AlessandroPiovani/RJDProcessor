@@ -1,0 +1,1391 @@
+$sa1
+$sa1$AER
+[4m[1mRegARIMA[22m[24m
+y = regression model + arima (1, 0, 0, 0, 1, 1)
+Log-transformation: no
+Coefficients:
+          Estimate Std. Error
+Phi(1)     -0.6752      0.088
+BTheta(1)  -0.3785      0.113
+
+             Estimate Std. Error
+Mean            1.259      1.000
+TC (II-2020)  -57.856      3.853
+LS (II-2022)   32.284      3.890
+LS (I-2020)   -33.967      3.884
+LS (IV-2008)  -26.359      3.783
+TC (I-2021)   -14.783      3.812
+
+
+Residual standard error: 4.279 on 74 degrees of freedom
+Log likelihood =  -239, aic = 495.9 aicc = 498.4, bic(corrected for length) = 3.333
+
+
+
+[4m[1mDecomposition[22m[24m
+[1mModel[22m
+AR :  1 - 0.675190 B 
+D :  1 - B^4 
+MA :  1 - 0.378519 B^4 
+
+
+[1mSA[22m
+AR :  1 - 0.675190 B 
+D :  1 - B 
+MA :  1 - 0.824018 B + 0.031174 B^2 
+Innovation variance:  0.5625236 
+
+[1mTrend[22m
+AR :  1 - 0.675190 B 
+D :  1 - B 
+MA :  1 + 0.218373 B - 0.781627 B^2 
+Innovation variance:  0.1265546 
+
+[1mSeasonal[22m
+D :  1 + B + B^2 + B^3 
+MA :  1 + 0.924050 B + 0.232315 B^2 - 0.528506 B^3 
+Innovation variance:  0.04914213 
+
+[1mIrregular[22m
+Innovation variance:  0.1724765 
+
+
+
+[4m[1mFinal[22m[24m
+Last observed values
+            y       sa        t          s           i
+2022 Q4 102.0 105.9836 109.7719 -3.9835719 -3.78835728
+2023 Q1 107.2 110.4812 111.4865 -3.2811700 -1.00534870
+2023 Q2 110.3 110.7986 112.9847 -0.4985938 -2.18607675
+2023 Q3 122.2 114.2105 114.3074  7.9895136 -0.09692833
+
+Forecasts:
+             y_f     sa_f      t_f       s_f        i_f
+2023 Q4 110.1538 114.2546 114.9393 -4.100815 -0.6847049
+2024 Q1 111.2806 114.4835 114.9628 -3.202930 -0.4792935
+2024 Q2 113.9270 114.7454 115.0809 -0.818465 -0.3355054
+2024 Q3 123.1503 115.0281 115.2629  8.122210 -0.2348538
+
+
+[4m[1mDiagnostics[22m[24m
+[1mRelative contribution of the components to the stationary
+portion of the variance in the original series,
+after the removal of the long term trend[22m
+ Trend computed by Hodrick-Prescott filter (cycle length = 8.0 years)
+           Component
+ Cycle         1.607
+ Seasonal     14.089
+ Irregular     0.144
+ TD & Hol.     0.000
+ Others       80.627
+ Total        96.466
+
+[1mCombined test in the entire series[22m
+ Non parametric tests for stable seasonality
+                                                          P.value
+   Kruskall-Wallis test                                          0
+   Test for the presence of seasonality assuming stability       0
+   Evolutive seasonality test                                    0
+ 
+ Identifiable seasonality present
+
+[1mResidual seasonality tests[22m
+                                      P.value
+ qs test on sa                          1.000
+ qs test on i                           1.000
+ f-test on sa (seasonal dummies)        1.000
+ f-test on i (seasonal dummies)         1.000
+ Residual seasonality (entire series)   1.000
+ Residual seasonality (last 3 years)    0.946
+ f-test on sa (td)                      0.443
+ f-test on i (td)                       0.001
+
+
+[4m[1mAdditional output variables[22m[24m
+
+$sa1$G451
+[4m[1mRegARIMA[22m[24m
+y = regression model + arima (0, 1, 1, 0, 1, 1)
+Log-transformation: yes
+Coefficients:
+          Estimate Std. Error
+Theta(1)    0.1914      0.135
+BTheta(1)  -0.4374      0.129
+
+             Estimate Std. Error
+AO (II-2020)  -0.5118      0.033
+TC (I-2020)   -0.3151      0.045
+
+
+Residual standard error: 0.05658 on 45 degrees of freedom
+Log likelihood = 72.21, aic = 335.1 aicc = 336.4, bic(corrected for length) = -5.431
+
+
+
+[4m[1mDecomposition[22m[24m
+[1mModel[22m
+D :  1 - B - B^4 + B^5 
+MA :  1 + 0.191431 B - 0.437405 B^4 - 0.083733 B^5 
+
+
+[1mSA[22m
+D :  1 - 2.000000 B + B^2 
+MA :  1 - 0.653862 B - 0.129714 B^2 
+Innovation variance:  0.5995139 
+
+[1mTrend[22m
+D :  1 - 2.000000 B + B^2 
+MA :  1 + 0.186186 B - 0.813814 B^2 
+Innovation variance:  0.2025137 
+
+[1mSeasonal[22m
+D :  1 + B + B^2 + B^3 
+MA :  1 + 1.321399 B + 0.754524 B^2 - 0.165133 B^3 
+Innovation variance:  0.03613505 
+
+[1mIrregular[22m
+Innovation variance:  0.08704286 
+
+
+
+[4m[1mFinal[22m[24m
+Last observed values
+            y       sa        t         s         i
+2022 Q4 139.9 136.1057 137.6429 1.0278776 0.9888323
+2023 Q1 156.8 146.4714 145.5614 1.0705164 1.0062518
+2023 Q2 158.4 149.6030 150.8452 1.0588023 0.9917654
+2023 Q3 131.8 155.6218 155.5810 0.8469252 1.0002622
+
+Forecasts:
+             y_f     sa_f      t_f       s_f       i_f
+2023 Q4 164.5545 160.3468 160.5924 1.0262409 0.9984708
+2024 Q1 176.7349 164.8248 165.0032 1.0722592 0.9989190
+2024 Q2 179.1458 169.4050 169.5351 1.0575000 0.9992329
+2024 Q3 147.4710 174.0961 174.1914 0.8470665 0.9994527
+
+
+[4m[1mDiagnostics[22m[24m
+[1mRelative contribution of the components to the stationary
+portion of the variance in the original series,
+after the removal of the long term trend[22m
+ Trend computed by Hodrick-Prescott filter (cycle length = 8.0 years)
+           Component
+ Cycle        30.410
+ Seasonal     41.166
+ Irregular     0.328
+ TD & Hol.     0.000
+ Others       55.384
+ Total       127.289
+
+[1mCombined test in the entire series[22m
+ Non parametric tests for stable seasonality
+                                                          P.value
+   Kruskall-Wallis test                                       0.00
+   Test for the presence of seasonality assuming stability    0.00
+   Evolutive seasonality test                                 0.22
+ 
+ Identifiable seasonality present
+
+[1mResidual seasonality tests[22m
+                                      P.value
+ qs test on sa                          1.000
+ qs test on i                           1.000
+ f-test on sa (seasonal dummies)        0.998
+ f-test on i (seasonal dummies)         1.000
+ Residual seasonality (entire series)   0.998
+ Residual seasonality (last 3 years)    0.945
+ f-test on sa (td)                      0.887
+ f-test on i (td)                       0.781
+
+
+[4m[1mAdditional output variables[22m[24m
+
+$sa1$G453
+[4m[1mRegARIMA[22m[24m
+y = regression model + arima (0, 1, 1, 0, 1, 1)
+Log-transformation: no
+Coefficients:
+          Estimate Std. Error
+Theta(1)   -0.2784      0.147
+BTheta(1)  -0.6248      0.133
+
+             Estimate Std. Error
+AO (II-2020)   -24.24      2.352
+TC (I-2020)    -13.89      2.692
+
+
+Residual standard error: 3.082 on 45 degrees of freedom
+Log likelihood = -128.3, aic = 266.5 aicc = 267.9, bic(corrected for length) = 2.564
+
+
+
+[4m[1mDecomposition[22m[24m
+[1mModel[22m
+D :  1 - B - B^4 + B^5 
+MA :  1 - 0.278437 B - 0.624835 B^4 + 0.173977 B^5 
+
+
+[1mSA[22m
+D :  1 - 2.000000 B + B^2 
+MA :  1 - 1.171824 B + 0.251382 B^2 
+Innovation variance:  0.723621 
+
+[1mTrend[22m
+D :  1 - 2.000000 B + B^2 
+MA :  1 + 0.110346 B - 0.889654 B^2 
+Innovation variance:  0.09403713 
+
+[1mSeasonal[22m
+D :  1 + B + B^2 + B^3 
+MA :  1 + 0.048410 B - 0.502507 B^2 - 0.545903 B^3 
+Innovation variance:  0.01452277 
+
+[1mIrregular[22m
+Innovation variance:  0.2655657 
+
+
+
+[4m[1mFinal[22m[24m
+Last observed values
+            y       sa        t         s           i
+2022 Q4 135.4 127.6686 127.6531  7.731403  0.01551462
+2023 Q1 127.2 131.7538 129.9123 -4.553840  1.84152226
+2023 Q2 133.5 130.5233 130.8296  2.976692 -0.30624460
+2023 Q3 124.3 130.5267 131.4648 -6.226693 -0.93814266
+
+Forecasts:
+             y_f     sa_f      t_f       s_f         i_f
+2023 Q4 140.3211 132.6164 132.6823  7.704784 -0.06593718
+2024 Q1 129.6690 134.1195 134.1656 -4.450441 -0.04615603
+2024 Q2 138.6142 135.6166 135.6490  2.997544 -0.03230922
+2024 Q3 130.8578 137.1097 137.1323 -6.251888 -0.02261645
+
+
+[4m[1mDiagnostics[22m[24m
+[1mRelative contribution of the components to the stationary
+portion of the variance in the original series,
+after the removal of the long term trend[22m
+ Trend computed by Hodrick-Prescott filter (cycle length = 8.0 years)
+           Component
+ Cycle         6.640
+ Seasonal     43.453
+ Irregular     1.897
+ TD & Hol.     0.000
+ Others       38.070
+ Total        90.060
+
+[1mCombined test in the entire series[22m
+ Non parametric tests for stable seasonality
+                                                          P.value
+   Kruskall-Wallis test                                       0.00
+   Test for the presence of seasonality assuming stability    0.00
+   Evolutive seasonality test                                 0.68
+ 
+ Identifiable seasonality present
+
+[1mResidual seasonality tests[22m
+                                      P.value
+ qs test on sa                          1.000
+ qs test on i                           1.000
+ f-test on sa (seasonal dummies)        1.000
+ f-test on i (seasonal dummies)         1.000
+ Residual seasonality (entire series)   1.000
+ Residual seasonality (last 3 years)    0.992
+ f-test on sa (td)                      0.667
+ f-test on i (td)                       0.365
+
+
+[4m[1mAdditional output variables[22m[24m
+
+$sa1$G454
+[4m[1mRegARIMA[22m[24m
+y = regression model + arima (3, 0, 0, 0, 1, 1)
+Log-transformation: yes
+Coefficients:
+          Estimate Std. Error
+Phi(1)    -0.53773      0.139
+Phi(2)     0.08346      0.162
+Phi(3)    -0.46859      0.142
+BTheta(1) -0.35979      0.171
+
+             Estimate Std. Error
+AO (II-2020)  -0.3421      0.041
+LS (II-2012)  -0.1902      0.041
+AO (I-2020)   -0.1739      0.041
+
+
+Residual standard error: 0.05366 on 43 degrees of freedom
+Log likelihood = 75.99, aic = 344.1 aicc = 347.5, bic(corrected for length) = -5.311
+
+
+
+[4m[1mDecomposition[22m[24m
+[1mModel[22m
+AR :  1 + 0.557577 B 
+D :  1 - B - B^4 + B^5 
+MA :  1 + 0.179834 B - 0.561534 B^2 - 0.174102 B^4 - 0.031309 B^5 + 0.097764 B^6 
+
+
+[1mSA[22m
+AR :  1 + 0.557577 B 
+D :  1 - 2.000000 B + B^2 
+MA :  1 - 0.693450 B - 0.391733 B^2 + 0.273781 B^3 
+Innovation variance:  0.4582026 
+
+[1mTrend[22m
+D :  1 - 2.000000 B + B^2 
+MA :  1 + 0.254756 B - 0.745244 B^2 
+Innovation variance:  0.02587754 
+
+[1mSeasonal[22m
+D :  1 + B + B^2 + B^3 
+MA :  1 + 0.470441 B - 0.773963 B^2 - 0.696478 B^3 
+Innovation variance:  0.07128612 
+
+[1mTransitory[22m
+AR :  1 + 0.557577 B 
+MA :  1 + B 
+Innovation variance:  0.05000136 
+
+[1mIrregular[22m
+Innovation variance:  0.154595 
+
+
+
+[4m[1mFinal[22m[24m
+Last observed values
+            y       sa        t         s         i
+2022 Q4 105.5 143.5823 140.3153 0.7347702 1.0232835
+2023 Q1 153.3 146.1359 143.6159 1.0490236 1.0175466
+2023 Q2 182.0 145.5095 146.3254 1.2507771 0.9944246
+2023 Q3 137.1 148.5546 149.0327 0.9228931 0.9967919
+
+Forecasts:
+             y_f     sa_f      t_f       s_f       i_f
+2023 Q4 112.4724 151.8980 151.9309 0.7401220 0.9997835
+2024 Q1 158.7898 154.9082 154.9246 1.0553542 0.9998947
+2024 Q2 192.3324 157.9508 157.9772 1.2496867 0.9998327
+2024 Q3 146.6117 161.0686 161.0900 0.9222938 0.9998673
+
+
+[4m[1mDiagnostics[22m[24m
+[1mRelative contribution of the components to the stationary
+portion of the variance in the original series,
+after the removal of the long term trend[22m
+ Trend computed by Hodrick-Prescott filter (cycle length = 8.0 years)
+           Component
+ Cycle         1.872
+ Seasonal     85.337
+ Irregular     0.480
+ TD & Hol.     0.000
+ Others       13.665
+ Total       101.353
+
+[1mCombined test in the entire series[22m
+ Non parametric tests for stable seasonality
+                                                          P.value
+   Kruskall-Wallis test                                      0.000
+   Test for the presence of seasonality assuming stability   0.000
+   Evolutive seasonality test                                0.272
+ 
+ Identifiable seasonality present
+
+[1mResidual seasonality tests[22m
+                                      P.value
+ qs test on sa                          1.000
+ qs test on i                           1.000
+ f-test on sa (seasonal dummies)        0.999
+ f-test on i (seasonal dummies)         1.000
+ Residual seasonality (entire series)   0.999
+ Residual seasonality (last 3 years)    0.759
+ f-test on sa (td)                      0.081
+ f-test on i (td)                       0.200
+
+
+[4m[1mAdditional output variables[22m[24m
+
+$sa1$H49
+[4m[1mRegARIMA[22m[24m
+y = regression model + arima (1, 0, 0, 1, 0, 0)
+Log-transformation: no
+Coefficients:
+        Estimate Std. Error
+Phi(1)   -0.8650      0.062
+BPhi(1)  -0.8845      0.059
+
+              Estimate Std. Error
+Mean           104.628     13.818
+TC (II-2020)   -23.622      1.753
+AO (I-2023)     11.150      1.852
+AO (III-2020)    5.854      1.388
+
+
+Residual standard error: 2.311 on 48 degrees of freedom
+Log likelihood = -128.5, aic = 271.1 aicc = 273.4, bic(corrected for length) = 2.112
+
+
+
+[4m[1mDecomposition[22m[24m
+[1mModel[22m
+AR :  1 - 0.864999 B - 0.884474 B^4 + 0.765068 B^5 
+
+
+[1mSA[22m
+AR :  1 - 1.834774 B + 0.838854 B^2 
+MA :  1 - 0.698515 B + 0.138698 B^2 
+Innovation variance:  0.3532535 
+
+[1mTrend[22m
+AR :  1 - 1.834774 B + 0.838854 B^2 
+MA :  1 + 0.552269 B - 0.447731 B^2 
+Innovation variance:  0.05610233 
+
+[1mSeasonal[22m
+AR :  1 + 0.969776 B + 0.940465 B^2 + 0.912040 B^3 
+MA :  1 + 0.987368 B + 0.324988 B^2 - 0.464823 B^3 
+Innovation variance:  0.1146029 
+
+[1mIrregular[22m
+Innovation variance:  0.08835171 
+
+
+
+[4m[1mFinal[22m[24m
+Last observed values
+            y       sa        t         s           i
+2022 Q4 125.4 123.8888 124.5685  1.511195 -0.67972728
+2023 Q1 137.7 136.0473 125.3642  1.652741 10.68304158
+2023 Q2 126.7 125.6407 125.7125  1.059304 -0.07177074
+2023 Q3 121.3 125.2075 125.6866 -3.907490 -0.47908213
+
+Forecasts:
+             y_f     sa_f      t_f        s_f         i_f
+2023 Q4 126.4011 125.4282 125.5884  0.9729134 -0.16020795
+2024 Q1 126.8881 125.3796 125.4917  1.5085399 -0.11214556
+2024 Q2 126.5837 125.2470 125.3255  1.3367118 -0.07850189
+2024 Q3 121.4442 125.0466 125.1015 -3.6023741 -0.05495133
+
+
+[4m[1mDiagnostics[22m[24m
+[1mRelative contribution of the components to the stationary
+portion of the variance in the original series,
+after the removal of the long term trend[22m
+ Trend computed by Hodrick-Prescott filter (cycle length = 8.0 years)
+           Component
+ Cycle        10.601
+ Seasonal     13.893
+ Irregular     0.236
+ TD & Hol.     0.000
+ Others       42.939
+ Total        67.670
+
+[1mCombined test in the entire series[22m
+ Non parametric tests for stable seasonality
+                                                          P.value
+   Kruskall-Wallis test                                      0.000
+   Test for the presence of seasonality assuming stability   0.000
+   Evolutive seasonality test                                0.451
+ 
+ Identifiable seasonality present
+
+[1mResidual seasonality tests[22m
+                                      P.value
+ qs test on sa                          1.000
+ qs test on i                           1.000
+ f-test on sa (seasonal dummies)        0.994
+ f-test on i (seasonal dummies)         0.984
+ Residual seasonality (entire series)   0.996
+ Residual seasonality (last 3 years)    1.000
+ f-test on sa (td)                      0.243
+ f-test on i (td)                       0.022
+
+
+[4m[1mAdditional output variables[22m[24m
+
+$sa1$H52
+[4m[1mRegARIMA[22m[24m
+y = regression model + arima (3, 0, 0, 0, 1, 1)
+Log-transformation: yes
+Coefficients:
+          Estimate Std. Error
+Phi(1)     -1.2733      0.138
+Phi(2)      0.1086      0.238
+Phi(3)      0.3629      0.143
+BTheta(1)  -0.2905      0.183
+
+             Estimate Std. Error
+AO (II-2020)  -0.2194      0.013
+
+
+Residual standard error: 0.02613 on 45 degrees of freedom
+Log likelihood = 111.7, aic = 264.3 aicc = 266.2, bic(corrected for length) = -6.904
+
+
+
+[4m[1mDecomposition[22m[24m
+[1mModel[22m
+AR :  1 - 1.273347 B + 0.108595 B^2 + 0.362904 B^3 
+D :  1 - B^4 
+MA :  1 - 0.290518 B^4 
+
+
+[1mSA[22m
+AR :  1 - 1.273347 B + 0.108595 B^2 + 0.362904 B^3 
+D :  1 - B 
+MA :  1 - 0.771744 B - 0.014772 B^2 + 0.043532 B^3 - 0.009003 B^4 
+Innovation variance:  0.5114644 
+
+[1mTrend[22m
+AR :  1 - 1.704062 B + 0.842561 B^2 
+D :  1 - B 
+MA :  1 - 0.049642 B - 0.817092 B^2 + 0.232550 B^3 
+Innovation variance:  0.11485 
+
+[1mSeasonal[22m
+D :  1 + B + B^2 + B^3 
+MA :  1 + 0.980005 B + 0.549796 B^2 - 0.340844 B^3 
+Innovation variance:  0.03722582 
+
+[1mTransitory[22m
+AR :  1 + 0.430715 B 
+MA :  1 - B 
+Innovation variance:  0.003187074 
+
+[1mIrregular[22m
+Innovation variance:  0.05178678 
+
+
+
+[4m[1mFinal[22m[24m
+Last observed values
+            y       sa        t         s         i
+2022 Q4 143.3 141.5584 142.0259 1.0123028 0.9967084
+2023 Q1 123.7 137.0273 136.9091 0.9027397 1.0008631
+2023 Q2 135.7 131.8444 132.0385 1.0292436 0.9985296
+2023 Q3 135.5 128.0031 127.8019 1.0585677 1.0015749
+
+Forecasts:
+             y_f     sa_f      t_f       s_f       i_f
+2023 Q4 125.7329 124.2592 124.2940 1.0118605 0.9997193
+2024 Q1 109.9162 121.7343 121.7217 0.9029192 1.0001032
+2024 Q2 123.7107 120.3096 120.3170 1.0282697 0.9999378
+2024 Q3 127.1251 120.0586 120.0575 1.0588592 1.0000090
+
+
+[4m[1mDiagnostics[22m[24m
+[1mRelative contribution of the components to the stationary
+portion of the variance in the original series,
+after the removal of the long term trend[22m
+ Trend computed by Hodrick-Prescott filter (cycle length = 8.0 years)
+           Component
+ Cycle        40.920
+ Seasonal     34.334
+ Irregular     0.219
+ TD & Hol.     0.000
+ Others       13.263
+ Total        88.736
+
+[1mCombined test in the entire series[22m
+ Non parametric tests for stable seasonality
+                                                          P.value
+   Kruskall-Wallis test                                      0.000
+   Test for the presence of seasonality assuming stability   0.000
+   Evolutive seasonality test                                0.221
+ 
+ Identifiable seasonality present
+
+[1mResidual seasonality tests[22m
+                                      P.value
+ qs test on sa                          1.000
+ qs test on i                           1.000
+ f-test on sa (seasonal dummies)        0.975
+ f-test on i (seasonal dummies)         1.000
+ Residual seasonality (entire series)   0.998
+ Residual seasonality (last 3 years)    0.999
+ f-test on sa (td)                      0.803
+ f-test on i (td)                       0.048
+
+
+[4m[1mAdditional output variables[22m[24m
+
+$sa1$I
+[4m[1mRegARIMA[22m[24m
+y = regression model + arima (0, 0, 0, 0, 1, 1)
+Log-transformation: no
+Coefficients:
+          Estimate Std. Error
+BTheta(1)   0.8104      0.092
+
+              Estimate Std. Error
+r.tls          -16.303      1.031
+TC (II-2020)   -65.559      1.938
+TC (I-2023)     23.441      1.793
+LS (III-2021)   13.100      1.555
+AO (III-2020)   23.839      1.071
+AO (II-2021)   -17.768      2.135
+AO (III-2014)   -7.324      0.752
+TC (I-2013)     -4.875      0.718
+AO (II-2016)    -3.578      0.755
+
+
+Residual standard error: 1.814 on 40 degrees of freedom
+Log likelihood = -104.9, aic = 231.7 aicc = 238.5, bic(corrected for length) = 1.962
+
+
+
+[4m[1mDecomposition[22m[24m
+[1mModel[22m
+D :  1 - B^4 
+
+
+[1mSA[22m
+D :  1 - B 
+MA :  1 - 0.420204 B 
+Innovation variance:  0.1859216 
+
+[1mTrend[22m
+D :  1 - B 
+MA :  1 + B 
+Innovation variance:  0.015625 
+
+[1mSeasonal[22m
+D :  1 + B + B^2 + B^3 
+MA :  1 - 0.180540 B - 0.475227 B^2 - 0.344233 B^3 
+Innovation variance:  0.2269538 
+
+[1mIrregular[22m
+Innovation variance:  0.09375 
+
+
+
+[4m[1mFinal[22m[24m
+Last observed values
+            y       sa        t          s         i
+2022 Q4 107.8 118.8657 120.7799 -11.065735 -1.914166
+2023 Q1 100.2 142.5426 120.6923 -42.342631 21.850342
+2023 Q2 144.2 136.2711 120.7021   7.928933 15.568990
+2023 Q3 177.4 131.6211 120.7322  45.778862 10.888918
+
+Forecasts:
+              y_f     sa_f      t_f        s_f      i_f
+2023 Q4 115.68023 128.3343 120.7385 -11.086644 7.595772
+2024 Q1  83.40553 126.0556 120.7385 -42.683631 5.317041
+2024 Q2 132.86480 124.4605 120.7385   7.959901 3.721928
+2024 Q3 168.45076 123.3439 120.7385  45.810374 2.605350
+
+
+[4m[1mDiagnostics[22m[24m
+[1mRelative contribution of the components to the stationary
+portion of the variance in the original series,
+after the removal of the long term trend[22m
+ Trend computed by Hodrick-Prescott filter (cycle length = 8.0 years)
+           Component
+ Cycle         0.073
+ Seasonal     62.274
+ Irregular     0.004
+ TD & Hol.     0.000
+ Others       41.023
+ Total       103.375
+
+[1mCombined test in the entire series[22m
+ Non parametric tests for stable seasonality
+                                                          P.value
+   Kruskall-Wallis test                                          0
+   Test for the presence of seasonality assuming stability       0
+   Evolutive seasonality test                                    0
+ 
+ Identifiable seasonality present
+
+[1mResidual seasonality tests[22m
+                                      P.value
+ qs test on sa                          0.236
+ qs test on i                           0.985
+ f-test on sa (seasonal dummies)        1.000
+ f-test on i (seasonal dummies)         1.000
+ Residual seasonality (entire series)   0.999
+ Residual seasonality (last 3 years)    0.208
+ f-test on sa (td)                      0.387
+ f-test on i (td)                       0.032
+
+
+[4m[1mAdditional output variables[22m[24m
+
+$sa1$INF
+[4m[1mRegARIMA[22m[24m
+y = regression model + arima (0, 1, 1, 0, 1, 1)
+Log-transformation: yes
+Coefficients:
+          Estimate Std. Error
+Theta(1)   -0.3169      0.102
+BTheta(1)  -0.4676      0.096
+
+             Estimate Std. Error
+AO (II-2020) -0.08606      0.013
+
+
+Residual standard error: 0.01871 on 86 degrees of freedom
+Log likelihood = 229.8, aic = 391.4 aicc = 391.9, bic(corrected for length) = -7.807
+
+
+
+[4m[1mDecomposition[22m[24m
+[1mModel[22m
+D :  1 - B - B^4 + B^5 
+MA :  1 - 0.316897 B - 0.467634 B^4 + 0.148192 B^5 
+
+
+[1mSA[22m
+D :  1 - 2.000000 B + B^2 
+MA :  1 - 1.153157 B + 0.269762 B^2 
+Innovation variance:  0.6079073 
+
+[1mTrend[22m
+D :  1 - 2.000000 B + B^2 
+MA :  1 + 0.170378 B - 0.829622 B^2 
+Innovation variance:  0.07118425 
+
+[1mSeasonal[22m
+D :  1 + B + B^2 + B^3 
+MA :  1 + 0.013372 B - 0.500884 B^2 - 0.512488 B^3 
+Innovation variance:  0.03082764 
+
+[1mIrregular[22m
+Innovation variance:  0.2230464 
+
+
+
+[4m[1mFinal[22m[24m
+Last observed values
+            y       sa        t         s         i
+2022 Q4 126.1 113.7727 112.8628 1.1083506 1.0080613
+2023 Q1 110.2 113.2387 113.8917 0.9731654 0.9942666
+2023 Q2 113.1 115.5912 114.8030 0.9784482 1.0068656
+2023 Q3 108.2 115.0087 115.6245 0.9407981 0.9946747
+
+Forecasts:
+             y_f     sa_f      t_f       s_f      i_f
+2023 Q4 129.2683 116.5607 116.5628 1.1090220 0.999982
+2024 Q1 114.4764 117.6722 117.6743 0.9728417 0.999982
+2024 Q2 116.3349 118.7944 118.7965 0.9792963 0.999982
+2024 Q3 112.7848 119.9273 119.9294 0.9404436 0.999982
+
+
+[4m[1mDiagnostics[22m[24m
+[1mRelative contribution of the components to the stationary
+portion of the variance in the original series,
+after the removal of the long term trend[22m
+ Trend computed by Hodrick-Prescott filter (cycle length = 8.0 years)
+           Component
+ Cycle         6.400
+ Seasonal     86.265
+ Irregular     1.159
+ TD & Hol.     0.000
+ Others        2.477
+ Total        96.301
+
+[1mCombined test in the entire series[22m
+ Non parametric tests for stable seasonality
+                                                          P.value
+   Kruskall-Wallis test                                      0.000
+   Test for the presence of seasonality assuming stability   0.000
+   Evolutive seasonality test                                0.133
+ 
+ Identifiable seasonality present
+
+[1mResidual seasonality tests[22m
+                                      P.value
+ qs test on sa                          1.000
+ qs test on i                           1.000
+ f-test on sa (seasonal dummies)        0.997
+ f-test on i (seasonal dummies)         1.000
+ Residual seasonality (entire series)   0.997
+ Residual seasonality (last 3 years)    1.000
+ f-test on sa (td)                      0.041
+ f-test on i (td)                       0.041
+
+
+[4m[1mAdditional output variables[22m[24m
+
+$sa1$ING
+[4m[1mRegARIMA[22m[24m
+y = regression model + arima (1, 0, 0, 0, 1, 0)
+Log-transformation: yes
+Coefficients:
+       Estimate Std. Error
+Phi(1)  -0.8568      0.055
+
+             Estimate Std. Error
+AO (II-2020) -0.17606      0.014
+LS (IV-2008) -0.08043      0.019
+LS (I-2009)  -0.06788      0.019
+
+
+Residual standard error: 0.02467 on 86 degrees of freedom
+Log likelihood = 207.1, aic =   441 aicc = 441.7, bic(corrected for length) = -7.206
+
+
+
+[4m[1mDecomposition[22m[24m
+[1mModel[22m
+AR :  1 - 0.856786 B 
+D :  1 - B^4 
+
+
+[1mSA[22m
+AR :  1 - 0.856786 B 
+D :  1 - B 
+MA :  1 - 0.699132 B + 0.138992 B^2 
+Innovation variance:  0.3230352 
+
+[1mTrend[22m
+AR :  1 - 0.856786 B 
+D :  1 - B 
+MA :  1 + 0.552472 B - 0.447528 B^2 
+Innovation variance:  0.05119171 
+
+[1mSeasonal[22m
+D :  1 + B + B^2 + B^3 
+MA :  1 + 0.985397 B + 0.322302 B^2 - 0.466702 B^3 
+Innovation variance:  0.1122866 
+
+[1mIrregular[22m
+Innovation variance:  0.07914354 
+
+
+
+[4m[1mFinal[22m[24m
+Last observed values
+            y       sa        t         s         i
+2022 Q4 130.3 132.5653 132.9093 0.9829115 0.9974118
+2023 Q1 134.5 133.0516 132.4484 1.0108859 1.0045541
+2023 Q2 136.9 130.8420 131.5911 1.0463001 0.9943070
+2023 Q3 125.2 131.0272 130.9742 0.9555271 1.0004041
+
+Forecasts:
+             y_f     sa_f      t_f       s_f       i_f
+2023 Q4 128.5427 130.6447 130.6454 0.9839105 0.9999948
+2024 Q1 132.9443 130.3481 130.3488 1.0199173 0.9999948
+2024 Q2 135.5422 130.0946 130.0953 1.0418743 0.9999948
+2024 Q3 124.1353 129.8777 129.8784 0.9557860 0.9999948
+
+
+[4m[1mDiagnostics[22m[24m
+[1mRelative contribution of the components to the stationary
+portion of the variance in the original series,
+after the removal of the long term trend[22m
+ Trend computed by Hodrick-Prescott filter (cycle length = 8.0 years)
+           Component
+ Cycle         7.438
+ Seasonal     22.350
+ Irregular     0.133
+ TD & Hol.     0.000
+ Others       71.501
+ Total       101.423
+
+[1mCombined test in the entire series[22m
+ Non parametric tests for stable seasonality
+                                                          P.value
+   Kruskall-Wallis test                                      0.000
+   Test for the presence of seasonality assuming stability   0.000
+   Evolutive seasonality test                                0.911
+ 
+ Identifiable seasonality present
+
+[1mResidual seasonality tests[22m
+                                      P.value
+ qs test on sa                          1.000
+ qs test on i                           1.000
+ f-test on sa (seasonal dummies)        0.996
+ f-test on i (seasonal dummies)         1.000
+ Residual seasonality (entire series)   1.000
+ Residual seasonality (last 3 years)    0.985
+ f-test on sa (td)                      0.844
+ f-test on i (td)                       0.072
+
+
+[4m[1mAdditional output variables[22m[24m
+
+$sa1$M
+[4m[1mRegARIMA[22m[24m
+y = regression model + arima (0, 1, 1, 0, 1, 0)
+Log-transformation: no
+Coefficients:
+         Estimate Std. Error
+Theta(1)  -0.5314      0.122
+
+             Estimate Std. Error
+AO (II-2020)   -18.31      1.887
+
+
+Residual standard error:  3.04 on 47 degrees of freedom
+Log likelihood = -126.7, aic = 259.4 aicc = 259.9, bic(corrected for length) =  2.38
+
+
+
+[4m[1mDecomposition[22m[24m
+[1mModel[22m
+D :  1 - B - B^4 + B^5 
+MA :  1 - 0.531440 B 
+
+
+[1mSA[22m
+D :  1 - 2.000000 B + B^2 
+MA :  1 - 1.007246 B + 0.258892 B^2 
+Innovation variance:  0.2166851 
+
+[1mTrend[22m
+D :  1 - 2.000000 B + B^2 
+MA :  1 + 0.393359 B - 0.606641 B^2 
+Innovation variance:  0.02217033 
+
+[1mSeasonal[22m
+D :  1 + B + B^2 + B^3 
+MA :  1 - 0.110428 B - 0.487521 B^2 - 0.402050 B^3 
+Innovation variance:  0.1395301 
+
+[1mIrregular[22m
+Innovation variance:  0.06954755 
+
+
+
+[4m[1mFinal[22m[24m
+Last observed values
+            y       sa        t          s           i
+2022 Q4 120.3 104.8943 105.0937  15.405699 -0.19943923
+2023 Q1 102.7 106.7684 106.4630  -4.068428  0.30538592
+2023 Q2 106.3 107.7230 107.6896  -1.423009  0.03339459
+2023 Q3  98.4 108.6465 108.8451 -10.246455 -0.19862746
+
+Forecasts:
+             y_f     sa_f      t_f        s_f          i_f
+2023 Q4 125.3178 110.0611 110.0611  15.256671 3.552714e-13
+2024 Q1 107.7178 111.3156 111.3156  -3.597776 3.410605e-13
+2024 Q2 111.3178 112.5700 112.5700  -1.252224 3.552714e-13
+2024 Q3 103.4178 113.8245 113.8245 -10.406671 3.552714e-13
+
+
+[4m[1mDiagnostics[22m[24m
+[1mRelative contribution of the components to the stationary
+portion of the variance in the original series,
+after the removal of the long term trend[22m
+ Trend computed by Hodrick-Prescott filter (cycle length = 8.0 years)
+           Component
+ Cycle         3.549
+ Seasonal     88.631
+ Irregular     0.113
+ TD & Hol.     0.000
+ Others        5.735
+ Total        98.028
+
+[1mCombined test in the entire series[22m
+ Non parametric tests for stable seasonality
+                                                          P.value
+   Kruskall-Wallis test                                       0.00
+   Test for the presence of seasonality assuming stability    0.00
+   Evolutive seasonality test                                 0.54
+ 
+ Identifiable seasonality present
+
+[1mResidual seasonality tests[22m
+                                      P.value
+ qs test on sa                          0.535
+ qs test on i                           1.000
+ f-test on sa (seasonal dummies)        0.997
+ f-test on i (seasonal dummies)         1.000
+ Residual seasonality (entire series)   0.998
+ Residual seasonality (last 3 years)    0.767
+ f-test on sa (td)                      0.204
+ f-test on i (td)                       0.019
+
+
+[4m[1mAdditional output variables[22m[24m
+
+$sa1$N
+[4m[1mRegARIMA[22m[24m
+y = regression model + arima (0, 1, 1, 0, 1, 1)
+Log-transformation: no
+Coefficients:
+          Estimate Std. Error
+Theta(1)   -0.1766      0.139
+BTheta(1)  -0.6489      0.111
+
+             Estimate Std. Error
+TC (II-2020)    -30.3      2.173
+
+
+Residual standard error: 2.503 on 46 degrees of freedom
+Log likelihood = -117.9, aic = 243.9 aicc = 244.8, bic(corrected for length) =  2.07
+
+
+
+[4m[1mDecomposition[22m[24m
+[1mModel[22m
+D :  1 - B - B^4 + B^5 
+MA :  1 - 0.176574 B - 0.648862 B^4 + 0.114572 B^5 
+
+
+[1mSA[22m
+D :  1 - 2.000000 B + B^2 
+MA :  1 - 1.079923 B + 0.163719 B^2 
+Innovation variance:  0.7441063 
+
+[1mTrend[22m
+D :  1 - 2.000000 B + B^2 
+MA :  1 + 0.102197 B - 0.897803 B^2 
+Innovation variance:  0.1250684 
+
+[1mSeasonal[22m
+D :  1 + B + B^2 + B^3 
+MA :  1 + 0.182093 B - 0.498695 B^2 - 0.683398 B^3 
+Innovation variance:  0.01061227 
+
+[1mIrregular[22m
+Innovation variance:  0.2341111 
+
+
+
+[4m[1mFinal[22m[24m
+Last observed values
+            y       sa        t         s          i
+2022 Q4 111.1 106.9502 108.4939  4.149839 -1.5437721
+2023 Q1 100.7 109.7720 109.3701 -9.072016  0.4018734
+2023 Q2 110.2 109.0802 109.7112  1.119784 -0.6309855
+2023 Q3 113.2 109.3933 109.8473  3.806738 -0.4540336
+
+Forecasts:
+             y_f     sa_f      t_f       s_f         i_f
+2023 Q4 114.1386 110.0324 110.2379  4.106231 -0.20550855
+2024 Q1 101.5349 110.5616 110.7054 -9.026637 -0.14385598
+2024 Q2 112.1909 111.0723 111.1730  1.118638 -0.10069919
+2024 Q3 115.3718 111.5700 111.6405  3.801768 -0.07048943
+
+
+[4m[1mDiagnostics[22m[24m
+[1mRelative contribution of the components to the stationary
+portion of the variance in the original series,
+after the removal of the long term trend[22m
+ Trend computed by Hodrick-Prescott filter (cycle length = 8.0 years)
+           Component
+ Cycle         5.904
+ Seasonal     48.690
+ Irregular     0.836
+ TD & Hol.     0.000
+ Others       37.167
+ Total        92.597
+
+[1mCombined test in the entire series[22m
+ Non parametric tests for stable seasonality
+                                                          P.value
+   Kruskall-Wallis test                                      0.000
+   Test for the presence of seasonality assuming stability   0.000
+   Evolutive seasonality test                                0.117
+ 
+ Identifiable seasonality present
+
+[1mResidual seasonality tests[22m
+                                      P.value
+ qs test on sa                          1.000
+ qs test on i                           1.000
+ f-test on sa (seasonal dummies)        1.000
+ f-test on i (seasonal dummies)         1.000
+ Residual seasonality (entire series)   1.000
+ Residual seasonality (last 3 years)    0.577
+ f-test on sa (td)                      0.518
+ f-test on i (td)                       0.071
+
+
+[4m[1mAdditional output variables[22m[24m
+
+$sa1$POS
+[4m[1mRegARIMA[22m[24m
+y = regression model + arima (0, 1, 1, 0, 1, 1)
+Log-transformation: yes
+Coefficients:
+          Estimate Std. Error
+Theta(1)   -0.5944      0.090
+BTheta(1)  -0.4976      0.098
+
+              Estimate Std. Error
+LS (III-2020)   0.1537      0.029
+
+
+Residual standard error: 0.03869 on 82 degrees of freedom
+Log likelihood = 156.8, aic = 510.5 aicc =   511, bic(corrected for length) = -6.349
+
+
+
+[4m[1mDecomposition[22m[24m
+[1mModel[22m
+D :  1 - B - B^4 + B^5 
+MA :  1 - 0.594436 B - 0.497564 B^4 + 0.295770 B^5 
+
+
+[1mSA[22m
+D :  1 - 2.000000 B + B^2 
+MA :  1 - 1.435812 B + 0.500516 B^2 
+Innovation variance:  0.6198615 
+
+[1mTrend[22m
+D :  1 - 2.000000 B + B^2 
+MA :  1 + 0.152102 B - 0.847898 B^2 
+Innovation variance:  0.02804348 
+
+[1mSeasonal[22m
+D :  1 + B + B^2 + B^3 
+MA :  1 - 0.131572 B - 0.484148 B^2 - 0.384279 B^3 
+Innovation variance:  0.037683 
+
+[1mIrregular[22m
+Innovation variance:  0.3340288 
+
+
+
+[4m[1mFinal[22m[24m
+Last observed values
+            y       sa        t         s         i
+2022 Q4 150.7 139.2142 140.2423 1.0825046 0.9926693
+2023 Q1 143.5 141.4847 140.8390 1.0142438 1.0045848
+2023 Q2 138.2 140.9283 141.4402 0.9806406 0.9963805
+2023 Q3 130.4 141.5396 142.1003 0.9212970 0.9960544
+
+Forecasts:
+             y_f     sa_f      t_f       s_f       i_f
+2023 Q4 154.6507 142.8554 142.8753 1.0825687 0.9998604
+2024 Q1 145.8067 143.6735 143.6936 1.0148471 0.9998604
+2024 Q2 141.6980 144.4964 144.5165 0.9806337 0.9998604
+2024 Q3 133.8644 145.3239 145.3442 0.9211446 0.9998604
+
+
+[4m[1mDiagnostics[22m[24m
+[1mRelative contribution of the components to the stationary
+portion of the variance in the original series,
+after the removal of the long term trend[22m
+ Trend computed by Hodrick-Prescott filter (cycle length = 8.0 years)
+           Component
+ Cycle         2.927
+ Seasonal     50.020
+ Irregular     3.998
+ TD & Hol.     0.000
+ Others       41.459
+ Total        98.404
+
+[1mCombined test in the entire series[22m
+ Non parametric tests for stable seasonality
+                                                          P.value
+   Kruskall-Wallis test                                      0.000
+   Test for the presence of seasonality assuming stability   0.000
+   Evolutive seasonality test                                0.073
+ 
+ Identifiable seasonality present
+
+[1mResidual seasonality tests[22m
+                                      P.value
+ qs test on sa                          1.000
+ qs test on i                           1.000
+ f-test on sa (seasonal dummies)        1.000
+ f-test on i (seasonal dummies)         1.000
+ Residual seasonality (entire series)   1.000
+ Residual seasonality (last 3 years)    0.752
+ f-test on sa (td)                      0.034
+ f-test on i (td)                       0.067
+
+
+[4m[1mAdditional output variables[22m[24m
+
+$sa1$RIP
+[4m[1mRegARIMA[22m[24m
+y = regression model + arima (0, 1, 1, 0, 1, 1)
+Log-transformation: no
+Coefficients:
+          Estimate Std. Error
+Theta(1)   -0.5239      0.096
+BTheta(1)  -0.4487      0.108
+
+             Estimate Std. Error
+AO (II-2020)  -20.223      1.828
+LS (I-2020)   -12.751      1.842
+LS (II-2012)   -7.846      1.758
+
+
+Residual standard error: 2.302 on 80 degrees of freedom
+Log likelihood = -194.4, aic = 400.8 aicc = 401.8, bic(corrected for length) = 1.927
+
+
+
+[4m[1mDecomposition[22m[24m
+[1mModel[22m
+D :  1 - B - B^4 + B^5 
+MA :  1 - 0.523891 B - 0.448679 B^4 + 0.235059 B^5 
+
+
+[1mSA[22m
+D :  1 - 2.000000 B + B^2 
+MA :  1 - 1.345612 B + 0.431466 B^2 
+Innovation variance:  0.5842299 
+
+[1mTrend[22m
+D :  1 - 2.000000 B + B^2 
+MA :  1 + 0.173577 B - 0.826423 B^2 
+Innovation variance:  0.03573176 
+
+[1mSeasonal[22m
+D :  1 + B + B^2 + B^3 
+MA :  1 - 0.107531 B - 0.487960 B^2 - 0.404509 B^3 
+Innovation variance:  0.04206578 
+
+[1mIrregular[22m
+Innovation variance:  0.2816047 
+
+
+
+[4m[1mFinal[22m[24m
+Last observed values
+            y       sa        t         s          i
+2022 Q4 124.6 112.4963 113.2983 12.103742 -0.8020370
+2023 Q1 113.0 117.1093 115.4207 -4.109349  1.6886414
+2023 Q2 115.8 117.1621 117.2852 -1.362051 -0.1231405
+2023 Q3 112.2 118.8381 119.0137 -6.638088 -0.1755950
+
+Forecasts:
+             y_f     sa_f      t_f       s_f          i_f
+2023 Q4 132.7840 120.7912 120.7912 11.992795 4.433787e-12
+2024 Q1 118.6030 122.5872 122.5872 -3.984168 4.561684e-12
+2024 Q2 123.0233 124.3832 124.3832 -1.359929 4.590106e-12
+2024 Q3 119.5305 126.1792 126.1792 -6.648698 4.675371e-12
+
+
+[4m[1mDiagnostics[22m[24m
+[1mRelative contribution of the components to the stationary
+portion of the variance in the original series,
+after the removal of the long term trend[22m
+ Trend computed by Hodrick-Prescott filter (cycle length = 8.0 years)
+           Component
+ Cycle         0.962
+ Seasonal     37.842
+ Irregular     0.672
+ TD & Hol.     0.000
+ Others       57.019
+ Total        96.495
+
+[1mCombined test in the entire series[22m
+ Non parametric tests for stable seasonality
+                                                          P.value
+   Kruskall-Wallis test                                      0.000
+   Test for the presence of seasonality assuming stability   0.000
+   Evolutive seasonality test                                0.292
+ 
+ Identifiable seasonality present
+
+[1mResidual seasonality tests[22m
+                                      P.value
+ qs test on sa                          1.000
+ qs test on i                           1.000
+ f-test on sa (seasonal dummies)        0.999
+ f-test on i (seasonal dummies)         1.000
+ Residual seasonality (entire series)   0.999
+ Residual seasonality (last 3 years)    0.940
+ f-test on sa (td)                      0.173
+ f-test on i (td)                       0.013
+
+
+[4m[1mAdditional output variables[22m[24m
+
+$sa1$MAR
+[4m[1mRegARIMA[22m[24m
+y = regression model + arima (0, 1, 1, 0, 1, 1)
+Log-transformation: no
+Coefficients:
+          Estimate Std. Error
+Theta(1)   -0.4255      0.100
+BTheta(1)  -0.2750      0.107
+
+              Estimate Std. Error
+LS (II-2020)    -63.01      4.347
+AO (III-2022)    17.41      4.211
+TC (I-2009)     -18.88      4.168
+
+
+Residual standard error: 5.774 on 84 degrees of freedom
+Log likelihood = -285.8, aic = 583.6 aicc = 584.6, bic(corrected for length) = 3.757
+
+
+
+[4m[1mDecomposition[22m[24m
+[1mModel[22m
+D :  1 - B - B^4 + B^5 
+MA :  1 - 0.425500 B - 0.275029 B^4 + 0.117025 B^5 
+
+
+[1mSA[22m
+D :  1 - 2.000000 B + B^2 
+MA :  1 - 1.165760 B + 0.319873 B^2 
+Innovation variance:  0.4564802 
+
+[1mTrend[22m
+D :  1 - 2.000000 B + B^2 
+MA :  1 + 0.257857 B - 0.742143 B^2 
+Innovation variance:  0.04076478 
+
+[1mSeasonal[22m
+D :  1 + B + B^2 + B^3 
+MA :  1 - 0.061326 B - 0.494171 B^2 - 0.444503 B^3 
+Innovation variance:  0.06522109 
+
+[1mIrregular[22m
+Innovation variance:  0.1762689 
+
+
+
+[4m[1mFinal[22m[24m
+Last observed values
+            y       sa        t          s           i
+2022 Q4 109.2 106.5300 106.0554   2.670032  0.47456228
+2023 Q1  99.1 113.2313 113.0783 -14.131274  0.15296729
+2023 Q2 123.6 119.9000 119.9832   3.699961 -0.08317708
+2023 Q3 134.6 126.9214 126.8852   7.678628  0.03621504
+
+Forecasts:
+             y_f     sa_f      t_f        s_f           i_f
+2023 Q4 136.5265 133.7895 133.7895   2.737000 -1.370237e-08
+2024 Q1 126.5854 140.6876 140.6876 -14.102209 -9.591502e-09
+2024 Q2 151.2664 147.5858 147.5858   3.680625 -6.713932e-09
+2024 Q3 162.1685 154.4839 154.4839   7.684585 -4.699576e-09
+
+
+[4m[1mDiagnostics[22m[24m
+[1mRelative contribution of the components to the stationary
+portion of the variance in the original series,
+after the removal of the long term trend[22m
+ Trend computed by Hodrick-Prescott filter (cycle length = 8.0 years)
+           Component
+ Cycle         2.722
+ Seasonal     21.487
+ Irregular     0.365
+ TD & Hol.     0.000
+ Others       76.677
+ Total       101.250
+
+[1mCombined test in the entire series[22m
+ Non parametric tests for stable seasonality
+                                                          P.value
+   Kruskall-Wallis test                                      0.000
+   Test for the presence of seasonality assuming stability   0.000
+   Evolutive seasonality test                                0.005
+ 
+ Identifiable seasonality present
+
+[1mResidual seasonality tests[22m
+                                      P.value
+ qs test on sa                          0.543
+ qs test on i                           1.000
+ f-test on sa (seasonal dummies)        0.999
+ f-test on i (seasonal dummies)         1.000
+ Residual seasonality (entire series)   0.998
+ Residual seasonality (last 3 years)    0.884
+ f-test on sa (td)                      0.118
+ f-test on i (td)                       0.085
+
+
+[4m[1mAdditional output variables[22m[24m
+
+

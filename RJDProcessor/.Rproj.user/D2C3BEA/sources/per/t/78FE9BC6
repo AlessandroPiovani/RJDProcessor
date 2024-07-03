@@ -1,0 +1,26 @@
+{
+    "id": "78FE9BC6",
+    "path": "~/RJDProcessor/R/import_and_interface_definition.R",
+    "project_path": "R/import_and_interface_definition.R",
+    "type": "r_source",
+    "hash": "535182750",
+    "contents": "",
+    "dirty": false,
+    "created": 1719931273986.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "13,30",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1719935113,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1719935113525,
+    "read_only": false,
+    "read_only_alternatives": []
+}

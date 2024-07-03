@@ -1,0 +1,18 @@
+# Assicurati di avere i pacchetti necessari
+if (!requireNamespace("devtools", quietly = TRUE)) {
+  install.packages("devtools")
+}
+
+# Carica il pacchetto devtools
+library(devtools)
+
+#devtools::load_all("R/import_and_interface_definition.R")
+
+# Genera la documentazione
+devtools::document()
+
+# Costruisci il pacchetto
+devtools::build()
+
+# Controlla il pacchetto
+check()
