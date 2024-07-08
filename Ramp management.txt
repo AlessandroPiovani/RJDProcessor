@@ -1,11 +1,7 @@
-se ci sono rampe, in extended_tramoseats_spec_list_from_workspace predisporre il seguente codice, che forza il passaggio a Java:
-	
-	v_or_ramps_present <- check_if_intervention_vars_or_ramps_present(workspace) # da implementare in JD_JSON_file processor
-	
-	
 
-sempre in extended_tramoseats_spec_list_from_workspace
-  if(v_or_ramps_present) eseguire il codice sotto  
+
+
+FATTO DA QUI IN POI. AGGIUNTO NEI DATA_READER_EXT_REG ! PERò solo lì: ora i DATA_READER_EXT_REG restituiscono anche le info su rampe e iv ma non vengono usate. Fare in modo di usarle anche in JD_JSON e in Extended_tramo_seats_spec
   ################ RAMP MANAGEMENT ################ 
   
   
