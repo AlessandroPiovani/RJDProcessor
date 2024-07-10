@@ -262,6 +262,8 @@ getUserDefinedTdVariables_info_xlsx <- function(jmodel ,input_mode=c("TS_regress
 
         file_name  <- tolower(sub(".*\\.(.*?)_\\d+$", "\\1", varString))
         file_name  <- paste0(file_name, ".xlsx")
+        # Removes "r." o "R." from string prefix (r. automatically put when an RJDemetra workspace with external variables is created)
+        #file_name <- gsub("^[rR]\\.", "", file_name)
 
         year       <- start(get_ts(jSA_series))[1]
         month      <- start(get_ts(jSA_series))[2]
@@ -303,7 +305,8 @@ getUserDefinedTdVariables_info_xlsx <- function(jmodel ,input_mode=c("TS_regress
         #browser()
         file_name <- tolower(sub(".*\\.(.*?)_\\d+$", "\\1", varString))
         file_name <- paste0(file_name, ".xlsx")
-
+        # Removes "r." o "R." from string prefix (r. automatically put when an RJDemetra workspace with external variables is created)
+        #file_name <- gsub("^[rR]\\.", "", file_name)
 
         year  <- start(get_ts(jSA_series))[1]
         month <- start(get_ts(jSA_series))[2]

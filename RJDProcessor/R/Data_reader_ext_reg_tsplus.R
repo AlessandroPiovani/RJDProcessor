@@ -55,7 +55,7 @@ setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg_tsplus", "ANY", "
                if(is.na(frequency)) # Auto detect of frequency, not possible for TS txt format (this if is never used)
                {
                  #Auto detect of frequency from the data
-                 browser()
+                 #browser()
                  timestamps  <- rownames(data)
                  start_index <- which(!is.na(series))[1]
                  d1          <- as.Date(timestamps[start_index])
@@ -229,12 +229,36 @@ getUserDefinedTdVariables_info_tsplus <- function(jmodel ,input_mode=c("TS_regre
       previous=list()
       for(i in 1:usrDefVarCount)
       {
+        #usr def loop
+        #browser()
 
         jUser_UserDef_Var <- jRegression$getUserDefinedVariable(integer(i))
         varString         <- jUser_UserDef_Var$getName()
 
-        file_name  <- tolower(sub(".*\\.(.*?)_\\d+$", "\\1", varString))
+        # BLOCK Designed over specific regressors presents in ISTAT
+        if (grepl("lym", varString, ignore.case = TRUE))
+        {
+          #browser()
+          file_name <- tolower(sub("^[^.]*\\.", "", varString))
+          file_name <- sub("^(.*lym_[0-9]+).*", "\\1", file_name)
+        } else if (grepl("q3_00_04", varString))
+        {
+          file_name <- "q3_00_04"
+        } else if (grepl("^[^.]*\\.q[0-9]+_[0-9]+", varString, ignore.case = TRUE))
+        {
+          file_name <- tolower(sub("^[^.]*\\.", "", varString))
+          file_name <- sub("^(.*q_[0-9]+).*", "\\1", file_name)
+        } else # the only one action to do if no exceptions are considered!!!!!
+        {
+          file_name <- tolower(sub("^[^.]*\\.", "", varString))
+          #file_name <- tolower(sub(".*\\.(.*?)_\\d+$", "\\1", file_name))
+          file_name <- tolower(sub("(.*?)_\\d+$", "\\1", file_name))
+        }
+
+        #file_name <- gsub("^[rR]\\.", "", file_name)
         file_name  <- paste0(file_name, ".txt")
+
+        # END BLOCK
 
         year       <- start(get_ts(jSA_series))[1]
         month      <- start(get_ts(jSA_series))[2]
@@ -274,8 +298,35 @@ getUserDefinedTdVariables_info_tsplus <- function(jmodel ,input_mode=c("TS_regre
       for(varString in jUser_Td_VarsString)
       {
         #browser()
-        file_name <- tolower(sub(".*\\.(.*?)_\\d+$", "\\1", varString))
-        file_name <- paste0(file_name, ".txt")
+
+
+
+        # BLOCK Designed over specific regressors presents in ISTAT
+        if (grepl("lym", varString, ignore.case = TRUE))
+        {
+          #browser()
+          file_name <- tolower(sub("^[^.]*\\.", "", varString))
+          file_name <- sub("^(.*lym_[0-9]+).*", "\\1", file_name)
+        } else if (grepl("q3_00_04", varString))
+        {
+          file_name <- "q3_00_04"
+        } else if (grepl("^[^.]*\\.q[0-9]+_[0-9]+", varString, ignore.case = TRUE))
+        {
+          file_name <- tolower(sub("^[^.]*\\.", "", varString))
+          file_name <- sub("^(.*q_[0-9]+).*", "\\1", file_name)
+        } else # the only one action to do if no exceptions are considered!!!!!
+        {
+          file_name <- tolower(sub("^[^.]*\\.", "", varString))
+          #file_name <- tolower(sub(".*\\.(.*?)_\\d+$", "\\1", file_name))
+          file_name <- tolower(sub("(.*?)_\\d+$", "\\1", file_name))
+        }
+
+        #file_name <- gsub("^[rR]\\.", "", file_name)
+        file_name  <- paste0(file_name, ".txt")
+
+        # END BLOCK
+
+
 
 
         year  <- start(get_ts(jSA_series))[1]
