@@ -587,7 +587,6 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
 
   cat("Loading external variables\n")
   all_model_vars_info <- data_reader_ext_reg@read_ext_reg_info(workspace)
-  all_model_vars_info <- data_reader_ext_reg@read_ext_reg_info(workspace)
 
   #all_jmodel_vars <- getUserDefinedTdVariables_info(jmodel) # per editare la scrittura
 
@@ -629,6 +628,20 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_in
   all_model_ivs_info      <- all_model_vars_info[["intervention_vars"]]
   all_model_ramps_info    <- all_model_vars_info[["ramps"]]
   all_model_ext_vars_info <- all_model_vars_info[["ext_vars"]]
+
+  no_ramps <- all(sapply(all_model_ramps_info, function(x) length(x) == 0))
+  no_ivs   <- all(sapply(all_model_ivs_info  , function(x) length(x) == 0))
+
+  if(!(no_ramps && no_ivs))
+  {
+    cat("\n\n_____________________________________________________\n")
+    cat(paste("time series:", series_name, "\n" ))
+    print("WARNING: In your JDemetra+ Workspace RAMPS or INTERVENTION VARIABLES are used")
+    print("Unfortunately RJDProcessor is not able to handle them now")
+    print("SUGGESTION: replace them with External Variables with the same values to obtain the same results")
+    cat("_____________________________________________________\n\n")
+
+  }
 
   if(!is.null(SA_spec$regarima$specification))#added for diff #tramoseats_spec object
   {
