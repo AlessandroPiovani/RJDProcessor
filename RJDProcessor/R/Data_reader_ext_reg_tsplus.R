@@ -176,8 +176,11 @@ Data_reader_ext_reg_tsplus <- function(input_source, ...) {
 # input_mode = TODO JD_regressor_file file containing both dates and data
 getUserDefinedTdVariables_info_tsplus <- function(jmodel ,input_mode=c("TS_regressor_file", "JD_regressor_file", ))
 {
-  var_info_list = list()
+  var_info_list   = list()
+  ramps_info_list = list()
+  iv_info_list    = list()
 
+  #browser()
 
   get_repeat_counts <- function(jUser_Td_VarsString) {
     # Controlla se jUser_Td_VarsString è una singola stringa
@@ -202,6 +205,11 @@ getUserDefinedTdVariables_info_tsplus <- function(jmodel ,input_mode=c("TS_regre
   require(rJava)
   for(name in names(jmodel[[1]]))
   {
+    # if(name=="FATEXP_C")
+    # {
+    #   browser()
+    # }
+
     jSA_series      <- jmodel[[1]][[name]]
     jRegression     <- jSA_series$spec$getRegression()
     jCalendar       <- jRegression$getCalendar()
@@ -288,11 +296,91 @@ getUserDefinedTdVariables_info_tsplus <- function(jmodel ,input_mode=c("TS_regre
         }
       }
     }
+
+    #### Copy from here and the beginning if the function
+    #browser()
     var_info_list[[name]] <- append(var_info_list[[name]], file_list)
 
+    ramps_list   <- get_ramps(jSA_series)
+    ramps_info_list[[name]] <- append(ramps_info_list[[name]], ramps_list)
+
+    ivs_list     <- get_intervention_vars(jSA_series)
+    iv_info_list[[name]] <- ivs_list
   }
 
-  return(var_info_list)
+  ret <- list("ext_vars"=var_info_list, "ramps"=ramps_info_list, "intervention_vars"=iv_info_list)
+  return(ret)
+}
+
+# possible conflicts! leave these functions (get_ramps, get_intervention_vars) equals in all the scripts
+# TODO: move in utility_functions or assign a different name in every Data_reader_ext_reg!
+get_ramps<- function(series)
+{
+  ramps_ret <- list()
+
+  regression<-series$spec$getRegression()
+  core<-regression$getCore()
+  core_regression<-core$getRegression()
+  ramps_count<-core_regression$getRampsCount() # for loop over this
+
+  i<-0
+  while(i < ramps_count)
+  {
+    ramp_i       <-core_regression$getRamp(as.integer(i))
+    begin_ramp_i <- ramp_i$getStart()$toString()
+    end_ramp_i   <- ramp_i$getEnd()$toString()
+    ramp_i_ret   <- list("start"=begin_ramp_i, "end"=end_ramp_i)
+
+    ramps_ret[[length(ramps_ret) + 1]] <- ramp_i_ret
+
+    i<-i+1
+  }
+  return(ramps_ret)
+
+
+}
+
+get_intervention_vars<- function(series)
+{
+  #browser()
+  ivs_ret <- list()
+
+  regression<-series$spec$getRegression()
+  core<-regression$getCore()
+  core_regression<-core$getRegression() #until here in common with RAMPS
+  intervention_vars_count <- core_regression$getInterventionVariablesCount()
+  i<-0
+
+  while(i<intervention_vars_count)
+  {
+    int_var_i<-core_regression$getInterventionVariable(as.integer(i))
+    int_var_i$getName()
+    iv_i_delta     <- int_var_i$getDelta()
+    iv_i_deltaS    <- int_var_i$getDeltaS()
+    iv_i_sequences <- int_var_i$getSequences() #every IV could be created in different times thanks to multiple sequences associated
+    n_seq <- iv_i_sequences$length #iterate over this
+    j<-0
+    seq_list <- list()
+    while(j < n_seq)
+    {
+      iv_i_sequences_seq_j       <- int_var_i$getSequence(as.integer(j))
+      iv_i_sequences_seq_j_start <- iv_i_sequences_seq_j$start$toString()
+      iv_1_sequences_seq_j_end   <- iv_i_sequences_seq_j$end$toString()
+
+      iv_1_sequences_seq_j_to_save <- list("start"=iv_i_sequences_seq_j_start, "end"= iv_1_sequences_seq_j_end)
+
+      seq_list[[length(seq_list) + 1]] <- iv_1_sequences_seq_j_to_save
+      j<-j+1
+    }
+
+    iv<- list("delta"=iv_i_delta, "delta_s"=iv_i_deltaS , "seq"=seq_list)
+    ivs_ret[[length(ivs_ret) + 1]] <- iv
+
+    i <- i+1
+  }
+
+  return(ivs_ret)
+
 }
 
 

@@ -571,18 +571,24 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
 
   #jmodel          <- RJDemetra::get_jmodel(workspace, progress_bar = TRUE) # to retrieve external regressors by name
   cat("Loading models\n")
+
+  # This part of code should be optimized (always do java)
   if(java_processing == FALSE)
   {
+    jm <- get_jmodel(workspace, progress_bar = FALSE) #added later: jmodel is necessary in any case for ramps and intervention variables
     m <- get_model(workspace, progress_bar = TRUE)
   }else
   {
     #browser()
-    m <- get_jmodel(workspace, progress_bar = TRUE)
-    m <- get_r_model_from_j_model(m)
+    m  <- get_jmodel(workspace, progress_bar = TRUE)
+    jm <- m
+    m  <- get_r_model_from_j_model(m)
   }
 
   cat("Loading external variables\n")
   all_model_vars_info <- data_reader_ext_reg@read_ext_reg_info(workspace)
+  all_model_vars_info <- data_reader_ext_reg@read_ext_reg_info(workspace)
+
   #all_jmodel_vars <- getUserDefinedTdVariables_info(jmodel) # per editare la scrittura
 
   #browser()
@@ -593,12 +599,10 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
     series        <-  m[[1]][[series_name]]
     frequency     <-  frequency(get_ts(series))
 
-
-
     basic_spec    <- get_jspec(m[[1]][[series_name]])$toString()
-    #if(basic_spec=="TS") { basic_spec<-"RSA0" } #TS=custom spec --> by default set "RSA0" #encpded in the constructor call of Extended_tramoseats_spec
+    #if(basic_spec=="TS") { basic_spec<-"RSA0" } #TS=custom spec --> by default set "RSA0" #encoded in the constructor call of Extended_tramoseats_spec
 
-    spec <- from_SA_spec(series, series_name = series_name, frequency = frequency, method = method, basic_spec=basic_spec, all_model_ext_vars_info = all_model_vars_info, data_reader_ext_reg = data_reader_ext_reg)
+    spec <- from_SA_spec(series, series_name = series_name, frequency = frequency, method = method, basic_spec=basic_spec, all_model_vars_info = all_model_vars_info, data_reader_ext_reg = data_reader_ext_reg)
     spec <- list(spec)
     extended_tramoseats_spec_list <- append(extended_tramoseats_spec_list ,spec)
   }
@@ -614,13 +618,17 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
 
 # From SA_spec relies on Workspace to assign a value to the custom fields of Extended_tramoseats_spec (in particular the filename)
 #' @export
-from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_integer_  ,method = "TS" ,basic_spec="RSA0", userdef.varFromFile=TRUE, all_model_ext_vars_info=NULL, data_reader_ext_reg=NULL ,workspace=NA)
+from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_integer_  ,method = "TS" ,basic_spec="RSA0", userdef.varFromFile=TRUE, all_model_vars_info=NULL, data_reader_ext_reg=NULL ,workspace=NA)
 {
   #browser()
-  if(is.null(all_model_ext_vars_info) && !is.na(workspace)) # passing the variables pre_computed is more efficient because they are computed one time for a list of series
+  if(is.null(all_model_vars_info) && !is.na(workspace)) # passing the variables pre_computed is more efficient because they are computed one time for a list of series
   {
-    all_model_ext_vars_info = data_reader_ext_reg@read_ext_reg_info(workspace)
+    all_model_vars_info = data_reader_ext_reg@read_ext_reg_info(workspace)
   }
+  #browser()
+  all_model_ivs_info      <- all_model_vars_info[["intervention_vars"]]
+  all_model_ramps_info    <- all_model_vars_info[["ramps"]]
+  all_model_ext_vars_info <- all_model_vars_info[["ext_vars"]]
 
   if(!is.null(SA_spec$regarima$specification))#added for diff #tramoseats_spec object
   {
