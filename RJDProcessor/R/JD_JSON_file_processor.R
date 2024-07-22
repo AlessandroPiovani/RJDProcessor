@@ -34,11 +34,23 @@ JD_JSON_file_processor <- function(input_data_reader, ext_reg_data_reader, spec_
 
     for(serie in model[[1]])
     {
+      #browser()
       #print(nomi_serie[i])
       plot.new()
       text(x=.5, y=.5, nomi_serie[i], cex=2)  # first 2 numbers are xy-coordinates within [0, 1]
       plot(serie, type_chart = "sa-trend")
-      plot(serie$decomposition)
+
+      serie_plot <- serie
+
+      # if decomposition is not feasible some columns are not plottable (all NA): set values to 0
+      if (all(is.na(serie_plot$decomposition[["linearized"]][, "s_lin"]))) {
+        serie_plot$decomposition[["linearized"]][, "s_lin"] <- 0
+      }
+      if (all(is.na(serie_plot$decomposition[["components"]][, "s_cmp"]))) {
+        serie_plot$decomposition[["components"]][, "s_cmp"] <- 0
+      }
+
+      plot(serie_plot$decomposition)
 
       i=i+1
 

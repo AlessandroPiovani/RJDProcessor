@@ -132,14 +132,14 @@ setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg_tsplus", "ANY", "
 # read_ext_reg_info method, IT MUST RETURN A LIST of information on external regressors
 #setGeneric("read_ext_reg_info", function(object, var_info_container, ...) standardGeneric("read_ext_reg_info"))
 #' @export
-setMethod ("read_ext_reg_info", signature("Data_reader_ext_reg_tsplus", "ANY"),
-           function(object, var_info_container, ...) {
+setMethod ("read_ext_reg_info", signature("Data_reader_ext_reg_tsplus", "ANY", "ANY"),
+           function(object, var_info_container, adjust_path=TRUE, ...) {
 
              workspace <- var_info_container
 
              jmodel <- RJDemetra::get_jmodel(workspace, progress_bar = TRUE) # to retrieve external regressors by name
 
-             all_jmodel_vars <- getUserDefinedTdVariables_info_tsplus(jmodel) # per editare la scrittura
+             all_jmodel_vars <- getUserDefinedTdVariables_info_tsplus(jmodel, adjust_path=adjust_path) # per editare la scrittura
              return(all_jmodel_vars)
 
            })
@@ -174,7 +174,7 @@ Data_reader_ext_reg_tsplus <- function(input_source, ...) {
 # The variables values are available in files.
 # input_mode = TS_regressor_file the start date is the same as the input data series
 # input_mode = TODO JD_regressor_file file containing both dates and data
-getUserDefinedTdVariables_info_tsplus <- function(jmodel ,input_mode=c("TS_regressor_file", "JD_regressor_file", ))
+getUserDefinedTdVariables_info_tsplus <- function(jmodel ,input_mode=c("TS_regressor_file", "JD_regressor_file", ), adjust_path=TRUE)
 {
   var_info_list   = list()
   ramps_info_list = list()
@@ -236,7 +236,7 @@ getUserDefinedTdVariables_info_tsplus <- function(jmodel ,input_mode=c("TS_regre
         varString         <- jUser_UserDef_Var$getName()
 
         # BLOCK Designed over specific regressors presents in ISTAT
-        if (grepl("lym", varString, ignore.case = TRUE))
+        if (grepl("lym_", varString, ignore.case = TRUE))
         {
           #browser()
           file_name <- tolower(sub("^[^.]*\\.", "", varString))
@@ -257,6 +257,13 @@ getUserDefinedTdVariables_info_tsplus <- function(jmodel ,input_mode=c("TS_regre
 
         #file_name <- gsub("^[rR]\\.", "", file_name)
         file_name  <- paste0(file_name, ".txt")
+
+
+        #Removes part of path e.g. regr\\file.txt or regr/file.txt  --> file.txt
+        if(adjust_path==TRUE)
+        {
+          file_name <- sub(".*[\\/]", "", file_name)
+        }
 
         # END BLOCK
 
@@ -302,7 +309,7 @@ getUserDefinedTdVariables_info_tsplus <- function(jmodel ,input_mode=c("TS_regre
 
 
         # BLOCK Designed over specific regressors presents in ISTAT
-        if (grepl("lym", varString, ignore.case = TRUE))
+        if (grepl("lym_", varString, ignore.case = TRUE))
         {
           #browser()
           file_name <- tolower(sub("^[^.]*\\.", "", varString))
@@ -324,6 +331,12 @@ getUserDefinedTdVariables_info_tsplus <- function(jmodel ,input_mode=c("TS_regre
         #file_name <- gsub("^[rR]\\.", "", file_name)
         file_name  <- paste0(file_name, ".txt")
 
+
+        #Removes part of path e.g. regr\\file.txt or regr/file.txt  --> file.txt
+        if(adjust_path==TRUE)
+        {
+          file_name <- sub(".*[\\/]", "", file_name)
+        }
         # END BLOCK
 
 

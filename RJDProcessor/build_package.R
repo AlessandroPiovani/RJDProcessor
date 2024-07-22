@@ -1,4 +1,4 @@
-setwd("C:\\Users\\UTENTE\\Desktop\\RJDProcessor_package\\RJDProcessor")
+setwd("C:\\Users\\UTENTE\\Desktop\\RJDopenCruncher\\RJDProcessor")
 
 # Assicurati di avere i pacchetti necessari
 if (!requireNamespace("devtools", quietly = TRUE)) {

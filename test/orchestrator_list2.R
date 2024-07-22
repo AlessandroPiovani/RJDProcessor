@@ -1,4 +1,4 @@
-setwd("C:\\Users\\UTENTE\\Desktop\\RJDProcessor_package\\test")
+setwd("C:\\Users\\UTENTE\\Desktop\\RJDopenCruncher\\test")
 
 
 library(RJDProcessor)

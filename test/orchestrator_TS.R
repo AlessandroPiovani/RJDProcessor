@@ -1,18 +1,19 @@
-setwd("C:\\Users\\UTENTE\\Desktop\\RJDProcessor_package\\test")
+setwd("C:\\Users\\UTENTE\\Desktop\\RJDopenCruncher\\test\\")
 
 
 library(RJDProcessor)
+library(RJDemetra)
 
 
 ############################### Input defintion ################################
-JD_JSON_file_full_reduced <- "C:\\Users\\UTENTE\\Desktop\\MigrazioneFAT-RJDemetra_TEST_3\\specifications_new_full.txt"
+JD_JSON_file_full_reduced <- "specifications_new_full.txt"
 
 spec_file_name            <- "specifications_new.txt"
 
 
-input_workspace_directory <- "C:\\Users\\UTENTE\\Desktop\\MigrazioneFAT-RJDemetra_TEST_3\\WorkspaceFAT-container\\WS-FAT.xml"
-input_data_file_name      <- "C:\\Users\\UTENTE\\Desktop\\MigrazioneFAT-RJDemetra_TEST_3\\SITIC-FAT\\grezzi.csv"
-regr_directory            <- "C:\\Users\\UTENTE\\Desktop\\MigrazioneFAT-RJDemetra_TEST_3\\SITIC-FAT\\regr"
+input_workspace_directory <- "WorkspaceFAT-container\\WS-FAT.xml"
+input_data_file_name      <- "SITIC-FAT\\grezzi.csv"
+regr_directory            <- "SITIC-FAT\\regr"
 # input_workspace_directory <- "WorkspaceTUR-container\\workspace-TUR.xml"
 # input_data_file_name      <- "SITIC-TUR\\grezziTUR.csv"
 # regr_directory            <- "SITIC-TUR\\regr"

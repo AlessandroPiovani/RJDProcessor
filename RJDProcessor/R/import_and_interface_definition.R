@@ -1,15 +1,15 @@
 # Uncomment the rows to perform tests in debug mode with source code
 
 # Basic import
-# library(RJDemetra)
-# library(rjson)
+require(RJDemetra)
+require(rjson)
 
 
 
 # Interfaces for Data_reader and Data_reader_ext_reg
 setGeneric("read_data", function(object, ...) standardGeneric("read_data"))
 setGeneric("read_ext_reg_data", function(object, var_info=NULL, time_series_info=NULL, frequency= NA_integer_, ...) standardGeneric("read_ext_reg_data"))
-setGeneric("read_ext_reg_info", function(object, var_info_container, ...) standardGeneric("read_ext_reg_info"))
+setGeneric("read_ext_reg_info", function(object, var_info_container, adjust_path=TRUE, ...) standardGeneric("read_ext_reg_info"))
 
 # source("Data_reader_xlsx.R")
 # source("Data_reader_csv.R")

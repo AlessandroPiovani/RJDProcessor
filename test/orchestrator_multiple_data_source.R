@@ -1,27 +1,24 @@
-if ("RJDProcessor" %in% rownames(installed.packages())) {
-  detach("package:RJDProcessor", unload = TRUE)
-}
+setwd("C:\\Users\\UTENTE\\Desktop\\RJDopenCruncher\\test")
 
-install.packages("C:\\Users\\UTENTE\\Desktop\\RJDProcessor_package\\RJDProcessor_0.1.0.tar.gz", repos = NULL, type = "source")
+
 library("RJDProcessor")
-
-setwd("C:\\Users\\UTENTE\\Desktop\\RJDProcessor_package\\test")
+library("RJDemetra")
 
 
 
 ############################### Input defintion ################################
-JD_JSON_file_full_reduced <- "C:\\Users\\UTENTE\\Desktop\\RJDProcessor_package\\test\\specifications_new_full.txt"
+JD_JSON_file_full_reduced <- "specifications_new_full.txt"
 
 spec_file_name_xlsx            <- "specifications_new_xlsx.txt"
 spec_file_name_csv             <- "specifications_new_csv.txt"
 
 
-input_workspace_directory <- "C:\\Users\\UTENTE\\Desktop\\RJDProcessor_package\\test\\WorkspaceFAS-standard-container\\FAS.xml"
-input_data_file_name_xlsx <- "C:\\Users\\UTENTE\\Desktop\\RJDProcessor_package\\test\\XLSX-FAS\\grezzi_trim_FAS.xlsx"
-input_data_file_name_csv  <- "C:\\Users\\UTENTE\\Desktop\\RJDProcessor_package\\test\\CSV-FAS\\grezzi_trim_FAS.csv"
+input_workspace_directory <- "WorkspaceFAS-standard-container\\FAS.xml"
+input_data_file_name_xlsx <- "XLSX-FAS\\grezzi_trim_FAS.xlsx"
+input_data_file_name_csv  <- "CSV-FAS\\grezzi_trim_FAS.csv"
 
-regr_directory_xlsx       <- "C:\\Users\\UTENTE\\Desktop\\RJDProcessor_package\\test\\XLSX-FAS\\regr"
-regr_directory_csv        <- "C:\\Users\\UTENTE\\Desktop\\RJDProcessor_package\\test\\CSV-FAS\\regr"
+regr_directory_xlsx       <- "XLSX-FAS\\regr"
+regr_directory_csv        <- "CSV-FAS\\regr"
 
 
 

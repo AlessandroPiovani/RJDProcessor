@@ -1,8 +1,8 @@
-setwd("C:\\Users\\UTENTE\\Desktop\\RJDProcessor_package\\test")
+setwd("C:\\Users\\UTENTE\\Desktop\\RJDopenCruncher\\test\\")
 
 
 library(RJDProcessor)
-
+library(RJDemetra)
 
 ############################### Input defintion ################################
 JD_JSON_file_full_reduced <- "specifications_new_full.txt"
