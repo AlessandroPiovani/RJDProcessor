@@ -192,13 +192,14 @@ Data_reader_ext_reg_csv <- function(input_source, ...) {
 # The variables values are available in files.
 # input_mode = TS_regressor_file the start date is the same as the input data series
 # input_mode = TODO JD_regressor_file file containing both dates and data
-getUserDefinedTdVariables_info_csv <- function(jmodel ,input_mode=c("TS_regressor_file", "JD_regressor_file", ))
+getUserDefinedTdVariables_info_csv <- function(jmodel ,input_mode=c("TS_regressor_file", "JD_regressor_file", ), adjust_path=TRUE)
 {
   var_info_list   = list()
   ramps_info_list = list()
   iv_info_list    = list()
-
+  coef_info_list  = list()
   #browser()
+
   get_repeat_counts <- function(jUser_Td_VarsString) {
     # Controlla se jUser_Td_VarsString è una singola stringa
     if (is.character(jUser_Td_VarsString) && length(jUser_Td_VarsString) == 1) {
@@ -222,12 +223,19 @@ getUserDefinedTdVariables_info_csv <- function(jmodel ,input_mode=c("TS_regresso
   require(rJava)
   for(name in names(jmodel[[1]]))
   {
+    # if(name=="C_DEFL")
+    # {
+    #   browser()
+    # }
+
     jSA_series      <- jmodel[[1]][[name]]
     jRegression     <- jSA_series$spec$getRegression()
     jCalendar       <- jRegression$getCalendar()
     jTradingDays    <- jCalendar$getTradingDays()
     jUser_Td_VarsString      <- jTradingDays$getUserVariables()
     file_list <- list()
+
+    coef_list <- list() #Added
 
     idx_file_list = 1
 
@@ -241,13 +249,19 @@ getUserDefinedTdVariables_info_csv <- function(jmodel ,input_mode=c("TS_regresso
       previous=list()
       for(i in 1:usrDefVarCount)
       {
+        #usr def loop
+        ##browser()
+        j <- i-1             #Added this part
+        j <- as.integer(j)
+        jUser_UserDef_Var <- jRegression$getUserDefinedVariable(j) # Returns all 0, don't know why
+        #coef_list[[i]] <- jUser_UserDef_Var$getCoefficient() # Do the same for TD, checking for the index. Return coef_list
 
-        jUser_UserDef_Var <- jRegression$getUserDefinedVariable(integer(i))
+        #browser()
+
+
         varString         <- jUser_UserDef_Var$getName()
-
         file_name  <- tolower(sub(".*\\.(.*?)_\\d+$", "\\1", varString))
         file_name  <- paste0(file_name, ".csv")
-        # Removes "r." o "R." from string prefix (r. automatically put when an RJDemetra workspace with external variables is created)
         #file_name <- gsub("^[rR]\\.", "", file_name)
 
         year       <- start(get_ts(jSA_series))[1]
@@ -261,6 +275,7 @@ getUserDefinedTdVariables_info_csv <- function(jmodel ,input_mode=c("TS_regresso
           file_list[[idx_file_list]] <- current
           previous = file_list[[idx_file_list]]
           idx_file_list=idx_file_list+1
+
         }
 
 
@@ -270,6 +285,7 @@ getUserDefinedTdVariables_info_csv <- function(jmodel ,input_mode=c("TS_regresso
 
     }
 
+    idx_coef <-usrDefVarCount+1
 
     if(length(jUser_Td_VarsString)>0)
     {
@@ -287,6 +303,7 @@ getUserDefinedTdVariables_info_csv <- function(jmodel ,input_mode=c("TS_regresso
       previous=list()
       for(varString in jUser_Td_VarsString)
       {
+
         file_name <- tolower(sub(".*\\.(.*?)_\\d+$", "\\1", varString))
 
         file_name <- paste0(file_name, ".csv")
@@ -313,7 +330,7 @@ getUserDefinedTdVariables_info_csv <- function(jmodel ,input_mode=c("TS_regresso
     }
 
     #### Copy from here and the beginning if the function
-    #browser()
+
     var_info_list[[name]] <- append(var_info_list[[name]], file_list)
 
     ramps_list   <- get_ramps(jSA_series)
@@ -322,13 +339,35 @@ getUserDefinedTdVariables_info_csv <- function(jmodel ,input_mode=c("TS_regresso
     ivs_list     <- get_intervention_vars(jSA_series)
     iv_info_list[[name]] <- ivs_list
 
+    #coef_info_list[[name]] = append(coef_info_list[[name]], coef_list)
+
+    # Fixed coefficients reading
+    #browser()
+    jtramoSeatsSpec<-jmodel[[1]][[name]]
+    res<-jtramoSeatsSpec$result
+    jCore<-jtramoSeatsSpec$spec$getCore()
+    tramoSpec<-jCore$getTramoSpecification()
+    jReg<-tramoSpec$getRegression()
+    allFixedRegr <- jReg$getAllFixedCoefficients()
+    allFixedRegrS<- .jstrVal(allFixedRegr)
+    fixedUsrDefVarNames <- extract_variable_names(allFixedRegrS) #extract_variable_names() code is in utility_functions.R
+    #idx_coef_list=1
+    for(variable_name in fixedUsrDefVarNames)
+    {
+      coef<-jReg$getFixedCoefficients(variable_name)
+      coef_list <- append(coef_list, coef)
+    }
+    coef_info_list[[name]] = append(coef_info_list[[name]], coef_list)
+
+
   }
 
-  #browser()
-  ret <- list("ext_vars"=var_info_list, "ramps"=ramps_info_list, "intervention_vars"=iv_info_list )
-
+  ret <- list("ext_vars"=var_info_list, "ramps"=ramps_info_list, "intervention_vars"=iv_info_list, "varCoef"=coef_info_list)
   return(ret)
 }
+
+
+
 
 
 

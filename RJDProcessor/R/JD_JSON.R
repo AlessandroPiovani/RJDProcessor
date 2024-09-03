@@ -65,7 +65,7 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_reader, ext_reg_d
 
       ts_name <- series_names[i]
 
-
+      #browser()
       extended_tramoseats_spec_list <- read_spec_list_from_json_file(JSON_file, spec_format="list")
       extended_tramoseats_spec_obj  <- extended_tramoseats_spec_list[[ts_name]]
 
@@ -144,6 +144,8 @@ JD_JSON_from_materialized_workspace <- function(workspace_directory, ext_reg_inp
 #' @export
 JD_JSON_from_virtual_workspace <- function(ws, ext_reg_input_data_reader, JSON_file_name = "JD_JSON_specification.txt", diff=TRUE, java_processing=TRUE)
 {
+  #browser()
+
   compute(ws)
 
   series_spec_list  <-  extended_tramoseats_spec_list_from_workspace(workspace = ws, ext_reg_input_data_reader, java_processing=java_processing)
@@ -161,6 +163,7 @@ JD_JSON_from_virtual_workspace <- function(ws, ext_reg_input_data_reader, JSON_f
     # Ottieni la specifica corrente
     #browser()
     current_spec <- series_spec_list[[i]]
+
 
     # Converti la specifica in formato JSON
     json_spec <- to_JD_JSON(current_spec, indent = TRUE, diff=diff, basic_spec = current_spec@spec)

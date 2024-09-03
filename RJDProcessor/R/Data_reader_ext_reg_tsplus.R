@@ -20,6 +20,12 @@ setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg_tsplus", "ANY", "
 
              series_name <- time_series_info
 
+             # if(series_name=="C_DEFL")
+             # {
+             #   browser()
+             # }
+
+
              reg_directory   <- object@input_source
 
              if(is.null(var_info) || length(var_info)==0)
@@ -179,7 +185,7 @@ getUserDefinedTdVariables_info_tsplus <- function(jmodel ,input_mode=c("TS_regre
   var_info_list   = list()
   ramps_info_list = list()
   iv_info_list    = list()
-
+  coef_info_list  = list()
   #browser()
 
   get_repeat_counts <- function(jUser_Td_VarsString) {
@@ -205,9 +211,9 @@ getUserDefinedTdVariables_info_tsplus <- function(jmodel ,input_mode=c("TS_regre
   require(rJava)
   for(name in names(jmodel[[1]]))
   {
-    # if(name=="FATEXP_C")
+    # if(name=="C_DEFL")
     # {
-    #   browser()
+    #  browser()
     # }
 
     jSA_series      <- jmodel[[1]][[name]]
@@ -216,6 +222,8 @@ getUserDefinedTdVariables_info_tsplus <- function(jmodel ,input_mode=c("TS_regre
     jTradingDays    <- jCalendar$getTradingDays()
     jUser_Td_VarsString      <- jTradingDays$getUserVariables()
     file_list <- list()
+
+    coef_list <- list() #Added
 
     idx_file_list = 1
 
@@ -230,9 +238,15 @@ getUserDefinedTdVariables_info_tsplus <- function(jmodel ,input_mode=c("TS_regre
       for(i in 1:usrDefVarCount)
       {
         #usr def loop
+        ##browser()
+        j <- i-1             #Added this part
+        j <- as.integer(j)
+        jUser_UserDef_Var <- jRegression$getUserDefinedVariable(j) # Returns all 0, don't know why
+        #coef_list[[i]] <- jUser_UserDef_Var$getCoefficient() # Do the same for TD, checking for the index. Return coef_list
+
         #browser()
 
-        jUser_UserDef_Var <- jRegression$getUserDefinedVariable(integer(i))
+
         varString         <- jUser_UserDef_Var$getName()
 
         # BLOCK Designed over specific regressors presents in ISTAT
@@ -278,6 +292,7 @@ getUserDefinedTdVariables_info_tsplus <- function(jmodel ,input_mode=c("TS_regre
           file_list[[idx_file_list]] <- current
           previous = file_list[[idx_file_list]]
           idx_file_list=idx_file_list+1
+
         }
 
 
@@ -287,6 +302,7 @@ getUserDefinedTdVariables_info_tsplus <- function(jmodel ,input_mode=c("TS_regre
 
     }
 
+    idx_coef <-usrDefVarCount+1
 
     if(length(jUser_Td_VarsString)>0)
     {
@@ -304,8 +320,10 @@ getUserDefinedTdVariables_info_tsplus <- function(jmodel ,input_mode=c("TS_regre
       previous=list()
       for(varString in jUser_Td_VarsString)
       {
+        # No fixed coefficients for TD. If You want them to be fixed, put into UsrDefinedVariables
         #browser()
-
+        #coef_list[[idx_coef]] <- 1#varStringEstrarreCoeffSecE
+        #idx_coef <- idx_coef+1
 
 
         # BLOCK Designed over specific regressors presents in ISTAT
@@ -362,7 +380,10 @@ getUserDefinedTdVariables_info_tsplus <- function(jmodel ,input_mode=c("TS_regre
     }
 
     #### Copy from here and the beginning if the function
-    #browser()
+    # if(name=="C_DEFL")
+    # {
+    #   browser()
+    # }
     var_info_list[[name]] <- append(var_info_list[[name]], file_list)
 
     ramps_list   <- get_ramps(jSA_series)
@@ -370,9 +391,31 @@ getUserDefinedTdVariables_info_tsplus <- function(jmodel ,input_mode=c("TS_regre
 
     ivs_list     <- get_intervention_vars(jSA_series)
     iv_info_list[[name]] <- ivs_list
+
+    #coef_info_list[[name]] = append(coef_info_list[[name]], coef_list)
+
+  # Fixed coefficients reading
+    #browser()
+    jtramoSeatsSpec<-jmodel[[1]][[name]]
+    res<-jtramoSeatsSpec$result
+    jCore<-jtramoSeatsSpec$spec$getCore()
+    tramoSpec<-jCore$getTramoSpecification()
+    jReg<-tramoSpec$getRegression()
+    allFixedRegr <- jReg$getAllFixedCoefficients()
+    allFixedRegrS<- .jstrVal(allFixedRegr)
+    fixedUsrDefVarNames <- extract_variable_names(allFixedRegrS) #extract_variable_names() code is in utility_functions.R
+    #idx_coef_list=1
+    for(variable_name in fixedUsrDefVarNames)
+    {
+      coef<-jReg$getFixedCoefficients(variable_name)
+      coef_list <- append(coef_list, coef)
+    }
+    coef_info_list[[name]] = append(coef_info_list[[name]], coef_list)
+
+
   }
 
-  ret <- list("ext_vars"=var_info_list, "ramps"=ramps_info_list, "intervention_vars"=iv_info_list)
+  ret <- list("ext_vars"=var_info_list, "ramps"=ramps_info_list, "intervention_vars"=iv_info_list, "varCoef"=coef_info_list)
   return(ret)
 }
 

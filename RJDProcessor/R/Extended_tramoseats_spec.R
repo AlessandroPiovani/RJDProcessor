@@ -572,6 +572,8 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
   #jmodel          <- RJDemetra::get_jmodel(workspace, progress_bar = TRUE) # to retrieve external regressors by name
   cat("Loading models\n")
 
+
+  ##browser()
   # This part of code should be optimized (always do java)
   if(java_processing == FALSE)
   {
@@ -586,6 +588,7 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
   }
 
   cat("Loading external variables\n")
+  ##browser()
   all_model_vars_info <- data_reader_ext_reg@read_ext_reg_info(workspace)
 
   #all_jmodel_vars <- getUserDefinedTdVariables_info(jmodel) # per editare la scrittura
@@ -619,18 +622,25 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
 #' @export
 from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_integer_  ,method = "TS" ,basic_spec="RSA0", userdef.varFromFile=TRUE, all_model_vars_info=NULL, data_reader_ext_reg=NULL ,workspace=NA)
 {
-  #browser()
+  # if(series_name=="C_DEFL")
+  # {
+  #   browser()
+  # }
+
   if(is.null(all_model_vars_info) && !is.na(workspace)) # passing the variables pre_computed is more efficient because they are computed one time for a list of series
   {
     all_model_vars_info = data_reader_ext_reg@read_ext_reg_info(workspace)
   }
   #browser()
-  all_model_ivs_info      <- all_model_vars_info[["intervention_vars"]]
-  all_model_ramps_info    <- all_model_vars_info[["ramps"]]
-  all_model_ext_vars_info <- all_model_vars_info[["ext_vars"]]
+  all_model_ivs_info        <- all_model_vars_info[["intervention_vars"]]
+  all_model_ramps_info      <- all_model_vars_info[["ramps"]]
+  all_model_ext_vars_info   <- all_model_vars_info[["ext_vars"]]
+  all_model_usrDef_var_coef <- all_model_vars_info[["varCoef"]]
 
   no_ramps <- all(sapply(all_model_ramps_info, function(x) length(x) == 0))
   no_ivs   <- all(sapply(all_model_ivs_info  , function(x) length(x) == 0))
+  no_coef  <- (all(sapply(all_model_usrDef_var_coef  , function(x) length(x) == 0)) || all(unlist(all_model_usrDef_var_coef) == 0))
+
 
   if(!(no_ramps && no_ivs))
   {
@@ -682,7 +692,14 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_in
 
         user_def_var_info <- get_user_def_var_info(regarima_spec) # si può prendere anche dal workspace?
         usrdef.varType    <- user_def_var_info$type
-        usrdef.varCoef    <- user_def_var_info$coef
+        #usrdef.varCoef    <- user_def_var_info$coef
+        if(!is.na(series_name) && !all(all_model_vars_info[["varCoef"]][[series_name]]==0))
+        {
+          usrdef.varCoef <- all_model_vars_info[["varCoef"]][[series_name]]
+        }else
+        {
+          usrdef.varCoef <- NA
+        }
 
         userdef.varFromFile.infoList = all_model_ext_vars_info[[series_name]]
         #browser()
@@ -695,7 +712,15 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_in
     # TODO
     vars_mts <- ts()      #SA_spec$...
     usrdef.varType <- NA  #get_user_def_var_info$Type ?
-    usrdef.varCoef <- NA  #get_user_def_var_info$Coef ?
+    # usrdef.varCoef <- NA  #get_user_def_var_info$Coef ?
+    if(!is.na(series_name))
+    {
+      usrdef.varCoef <- all_model_vars_info[["varCoef"]][[series_name]]
+    }else
+    {
+      usrdef.varCoef <- NA
+    }
+
     userdef.varFromFile.infoList <- NULL
   }
 
