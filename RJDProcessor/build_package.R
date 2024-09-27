@@ -18,3 +18,4 @@ devtools::build()
 
 # Controlla il pacchetto
 check()
+

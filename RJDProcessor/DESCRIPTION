@@ -1,7 +1,7 @@
 Package: RJDProcessor
 Type: Package
 Title: RJDProcessor
-Version: 0.1.2
+Version: 0.1.3
 Author: Alessandro Piovani
 Maintainer: <alessandro.piovani@istat.it>
 Description:
@@ -9,13 +9,16 @@ Description:
 	The RJDProcessor library integrates the rjdverse packages into a fully R-based production pipeline, ready to be used and easily extendable by methodologists.
 	It offers the capability to manage the entire seasonal adjustment process: acquisition, processing, storage, automation, and not just seasonal adjustment of the data.
 	Processing of multiple time series is possible by storing their specifications in JSON files, and interoperability with other JDemetra+ software is guaranteed because RJDProcessor can read workspaces and is able to produce them as an output.
-License: What license is it under?
+License: EUPL
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.3
 Imports:
   RJDemetra (>= 0.2.5),
   rjson (>= 0.2.21)
+Suggests:
+  rjd3providers (>= 3.2.3),
+  readxl (>= 1.4.3)
 Collate: import_and_interface_definition.R
   Data_reader_csv.R
   Data_reader_csv_istat_format.R
@@ -24,6 +27,7 @@ Collate: import_and_interface_definition.R
   Data_reader_ext_reg_csv.R
   Data_reader_xlsx.R
   Data_reader_list.R
+  Data_reader_xml.R
   Extended_tramoseats_spec.R
   JD_JSON.R
   JD_JSON_file_processor.R
