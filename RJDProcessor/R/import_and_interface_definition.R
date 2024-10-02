@@ -29,6 +29,6 @@ setGeneric("read_ext_reg_info", function(object, var_info_container, adjust_path
 # source("Extended_tramoseats_spec.R")
 # source("JD_JSON.R")
 # source("JD_JSON_file_processor.R")
-
+# source("workspaces_manager.R")
 
 

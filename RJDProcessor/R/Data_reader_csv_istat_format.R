@@ -36,8 +36,12 @@ setMethod ("read_data", signature("Data_reader_csv_istat_format"),
 
               # Crea un oggetto mts
               mts <- matrix(NA, ncol = length(series_names), nrow = length(timestamps))
+              #mts <- gsub(",", ".", mts)
+
               colnames(mts) <- series_names
               rownames(mts) <- as.character(timestamps)
+              r_names <-  rownames(mts)
+              c_names <-  colnames(mts)
 
               # auto detection of the time series frequency
               d1         <- as.Date(timestamps[1])
@@ -51,8 +55,14 @@ setMethod ("read_data", signature("Data_reader_csv_istat_format"),
                 mts[, i] <- ts(data[, i], start = timestamps[1], frequency = freq)
               }
 
-              return(mts)
+              #browser()
+              mts <- gsub(",", ".", mts)
+              numeric_matrix <- matrix(unlist(lapply(mts, as.numeric)), nrow = nrow(mts), ncol = ncol(mts))
+              rownames(numeric_matrix) <- r_names
+              colnames(numeric_matrix) <- c_names
 
+              #return(mts)
+              return(numeric_matrix)
           })
 
 # Definizione del costruttore R-like

@@ -2,8 +2,7 @@
 require(RJDemetra)
 
 
-# Dichiarazione della classe
-#' @export
+# Class declaration
 setClass(
   "Extended_tramoseats_spec",
   slots = list(
@@ -95,7 +94,6 @@ setClass(
 # Costruttore
 
 #costruttore initialize per la classe
-#' @export
 setMethod("initialize", "Extended_tramoseats_spec",
           function(.Object, series_name, frequency=NA_integer_, method ="TS" ,spec = "RSA0", preliminary.check = NA,
                    estimate.from = NA_character_, estimate.to = NA_character_,
@@ -296,8 +294,8 @@ setMethod("initialize", "Extended_tramoseats_spec",
 
 
 
-# Costruttore R-like:
-# Funzione di aiuto per creare un oggetto Extended_tramoseats
+# R-like Constructor:
+# Helper function for creating an Extended_tramoseats object
 Extended_tramoseats_spec_helper <- function(series_name = NULL, frequency=NA_integer_, method="TS" ,spec = NULL, preliminary.check = NA,
                                             estimate.from = NA_character_, estimate.to = NA_character_,
                                             estimate.first = NA_integer_, estimate.last = NA_integer_,
@@ -365,8 +363,7 @@ Extended_tramoseats_spec_helper <- function(series_name = NULL, frequency=NA_int
       seats.maBoundary = seats.maBoundary, seats.method = seats.method)
 }
 
-# Definizione dell'alias di funzione (costruttore R-like)
-#' @export
+# Definition of the function alias (costruttore R-like)
 Extended_tramoseats_spec <- Extended_tramoseats_spec_helper
 
 
@@ -375,10 +372,9 @@ Extended_tramoseats_spec <- Extended_tramoseats_spec_helper
 
 
 
-# Definizione del metodo to_JD_JSON #se lo definisco così, non riesco a chiamarlo in from_reduced_to_full_JD_JSON_file di JD_JSON.r, perciò faccio definizione normale
-# basic_spec di default "RSA0", funzionalità di costruzione file su basic_spec diverse non ancora implementata
+# Definition of the method to_JD_JSON #If I define it like this, I am not able to call it in from_reduced_to_full_JD_JSON_file di JD_JSON.r, thus I do the normal definition
+# default basic_spec "RSA0"
 setGeneric("to_JD_JSON", function(object, indent = FALSE, diff = TRUE, basic_spec="RSA0") standardGeneric("to_JD_JSON"))
-#' @export
 setMethod("to_JD_JSON", "Extended_tramoseats_spec", function(object, indent = FALSE, diff = TRUE, basic_spec="RSA0") {
   #to_JD_JSON <- function(object, indent = FALSE, diff = TRUE)
   #{
@@ -399,7 +395,7 @@ setMethod("to_JD_JSON", "Extended_tramoseats_spec", function(object, indent = FA
     object <- to_named_list(object)
   }
 
-  # Converti l'oggetto in JSON utilizzando rjson
+  # Convert the object in JSON using rjson
   json_spec <- rjson::toJSON(object)#, indent = indent)
 
   if(indent == TRUE)
@@ -433,9 +429,7 @@ setMethod("to_JD_JSON", "Extended_tramoseats_spec", function(object, indent = FA
 
 
 
-# Definizione del metodo from_JD_JSON
 setGeneric("from_JD_JSON", function(object, json) standardGeneric("from_JD_JSON"))
-#' @export
 setMethod ("from_JD_JSON", "Extended_tramoseats_spec", function(object, json) {
   require(rjson)
   json_list <- fromJSON(json)
@@ -523,10 +517,10 @@ setMethod ("from_JD_JSON", "Extended_tramoseats_spec", function(object, json) {
     seats.method = json_list$seats.method
   )
 
-  # Rimuovi gli argomenti non specificati
+  # Removes arguments not specified
   args <- args[sapply(args, Negate(is.null))]
 
-  # Costruisci un nuovo oggetto Extended_tramoseats_spec
+  # Build a new Extended_tramoseats_spec object
   do.call("Extended_tramoseats_spec", args)
 
 })
@@ -548,13 +542,13 @@ setMethod ("from_JD_JSON", "Extended_tramoseats_spec", function(object, json) {
 
 
 to_named_list <- function(object) {
-  # Ottieni i nomi degli slot dell'oggetto S4
+  # Obtain slot names for S4 object
   slot_names <- slotNames(class(object))
 
-  # Inizializza una named list vuota
+  # Initialize an empty named list
   result_list <- list()
 
-  # Aggiungi i valori degli slot alla named list utilizzando slot()
+  # Add slot values to named list using slot()
   for (slot_name in slot_names) {
     result_list[[slot_name]] <- slot(object, slot_name)
   }
@@ -563,7 +557,6 @@ to_named_list <- function(object) {
 }
 
 
-#' @export
 extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader_ext_reg, method="TS", java_processing=TRUE ,...)
 {
   compute(workspace)
@@ -815,33 +808,31 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_in
 #' @export
 read_spec_list_from_json_file <- function(file_name, spec_format="Extended_tramoseats_spec") {
 
-  # Carica la libreria rjson
   require(rjson)
   #browser()
 
   # print("here\n")
   # print(file_name)
 
-  # Leggi il contenuto del file specifications.txt
   json_text <- readLines(file_name)
 
-  # Rimuovi i commenti pt1 di 2
-  # Come fare? a questo punto rimuovere solo il testo compreso fra // (inclusi) a fine linea
-  # Rimuovi i commenti singola riga (quelli che iniziano con //)
+  # Comments removal pt1 of 2
+  # How to do it? at this point, remove only the text between // (included) at the end of the line
+  # Removes single rows comments (the ones that start with //)
   json_text <- gsub("//.*$", "", json_text)
 
 
-  # Unisci le righe in una singola stringa
+  # Merge the rows in a single string
   json_string <- paste(json_text, collapse = "")
 
-  # Rimuovi i commenti pt2
-  # Come fare? a questo punto rimuovere solo /*...*/ commenti multilinea, visto che le linee sono state tutte unite in una sola
-  # Rimuovi i commenti multilinea (quelli che iniziano con /* e terminano con */)
+  # Comments removal pt2 of 2
+  # How to do it? at this point, remove only /*...*/ multiline comments, considreing that all the lines have been merged into one
+  # Removes multiline comments (the ones which starts with /* and ends with */)
   # json_string <- gsub("/\\*.*?\\*/", "", json_string, fixed = TRUE)
   json_string <- gsub("/\\*(.|\\n)*?\\*/", "", json_string)
 
 
-  # Parsa il JSON array
+  # Parsing of JSON array
   json_array <- fromJSON(json_string)
 
   json_list <- list()
@@ -876,14 +867,14 @@ read_spec_list_from_json_file <- function(file_name, spec_format="Extended_tramo
 to_tramoseats_spec_args<-function(extended_tramoseats_spec, data_reader_ext_reg)
 {
 
-  # Estrai gli elementi che ci sono in Extended_tramoseats_spec e non in tramoseats_spec
+  # Extract the elements which are in Extended_tramoseats_spec and not in tramoseats_spec
   userdef.varFromFile          <- extended_tramoseats_spec$userdef.varFromFile
   userdef.varFromFile.infoList <- extended_tramoseats_spec$userdef.varFromFile.infoList
   series_name                  <- extended_tramoseats_spec$series_name
   frequency                    <- extended_tramoseats_spec$frequency
   method                       <- extended_tramoseats_spec$method
 
-  # Rimuovi gli elementi che ci sono in Extended_tramoseats_spec e non in tramoseats_spec
+  # Remove the elements present in Extended_tramoseats_spec and not in tramoseats_spec
   extended_tramoseats_spec <- extended_tramoseats_spec[ ! names(extended_tramoseats_spec) %in% c("series_name") ] # è già memorizzato in ts_name; lo tolgo
   extended_tramoseats_spec <- extended_tramoseats_spec[ ! names(extended_tramoseats_spec) %in% c("frequency") ]
   extended_tramoseats_spec <- extended_tramoseats_spec[ ! names(extended_tramoseats_spec) %in% c("method") ]
@@ -892,7 +883,7 @@ to_tramoseats_spec_args<-function(extended_tramoseats_spec, data_reader_ext_reg)
 
   #browser()
 
-  #Usa gli elementi estratti da Extended_tramoseats_spec per preparare i regressori esterni
+  # Use the elements extracted from Extended_tramoseats_spec to prepare the external regressors
   if(!(is.null(userdef.varFromFile) || userdef.varFromFile == FALSE)){
     if(!is.null(userdef.varFromFile.infoList)){
 
@@ -913,7 +904,6 @@ to_tramoseats_spec_args<-function(extended_tramoseats_spec, data_reader_ext_reg)
 
 
 
-#' @export
 to_SA_spec<-function(extended_tramoseats_spec)
 {
   tramoseats_spec_args <- to_tramoseats_spec_args(extended_tramoseats_spec)

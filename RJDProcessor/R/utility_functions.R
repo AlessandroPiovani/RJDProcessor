@@ -9,17 +9,16 @@ check_character <- function(arg) {
 
 
 span_unpack <- function(span_string) {
-  # Inizializza la lista di output
   output_list <- list()
   #browser()
-  # Caso 1: "All"
+  # Case 1: "All"
   if (tolower(span_string) == "all") {
     output_list$type <- "All"
     output_list$type.info <- NULL
     return(output_list)
   }
 
-  # Caso 2: "From YYYY-MM-DD"
+  # Case 2: "From YYYY-MM-DD"
   if (grepl("^from \\d{4}-\\d{2}-\\d{2}$", tolower(span_string))) {
     output_list$type <- "From"
     output_list$type.info <- substring(span_string, 6)
@@ -33,28 +32,28 @@ span_unpack <- function(span_string) {
     return(output_list)
   }
 
-  # Caso 4: "YYYY-MM-DD - YYYY-MM-DD"
+  # Case 4: "YYYY-MM-DD - YYYY-MM-DD"
   if (grepl("^\\d{4}-\\d{2}-\\d{2} - \\d{4}-\\d{2}-\\d{2}$", tolower(span_string))) {
     output_list$type <- "Between"
     output_list$type.info <- unlist(strsplit(span_string, " - "))
     return(output_list)
   }
 
-  # Caso 5: "last N periods"
+  # Case 5: "last N periods"
   if (grepl("^all but last \\d+ periods$", tolower(span_string))) {
     output_list$type <- "Last"
     output_list$type.info <- as.integer(substring(span_string, 13, nchar(span_string)-8))
     return(output_list)
   }
 
-  # Caso 6: "first M periods"
+  # Case 6: "first M periods"
   if (grepl("^all but first \\d+ periods$", tolower(span_string))) {
     output_list$type <- "First"
     output_list$type.info <- as.integer(substring(span_string, 14, nchar(span_string)-8))
     return(output_list)
   }
 
-  # Caso 7: "all but first N periods and last M periods"
+  # Case 7: "all but first N periods and last M periods"
   if (grepl("^all but first \\d+ periods and last \\d+ periods$", tolower(span_string))) {
     output_list$type <- "Exclude"
     parts <- strsplit(span_string, " ")[[1]]
@@ -62,7 +61,7 @@ span_unpack <- function(span_string) {
     return(output_list)
   }
 
-  # Nessuna corrispondenza, restituisci FALSE
+  # No correspondance, return FALSE
   return(FALSE)
 }
 
@@ -76,10 +75,10 @@ span_unpack_into_spec <- function(span = "All") {
   ret_list$exclFirst = NA_integer_
   ret_list$exclLast  = NA_integer_
 
-  # Utilizza la funzione span_unpack per ottenere le informazioni sullo span
+  # Utilize span_unpack function to obtain information about span
   span_info <- span_unpack(span)
 
-  # Imposta le variabili in father_list in base al tipo di span
+  # Set father_list variables depending on span type
   if (span_info$type == "All") {
     ret_list$exclFirst <- as.integer(0)
     ret_list$exclLast <- as.integer(0)
@@ -159,21 +158,21 @@ get_user_def_var_info <- function(spec)
 difference_objects <- function(first, second) {
   #browser()
 
-  # Inizializza una lista vuota per contenere gli elementi differenziali
+  # Empty list that will contain the elements which differ
   difference_list <- list()
 
-  # Itera attraverso gli elementi della prima lista
+  # Iterate over the elements of the first list
   for (name in slotNames(class(first))) {
     # if(name=="automdl.ub2"){
     #   browser()
     # }
 
-    # Controlla se l'elemento esiste nella seconda lista e se i valori sono diversi
+    # Check whether the element exists in the second list and if values are different
     if (    (    name %in% slotNames(class(second))      )    && (     !identical(slot(first,name),slot(second,name))    )   ){
-      # Aggiungi l'elemento alla lista delle differenze
+      #Add the element to the list of the differences
       difference_list[[name]] <- slot(first,name)
     }
-    # Se l'elemento non esiste nella seconda lista, aggiungilo comunque alla lista delle differenze
+    # If the element does not exist in the second list, add it to the second list anyway
     else if (!(name %in% slotNames(class(first)))) {
       difference_list[[name]] <- slot(first,name)
     }
@@ -193,32 +192,32 @@ simplify_leaves <- function(input_list) {
     #browser()
 
     if (is.data.frame(x)) {
-      # Se è un dataframe con almeno 3 righe, prendi solo la prima riga
+      # If it is a dataframe with at least 3 rows, take only the first row
       if (nrow(x) == 3) {
         return(x[3, , drop = FALSE])
-      }else if (nrow(x) >= 1) {  # Controlla se ci sono almeno una riga
-        return(tail(x, n = 1))  # Ritorna l'ultima riga
+      }else if (nrow(x) >= 1) {  # Check if at least one row is present
+        return(tail(x, n = 1))  # Return last row
       } else {
-        return(NULL)  # Non ci sono sufficienti righe da mantenere
+        return(NULL)  # Not enough rows to be mantained
       }
     } else if (is.list(x)) {
-      # Se è una lista, applica ricorsivamente la funzione
+      # If it is a list, apply the function recursively
       return(simplify_leaves(x))
     } else if (is.vector(x)) {
-      # Se è un vettore con almeno 3 elementi, prendi solo il terzo
+      # If it is an array with at least 3 elements, take only the 3rd
       if (length(x) == 3) {
         return(x[3])
       } else {
-        #return(NULL)  # Non ci sono sufficienti elementi da mantenere
+        #return(NULL)  # There are not sufficient elements to be mantained
         return(x)
       }
     } else {
-      # Se non è né un dataframe né una lista né un vettore, restituisci l'oggetto così com'è
+      # If it is neither a dataframe nor a list, return the object as it is aSe non è né un dataframe né una lista né un vettore, restituisci l'oggetto così com'è
       return(x)
     }
   })
   # browser()
-  # Rimuovi eventuali elementi NULL
+  # Removes eventual null elements
   result <- result[!sapply(result, is.null)]
 
   return(result)
@@ -255,7 +254,7 @@ NA_not_as_char <- function(json)
     }
   }
 
-  # Applica la funzione a ciascun elemento della lista
+  # Apply the function to every element of the list
   json <- lapply(json, remove_na)
   return(json)
 }
@@ -303,5 +302,32 @@ extract_variable_names <- function(input_string) {
   variables <- gsub("^\\{", "", variables)
 
   return(variables)
+}
+
+#' @export
+get_mts <- function(time_series_matrix) {
+  # Check if matrix has row and column names
+  if (is.null(rownames(time_series_matrix)) || is.null(colnames(time_series_matrix))) {
+    stop("Matrix must have names for rows and columns.")
+  }
+
+  # Estrai le date dalle righe
+  date_index <- as.Date(rownames(time_series_matrix))
+
+  # Check the difference in month between the first two dates, useful to obtain the frequency
+  if (length(unique(date_index)) < 2) {
+    stop("Matrix must contain at least two different dates")
+  }
+
+  date_diff <- as.numeric(difftime(unique(date_index)[2], unique(date_index)[1], units = "days")) / 30.44  # Circa 30.44 giorni per mese
+  frequency <- round(12 / date_diff)  # Frequency
+
+  # Create mts object
+  mts_result <- ts(time_series_matrix,
+                   start = c(as.numeric(format(min(date_index), "%Y")),
+                             as.numeric(format(min(date_index), "%m"))),
+                   frequency = frequency)
+
+  return(mts_result)
 }
 

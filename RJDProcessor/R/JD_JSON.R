@@ -1,9 +1,6 @@
 #setwd("C:\\Users\\UTENTE\\Desktop\\MigrazioneFAT-RJDemetra_TEST_3\\")
 
-# Carica il pacchetto RJDemetra
-#install.packages("RJDemetra")
 require(RJDemetra)
-#install.packages("rjson")
 require(rjson)
 
 #source("utility_functions.R")
@@ -152,28 +149,28 @@ JD_JSON_from_virtual_workspace <- function(ws, ext_reg_input_data_reader, JSON_f
 
   #browser()
 
-  # Apri il file in modalità scrittura
+  # File opened in writing mode
   con <- file(JSON_file_name, "w")
 
   writeLines("[\n", con, sep = "")
   n <- length(series_spec_list)
 
-  # Itera attraverso ciascuna specifica nella lista, tranne l'ultima, che verrà stampata dopo il for, senza virgola finale
+  # Iterate over the specifications in the list, excluding the last, that will be printed after the for loop, without final comma
   for (i in seq_len(n - 1)) {
-    # Ottieni la specifica corrente
+    # Obtain the current specification
     #browser()
     current_spec <- series_spec_list[[i]]
 
 
-    # Converti la specifica in formato JSON
+    # Convert the specification in JSON format
     json_spec <- to_JD_JSON(current_spec, indent = TRUE, diff=diff, basic_spec = current_spec@spec)
 
-    # Scrivi la specifica nel file
+    # Write the specification on the file
     writeLines(json_spec, con, sep = ",\n\n\n")
 
   }
 
-  # Ultima specifica senza "," finale
+  # Last specification without "," at the end
   current_spec <- series_spec_list[[n]]
   json_spec <- to_JD_JSON(current_spec, indent = TRUE, diff = diff)
   writeLines(json_spec, con, sep = "")
@@ -181,9 +178,9 @@ JD_JSON_from_virtual_workspace <- function(ws, ext_reg_input_data_reader, JSON_f
   writeLines("\n]", con, sep = "")
 
 
-  writeLines("\n", con, sep = "") #per non avere errori in fase di rilettura, i file devono terminare per "\n"
+  writeLines("\n", con, sep = "") # to not have errors when you read again, files must end with "\n"
 
-  # Chiudi il file
+  # Close the file
   close(con)
 
 
@@ -204,7 +201,7 @@ from_reduced_to_full_JD_JSON_obj<-function(JD_JSON_string, basic_spec="RSA0")
 
 merge_objects_precedence_to_reduced <- function(reduced, basic_spec = "RSA0")
 {
-  # Unisci gli oggetti con precedenza su reduced
+  # Merge the objects with precedence over reduced
   full_object <- basic_spec
   names(full_object) <- c(names(reduced), setdiff(names(basic_spec), names(reduced)))
   for (key in names(reduced)) {
@@ -219,13 +216,13 @@ merge_objects_precedence_to_reduced <- function(reduced, basic_spec = "RSA0")
 #' @export
 from_reduced_to_full_JD_JSON_file <- function(JD_JSON_file, output_file_name=NA, indent= TRUE)
 {
-  # Definisci il nome del file
+  # Define file name
   if(is.na(output_file_name))
   {
     output_file_name <- gsub("\\.(\\w+)$", "_full.\\1", JD_JSON_file)
 
   }
-  # Apri il file in modalità scrittura
+  # Open the file in writing mode
   con <- file(output_file_name, "w")
 
   writeLines("[\n", con, sep = "")
@@ -239,7 +236,7 @@ from_reduced_to_full_JD_JSON_file <- function(JD_JSON_file, output_file_name=NA,
   {
     spec   <- extended_tramoseats_spec_list[[i]]
 
-    #spec   <- convert_numerics_to_integers(spec) #metterlo nel costruttore?
+    #spec   <- convert_numerics_to_integers(spec) # Should I put it in the constructor
     #browser()
     spec   <- do.call(Extended_tramoseats_spec, spec)
 
@@ -258,9 +255,9 @@ from_reduced_to_full_JD_JSON_file <- function(JD_JSON_file, output_file_name=NA,
   writeLines("\n]", con, sep = "")
 
 
-  writeLines("\n", con, sep = "") #per non avere errori in fase di rilettura, i file devono terminare per "\n"
+  writeLines("\n", con, sep = "") # to not have errors when you read again, files must end with "\n"
 
-  # Chiudi il file
+  # Close the file
   close(con)
   closeAllConnections()
 
@@ -271,13 +268,13 @@ from_reduced_to_full_JD_JSON_file <- function(JD_JSON_file, output_file_name=NA,
 #' @export
 from_full_to_reduced_JD_JSON_file<-function(JD_JSON_file, output_file_name=NA, indent= TRUE, basic_spec=NA)
 {
-  # Definisci il nome del file
+  # Define file name
   if(is.na(output_file_name))
   {
     output_file_name <- gsub("\\.(\\w+)$", "_reduced.\\1", JD_JSON_file)
 
   }
-  # Apri il file in modalità scrittura
+  # Open the file in writing mode
   con <- file(output_file_name, "w")
 
   writeLines("[\n", con, sep = "")
@@ -304,7 +301,7 @@ from_full_to_reduced_JD_JSON_file<-function(JD_JSON_file, output_file_name=NA, i
     }
 
 
-    #spec   <- convert_numerics_to_integers(spec) #metterlo nel costruttore?
+    #spec   <- convert_numerics_to_integers(spec) # Should I have to put it in the constructor?
     #browser()
     spec   <- do.call(Extended_tramoseats_spec, spec)
 
@@ -333,9 +330,9 @@ from_full_to_reduced_JD_JSON_file<-function(JD_JSON_file, output_file_name=NA, i
   writeLines("\n]", con, sep = "")
 
 
-  writeLines("\n", con, sep = "") #per non avere errori in fase di rilettura, i file devono terminare per "\n"
+  writeLines("\n", con, sep = "") # to not have errors when you read again, files must end with "\n"
 
-  # Chiudi il file
+  # Close the file
   close(con)
   closeAllConnections()
 

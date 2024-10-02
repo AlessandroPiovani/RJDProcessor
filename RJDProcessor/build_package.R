@@ -19,3 +19,5 @@ devtools::build()
 # Controlla il pacchetto
 check()
 
+
+#install.packages("C://Users//UTENTE//Desktop//RJDopenCruncher//RJDProcessor_0.1.4.tar.gz", repos = NULL, type = "source")
