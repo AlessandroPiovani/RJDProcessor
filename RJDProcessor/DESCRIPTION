@@ -23,7 +23,6 @@ Suggests:
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Collate: import_and_interface_definition.R
-  RJDProcessor.R
   Data_reader_csv.R
   Data_reader_csv_istat_format.R
   Data_reader_ext_reg_tsplus.R
