@@ -1,4 +1,3 @@
-#' @export
 get_basic_spec <- function(spec)
 {
   if(spec=="RSA0" || spec=="TS")

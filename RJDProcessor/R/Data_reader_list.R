@@ -1,4 +1,4 @@
-# Definizione della classe S4
+# Definition of S4 class
 setClass("Data_reader_list",
          slots = list(
            input_source     = "ANY",
@@ -6,7 +6,19 @@ setClass("Data_reader_list",
            ...              = "ANY"
          ))
 
-#setGeneric("read_data", function(object, ...) standardGeneric("read_data"))
+#' Get the data from a Data_reader_list
+#'
+#' This function returns the data from the input_source of the object.
+#'
+#' @return data in form of numeric matrix, with rownames = dates (in string format, YYYY-MM-DD) end colnames = time series names (string)
+#' @examples
+#'
+#' FATEXP_10_list <- list("series_name"="FATEXP_10", "dates"=c("2005-01-01","2005-02-01","2005-03-01"), "values"=c(12, 15, 11.1))
+#' C_DEFL_list    <- list("series_name"="C_DEFL",    "dates"=c("2001-01-01","2001-02-01","2001-03-01"), "values"=c(99, 100, 99.1))
+#' #...
+#' input_data_list  <- list(FATEXP_10_list, C_DEFL_list)
+#' input_data_reader <- Data_reader_list(input_source = input_data_list)
+#' #input_data_readerATread_data() # uncomment and replace AT with its symbol
 #' @export
 setMethod ("read_data", signature("Data_reader_list"),
            function(object, ...) {
@@ -124,11 +136,23 @@ setMethod ("read_data", signature("Data_reader_list"),
 #
 #           })
 
-# Definizione del costruttore R-like
+#' Constructor (R-like) of the Data_reader object
+#'
+#' This function creates a Data_reader object capable of reading data from a list and returning it using the \code{read_data()} function.
+#'
+#' @param input_source A string with file name (also with path).
+#' @return The Data_reader_csv object
+#' @examples
+#' FATEXP_10_list <- list("series_name"="FATEXP_10", "dates"=c("2005-01-01","2005-02-01","2005-03-01"), "values"=c(12, 15, 11.1))
+#' C_DEFL_list    <- list("series_name"="C_DEFL",    "dates"=c("2001-01-01","2001-02-01","2001-03-01"), "values"=c(99, 100, 99.1))
+#' # ...
+#' input_data_list  <- list(FATEXP_10_list, C_DEFL_list)
+#' input_data_reader <- Data_reader_list(input_source = input_data_list)
+#' #input_data_readerATread_data() # uncomment and replace AT with its symbol
+
 #' @export
 Data_reader_list <- function(input_source = NA, ...) {
 
-  # Crea un oggetto della classe Data_reader_csv
   obj <- new("Data_reader_list", input_source = input_source, read_data = function() read_data(obj))
 
   return(obj)

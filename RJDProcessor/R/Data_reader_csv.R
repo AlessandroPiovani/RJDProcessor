@@ -1,4 +1,4 @@
-# Definizione della classe S4
+# Definition of S4 class
 setClass("Data_reader_csv",
          slots = list(
            input_source     = "ANY",
@@ -7,13 +7,20 @@ setClass("Data_reader_csv",
          ))
 
 
-# read_data method, IT MUST RETURN AN mts OBJECT!!! MODIFY THIS METHOD TO CUSTOMIZE INPUT
-#setGeneric("read_data", function(object, ...) standardGeneric("read_data"))
+#' Get the data from a Data_reader_csv
+#'
+#' This function returns the data from the input_source of the object.
+#'
+#' @return data in form of numeric matrix, with rownames = dates (in string format, YYYY-MM-DD) end colnames = time series names (string)
+#' @examples
+#' input_data_file_name <- "CSV-FAS/grezzi_trim_FAS.csv"
+#' input_data_reader <- Data_reader_csv(input_source = input_data_file_name)
+#' #input_data_readerATread_data() # uncomment and replace AT with its symbol
 #' @export
 setMethod ("read_data", signature("Data_reader_csv"),
           function(object, ...) {
 
-              # Importa il file CSV
+              # Import CSV file
               #browser()
               suppressMessages({
                 #data <- read_excel(object@input_source, sheet = 1, col_names = TRUE)
@@ -21,20 +28,20 @@ setMethod ("read_data", signature("Data_reader_csv"),
                 closeAllConnections()
               })
 
-              # Rimuovi le virgolette dai nomi delle colonne e dai valori
+              # Removes "" from column names and values
               names(data) <- gsub("\"", "", names(data))
               #data[] <- lapply(data, function(x) gsub("\"", "", x))
 
               timestamps   <- as.Date(data[[1]], format = "%d/%m/%Y")
 
-              # Rimuovi la colonna delle date
+              # Remove the column of the dates
               data <- data[, -1, drop = FALSE] # Remove the column with dates
 
               series_names <-names(data)
 
 
 
-              # Crea un oggetto mts
+              # Creates an mts object
               mts <- matrix(NA, ncol = length(series_names), nrow = length(timestamps))
               colnames(mts) <- series_names
               rownames(mts) <- as.character(timestamps)
@@ -46,7 +53,7 @@ setMethod ("read_data", signature("Data_reader_csv"),
               freq       <- 12/month_diff
 
 
-              # Ciclo per creare un oggetto ts per ogni colonna
+              # Loop to create a ts object for each column
               for (i in 1:ncol(mts)) {
                   suppressWarnings({
                     data[[i]] <- as.numeric(data[[i]])  # Convert string "NA" to numeric NA
@@ -61,11 +68,19 @@ setMethod ("read_data", signature("Data_reader_csv"),
 
           })
 
-# Definizione del costruttore R-like
+#' Constructor (R-like) of the Data_reader object
+#'
+#' This function creates a Data_reader object capable of reading data from CSV files and returning it using the \code{read_data()} function.
+#'
+#' @param input_source A string with file name (also with path).
+#' @return The Data_reader_csv object
+#' @examples
+#' input_data_file_name <- "CSV-FAS/grezzi_trim_FAS.csv"
+#' input_data_reader <- Data_reader_csv(input_source = input_data_file_name)
+#' #input_data_readerATread_data() # uncomment and replace AT with its symbol
 #' @export
 Data_reader_csv <- function(input_source = NA, ...) {
 
-  # Crea un oggetto della classe Data_reader_csv
   obj <- new("Data_reader_csv", input_source = input_source, read_data = function() read_data(obj))
 
   return(obj)
