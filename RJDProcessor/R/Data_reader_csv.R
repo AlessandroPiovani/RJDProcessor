@@ -11,11 +11,11 @@ setClass("Data_reader_csv",
 #'
 #' This function returns the data from the input_source of the object.
 #'
-#' @return data in form of numeric matrix, with rownames = dates (in string format, YYYY-MM-DD) end colnames = time series names (string)
+#' @return data in form of numeric matrix, with rownames = dates (in string format, YYYY-MM-DD) and colnames = time series names (string)
 #' @examples
-#' input_data_file_name <- "CSV-FAS/grezzi_trim_FAS.csv"
-#' input_data_reader <- Data_reader_csv(input_source = input_data_file_name)
-#' #input_data_readerATread_data() # uncomment and replace AT with its symbol
+#' input_data_file_name <- system.file("extdata","CSV-FAS/grezzi_trim_FAS.csv", package = "RJDProcessor")
+#' input_data_reader    <- Data_reader_csv(input_source = input_data_file_name)
+#' input_data_reader@read_data()
 #' @export
 setMethod ("read_data", signature("Data_reader_csv"),
           function(object, ...) {
@@ -75,9 +75,9 @@ setMethod ("read_data", signature("Data_reader_csv"),
 #' @param input_source A string with file name (also with path).
 #' @return The Data_reader_csv object
 #' @examples
-#' input_data_file_name <- "CSV-FAS/grezzi_trim_FAS.csv"
-#' input_data_reader <- Data_reader_csv(input_source = input_data_file_name)
-#' #input_data_readerATread_data() # uncomment and replace AT with its symbol
+#' input_data_file_name <- system.file("extdata","CSV-FAS/grezzi_trim_FAS.csv", package = "RJDProcessor")
+#' input_data_reader    <- Data_reader_csv(input_source = input_data_file_name)
+#' input_data_reader@read_data()
 #' @export
 Data_reader_csv <- function(input_source = NA, ...) {
 

@@ -1,8 +1,3 @@
-# THE read_ext_reg_data METHOD MUST RETURN AN MTS!!
-
-
-# Definizione della classe S4
-#' @export
 setClass("Data_reader_ext_reg_tsplus",
          slots = list(
            input_source      = "ANY",   # in our case source is a directory path where the regressors are allocated
@@ -11,8 +6,30 @@ setClass("Data_reader_ext_reg_tsplus",
            ...               = "ANY"
          ))
 
-# read_data method, IT MUST RETURN AN mts OBJECT!!! MODIFY THIS METHOD TO CUSTOMIZE INPUT
-#setGeneric("read_ext_reg_data", function(object, var_info=NULL, time_series_info=NULL, frequency= NA_integer_, ...) standardGeneric("read_ext_reg_data"))
+#' Read external regressors data
+#'
+#' This function reads data from external regressors and returns it as a numeric matrix with variable names as colnames
+#' and YYYY-MM-DD dates as rownames
+#'
+#' @param var_info A string with file name (also with path).
+#' @param time_series_info A string with time series name in workspace name (also with path).
+#' @param frequency i.e. 12 = monthly data, 4 = quarterly data
+#' @return a numeric matrix with variable names as colnames and YYYY-MM-DD dates as rownames
+#'
+#' @examples
+#'
+#' require(RJDemetra)
+#' input_workspace_xml       <- system.file("extdata", "WorkspaceTUR-container/workspace-TUR.xml",
+#'                                          package = "RJDProcessor")
+#' input_data_file_name      <- system.file("extdata", "SITIC-TUR/grezziTUR.csv", package = "RJDProcessor")
+#' regr_directory            <- system.file("extdata", "SITIC-TUR/regr", package = "RJDProcessor")
+#' ws                        <- load_workspace(file = input_workspace_xml)
+#' compute(ws)
+#' data_reader_ext_reg       <- Data_reader_ext_reg_tsplus(regr_directory)
+#' all_model_ext_vars_info <- data_reader_ext_reg@read_ext_reg_info(ws)
+#' vars_matrix             <- data_reader_ext_reg@read_ext_reg_data(all_model_ext_vars_info, "VATASC",
+#'                                                                  frequency=12)
+#'
 #' @export
 setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg_tsplus", "ANY", "ANY", "ANY"),
            function(object, var_info=NULL, time_series_info=NULL, frequency=NA_integer_, ...) {
@@ -37,20 +54,20 @@ setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg_tsplus", "ANY", "
 
 
              mts_total <- NA
-             # Itera attraverso gli elementi di var_info_list
+             # Iterate through var_info_list elements
              for (i in seq_along(var_info[[series_name]]))
              {
 
                ##browser()
                user_def_var <- var_info[[series_name]][[i]]
 
-               # Costruisci il percorso completo del file
+               # Build the complete file path
                full_file_path <- file.path(reg_directory, user_def_var$container)
 
-               # Leggi i dati dal file
+               # Read data from file
                data <- read.table(full_file_path, header = FALSE, sep = "\t")
 
-               # Definisci la data di inizio e la frequenza
+               # Set start date and frequency
                data_date <- as.Date(user_def_var$start)
                y <- as.integer(format(data_date, "%Y"))
                m <- as.integer(format(data_date, "%m"))
@@ -71,14 +88,14 @@ setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg_tsplus", "ANY", "
                }
 
                mts_file<-NA
-               # ITERA SULLE COLONNE DEL FILE
+               # Iterates over file's columns
                for (j in 1:ncol(data))
                {
-                   # Ottieni il nome della colonna
+                   # Get column name
                    column_name <- user_def_var$container
                    column_name <- gsub("\\.txt", "", column_name)
 
-                   # Ottieni i dati della colonna
+                   # Get column data
                    column_data <- data[[j]]
 
                    # create a dummy variable allowing to work with an MTS instead of a TS. Working with MTS allows to set the series names
@@ -102,7 +119,6 @@ setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg_tsplus", "ANY", "
                }
              }
 
-             # DUBBI PARTONO QUI
              if(length(ts_list)>0)
              {
                mts_file <- do.call(ts.union, ts_list)
@@ -135,8 +151,24 @@ setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg_tsplus", "ANY", "
 
            })
 
-# read_ext_reg_info method, IT MUST RETURN A LIST of information on external regressors
-#setGeneric("read_ext_reg_info", function(object, var_info_container, ...) standardGeneric("read_ext_reg_info"))
+#' Read information about external regressors from a workspace
+#'
+#' This function returns a list of information about external regressors used in the models contained in a workspaces
+#'
+#' @param var_info_container workspace xml file path
+#' @return list() of information about external regressors
+#' @examples
+#'
+#' require(RJDemetra)
+#' input_workspace_xml       <- system.file("extdata", "WorkspaceTUR-container/workspace-TUR.xml",
+#'                                          package = "RJDProcessor")
+#' input_data_file_name      <- system.file("extdata", "SITIC-TUR/grezziTUR.csv", package = "RJDProcessor")
+#' regr_directory            <- system.file("extdata", "SITIC-TUR/regr", package = "RJDProcessor")
+#' ws                        <- load_workspace(file = input_workspace_xml)
+#' compute(ws)
+#' data_reader_ext_reg       <- Data_reader_ext_reg_tsplus(regr_directory)
+#' all_model_ext_vars_info <- data_reader_ext_reg@read_ext_reg_info(ws)
+#'
 #' @export
 setMethod ("read_ext_reg_info", signature("Data_reader_ext_reg_tsplus", "ANY", "ANY"),
            function(object, var_info_container, adjust_path=TRUE, ...) {
@@ -151,13 +183,29 @@ setMethod ("read_ext_reg_info", signature("Data_reader_ext_reg_tsplus", "ANY", "
            })
 
 
-# Definizione del costruttore R-like
+#' Constructor (R-like) of the Data_reader object
+#'
+#' This function creates a Data_reader_ext_reg object capable of reading data from TRAMO-SEATS+ external regressors files and returning it using the \code{read_ext_reg_data()} function.
+#'
+#' @param input_source A string with the input: e.g. a file name (also with path) if the input is a file.
+#' @return The Data_reader_ext_reg_tsplus object
+#' @examples
+#' require(RJDemetra)
+#' input_workspace_xml       <- system.file("extdata", "WorkspaceTUR-container/workspace-TUR.xml",
+#'                                          package = "RJDProcessor")
+#' input_data_file_name      <- system.file("extdata", "SITIC-TUR/grezziTUR.csv", package = "RJDProcessor")
+#' regr_directory            <- system.file("extdata", "SITIC-TUR/regr", package = "RJDProcessor")
+#' ws                        <- load_workspace(file = input_workspace_xml)
+#' compute(ws)
+#' data_reader_ext_reg       <- Data_reader_ext_reg_tsplus(regr_directory)
+#' all_model_ext_vars_info <- data_reader_ext_reg@read_ext_reg_info(ws)
+#' vars_matrix             <- data_reader_ext_reg@read_ext_reg_data(all_model_ext_vars_info, "VATASC",
+#'                                                                  frequency=12)
+#'
 #' @export
 Data_reader_ext_reg_tsplus <- function(input_source, ...) {
 
   obj <- new("Data_reader_ext_reg_tsplus", input_source = input_source, read_ext_reg_data = function(...) read_ext_reg_data(obj, ...), read_ext_reg_info = function(...) read_ext_reg_info(obj,...),...)
-
-  # Restituisci l'oggetto creato
   return(obj)
 }
 
@@ -189,21 +237,21 @@ getUserDefinedTdVariables_info_tsplus <- function(jmodel ,input_mode=c("TS_regre
   #browser()
 
   get_repeat_counts <- function(jUser_Td_VarsString) {
-    # Controlla se jUser_Td_VarsString è una singola stringa
+    # Check whether jUser_Td_VarsString is a single string
     if (is.character(jUser_Td_VarsString) && length(jUser_Td_VarsString) == 1) {
-      return(1)  # Restituisce un vettore di un solo elemento con il valore 1
+      return(1)  # Returns an array with only one element having value 1
     } else {
-      # Estrai il prefisso di ogni elemento
+      # Extract prefix from each element
       prefixes <- gsub("^(.*)_\\d+$", "\\1", jUser_Td_VarsString)
-      # Conta le ripetizioni dei prefissi
+      # Count the repetitions of the prefix
       repeat_counts <- table(prefixes)
-      # Creazione del vettore di risultati
+      # Creation of the array of the results
       result <- integer(length(prefixes))
-      # Assegna il numero di ripetizioni per ogni variabile al vettore di risultati
+      # Assign the number of repetitions of each variable to the vector of the results
       for (i in seq_along(prefixes)) {
         result[i] <- repeat_counts[prefixes[i]]
       }
-      return(result)  # Restituisce un vettore con il numero di variabili ripetute
+      return(result)  # Return an array with the number of repeted variables
     }
   }
   repeated_vars <- c()

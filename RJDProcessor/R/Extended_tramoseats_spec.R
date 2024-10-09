@@ -612,7 +612,7 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
 
 
 # From SA_spec relies on Workspace to assign a value to the custom fields of Extended_tramoseats_spec (in particular the filename)
-#' @export
+##' @export
 from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_integer_  ,method = "TS" ,basic_spec="RSA0", userdef.varFromFile=TRUE, all_model_vars_info=NULL, data_reader_ext_reg=NULL ,workspace=NA)
 {
   # if(series_name=="C_DEFL")
@@ -805,7 +805,7 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_in
 
 # if spec_format=="Extended_tramoseats_spec" the function returns a list of "Extended_tramoseats_object", if spec_format=="list", the elements of the list are named lists with the same names of the objects elements.
 # a list of "Extended_tramoseats_object"s is heavier in terms of memory than a list of lists
-#' @export
+##' @export
 read_spec_list_from_json_file <- function(file_name, spec_format="Extended_tramoseats_spec") {
 
   require(rjson)
@@ -863,7 +863,7 @@ read_spec_list_from_json_file <- function(file_name, spec_format="Extended_tramo
 }
 
 
-#' @export
+##' @export
 to_tramoseats_spec_args<-function(extended_tramoseats_spec, data_reader_ext_reg)
 {
 

@@ -1,8 +1,3 @@
-# THE read_ext_reg_data METHOD MUST RETURN AN MTS!!
-
-
-# Definizione della classe S4
-#' @export
 setClass("Data_reader_ext_reg_xlsx",
          slots = list(
            input_source      = "ANY",   # in our case source is a directory path where the regressors are allocated
@@ -11,8 +6,30 @@ setClass("Data_reader_ext_reg_xlsx",
            ...               = "ANY"
          ))
 
-# read_data method, IT MUST RETURN AN mts OBJECT!!! MODIFY THIS METHOD TO CUSTOMIZE INPUT
-#setGeneric("read_ext_reg_data", function(object, var_info=NULL, time_series_info=NULL, frequency= NA_integer_, ...) standardGeneric("read_ext_reg_data"))
+#' Read external regressors data
+#'
+#' This function reads data from external regressors and returns it as a numeric matrix with variable names as colnames
+#' and YYYY-MM-DD dates as rownames
+#'
+#' @param var_info A string with file name (also with path).
+#' @param time_series_info A string with time series name in workspace name (also with path).
+#' @param frequency i.e. 12 = monthly data, 4 = quarterly data
+#' @return a numeric matrix with variable names as colnames and YYYY-MM-DD dates as rownames
+#'
+#' @examples
+#'
+#' require(RJDemetra)
+#' input_workspace_xlsx      <- system.file("extdata", "WorkspaceTUR-container/workspace-TUR.xml",
+#'                                          package = "RJDProcessor")
+#' input_data_file_name      <- system.file("extdata", "XLSX-TUR/grezzi_trim_TUR.xlsx", package = "RJDProcessor")
+#' regr_directory            <- system.file("extdata", "XLSX-TUR/regr", package = "RJDProcessor")
+#' ws                        <- load_workspace(file = input_workspace_xlsx)
+#' compute(ws)
+#' data_reader_ext_reg       <- Data_reader_ext_reg_xlsx(regr_directory)
+#' all_model_ext_vars_info <- data_reader_ext_reg@read_ext_reg_info(ws)
+#' vars_matrix             <- data_reader_ext_reg@read_ext_reg_data(all_model_ext_vars_info, "VATASC",
+#'                                                                  frequency=12)
+#'
 #' @export
 setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg_xlsx", "ANY", "ANY", "ANY"),
            function(object, var_info=NULL, time_series_info=NULL, frequency=NA_integer_, ...) {
@@ -34,7 +51,7 @@ setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg_xlsx", "ANY", "AN
 
 
              mts_total <- NA
-             # Itera attraverso gli elementi di var_info_list
+             # Iterates through the elements of var_info_list
              for (i in seq_along(var_info[[series_name]]))
              {
 
@@ -61,7 +78,7 @@ setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg_xlsx", "ANY", "AN
 
 
 
-               # Leggi i dati dal file
+               # Read the data from file
                suppressMessages({
                  data <- read_excel(full_file_path, sheet = 1, col_names = TRUE, col_types = col_types)#c("date", "numeric"))
                  closeAllConnections()
@@ -71,7 +88,7 @@ setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg_xlsx", "ANY", "AN
                data <- data[, -1] # Remove the column with dates
 
 
-               # Definisci la data di inizio e la frequenza
+               # Define starting date and frequency
                start_date_ext_reg <- as.Date(user_def_var$start)
                y <- as.integer(format(start_date_ext_reg, "%Y"))
                m <- as.integer(format(start_date_ext_reg, "%m"))
@@ -95,11 +112,11 @@ setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg_xlsx", "ANY", "AN
                # ITERA SULLE COLONNE DEL FILE
                for (j in 1:ncol(data))
                {
-                   # Ottieni il nome della colonna
+                   # Get column name
                    column_name <- user_def_var$container
                    column_name <- gsub("\\.xlsx", "", column_name)
 
-                   # Ottieni i dati della colonna
+                   # Get column data
                    column_data <- data[[j]]
 
                    #browser()
@@ -128,7 +145,6 @@ setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg_xlsx", "ANY", "AN
                }
              }
 
-             # DUBBI PARTONO QUI
              if(length(ts_list)>0)
              {
                mts_file <- do.call(ts.union, ts_list)
@@ -161,8 +177,24 @@ setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg_xlsx", "ANY", "AN
 
            })
 
-# read_ext_reg_info method, IT MUST RETURN A LIST of information on external regressors
-#setGeneric("read_ext_reg_info", function(object, var_info_container, ...) standardGeneric("read_ext_reg_info"))
+#' Read information about external regressors from a workspace
+#'
+#' This function returns a list of information about external regressors used in the models contained in a workspaces
+#'
+#' @param var_info_container workspace xml file path
+#' @return list() of information about external regressors
+#' @examples
+#'
+#' require(RJDemetra)
+#' input_workspace_xlsx      <- system.file("extdata", "WorkspaceTUR-container/workspace-TUR.xml",
+#'                                          package = "RJDProcessor")
+#' input_data_file_name      <- system.file("extdata", "XLSX-TUR/grezzi_trim_TUR.xlsx", package = "RJDProcessor")
+#' regr_directory            <- system.file("extdata", "XLSX-TUR/regr", package = "RJDProcessor")
+#' ws                        <- load_workspace(file = input_workspace_xlsx)
+#' compute(ws)
+#' data_reader_ext_reg       <- Data_reader_ext_reg_xlsx(regr_directory)
+#' all_model_ext_vars_info <- data_reader_ext_reg@read_ext_reg_info(ws)
+#'
 #' @export
 setMethod ("read_ext_reg_info", signature("Data_reader_ext_reg_xlsx", "ANY"),
            function(object, var_info_container=NULL, ...) {
@@ -178,7 +210,25 @@ setMethod ("read_ext_reg_info", signature("Data_reader_ext_reg_xlsx", "ANY"),
            })
 
 
-# Definizione del costruttore R-like
+#' Constructor (R-like) of the Data_reader object
+#'
+#' This function creates a Data_reader_ext_reg object capable of reading data from XLSX external regressors files and returning it using the \code{read_ext_reg_data()} function.
+#'
+#' @param input_source A string with the input: e.g. a file name (also with path) if the input is a file.
+#' @return The Data_reader_ext_reg_tsplus object
+#' @examples
+#' require(RJDemetra)
+#' input_workspace_xlsx      <- system.file("extdata", "WorkspaceTUR-container/workspace-TUR.xml",
+#'                                          package = "RJDProcessor")
+#' input_data_file_name      <- system.file("extdata", "SITIC-TUR/grezziTUR.csv", package = "RJDProcessor")
+#' regr_directory            <- system.file("extdata", "SITIC-TUR/regr", package = "RJDProcessor")
+#' ws                        <- load_workspace(file = input_workspace_xlsx)
+#' compute(ws)
+#' data_reader_ext_reg       <- Data_reader_ext_reg_tsplus(regr_directory)
+#' all_model_ext_vars_info <- data_reader_ext_reg@read_ext_reg_info(ws)
+#' vars_matrix             <- data_reader_ext_reg@read_ext_reg_data(all_model_ext_vars_info, "VATASC",
+#'                                                                  frequency=12)
+#'
 #' @export
 Data_reader_ext_reg_xlsx <- function(input_source, ...) {
 

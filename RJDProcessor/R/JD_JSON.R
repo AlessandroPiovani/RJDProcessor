@@ -1,4 +1,3 @@
-#setwd("C:\\Users\\UTENTE\\Desktop\\MigrazioneFAT-RJDemetra_TEST_3\\")
 
 require(RJDemetra)
 require(rjson)
@@ -6,6 +5,28 @@ require(rjson)
 #source("utility_functions.R")
 #source("Extended_tramoseats_spec.R")
 
+#' Turn a JD_JSON in a virtual workspace
+#'
+#' This function obtain a virtual workspace from a JD_JSON file.
+#' See test foder for examples
+#'
+#' @param JSON_file Name of the JSON file to turn in a workspace (also with path).
+#' @param input_data_reader A Data_Reader object
+#' @param ext_reg_data_reader -optional- A Data_reader_ext_reg object, to read the external regressors
+#'                            in the desired format (csv, xlsx, tramoseats+, ...)
+#'                            Default = NA, do not consider external regressors (discouraged)
+#' @param series_to_proc_names -optional- an array containing the name of the series to be included in the workspace
+#'                            among the ones present in the JD_JSON file e.g. @code{c("VATASA","VATAIA")}
+#' @return A virtual workspace
+#' @examples
+#' require(RJDemetra)
+#' input_JD_JSON        <- system.file("extdata", "specifications_example1.txt", package = "RJDProcessor")
+#' input_data_file_name <- system.file("extdata", "CSV-TUR/grezzi_trim_TUR.csv", package = "RJDProcessor")
+#' regr_directory       <- system.file("extdata", "CSV-TUR/regr", package = "RJDProcessor")
+#' input_data_reader         <- Data_reader_csv(input_source = input_data_file_name)
+#' ext_reg_input_data_reader <- Data_reader_ext_reg_csv(regr_directory)
+#' ws <- JD_JSON_to_virtual_workspace(input_JD_JSON, input_data_reader, ext_reg_input_data_reader, series_to_proc_names=NA)
+#'
 #' @export
 JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_reader, ext_reg_data_reader=NA, series_to_proc_names=NA)
 {
@@ -20,24 +41,24 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_reader, ext_reg_d
 
 
   timestamps   <- rownames(mts_input_time_series)
-  series_names <- colnames(mts_input_time_series) # sostituirlo con un vettore di serie che si vogliono destagionalizzare e aggiustare il codice nel for, per ora risolto con if nel for (che va anche bene)
+  series_names <- colnames(mts_input_time_series)
   for (i in 1:ncol(mts_input_time_series)) {
 
     #browser()
     if(all(is.na(series_to_proc_names)) || series_names[i] %in% series_to_proc_names)
     {
       #browser()
-      # Estrai la serie dalla matrice mts
+      # Extract the ts from mts matrix
       series <- mts_input_time_series[, i]
 
-      # Trova l'indice del primo valore non-NA nella serie
+      # Find the position of the first non-NA value of the series
       start_index <- which(!is.na(series))[1]
 
-      # Estrai la parte della serie che inizia dal primo valore non-NA
+      # Extract the part of the series which starts from the first not-NA value
       series <- gsub(",", ".", series)
       series_trimmed <- as.numeric(series[start_index:length(series)])
 
-      # Calcola lo start basato sul primo valore non-NA
+      # Compute the start based on the first not-NA value
       start_date <- timestamps[start_index]
 
       # auto detection of frequency
@@ -47,17 +68,16 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_reader, ext_reg_d
       freq       <- 12/month_diff
 
 
-      # Estrai l'anno e il mese dalla data
-      year  <- as.integer(substr(start_date, 1, 4))  # Estrai i primi 4 caratteri (anno) e convertili in intero
-      month <- as.integer(substr(start_date, 6, 7))  # Estrai i caratteri 6 e 7 (mese) e convertili in intero
+      # Extract year and month of start from the date
+      year  <- as.integer(substr(start_date, 1, 4))  # Extract the first 4 characters (year) and cast them to integer
+      month <- as.integer(substr(start_date, 6, 7))  # Extract characters 6 and 7 (month) and cast them to integer
 
-      # Crea l'array start
       start <- c(year, month)
 
       #browser()
 
 
-      # Costruisci l'oggetto ts
+      # Build the ts object
       ts_obj  <- ts(series_trimmed, start = start, frequency = freq)
 
       ts_name <- series_names[i]
@@ -85,7 +105,30 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_reader, ext_reg_d
 }
 
 
-
+#' Turn a JD_JSON in a materialized workspace
+#'
+#' This function obtain a JD_JSON file from a workspace stored in the filesystem (in a directory).
+#' See test foder for examples
+#'
+#' @param workspace_dir -optional- the directory of the input workspace.
+#'                      Default = NA stores the workspace in a directory called "output_workspace_container"
+#' @param JSON_file Name of the JSON file that will be produced (also with path).
+#' @param input_data_reader A Data_Reader object
+#' @param ext_reg_data_reader -optional- A Data_reader_ext_reg object, to produce the metadata of the external regressors
+#'                            (i.e. create the names of the csv rather than a xlsx files o other containers for external regressors)
+#'                            Default = NA, do not consider external regressors (discouraged)
+#' @param series_to_proc_names -optional- an array containing the name of the series to be included in the workspace
+#'                            among the ones present in the JD_JSON file e.g. @code{c("VATASA","VATAIA")}
+#' @return void in R environment, a workspace materialized in the filesystem
+#' @examples
+#' require(RJDemetra)
+#' input_JD_JSON        <- system.file("extdata", "specifications_example1.txt", package = "RJDProcessor")
+#' input_data_file_name <- system.file("extdata", "CSV-TUR/grezzi_trim_TUR.csv", package = "RJDProcessor")
+#' regr_directory       <- system.file("extdata", "CSV-TUR/regr", package = "RJDProcessor")
+#' input_data_reader         <- Data_reader_csv(input_source = input_data_file_name)
+#' ext_reg_input_data_reader <- Data_reader_ext_reg_csv(regr_directory)
+#' JD_JSON_to_materialized_workspace(workspace_dir="ws_out" ,input_JD_JSON, input_data_reader, ext_reg_input_data_reader, series_to_proc_names=NA)
+#'
 #' @export
 JD_JSON_to_materialized_workspace <- function(workspace_dir=NA, JSON_file, input_data_reader, ext_reg_data_reader=NA, series_to_proc_names=NA)
 {
@@ -97,20 +140,20 @@ JD_JSON_to_materialized_workspace <- function(workspace_dir=NA, JSON_file, input
   }
 
   #browser()
-  # Estrai il nome della directory
+  # Extract the name of the directory
   workspace_dir <- basename(workspace_dir)
 
-  # Verifica se il percorso contiene un percorso completo o solo il nome della directory
+  # Check whether the path contains an absolute path or the directory name only
   if (dirname(workspace_dir) == ".") {
-    # Se il percorso è solo il nome della directory, setta dir_path a getwd()
+    # If the path is only the directory name, set dir_path to getwd()
     dir_path <- getwd()
   } else {
-    # Altrimenti, estrai il percorso della directory (esclusa la directory stessa)
+    # Else, extract the directory path (excluding the directory itself)
     dir_path <- dirname(workspace_dir)
   }
 
   if (!file.exists(file.path(dir_path, workspace_dir))) {
-    # Se non esiste, crea la directory in dir_path
+    # If do not exist, create the dir_path directory
     dir.create(file.path(dir_path, workspace_dir))
   }
   dir_path <- file.path(dir_path, workspace_dir)
@@ -127,7 +170,38 @@ JD_JSON_to_materialized_workspace <- function(workspace_dir=NA, JSON_file, input
 
 
 
-# e.g. workspace_xml_file_name = "C:\\Users\\UTENTE\\Desktop\\MigrazioneFAT-RJDemetra\\WorkspaceFAT-container\\"
+#' Turn model spec of a materialized workspace in JD_JSON
+#'
+#' This function represent model specifications contained into a materialized workspace in JD_JSON
+#'
+#' @param workspace_directory Name of the workspace xml file (also with path).
+#' @param input_data_reader A Data_Reader object
+#' @param ext_reg_input_data_reader A Data_reader_ext_reg object, to read the external regressors
+#'                            in the desired format (csv, xlsx, tramoseats+, ...)
+#' @param regr_directory -optional- Name of the directory containing the sources (e.g. files)
+#'                            of the external regressors
+#' @param JSON_file_name -optional- Name of the JSON file to be created. If NA the file will be
+#'                       called "JD_JSON_specification.txt"
+#' @param diff -optional- if TRUE a reduced version of the JSON specification is produced;
+#'              In the reduced version, fields with default values equals to the ones of the
+#'              default specification (i.e. "RSA0", "RSA1", ...) are not reported Default=TRUE
+#' @param java_processing -optional- If TRUE, the function works internally with Java API (faster),
+#'                        otherwise it uses R API. Default=TRUE
+#' @return A JSON file saved on the filesystem
+#' @examples
+#'
+#' require(RJDemetra)
+#'
+#' input_workspace_directory <- system.file("extdata", "WorkspaceTUR-container/workspace-TUR.xml",
+#'                                          package = "RJDProcessor")
+#' input_data_file_name      <- system.file("extdata", "CSV-TUR/grezzi_trim_TUR.csv",
+#'                                           package = "RJDProcessor")
+#' regr_directory            <- system.file("extdata", "CSV-TUR/regr", package = "RJDProcessor")
+#' diff <- TRUE   # Reduced JSON if diff=TRUE, Full JSON format otherwise
+#'
+#' input_data_reader         <- Data_reader_csv(input_source = input_data_file_name)
+#' ext_reg_input_data_reader <- Data_reader_ext_reg_csv(regr_directory)
+#' JD_JSON_from_materialized_workspace(input_workspace_directory, ext_reg_input_data_reader, JSON_file_name = "specifications_new_ex2.txt", diff=TRUE, java_processing=FALSE)
 #' @export
 JD_JSON_from_materialized_workspace <- function(workspace_directory, ext_reg_input_data_reader, regr_directory=NA, JSON_file_name = "JD_JSON_specification.txt", diff=TRUE, java_processing = TRUE)
 {
@@ -138,6 +212,39 @@ JD_JSON_from_materialized_workspace <- function(workspace_directory, ext_reg_inp
 
 
 
+#' Turn model spec of a virtual (R) workspace in JD_JSON
+#'
+#' This function represent model specifications contained into an R workspace in JD_JSON
+#'
+#' @param ws workspace R object.
+#' @param input_data_reader A Data_Reader object
+#' @param ext_reg_input_data_reader A Data_reader_ext_reg object, to read the external regressors
+#'                            in the desired format (csv, xlsx, tramoseats+, ...)
+#' @param regr_directory -optional- Name of the directory containing the sources (e.g. files)
+#'                            of the external regressors
+#' @param JSON_file_name -optional- Name of the JSON file to be created. If NA the file will be
+#'                       called "JD_JSON_specification.txt"
+#' @param diff -optional- if TRUE a reduced version of the JSON specification is produced;
+#'              In the reduced version, fields with default values equals to the ones of the
+#'              default specification (i.e. "RSA0", "RSA1", ...) are not reported Default=TRUE
+#' @param java_processing -optional- If TRUE, the function works internally with Java API (faster),
+#'                        otherwise it uses R API. Default=TRUE
+#' @return A JSON file saved on the filesystem
+#' @examples
+#'
+#' require(RJDemetra)
+#'
+#' input_workspace_directory <- system.file("extdata", "WorkspaceTUR-container/workspace-TUR.xml",
+#'                                          package = "RJDProcessor")
+#' input_data_file_name      <- system.file("extdata", "CSV-TUR/grezzi_trim_TUR.csv",
+#'                                           package = "RJDProcessor")
+#' regr_directory            <- system.file("extdata", "CSV-TUR/regr", package = "RJDProcessor")
+#' diff <- TRUE   # Reduced JSON if diff=TRUE, Full JSON format otherwise
+#'
+#' input_data_reader         <- Data_reader_csv(input_source = input_data_file_name)
+#' ext_reg_input_data_reader <- Data_reader_ext_reg_csv(regr_directory)
+#' ws <- load_workspace(file = input_workspace_directory)
+#' JD_JSON_from_virtual_workspace(ws, ext_reg_input_data_reader, JSON_file_name = "specifications_new_ex2.txt", diff=TRUE, java_processing=FALSE)
 #' @export
 JD_JSON_from_virtual_workspace <- function(ws, ext_reg_input_data_reader, JSON_file_name = "JD_JSON_specification.txt", diff=TRUE, java_processing=TRUE)
 {
@@ -191,6 +298,8 @@ JD_JSON_from_virtual_workspace <- function(ws, ext_reg_input_data_reader, JSON_f
 }
 
 #' @export
+#'
+#'
 from_reduced_to_full_JD_JSON_obj<-function(JD_JSON_string, basic_spec="RSA0")
 {
   basic_spec   <- from_SA_spec(SA_spec = tramoseats_spec(basic_spec), userdef.varFromFile = FALSE)

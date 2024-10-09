@@ -1,4 +1,4 @@
-# Definizione della classe S4
+# Definition of S4 class
 setClass("Data_reader_xml",
          slots = list(
            input_source     = "ANY",
@@ -6,9 +6,16 @@ setClass("Data_reader_xml",
            ...              = "ANY"
          ))
 
-
-# read_data method, IT MUST RETURN AN mts OBJECT!!! MODIFY THIS METHOD TO CUSTOMIZE INPUT
-#setGeneric("read_data", function(object, ...) standardGeneric("read_data"))
+#' Get the data from a Data_reader_xml
+#'
+#' This function returns the data from the input_source of the object.
+#'
+#' @return data in form of numeric matrix, with rownames = dates (in string format, YYYY-MM-DD) and colnames = time series names (string)
+#' @examples
+#' input_data_file_name <- system.file("extdata","Prod.xml", package = "RJDProcessor")
+#' # NOTE: absolute paths are better for this Data_reader
+#' input_data_reader    <- Data_reader_xml(input_source = input_data_file_name)
+#' #input_data_reader@read_data() # for reading the data
 #' @export
 setMethod ("read_data", signature("Data_reader_xml"),
           function(object, ...) {
@@ -55,7 +62,18 @@ setMethod ("read_data", signature("Data_reader_xml"),
 
           })
 
-# Definizione del costruttore R-like
+
+#' Constructor (R-like) of the Data_reader object
+#'
+#' This function creates a Data_reader object capable of reading data from XLSX files and returning it using the \code{read_data()} function.
+#'
+#' @param input_source A string with file name (also with path).
+#' @return The Data_reader_xlsx object
+#' @examples
+#' input_data_file_name <- system.file("extdata","Prod.xml", package = "RJDProcessor")
+#' # NOTE: absolute paths are better for this Data_reader
+#' input_data_reader    <- Data_reader_xml(input_source = input_data_file_name)
+#' #input_data_reader@read_data() # for reading the data
 #' @export
 Data_reader_xml <- function(input_source = NA, ...) {
 

@@ -1,6 +1,6 @@
 setwd("C:\\Users\\UTENTE\\Desktop\\RJDopenCruncher\\RJDProcessor")
 
-# Assicurati di avere i pacchetti necessari
+# Make sure to have all the necessary packages
 if (!requireNamespace("devtools", quietly = TRUE)) {
   install.packages("devtools")
 }
@@ -9,19 +9,19 @@ if (!requireNamespace("roxygen2", quietly = TRUE)) {
 }
 
 
-# Carica il pacchetto devtools
+# Load devtools and roxygen2 packages
 library(devtools)
 library(roxygen2)
 
 #devtools::load_all("R/import_and_interface_definition.R")
 
-# Genera la documentazione
+# Create the documentation
 devtools::document()
 
-# Costruisci il pacchetto
+# Build the package
 devtools::build()
 
-# Controlla il pacchetto
+# Check the package
 check()
 
 devtools::build_manual(pkg = "C:\\Users\\UTENTE\\Desktop\\RJDopenCruncher\\RJDProcessor")
