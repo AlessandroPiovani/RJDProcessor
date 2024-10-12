@@ -21,7 +21,7 @@ in the desired format (csv, xlsx, tramoseats+, ...)
 Default = NA, do not consider external regressors (discouraged)}
 
 \item{series_to_proc_names}{-optional- an array containing the name of the series to be included in the workspace
-among the ones present in the JD_JSON file e.g. c("VATASA", "VATAIA")}
+among the ones present in the JD_JSON file e.g. c("VATASA","VATAIA")}
 }
 \value{
 A virtual workspace

@@ -18,7 +18,8 @@ This function returns a list of information about external regressors used in th
 \examples{
 
 require(RJDemetra)
-input_workspace_xml       <- system.file("extdata", "WorkspaceTUR-container/workspace-TUR.xml", package = "RJDProcessor")
+input_workspace_xml       <- system.file("extdata", "WorkspaceTUR-container/workspace-TUR.xml",
+                                         package = "RJDProcessor")
 input_data_file_name      <- system.file("extdata", "SITIC-TUR/grezziTUR.csv", package = "RJDProcessor")
 regr_directory            <- system.file("extdata", "SITIC-TUR/regr", package = "RJDProcessor")
 ws                        <- load_workspace(file = input_workspace_xml)

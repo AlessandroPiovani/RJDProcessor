@@ -25,7 +25,7 @@ Default = NA stores the workspace in a directory called "output_workspace_contai
 Default = NA, do not consider external regressors (discouraged)}
 
 \item{series_to_proc_names}{-optional- an array containing the name of the series to be included in the workspace
-among the ones present in the JD_JSON file e.g. c("VATASA", "VATAIA")}
+among the ones present in the JD_JSON file e.g. c("VATASA","VATAIA")}
 }
 \value{
 void in R environment, a workspace materialized in the filesystem

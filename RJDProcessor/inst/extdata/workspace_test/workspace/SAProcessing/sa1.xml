@@ -1,0 +1,911 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<informationSet xmlns="ec/tss.core">
+    <item name="metadata">
+        <subset>
+            <item name="timestamp">
+                <string>12-ott-2024 15.53.03</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa1">
+        <subset>
+            <item name="name">
+                <string>FATEXP_10</string>
+            </item>
+            <item name="ts">
+                <ts name="FATEXP_10">
+                    <freq>12</freq>
+                    <firstYear>2005</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>12.4 12.8 12.7 12.9 12.7 12.5 12.5 13.1 13.5 14.5 13.4 12.6 13.8 15.0 13.5 13.6 13.4 13.5 13.8 14.3 14.2 14.9 14.0 13.0 14.2 14.9 13.8 14.2 14.3 15.1 14.9 14.5 15.6 15.7 15.3 12.9 15.1 14.7 14.2 15.1 14.5 14.4 15.5 15.0 16.0 16.9 16.5 14.3 14.9 14.8 14.1 14.1 14.2 14.2 14.9 15.4 15.7 16.0 15.4 13.4 15.8 16.2 15.9 16.1 16.2 18.3 16.9 16.6 16.9 17.2 16.5 14.5 15.6 16.4 15.7 15.2 16.8 16.4 17.0 16.8 17.6 17.4 17.0 15.5 17.0 17.5 16.6 16.8 17.2 17.9 18.3 17.9 18.0 19.1 18.6 16.1 18.4 17.6 17.2 18.3 17.9 18.2 19.1 18.2 19.5 19.7 18.6 17.1 19.4 19.5 18.2 18.3 18.8 19.5 20.2 18.9 20.5 20.8 19.8 18.0 20.6 21.1 20.4 20.6 20.6 20.7 21.5 21.2 21.9 21.9 20.9 19.7 21.2 22.0 20.5 21.7 21.2 21.2 22.2 21.7 22.4 22.7 21.6 21.3 21.5 21.8 21.3 21.2 21.9 22.1 22.2 21.6 21.9 21.8 21.6 19.8 22.5 21.4 21.0 22.1 22.3 22.5 23.2 22.6 23.4 22.9 22.7 21.3 23.0 24.5 22.5 22.2 23.1 22.4 23.8 23.3 23.5 23.4 22.0 21.3 24.0 23.9 24.2 24.0 23.3 23.3 24.5 23.5 24.4 23.7 24.0 21.7 24.5 24.7 24.4 25.0 24.5 24.4 25.2 24.4 24.7 24.4 24.2 23.4 25.2 26.2 24.2 25.6 26.3 25.8 25.6 24.8 25.1 25.5 25.4 23.8 25.5 25.7 26.2 25.6 25.3 25.8 26.1 25.2 25.9 26.8 26.0</data>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec1</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Log</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="theta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.6509492999355522</value>
+                <stde>0.05248804282712294</stde>
+                <tstat>-12.401858878212494</tstat>
+            </coef>
+        </params>
+    </item>
+    <item name="btheta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.7420301124406893</value>
+                <stde>0.048614866656847985</stde>
+                <tstat>-15.263440249221901</tstat>
+            </coef>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="outliers">
+        <strings>
+            <items>AO.2010-06-01 LS.2009-01-01</items>
+        </strings>
+    </item>
+    <item name="coefficients">
+        <subset>
+            <item name="AO (2010-06-01)">
+                <double>0.128112013210684</double>
+            </item>
+            <item name="LS (2009-01-01)">
+                <double>-0.09807071259979375</double>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa2">
+        <subset>
+            <item name="name">
+                <string>FATEXP_11</string>
+            </item>
+            <item name="ts">
+                <ts name="FATEXP_11">
+                    <freq>12</freq>
+                    <firstYear>2005</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>16.9 18.5 16.9 16.9 15.9 14.5 17.3 15.2 18.4 19.9 17.9 15.6 18.0 19.5 18.6 20.6 16.5 14.4 16.5 16.7 18.8 21.3 18.4 15.0 19.7 20.2 18.1 17.0 17.5 16.6 19.1 16.7 21.2 23.8 20.7 16.4 21.9 20.2 19.4 21.2 18.1 18.2 19.4 16.8 21.9 25.0 22.4 18.7 19.6 24.8 18.6 18.4 18.4 17.0 19.0 16.1 22.0 24.8 23.9 18.9 22.8 25.8 23.8 22.7 21.8 19.8 21.6 19.4 22.1 29.8 27.1 22.3 22.2 24.1 22.7 19.5 22.3 18.6 20.8 18.9 22.8 28.9 28.0 21.6 22.4 26.8 22.3 21.6 22.3 20.1 21.9 19.2 25.4 30.4 28.2 24.0 27.0 29.5 26.0 26.1 25.4 22.5 25.1 20.3 27.0 28.9 29.3 24.6 26.7 26.2 26.5 23.8 24.9 21.8 26.9 22.5 29.1 32.2 28.7 22.8 29.4 32.5 30.8 28.3 28.7 25.0 25.9 23.1 31.2 34.2 33.0 26.2 31.6 31.8 29.5 27.9 30.0 26.4 25.9 26.6 30.1 35.8 32.8 28.1 31.7 32.1 30.3 28.0 30.3 25.7 28.1 26.1 31.7 36.6 34.5 28.6 33.5 33.6 30.5 29.1 29.5 27.8 30.2 26.8 32.8 38.9 36.1 30.2 33.7 36.9 33.2 30.2 32.6 26.0 29.5 26.6 36.7 38.9 35.1 31.3 33.0 36.3 41.1 41.0 33.9 28.2 29.5 25.8 35.0 42.9 40.6 34.9 33.7 35.9 37.3 36.2 33.5 31.2 30.4 28.9 36.2 39.7 36.4 33.2 36.1 39.3 36.0 32.4 34.9 30.6 29.5 28.5 35.3 37.7 36.4 33.5 33.0 35.4 37.0 32.0 33.3 30.7 30.7 27.9 33.6 40.9 36.6</data>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec2</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Log</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="theta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.7655271328678227</value>
+                <stde>0.04500757169676858</stde>
+                <tstat>-17.008852155487105</tstat>
+            </coef>
+        </params>
+    </item>
+    <item name="btheta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.7711634095214255</value>
+                <stde>0.0467877809179726</stde>
+                <tstat>-16.482153981045045</tstat>
+            </coef>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="outliers">
+        <strings>
+            <items>AO.2020-03-01 AO.2020-04-01</items>
+        </strings>
+    </item>
+    <item name="coefficients">
+        <subset>
+            <item name="AO (2020-03-01)">
+                <double>0.1808499129805451</double>
+            </item>
+            <item name="AO (2020-04-01)">
+                <double>0.2523374448840955</double>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa3">
+        <subset>
+            <item name="name">
+                <string>FATEXP_13</string>
+            </item>
+            <item name="ts">
+                <ts name="FATEXP_13">
+                    <freq>12</freq>
+                    <firstYear>2005</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>45.4 45.3 45.5 47.4 47.8 52.0 51.8 57.4 43.7 46.5 46.2 47.3 46.1 43.8 45.1 46.4 45.6 47.3 50.0 55.7 42.2 43.6 45.1 45.8 45.8 44.4 44.4 46.0 46.4 49.0 49.0 52.0 42.3 44.0 45.6 45.6 46.1 45.0 44.0 46.4 47.0 48.3 49.8 57.8 42.0 45.9 47.5 45.6 46.3 44.0 43.7 44.0 45.1 46.5 48.6 53.7 41.8 44.2 44.7 46.9 45.5 44.4 43.6 45.1 45.9 48.4 49.0 54.0 43.2 45.7 46.2 48.8 45.8 45.7 45.5 45.2 47.6 49.7 49.9 56.2 45.7 48.4 49.1 51.5 46.9 48.4 47.2 49.0 50.6 52.4 52.2 57.7 47.5 50.6 51.3 51.0 49.1 48.4 48.5 50.4 51.4 52.8 53.2 57.1 47.9 49.0 50.8 52.2 49.9 49.8 48.2 50.6 51.0 53.7 53.6 59.3 49.0 51.4 51.4 54.0 51.5 50.0 51.0 52.3 52.5 54.4 55.7 60.7 49.7 52.1 51.5 55.2 52.8 50.5 51.3 52.3 52.6 54.2 53.9 59.5 49.8 51.2 51.9 53.5 52.2 51.0 51.8 53.3 53.1 54.6 53.6 60.1 49.8 51.1 52.0 54.4 51.5 50.5 52.4 53.1 53.3 54.5 54.5 61.1 50.9 52.7 53.9 55.1 53.3 51.9 53.0 53.5 53.6 54.5 54.4 62.2 50.0 52.9 52.8 56.0 52.7 52.1 58.9 55.5 47.8 50.5 51.6 55.1 47.8 48.7 50.0 51.1 51.7 49.1 50.1 50.0 52.2 53.1 52.9 60.5 50.4 50.9 52.1 53.5 52.8 51.7 50.3 52.5 51.7 52.8 52.6 59.2 50.3 51.6 51.4 52.8 50.7 50.5 50.3 51.4 51.8 52.3 53.6 60.8 50.0 52.4 51.7</data>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec3</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Log</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="theta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.5670271890009138</value>
+                <stde>0.05634441198973129</stde>
+                <tstat>-10.06359227076953</tstat>
+            </coef>
+        </params>
+    </item>
+    <item name="btheta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.6332682942834983</value>
+                <stde>0.05393783069944168</stde>
+                <tstat>-11.74070751588557</tstat>
+            </coef>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="outliers">
+        <strings>
+            <items>AO.2020-03-01 AO.2020-05-01 AO.2020-06-01 AO.2020-08-01</items>
+        </strings>
+    </item>
+    <item name="coefficients">
+        <subset>
+            <item name="AO (2020-03-01)">
+                <double>0.11728467624803851</double>
+            </item>
+            <item name="AO (2020-05-01)">
+                <double>-0.10305959519438103</double>
+            </item>
+            <item name="AO (2020-06-01)">
+                <double>-0.05409209255007951</double>
+            </item>
+            <item name="AO (2020-08-01)">
+                <double>-0.06579853037038608</double>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa4">
+        <subset>
+            <item name="name">
+                <string>FATEXP_14</string>
+            </item>
+            <item name="ts">
+                <ts name="FATEXP_14">
+                    <freq>12</freq>
+                    <firstYear>2005</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>48.9 44.0 43.0 40.3 45.7 55.1 50.3 51.4 40.1 40.5 49.4 49.2 49.7 43.5 40.5 39.3 46.6 52.9 47.9 46.4 40.8 40.8 51.0 48.1 48.3 44.3 42.4 40.7 52.6 51.8 50.1 47.5 41.8 46.6 54.0 49.1 50.0 46.0 41.7 44.8 54.3 53.1 51.9 46.2 42.6 46.9 57.1 52.0 49.6 46.0 41.4 45.6 50.7 55.1 52.5 47.7 41.0 47.0 56.3 51.2 46.9 44.0 41.5 40.0 53.1 55.5 50.9 46.9 42.3 45.2 54.2 50.3 49.3 44.7 44.0 41.7 53.7 55.0 52.4 50.1 45.1 47.3 55.6 51.7 53.7 48.2 44.1 46.3 58.4 59.9 56.6 53.7 46.9 52.7 61.2 55.4 57.8 51.3 48.6 51.5 59.7 63.5 59.3 55.8 50.8 55.0 62.1 58.5 60.1 53.8 50.7 51.9 63.0 64.5 60.2 57.0 52.7 57.4 62.4 61.2 57.4 55.4 53.3 55.1 63.0 64.7 59.5 55.4 51.1 54.2 63.8 62.1 57.4 55.6 53.7 56.4 60.4 58.9 55.4 53.1 49.7 55.3 60.6 57.2 52.8 52.3 48.6 53.1 60.2 59.1 56.0 55.4 51.3 57.5 59.9 57.3 55.4 52.8 54.6 53.8 60.9 59.8 58.6 56.2 53.1 57.7 61.6 58.6 56.4 55.5 53.3 56.2 59.3 59.1 58.2 57.8 53.9 58.8 58.7 58.5 56.9 53.5 60.4 53.8 49.7 59.7 63.0 57.7 54.6 58.6 60.9 60.4 56.6 54.6 57.2 57.8 57.8 61.1 60.3 57.8 54.4 57.1 58.9 59.5 58.6 58.3 58.5 57.9 58.2 61.4 60.7 59.6 56.2 59.2 57.8 58.9 54.5 57.5 58.9 60.2 59.1 61.2 59.6 60.8 57.0 58.0 60.2</data>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec4</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Log</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="theta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.7430633143956858</value>
+                <stde>0.04629099299574947</stde>
+                <tstat>-16.05200636901255</tstat>
+            </coef>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="calendar">
+        <subset>
+            <item name="td">
+                <subset>
+                    <item name="user">
+                        <strings>
+                            <items>r.tdmnw05</items>
+                        </strings>
+                    </item>
+                </subset>
+            </item>
+        </subset>
+    </item>
+    <item name="outliers">
+        <strings>
+            <items>AO.2020-03-01 AO.2020-05-01 AO.2017-03-01</items>
+        </strings>
+    </item>
+    <item name="coefficients">
+        <subset>
+            <item name="td">
+                <double>0.008426761690487982</double>
+            </item>
+            <item name="AO (2020-03-01)">
+                <double>0.10099501328926949</double>
+            </item>
+            <item name="AO (2020-05-01)">
+                <double>-0.14486189909834107</double>
+            </item>
+            <item name="AO (2017-03-01)">
+                <double>-0.09475517217852539</double>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa5">
+        <subset>
+            <item name="name">
+                <string>FATEXP_15</string>
+            </item>
+            <item name="ts">
+                <ts name="FATEXP_15">
+                    <freq>12</freq>
+                    <firstYear>2005</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>60.5 56.6 53.2 54.0 53.9 58.4 63.4 65.9 51.3 52.8 56.0 56.4 61.0 57.3 55.1 53.7 54.6 59.7 62.0 65.9 54.4 55.1 56.8 58.9 59.7 58.4 54.7 54.5 58.3 63.2 59.9 65.4 54.8 59.8 63.3 63.2 59.3 61.0 56.4 58.9 61.6 65.4 65.6 66.5 54.5 61.0 63.0 65.8 66.0 60.4 51.8 57.2 63.0 63.9 66.4 64.1 47.7 62.5 63.9 64.4 60.8 54.5 54.3 58.6 63.8 61.9 63.4 60.2 50.4 61.0 64.2 66.5 61.9 56.7 57.2 60.9 65.8 65.0 65.0 60.4 54.0 65.0 68.7 69.3 66.2 60.1 56.9 65.2 69.6 69.9 69.4 65.4 55.7 67.4 71.0 70.7 68.0 62.0 61.6 65.4 70.1 69.2 69.4 66.9 60.0 66.4 69.7 69.1 67.1 63.1 62.4 65.5 68.0 67.9 68.2 65.6 60.2 67.1 71.8 69.5 65.7 61.2 61.0 66.0 68.1 67.7 66.5 65.0 57.1 65.4 66.8 66.1 61.6 59.1 58.7 61.3 65.2 64.3 62.5 61.9 56.9 64.2 65.8 64.6 63.8 60.5 60.3 63.3 66.5 65.4 64.3 62.6 59.1 65.4 64.7 66.2 63.8 61.4 61.6 64.5 65.7 65.9 65.4 65.2 60.8 67.1 65.6 66.0 62.1 54.7 53.6 56.3 57.3 56.6 59.1 60.8 54.1 58.4 58.5 61.3 59.4 55.4 65.3 75.6 53.8 59.4 61.8 65.8 58.5 59.8 62.8 63.1 58.7 56.6 58.0 58.7 56.7 56.6 58.2 59.4 53.1 54.4 54.2 57.2 55.8 55.7 54.7 55.2 56.4 57.5 57.9 60.6 54.0 56.9 54.9 56.7 57.2 55.9 56.0 55.4 56.5 56.3 56.7 58.3 53.4 56.2 53.1</data>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec5</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="phi">
+        <params>
+            <coef type="Estimated">
+                <value>-0.7904610856643335</value>
+                <stde>0.04236835914571513</stde>
+                <tstat>-18.656872760772842</tstat>
+            </coef>
+        </params>
+    </item>
+    <item name="d">
+        <integer>0</integer>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="outliers">
+        <strings>
+            <items>AO.2009-09-01 LS.2009-03-01 AO.2008-01-01 AO.2020-03-01 AO.2020-04-01</items>
+        </strings>
+    </item>
+    <item name="coefficients">
+        <subset>
+            <item name="AO (2009-09-01)">
+                <double>-5.7763881131238035</double>
+            </item>
+            <item name="LS (2009-03-01)">
+                <double>-5.048564908969886</double>
+            </item>
+            <item name="AO (2008-01-01)">
+                <double>-4.741897722242673</double>
+            </item>
+            <item name="AO (2020-03-01)">
+                <double>10.651497232444566</double>
+            </item>
+            <item name="AO (2020-04-01)">
+                <double>20.216954954977925</double>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa6">
+        <subset>
+            <item name="name">
+                <string>C_DEFL</string>
+            </item>
+            <item name="ts">
+                <ts name="C_DEFL">
+                    <freq>12</freq>
+                    <firstYear>2002</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>104.3 109.1 121.9 107.7 117.6 116.0 128.7 65.4 120.9 124.6 115.3 118.6 101.5 105.9 118.0 105.7 109.9 116.0 125.7 62.3 119.1 120.4 112.7 113.8 94.5 107.9 125.7 112.2 110.6 118.0 120.5 66.9 122.3 117.4 113.8 114.7 91.7 103.9 118.6 106.6 113.6 116.8 119.4 71.4 122.8 114.1 116.8 116.1 98.5 108.6 129.5 102.5 123.6 126.4 121.9 76.2 124.8 126.8 123.4 115.7 109.0 114.5 132.6 110.3 129.3 129.2 133.3 79.6 122.7 131.1 122.8 110.0 111.9 119.7 122.7 120.3 121.0 128.7 135.6 70.0 126.5 121.4 106.5 103.4 85.7 93.8 105.0 97.4 95.5 104.1 112.7 61.9 111.3 103.3 102.7 104.4 87.3 97.4 115.1 101.6 105.3 117.5 116.3 70.1 116.1 108.6 110.8 109.5 92.3 103.6 118.6 104.8 111.9 116.7 115.9 74.1 114.2 105.8 107.4 105.4 87.9 99.2 111.3 96.3 108.7 107.4 112.0 70.3 101.8 106.3 101.2 96.1 88.8 90.3 100.7 93.3 102.7 102.5 111.8 66.0 105.0 106.4 99.1 98.9 88.5 92.6 103.6 95.3 99.7 102.4 111.1 62.9 106.4 106.1 97.4 101.1 85.1 93.8 108.3 99.3 100.6 110.6 114.3 66.0 108.2 106.3 104.1 103.2 84.1 98.8 107.9 98.8 106.4 107.1 108.4 73.8 108.6 102.9 109.9 108.2 89.1 98.1 117.0 94.1 112.6 113.9 111.9 75.4 109.1 111.0 112.9 107.6 95.6 100.1 115.3 99.8 116.0 116.5 116.1 75.9 108.1 114.7 111.9 102.5 96.1 100.3 112.2 101.8 115.7 112.3 119.4 72.3 109.7 115.0 108.7 103.9 95.9 101.1 87.1 56.6 82.2 98.2 111.4 71.0 110.2 111.2 108.4 108.6 89.4 101.2 121.1 111.2 112.9 119.4 119.3 76.7 116.4 114.7 120.0 116.7 95.2 108.6 128.4 110.0 123.4 121.1 117.4 82.4 121.8 115.0 120.6 114.7 97.3 106.2 126.2 100.1 120.7 121.4 115.6 77.9 114.9 117.9 117.9</data>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec6</string>
+            </item>
+        </subset>
+    </item>
+    <item name="domainspecs">
+        <subset>
+            <item name="spec1">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Log</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="theta">
+        <params>
+            <coef/>
+        </params>
+    </item>
+    <item name="btheta">
+        <params>
+            <coef/>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="outliers">
+        <strings>
+            <items>AO.2010-06-01 LS.2009-01-01</items>
+        </strings>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="spec2">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Log</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="theta">
+        <params>
+            <coef/>
+        </params>
+    </item>
+    <item name="btheta">
+        <params>
+            <coef/>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="outliers">
+        <strings>
+            <items>AO.2020-03-01 AO.2020-04-01</items>
+        </strings>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="spec3">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Log</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="theta">
+        <params>
+            <coef/>
+        </params>
+    </item>
+    <item name="btheta">
+        <params>
+            <coef/>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="outliers">
+        <strings>
+            <items>AO.2020-03-01 AO.2020-05-01 AO.2020-06-01 AO.2020-08-01</items>
+        </strings>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="spec4">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Log</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="theta">
+        <params>
+            <coef/>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="calendar">
+        <subset>
+            <item name="td">
+                <subset>
+                    <item name="user">
+                        <strings>
+                            <items>r.tdmnw05</items>
+                        </strings>
+                    </item>
+                </subset>
+            </item>
+        </subset>
+    </item>
+    <item name="outliers">
+        <strings>
+            <items>AO.2020-03-01 AO.2020-05-01 AO.2017-03-01</items>
+        </strings>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="spec5">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="phi">
+        <params>
+            <coef/>
+        </params>
+    </item>
+    <item name="d">
+        <integer>0</integer>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="outliers">
+        <strings>
+            <items>AO.2009-09-01 LS.2009-03-01 AO.2008-01-01 AO.2020-03-01 AO.2020-04-01</items>
+        </strings>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="spec6">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Log</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="theta">
+        <params>
+            <coef/>
+        </params>
+    </item>
+    <item name="btheta">
+        <params>
+            <coef/>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="calendar">
+        <subset>
+            <item name="td">
+                <subset>
+                    <item name="user">
+                        <strings>
+                            <items>r.tdu02m r.lym_02</items>
+                        </strings>
+                    </item>
+                </subset>
+            </item>
+        </subset>
+    </item>
+    <item name="outliers">
+        <strings>
+            <items>AO.2007-12-01 LS.2008-11-01 AO.2020-03-01 AO.2020-04-01 AO.2020-05-01 AO.2020-06-01</items>
+        </strings>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+        </subset>
+    </item>
+</informationSet>

@@ -29,13 +29,15 @@ and YYYY-MM-DD dates as rownames
 \examples{
 
 require(RJDemetra)
-input_workspace_xml       <- system.file("extdata", "WorkspaceTUR-container/workspace-TUR.xml", package = "RJDProcessor")
+input_workspace_xml       <- system.file("extdata", "WorkspaceTUR-container/workspace-TUR.xml",
+                                         package = "RJDProcessor")
 input_data_file_name      <- system.file("extdata", "SITIC-TUR/grezziTUR.csv", package = "RJDProcessor")
 regr_directory            <- system.file("extdata", "SITIC-TUR/regr", package = "RJDProcessor")
 ws                        <- load_workspace(file = input_workspace_xml)
 compute(ws)
 data_reader_ext_reg       <- Data_reader_ext_reg_tsplus(regr_directory)
 all_model_ext_vars_info <- data_reader_ext_reg@read_ext_reg_info(ws)
-vars_matrix             <- data_reader_ext_reg@read_ext_reg_data(all_model_ext_vars_info, "VATASC", frequency=12)
+vars_matrix             <- data_reader_ext_reg@read_ext_reg_data(all_model_ext_vars_info, "VATASC",
+                                                                 frequency=12)
 
 }

@@ -16,7 +16,7 @@ require(rjson)
 #'                            in the desired format (csv, xlsx, tramoseats+, ...)
 #'                            Default = NA, do not consider external regressors (discouraged)
 #' @param series_to_proc_names -optional- an array containing the name of the series to be included in the workspace
-#'                            among the ones present in the JD_JSON file e.g. @code{c("VATASA","VATAIA")}
+#'                            among the ones present in the JD_JSON file e.g. c("VATASA","VATAIA")
 #' @return A virtual workspace
 #' @examples
 #' require(RJDemetra)
@@ -118,7 +118,7 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_reader, ext_reg_d
 #'                            (i.e. create the names of the csv rather than a xlsx files o other containers for external regressors)
 #'                            Default = NA, do not consider external regressors (discouraged)
 #' @param series_to_proc_names -optional- an array containing the name of the series to be included in the workspace
-#'                            among the ones present in the JD_JSON file e.g. @code{c("VATASA","VATAIA")}
+#'                            among the ones present in the JD_JSON file e.g. c("VATASA","VATAIA")
 #' @return void in R environment, a workspace materialized in the filesystem
 #' @examples
 #' require(RJDemetra)
@@ -243,8 +243,15 @@ JD_JSON_from_materialized_workspace <- function(workspace_directory, ext_reg_inp
 #'
 #' input_data_reader         <- Data_reader_csv(input_source = input_data_file_name)
 #' ext_reg_input_data_reader <- Data_reader_ext_reg_csv(regr_directory)
+#'
+#' original_directory <- getwd()
+#' extdata_directory <- system.file("extdata", package = "RJDProcessor")
+#' setwd(extdata_directory)
+#'
 #' ws <- load_workspace(file = input_workspace_directory)
-#' JD_JSON_from_virtual_workspace(ws, ext_reg_input_data_reader, JSON_file_name = "specifications_new_ex2.txt", diff=TRUE, java_processing=FALSE)
+#' JD_JSON_from_virtual_workspace(ws, ext_reg_input_data_reader, JSON_file_name = "specifications_new_out.txt", diff=TRUE, java_processing=FALSE)
+#' setwd(original_directory)
+#'
 #' @export
 JD_JSON_from_virtual_workspace <- function(ws, ext_reg_input_data_reader, JSON_file_name = "JD_JSON_specification.txt", diff=TRUE, java_processing=TRUE)
 {
@@ -297,10 +304,8 @@ JD_JSON_from_virtual_workspace <- function(ws, ext_reg_input_data_reader, JSON_f
   return(series_spec_list)
 }
 
-#' @export
-#'
-#'
-from_reduced_to_full_JD_JSON_obj<-function(JD_JSON_string, basic_spec="RSA0")
+
+from_reduced_to_full_JD_JSON_obj<-function(JD_JSON_obj, basic_spec="RSA0")
 {
   basic_spec   <- from_SA_spec(SA_spec = tramoseats_spec(basic_spec), userdef.varFromFile = FALSE)
   full_JD_JSON <- merge_objects_precedence_to_reduced(JD_JSON_obj, basic = basic_spec)
@@ -322,6 +327,25 @@ merge_objects_precedence_to_reduced <- function(reduced, basic_spec = "RSA0")
 
 
 
+#' Print a JSON file with all the JD_JSON fields explicit
+#'
+#' This function prints a JSON string that contains all the fields of the JD_JSON object explicitly defined.
+#'
+#' @param JD_JSON_file The name of the file in which the JD_JSON will be saved
+#' @param output_file_name -optional- The name of the file (optionally with path) in
+#'                         which the JD_JSON will be saved. If NA, the name of the
+#'                         file will be paste0(JD_DSON_file,"_full")
+#' @param indent -optional- Default TRUE. Print each field of the JSON in a
+#'                          different row
+#'
+#' @return Void. A JSON file is saved on the filesystem with all the JD_JSON fields
+#' @examples
+#' original_directory <- getwd()
+#' extdata_directory <- system.file("extdata", package = "RJDProcessor")
+#' JSON_file_name <- system.file("extdata", "specifications_example2.txt", package = "RJDProcessor")
+#' setwd(extdata_directory)
+#' from_reduced_to_full_JD_JSON_file(JSON_file_name)
+#' setwd(original_directory)
 #' @export
 from_reduced_to_full_JD_JSON_file <- function(JD_JSON_file, output_file_name=NA, indent= TRUE)
 {
@@ -373,7 +397,28 @@ from_reduced_to_full_JD_JSON_file <- function(JD_JSON_file, output_file_name=NA,
 }
 
 
-
+#' Print a JSON file with only the fields that differ from the basic spec
+#'
+#' This function prints a JSON string that contains only the fields of the JD_JSON object that differ from the ones of the basic specification (i.e. "RSA0, "RSA1", ...)
+#'
+#' @param JD_JSON_file The name of the file in which the JD_JSON will be saved
+#' @param output_file_name -optional- The name of the file (optionally with path) in
+#'                         which the JD_JSON will be saved. If NA, the name of the
+#'                         file will be paste0(JD_DSON_file,"_reduced")
+#' @param indent -optional- Default TRUE. Print each field of the JSON in a
+#'               different row
+#' @param basic_spec -optional- i.e. "RSA0", "RSA1", ... . Default=NA. If NA,
+#'                   use the basic spec specified in the input JSON
+#' @return Void. A JSON file is saved on the filesystem
+#' @examples
+#' require(RJDemetra)
+#' original_directory <- getwd()
+#' extdata_directory <- system.file("extdata", package = "RJDProcessor")
+#' JSON_file_name <- system.file("extdata", "specifications_example3_full.txt",
+#'                                package = "RJDProcessor")
+#' setwd(extdata_directory)
+#' from_full_to_reduced_JD_JSON_file(JSON_file_name, "specification_new_out2.txt")
+#' setwd(original_directory)
 #' @export
 from_full_to_reduced_JD_JSON_file<-function(JD_JSON_file, output_file_name=NA, indent= TRUE, basic_spec=NA)
 {

@@ -4,6 +4,61 @@ require(rjson)
 #source("utility_functions.R")
 #source("JD_JSON.R")
 
+
+#' Process a JD_JSON file
+#'
+#' This function processes a JSON file with JD_JSON fields and returns a virtual
+#' workspace
+#'
+#' @param input_data_reader A specific Data_reader object (CSV, XLSX, ...) to read
+#'                          the input
+#' @param ext_reg_data_reader A specific Data_reader_ext_reg object (CSV, XLSX, ...)
+#'                            to read the external regrssors
+#' @param spec_file_name Name of the file (with path, if desired) containing the
+#'                       JD_JSON to be processed (e.g. "specification_new.txt")
+#' @param output_workspace_dir -optional- Name of the directory that will contain
+#'                             the output workspace. Default=NA stores the workspace
+#'                             in a directory called "output_workspace_container"
+#' @param series_to_proc_names -optional- vector of names of time series to be
+#'                             processed (e.g. c('VATASA','VATPIA')) .
+#'                             Default=NA: all the series are processed
+#' @param java_processing -optional- Default=TRUE. Use only Java API (faster) for
+#'                        the internal computation
+#' @return a virtual workspace, already processed
+#' @examples
+#' require(RJDemetra)
+#' original_directory <- getwd()
+#' extdata_directory  <- system.file("extdata", package = "RJDProcessor")
+#' setwd(extdata_directory)
+#' spec_file_name <- "specifications_to_proc.txt"
+#' input_workspace_directory <- "WorkspaceTUR-container/workspace-TUR.xml"
+#' input_data_file_name      <- "CSV-TUR/grezzi_trim_TUR.csv"
+#' regr_directory            <- "CSV-TUR/regr"
+#' diff <- TRUE # Reduced JSON if diff=TRUE, Full JSON format otherwise
+#'
+#'############################# Operational flow ###############################
+#'
+#' input_data_reader <- Data_reader_csv(input_source = input_data_file_name)
+#' ext_reg_input_data_reader <- Data_reader_ext_reg_csv(regr_directory)
+#' JD_JSON_from_materialized_workspace(input_workspace_directory,
+#'          ext_reg_input_data_reader, JSON_file_name = spec_file_name,
+#'          diff=TRUE, java_processing=FALSE)
+#' series_to_proc_names <- NA #c("FATEXP_13", "C_DEFL") # NA to process all
+#' virtual_workspace <- JD_JSON_file_processor(input_data_reader = input_data_reader,
+#'          ext_reg_data_reader = ext_reg_input_data_reader,
+#'          spec_file_name = spec_file_name,
+#'          output_workspace_dir = "output_workspace_container",
+#'          series_to_proc_names = series_to_proc_names,
+#'          java_processing = FALSE)
+#' # set java_processor=TRUE to speed-up the operations, but it does not work with
+#' # workspaces readed by sa-ext plugin
+#' m <- get_model(virtual_workspace) #get directly the R model (slower)
+#' from_reduced_to_full_JD_JSON_file(spec_file_name)
+#' compare_sa_ts(new_model_workspace = virtual_workspace,
+#'               old_model_workspace = input_workspace_directory ,
+#'               materialized_ws_new=FALSE, materialized_ws_old=TRUE,
+#'               java_processing_old_model=FALSE)
+#' setwd(original_directory)
 #' @export
 JD_JSON_file_processor <- function(input_data_reader, ext_reg_data_reader, spec_file_name, output_workspace_dir=NA, series_to_proc_names=NA, java_processing=TRUE)
 {
@@ -66,6 +121,23 @@ JD_JSON_file_processor <- function(input_data_reader, ext_reg_data_reader, spec_
 
 
 
+#' Get an R list with model information from java model
+#'
+#' This function gets an R list with model information from java model
+#'
+#' @param j_model a Java model obtained from RJDemetra
+#' @return a list containing all the models specifications
+#' @examples
+#' require(RJDemetra)
+#' original_directory <- getwd()
+#' extdata_directory  <- system.file("extdata", package = "RJDProcessor")
+#' setwd(extdata_directory)
+#' input_workspace <- "workspace_test/workspace.xml"
+#' virtual_workspace <- load_workspace(input_workspace)
+#' compute(virtual_workspace)
+#' m <- get_jmodel(virtual_workspace)
+#' r_model_list <- get_r_model_from_j_model(m)
+#' setwd(original_directory)
 #' @export
 get_r_model_from_j_model <- function(j_model)
 {
@@ -86,7 +158,42 @@ get_r_model_from_j_model <- function(j_model)
   return(model)
 }
 
-
+#' Compare the same models contained in two workspaces
+#'
+#' This function compares the same models contained in two workspaces (old and new)
+#' plotting the respective sasonally adjusted series into a pdf file
+#'
+#' @param new_r_model -optional- an R model obtained via RJDemetra::get_model(workspace).
+#'                    If != NA, this model is used as new model in the comparison.
+#'                    Default = NA, new_model_workspace is used as new model
+#' @param new_model_workspace the workspace (relative/absolute) path of the .xml
+#'                    file or object used as new model in the comparison
+#' @param old_model_workspace the workspace (relative/absolute) path of the .xml
+#'                    file or object used as old model in the comparison
+#' @param materialized_ws_new -optional- Default=FALSE, boolean field stating
+#'                    whether the new workspace in the comparison is passed as
+#'                    a matherialized or a virtual workspace (i.e. R object)
+#' @param materialized_ws_old -optional- Default=TRUE, boolean field stating
+#'                    whether the new workspace in the comparison is passed as
+#'                    a matherialized or a virtual workspace (i.e. R object)
+#' @param java_processing_old_model -optional- Default=TRUE, use Java models for
+#'                    the internal processing of the old workspace (faster than R)
+#' @return a "comparisons.pdf" file containig the plots of the seasonally adjusted
+#'         time series of both the new and old workspaces. Series with the same
+#'         series_name are reported in the same plot
+#' @examples
+#' require(RJDemetra)
+#' original_directory <- getwd()
+#' extdata_directory  <- system.file("extdata", package = "RJDProcessor")
+#' setwd(extdata_directory)
+#' input_workspace_materialized <- "workspace_test/workspace.xml"
+#' virtual_workspace <- load_workspace(input_workspace_materialized)
+#' compute(virtual_workspace)
+#' compare_sa_ts(new_model_workspace = virtual_workspace,
+#'               old_model_workspace = input_workspace_materialized ,
+#'                materialized_ws_new=FALSE, materialized_ws_old=TRUE,
+#'                java_processing_old_model=FALSE)
+#' setwd(original_directory)
 #' @export
 compare_sa_ts <- function(new_r_model=NA, new_model_workspace, old_model_workspace, materialized_ws_new=FALSE, materialized_ws_old=TRUE, java_processing_old_model=TRUE)
 {

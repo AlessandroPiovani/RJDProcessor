@@ -27,3 +27,4 @@ check()
 devtools::build_manual(pkg = "C:\\Users\\UTENTE\\Desktop\\RJDopenCruncher\\RJDProcessor")
 
 #C:\Users\UTENTE\AppData\Local\Programs\MiKTeX\miktex\bin\x64\pdflatex.exe
+
