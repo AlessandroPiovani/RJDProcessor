@@ -1,0 +1,28 @@
+SERVIZIO;VARIABILE;CLASS_1;COD_LIV_1;CODICE_1;CLASS_2;COD_LIV_2;CODICE_2;FREQUENZA;ANNO_BASE;ANNO_INI;MESE_INI;ANNO_FIN;MESE_FIN;APPROCCIO;AGGIUSTAMENTO;ORDINE_AGGR
+TUR   ;ARRIVI              ;AT07                ;20   ;551            ;ISO                 ;20   ;EST            ;        12;      1000;      2009;        10;          ;          ;DIR ;            2;
+TUR   ;ARRIVI              ;AT07                ;20   ;551            ;ISO                 ;20   ;NAZ            ;        12;      1000;      2009;        10;          ;          ;DIR ;            2;
+TUR   ;ARRIVI              ;AT07                ;20   ;551            ;ISO                 ;30   ;TOT            ;        12;      1000;      2009;        10;          ;          ;IND ;            2;          1
+TUR   ;ARRIVI              ;AT07                ;20   ;552_3          ;ISO                 ;20   ;EST            ;        12;      1000;      2009;        10;          ;          ;DIR ;            2;
+TUR   ;ARRIVI              ;AT07                ;20   ;552_3          ;ISO                 ;20   ;NAZ            ;        12;      1000;      2009;        10;          ;          ;DIR ;            2;
+TUR   ;ARRIVI              ;AT07                ;20   ;552_3          ;ISO                 ;30   ;TOT            ;        12;      1000;      2009;        10;          ;          ;IND ;            2;          1
+TUR   ;ARRIVI              ;AT07                ;30   ;551_553        ;ISO                 ;20   ;EST            ;        12;      1000;      2009;        10;          ;          ;IND ;            2;          2
+TUR   ;ARRIVI              ;AT07                ;30   ;551_553        ;ISO                 ;20   ;NAZ            ;        12;      1000;      2009;        10;          ;          ;IND ;            2;          2
+TUR   ;ARRIVI              ;AT07                ;30   ;551_553        ;ISO                 ;30   ;TOT            ;        12;      1000;      2009;        10;          ;          ;IND ;            2;          2
+TUR   ;PERMED              ;AT07                ;20   ;551            ;ISO                 ;20   ;EST            ;        12;      1000;      2009;        10;          ;          ;DIF ;            0;
+TUR   ;PERMED              ;AT07                ;20   ;551            ;ISO                 ;20   ;NAZ            ;        12;      1000;      2009;        10;          ;          ;DIF ;            0;
+TUR   ;PERMED              ;AT07                ;20   ;551            ;ISO                 ;30   ;TOT            ;        12;      1000;      2009;        10;          ;          ;DIF ;            0;
+TUR   ;PERMED              ;AT07                ;20   ;552_3          ;ISO                 ;20   ;EST            ;        12;      1000;      2009;        10;          ;          ;DIF ;            0;
+TUR   ;PERMED              ;AT07                ;20   ;552_3          ;ISO                 ;20   ;NAZ            ;        12;      1000;      2009;        10;          ;          ;DIF ;            0;
+TUR   ;PERMED              ;AT07                ;20   ;552_3          ;ISO                 ;30   ;TOT            ;        12;      1000;      2009;        10;          ;          ;DIF ;            0;
+TUR   ;PERMED              ;AT07                ;30   ;551_553        ;ISO                 ;20   ;EST            ;        12;      1000;      2009;        10;          ;          ;DIF ;            0;
+TUR   ;PERMED              ;AT07                ;30   ;551_553        ;ISO                 ;20   ;NAZ            ;        12;      1000;      2009;        10;          ;          ;DIF ;            0;
+TUR   ;PERMED              ;AT07                ;30   ;551_553        ;ISO                 ;30   ;TOT            ;        12;      1000;      2009;        10;          ;          ;DIF ;            0;
+TUR   ;PRESEN              ;AT07                ;20   ;551            ;ISO                 ;20   ;EST            ;        12;      1000;      2009;        10;          ;          ;DIR ;            2;
+TUR   ;PRESEN              ;AT07                ;20   ;551            ;ISO                 ;20   ;NAZ            ;        12;      1000;      2009;        10;          ;          ;DIR ;            2;
+TUR   ;PRESEN              ;AT07                ;20   ;551            ;ISO                 ;30   ;TOT            ;        12;      1000;      2009;        10;          ;          ;IND ;            2;          1
+TUR   ;PRESEN              ;AT07                ;20   ;552_3          ;ISO                 ;20   ;EST            ;        12;      1000;      2009;        10;          ;          ;DIR ;            2;
+TUR   ;PRESEN              ;AT07                ;20   ;552_3          ;ISO                 ;20   ;NAZ            ;        12;      1000;      2009;        10;          ;          ;DIR ;            2;
+TUR   ;PRESEN              ;AT07                ;20   ;552_3          ;ISO                 ;30   ;TOT            ;        12;      1000;      2009;        10;          ;          ;IND ;            2;          1
+TUR   ;PRESEN              ;AT07                ;30   ;551_553        ;ISO                 ;20   ;EST            ;        12;      1000;      2009;        10;          ;          ;IND ;            2;          2
+TUR   ;PRESEN              ;AT07                ;30   ;551_553        ;ISO                 ;20   ;NAZ            ;        12;      1000;      2009;        10;          ;          ;IND ;            2;          2
+TUR   ;PRESEN              ;AT07                ;30   ;551_553        ;ISO                 ;30   ;TOT            ;        12;      1000;      2009;        10;          ;          ;IND ;            2;          2
