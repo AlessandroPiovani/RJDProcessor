@@ -21,5 +21,5 @@ C_DEFL_list    <- list("series_name"="C_DEFL",    "dates"=c("2001-01-01","2001-0
 #...
 input_data_list   <- list(FATEXP_10_list, C_DEFL_list) #add more time series if you want (here are 2)
 input_data_reader <- Data_reader_list(input_source = input_data_list)
-#input_data_reader@read_data()
+input_data_reader@read_data()
 }

@@ -20,7 +20,7 @@ setClass("Data_reader_list",
 #' #...
 #' input_data_list   <- list(FATEXP_10_list, C_DEFL_list) #add more time series if you want (here are 2)
 #' input_data_reader <- Data_reader_list(input_source = input_data_list)
-#' #input_data_reader@read_data()
+#' input_data_reader@read_data()
 #' @export
 setMethod ("read_data", signature("Data_reader_list"),
            function(object, ...) {

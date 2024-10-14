@@ -11,6 +11,37 @@ adjust_xml_external_variables_read_from_plugin <- function(file_path) {
   writeLines(modified_content, file_path)
 }
 
+
+#' Get a single workspace for each series in a workspace
+#'
+#' This function gets a single time series workspace for each time series SA model
+#' present in a given workspace
+#'
+#' @param full_workspace A workspace with multiple time series SA models
+#' @param single_workspaces_path The path in which the single workspcaes will be
+#'                      stored
+#' @param compressed_ws -optional- Default=TRUE, compress the single workspaces
+#'                      that will be created
+#' @param clean_single_ws_directory -optional- Default=TRUE, delete the original
+#'                      workspace after creating the single series ones
+#' @param from_TS_PLUS_plugin -optional- Default=TRUE, the original workspace is
+#'                      created by the SA_ext_plugin. In that case some internal
+#'                      adjustments are needed and they could make the computation
+#'                      slower. There are no problems if this field is TRUE but
+#'                      the ws is created without SA_ext_plugin
+#' @return A set of materialized workspaces in single_workspaces_path, one workspace
+#'         for each time series SA model contained in full_workspace
+#' @examples
+#' require(RJDemetra)
+#' original_directory <- getwd()
+#' extdata_directory  <- system.file("extdata", package = "RJDProcessor")
+#' setwd(extdata_directory)
+#' single_workspaces_path <- "splitted_workspaces"
+#' full_workspace         <- "WorkspaceTUR-container\\workspace-TUR.xml"
+#' compressed_ws          <-  FALSE
+#' get_single_ts_workspaces(full_workspace, single_workspaces_path,
+#'                          compressed_ws = compressed_ws )
+#' setwd(original_directory)
 #' @export
 get_single_ts_workspaces <- function(full_workspace, single_workspaces_path, compressed_ws=TRUE, clean_single_ws_directory=TRUE, from_TS_PLUS_plugin=TRUE)
 {
@@ -128,6 +159,30 @@ get_single_ts_workspaces <- function(full_workspace, single_workspaces_path, com
 }
 
 
+#' Compare the data in a workspace with only one time series with given data
+#'
+#' This function compares the data in a workspace with only one time series with
+#' given raw data in array form
+#'
+#' @param raw_data     Raw data to be compared with the ones in the workspace
+#' @param ws_single_ts The xml path of the workspace containing the data to be
+#'                     compared
+#' @param raw_data_start -optional- Default=NA, the starting date of the raw data
+#'                     in form "YYYY-MM-DD". If NA, the starting date is assumed
+#'                     to be the same as the workspace data
+#' @param raw_data_freq -optional- Default=NA, the frequency of the raw data (
+#'                      e.g. 12=monthly, 4=quarterly). If NA, the frequency is
+#'                      assumed to be the same as the workspace data
+#' @return Boolean: TRUE if data are the same, FALSE otherwise
+#' @examples
+#' require(RJDemetra)
+#' original_directory <- getwd()
+#' extdata_directory  <- system.file("extdata", package = "RJDProcessor")
+#' setwd(extdata_directory)
+#' single_workspaces_path <- "splitted_workspaces_to_merge"
+#' single_ws<-load_workspace(paste0(single_workspaces_path,"\\VATPIC\\VATPIC.xml"))
+#' result<-check_data(c(1,2,3), single_ws)
+#' setwd(original_directory)
 #' @export
 check_data <- function(raw_data, ws_single_ts, raw_data_start=NA, raw_data_freq=NA)
 {
@@ -176,6 +231,28 @@ check_data <- function(raw_data, ws_single_ts, raw_data_start=NA, raw_data_freq=
 
 }
 
+
+
+#' Verify the external regressors used in a workspace
+#'
+#' This function check whether the external regressors used in a workspace are
+#' up to date (i.e. they cover from the beginning to the end of the time series
+#' and have the same frequency). The workspace must contain a single time series.
+#'
+#' @param ws_single_ts The xml path of the workspace containing the data to be
+#'                     checked
+#' @return Boolean: TRUE if ckeck is ok, FALSE if there are problems in the
+#'         external regressors.
+#' @examples
+#' require(RJDemetra)
+#' original_directory <- getwd()
+#' extdata_directory  <- system.file("extdata", package = "RJDProcessor")
+#' setwd(extdata_directory)
+#' single_workspaces_path <- "splitted_workspaces_to_merge"
+#' single_ws<-load_workspace(paste0(single_workspaces_path,"\\VATPIC\\VATPIC.xml"))
+#' compute(single_ws)
+#' result<- check_external_regressors(single_ws)
+#' setwd(original_directory)
 #' @export
 check_external_regressors <- function(ws_single_ts)
 {
@@ -245,6 +322,39 @@ check_external_regressors <- function(ws_single_ts)
 }
 
 
+#' Merge many workspaces in one
+#'
+#' This function gets merges many workspaces contained in a given folder into one
+#' workspace
+#'
+#' @param source_workspaces_path The path in which to find all the workspcaes that
+#'                       will be merged
+#' @param merged_ws_name -optional- Default="merged_ws". The name of the workspace
+#'                       that will be created
+#' @param merged_ws_dir  -optional- Default=NA, the path in which the merged workspace
+#'                       will be stored. If NA it will be stored in the current
+#'                       directory
+#' @param compressed     -optional- Default=TRUE, workspaces to be merged are
+#'                       compressed
+#' @param delete_originals -optional- Default=TRUE, delete original workspaces
+#'                         after merging them
+#' @param silent -optional- Default=TRUE, do not print status bar and messages
+#'               during the operations
+#' @return A virtual (R) and a marerialized workspace containing all the
+#'         multiprocessings and time series SA models of the original workspaces
+#' @examples
+#' require(RJDemetra)
+#' original_directory <- getwd()
+#' extdata_directory  <- system.file("extdata", package = "RJDProcessor")
+#' setwd(extdata_directory)
+#' single_workspaces_path <- "splitted_workspaces_to_merge"
+#' full_workspace_path    <- "merged_ws_test"
+#' compressed_ws          <-  FALSE
+#' ws_merged <- merge_workspaces(source_workspaces_path=single_workspaces_path,
+#'              merged_ws_dir = full_workspace_path, compressed = TRUE,
+#'              delete_originals = FALSE, silent=TRUE)
+#'
+#' setwd(original_directory)
 #' @export
 merge_workspaces <- function(source_workspaces_path, merged_ws_name = "merged_ws", merged_ws_dir=NA, compressed = TRUE, delete_originals = TRUE, silent=TRUE)
 {
@@ -349,7 +459,27 @@ merge_workspaces <- function(source_workspaces_path, merged_ws_name = "merged_ws
 }
 
 
-
+#' Update the data of a workspace
+#'
+#' This function update the data of a workspace's time series basing on the data
+#' read by a Data_reader object already initialized. The time series read by the
+#' Data_reader must have the same colnames as the time series names of the workspace
+#' to produce an update
+#'
+#' @param workspace_xml_path Path of the xml file of the workspace whose data
+#'                           have to be updated
+#' @param data_reader A Data_reader object already initialized with its input
+#'                    source
+#' @examples
+#' require(RJDemetra)
+#' original_directory <- getwd()
+#' extdata_directory  <- system.file("extdata", package = "RJDProcessor")
+#' setwd(extdata_directory)
+#' ws_xml_path  <- "TUR_ws_test_container/merged_ws.xml"
+#' dr <- RJDProcessor::Data_reader_csv(input_source = "rawdata_TUR.csv")
+#' # num_mat<-dr@read_data() # to check if the data are available
+#' update_data(ws_xml_path, dr)
+#' setwd(original_directory)
 #' @export
 update_data <- function(workspace_xml_path, data_reader)
 {
