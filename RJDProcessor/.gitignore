@@ -1,0 +1,5 @@
+# Ignore all the files in test folder...
+/RJDProcessor/test/*
+
+# ...except for the ones with ".R" extension
+!/RJDProcessor/test/*.R
