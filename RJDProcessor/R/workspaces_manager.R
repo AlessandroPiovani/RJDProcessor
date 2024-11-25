@@ -111,7 +111,7 @@ get_single_ts_workspaces <- function(full_workspace, single_workspaces_path, com
       {
         dir.create(ts_path, recursive = TRUE)
       }
-
+      #compute(ws_single_ts) #Added --> when saved the workspace is unprocessed anyway
       save_workspace(ws_single_ts, ts_file_path)
 
       if(from_TS_PLUS_plugin)
@@ -439,6 +439,7 @@ merge_workspaces <- function(source_workspaces_path, merged_ws_name = "merged_ws
     #save_workspace(ws_merged, paste0(merged_ws_path,"/",merged_ws_name,".xml"))
   }
   # suppress the warnings?
+  #compute(ws_merged) #Added --> when saved the workspace is unprocessed anyway
   save_workspace(ws_merged, paste0(merged_ws_path,"/",merged_ws_name,".xml"))
 
 

@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:demetraGenericWorkspace xmlns="ec/tss.core" xmlns:ns2="ec/tss.demetra" name="workspace_FAT_to_load">
+    <ns2:items>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@multi-documents</ns2:family>
+            <ns2:name>SAProcessing-1</ns2:name>
+            <ns2:file>SAProcessing-1</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_1</ns2:name>
+            <ns2:file>Vars-1</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_2</ns2:name>
+            <ns2:file>Vars-2</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_3</ns2:name>
+            <ns2:file>Vars-3</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_4</ns2:name>
+            <ns2:file>Vars-4</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_5</ns2:name>
+            <ns2:file>Vars-5</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@multi-documents</ns2:family>
+            <ns2:name>SAProcessing-2</ns2:name>
+            <ns2:file>SAProcessing-2</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@multi-documents</ns2:family>
+            <ns2:name>SAProcessing-3</ns2:name>
+            <ns2:file>SAProcessing-3</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@multi-documents</ns2:family>
+            <ns2:name>SAProcessing-4</ns2:name>
+            <ns2:file>SAProcessing-4</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@multi-documents</ns2:family>
+            <ns2:name>SAProcessing-5</ns2:name>
+            <ns2:file>SAProcessing-5</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@multi-documents</ns2:family>
+            <ns2:name>SAProcessing-6</ns2:name>
+            <ns2:file>SAProcessing-6</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_6</ns2:name>
+            <ns2:file>Vars-6</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@multi-documents</ns2:family>
+            <ns2:name>SAProcessing-7</ns2:name>
+            <ns2:file>SAProcessing-7</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_7</ns2:name>
+            <ns2:file>Vars-7</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_8</ns2:name>
+            <ns2:file>Vars-8</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@multi-documents</ns2:family>
+            <ns2:name>SAProcessing-8</ns2:name>
+            <ns2:file>SAProcessing-8</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_9</ns2:name>
+            <ns2:file>Vars-9</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@multi-documents</ns2:family>
+            <ns2:name>SAProcessing-9</ns2:name>
+            <ns2:file>SAProcessing-9</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_10</ns2:name>
+            <ns2:file>Vars-10</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_11</ns2:name>
+            <ns2:file>Vars-11</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_12</ns2:name>
+            <ns2:file>Vars-12</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_13</ns2:name>
+            <ns2:file>Vars-13</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_14</ns2:name>
+            <ns2:file>Vars-14</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_15</ns2:name>
+            <ns2:file>Vars-15</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_16</ns2:name>
+            <ns2:file>Vars-16</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_17</ns2:name>
+            <ns2:file>Vars-17</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_18</ns2:name>
+            <ns2:file>Vars-18</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_19</ns2:name>
+            <ns2:file>Vars-19</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_20</ns2:name>
+            <ns2:file>Vars-20</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_21</ns2:name>
+            <ns2:file>Vars-21</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_22</ns2:name>
+            <ns2:file>Vars-22</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_23</ns2:name>
+            <ns2:file>Vars-23</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_24</ns2:name>
+            <ns2:file>Vars-24</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_25</ns2:name>
+            <ns2:file>Vars-25</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_26</ns2:name>
+            <ns2:file>Vars-26</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_27</ns2:name>
+            <ns2:file>Vars-27</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_28</ns2:name>
+            <ns2:file>Vars-28</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_29</ns2:name>
+            <ns2:file>Vars-29</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_30</ns2:name>
+            <ns2:file>Vars-30</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_31</ns2:name>
+            <ns2:file>Vars-31</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_32</ns2:name>
+            <ns2:file>Vars-32</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_33</ns2:name>
+            <ns2:file>Vars-33</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_34</ns2:name>
+            <ns2:file>Vars-34</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_35</ns2:name>
+            <ns2:file>Vars-35</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_36</ns2:name>
+            <ns2:file>Vars-36</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_37</ns2:name>
+            <ns2:file>Vars-37</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_38</ns2:name>
+            <ns2:file>Vars-38</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_39</ns2:name>
+            <ns2:file>Vars-39</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_40</ns2:name>
+            <ns2:file>Vars-40</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_41</ns2:name>
+            <ns2:file>Vars-41</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_42</ns2:name>
+            <ns2:file>Vars-42</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_43</ns2:name>
+            <ns2:file>Vars-43</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_44</ns2:name>
+            <ns2:file>Vars-44</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_45</ns2:name>
+            <ns2:file>Vars-45</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_46</ns2:name>
+            <ns2:file>Vars-46</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_47</ns2:name>
+            <ns2:file>Vars-47</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_48</ns2:name>
+            <ns2:file>Vars-48</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_49</ns2:name>
+            <ns2:file>Vars-49</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_50</ns2:name>
+            <ns2:file>Vars-50</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_51</ns2:name>
+            <ns2:file>Vars-51</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_52</ns2:name>
+            <ns2:file>Vars-52</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@multi-documents</ns2:family>
+            <ns2:name>SAProcessing-10</ns2:name>
+            <ns2:file>SAProcessing-10</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@multi-documents</ns2:family>
+            <ns2:name>SAProcessing-11</ns2:name>
+            <ns2:file>SAProcessing-11</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_53</ns2:name>
+            <ns2:file>Vars-53</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_54</ns2:name>
+            <ns2:file>Vars-54</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_55</ns2:name>
+            <ns2:file>Vars-55</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>_ts_external_56</ns2:name>
+            <ns2:file>Vars-56</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@multi-documents</ns2:family>
+            <ns2:name>SAProcessing-12</ns2:name>
+            <ns2:file>SAProcessing-12</ns2:file>
+        </ns2:item>
+    </ns2:items>
+</ns2:demetraGenericWorkspace>

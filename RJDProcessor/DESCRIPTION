@@ -1,7 +1,7 @@
 Package: RJDProcessor
 Type: Package
 Title: RJDProcessor
-Version: 1.0.0
+Version: 1.0.1
 Author: Alessandro Piovani
 Maintainer: Alessandro Piovani <alessandro.piovani@istat.it>,
                                <alessandro.piovani13@gmail.com>							
@@ -38,3 +38,4 @@ Collate: import_and_interface_definition.R
   basic_spec.R
   utility_functions.R
   workspaces_manager.R
+  report.R

@@ -1,0 +1,386 @@
+
+                                        PROGRAM TRAMO+
+
+             (based on program TRAMO, Victor Gomez and Agustin Maravall©,1996)
+
+         Developed at the Bank of Spain by Gianluca Caporello and Agustin Maravall,
+         with programming support from Domingo Pérez Cañete and Roberto López Pavón.
+
+                 VERSION: 1.0 (Revision: 942  Build: 2017/09/25 09:39:13)
+
+
+ SERIES TITLE=DFSEZDC                                                                         
+
+ INPUT PARAMETERS
+   lam= 0   imean= 0   ireg= 1   seats= 2   tabtablet='xo,xi,xl,re,me,td,ee,to,ls,reg'   int2= 43   rsa= 0   modelsumm= 1   va=   3.300
+ 
+  WARNING :
+    Remember to define the regression variable name in the first line of the external regression file.
+   Name : NOT DEFINED.
+   Reglist01
+    Iuser=-1   Nser= 1   Ilong= 120
+ 
+
+ NUMBER OF OBSERVATIONS:  43
+
+
+ ORIGINAL SERIES 
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2021      81.400    92.600   110.600    98.900   103.700   107.200   108.900    65.100   108.200   106.000   111.400   105.600
+ 2022      87.100    99.100   118.200   100.500   113.200   109.300   107.600    68.800   111.100   104.000   110.000   103.900
+ 2023      90.200    96.500   115.000    88.900   110.300   110.400   105.500    66.400   105.700   106.700   109.400    97.900
+ 2024      89.700    98.300   102.300    93.900   105.300   100.400   107.100
+
+
+ MODEL PARAMETERS            
+ ----------------
+  MQ= 12         IMEAN=  0      LAM=  0      D=  1       BD=  1
+  P=  0          BP=  0         Q=  1        BQ=  1      IREG=  1
+  ITRAD=  0      SMPDAY=  0     IEAST=  0      IDUR=  6     M= 12       IQM= 24
+  INCON=  0      NBACK=  0      NPRED= 24    INTERP=  2  INIT=  0
+  IFILT=  2      IROOT=  2    INIC=  0    ICONCE=  1
+  ICDET=  1      IATIP=  0      IMVX=  0     IDIF=  0    PG=  0
+  AIO=  2        INT1=  1       INT2=  43    RSA=  0     SEATS=  2
+  VA= 3.30       TOL=  0.100E-03             PC=  0.120E+00
+  NOADMISS= 1    STOCHTD 0    BIAS= 1
+  THLIM=  0.000  BTHLIM=  0.000   RMOD=  0.500
+
+
+
+TH =        -0.10
+
+BTH =        -0.10
+
+NUMBER OF INITIAL OBS. =  13
+
+Log-Level pretest : LOGS are Selected
+ DIFFERENCED TRANSFORMED SERIES
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2022                 0.000    -0.001    -0.050     0.072    -0.068    -0.031     0.067    -0.029    -0.045     0.006    -0.004
+ 2023       0.051    -0.062    -0.001    -0.095     0.097     0.036    -0.030    -0.016    -0.014     0.075    -0.031    -0.054
+ 2024       0.054     0.024    -0.136     0.172    -0.101    -0.049     0.110
+
+
+
+
+ AUTOCORRELATIONS
+ ----------------
+     -0.4299  -0.2877   0.4125  -0.2278   0.0890   0.1316  -0.2271   0.0602   0.1330  -0.1496   0.1462  -0.0983
+ SE   0.1826   0.2137   0.2262   0.2500   0.2569   0.2579   0.2601   0.2666   0.2671   0.2693   0.2720   0.2746
+
+
+ PARTIAL AUTOCORRELATIONS
+ ---------------------
+     -0.4299  -0.5797  -0.0594  -0.2547   0.1288   0.1827   0.1407  -0.0144   0.0465  -0.0847   0.1694  -0.0487
+ SE   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826
+  
+ ARIMA MODEL ESTIMATION 
+  
+ METHOD OF ESTIMATION: EXACT MAXIMUM LIKELIHOOD           
+  
+ PARAMETER      ESTIMATE           STD ERROR      T RATIO   LAG  
+  
+ TH1         -0.70354           0.13023           -5.40      1
+ BTH         -0.17518           0.18043           -0.97     12
+  
+ 
+ REGULAR MA INVERSE ROOTS ARE 
+ NO.     REAL P.     IMAG.P.     MODULUS    ARGUMENT      PERIOD
+  1      0.70354       0.0000      0.70354       0.0000            -  
+ 
+ SEASONAL MA INVERSE ROOTS ARE 
+ NO.     REAL P.     IMAG.P.     MODULUS    ARGUMENT      PERIOD
+  1      0.17518       0.0000      0.17518       0.0000            -  
+  
+ CORRELATIONS OF THE ESTIMATES 
+  
+  1.000   -0.086
+ -0.086    1.000
+  
+ AIC 
+     -96.474
+  
+ BIC 
+     -5.9490
+  
+ FINAL VALUE OF OBJECTIVE FUNCTION: 
+               0.57701E-01
+  
+ RADETN:    1.01785957609897     
+ ITERATIONS:            4
+  
+  NUMBER OF FUNCTION EVALUATIONS:           14
+  
+
+ ESTIMATES OF REGRESSION PARAMETERS 
+ CONCENTRATED OUT OF THE LIKELIHOOD 
+
+ PARAMETER           VALUE          ST. ERROR     T VALUE
+ REG      1         -0.17760E-01    (     0.00700)   -2.54
+
+ VAR-CORRELATION MATRIX OF ESTIMATORS 
+
+   0.490E-04
+
+
+ VARIANCES ARE IN THE MAIN DIAGONAL; 
+ OFF-DIAGONAL ELEMENTS ARE CORRELATIONS. 
+
+
+
+ACF DIFFERENCED SERIES
+
+
+
+
+ AUTOCORRELATIONS
+ ----------------
+     -0.4401  -0.2660   0.3860  -0.2094   0.0795   0.1258  -0.2023   0.0345   0.1186  -0.1055   0.1311  -0.1367
+ SE   0.1826   0.2150   0.2257   0.2468   0.2526   0.2535   0.2555   0.2608   0.2610   0.2627   0.2642   0.2663
+  
+  
+  NUMBER OF WHITE NOISE RESIDUALS           29
+  
+ WHITE NOISE RESIDUALS
+  
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2022                          -0.017    -0.059    -0.005    -0.018    -0.061     0.006    -0.006    -0.049    -0.028    -0.023
+ 2023       0.003    -0.006    -0.026    -0.122    -0.001     0.051    -0.002    -0.009    -0.023     0.034     0.029    -0.052
+ 2024      -0.014     0.066    -0.093     0.035     0.009    -0.069     0.037
+ 
+ 
+  STABILITY TEST
+ 
+     FULL PERIOD
+                  FIRST HALF                    SECOND HALF
+           Mean(t)          Variance      Mean(t)          Variance
+      -0.29E-01( -3.3    )  0.11E-02 -0.61E-04(-0.55E-02)  0.19E-02
+ 
+      t(difference in means)=  2.0    
+      VR(variance ratio)=  1.8    
+ 
+      MEAN STABILITY IS REJECTED.(TRY SHORTEN SERIES; move "first observation" forward)
+      VARIANCE STABILITY IS NOT REJECTED.
+
+
+
+
+ TEST-STATISTICS ON RESIDUALS
+ ----------------------------
+
+
+           MEAN=  -0.1422454E-01
+        ST.DEV.=   0.7697220E-02
+        OF MEAN
+        T-VALUE= -1.8480
+
+ NORMALITY TEST=   1.018        ( CHI-SQUARE(2) )
+
+       SKEWNESS= -0.4462          ( SE =  0.4549 )
+       KURTOSIS=  3.2144          ( SE =  0.9097 )
+
+ SUM OF SQUARES=   0.2981660E-01
+
+  DURBIN-WATSON=  4.0758
+
+ STANDARD ERROR=   0.4541727E-01
+ OF RESID.
+  MSE OF RESID.=   0.2062728E-02
+
+
+
+
+ AUTOCORRELATIONS
+ ----------------
+     -0.1062  -0.1610   0.3571  -0.0010   0.2057   0.1473  -0.1179   0.1368   0.1722  -0.0431   0.1521  -0.0029
+ SE   0.1857   0.1857   0.1857   0.1857   0.1857   0.1857   0.1857   0.1857   0.1857   0.1857   0.1857   0.1857
+ Q      0.36     1.23     5.64     5.64     7.22     8.07     8.64     9.44    10.77    10.86    12.01    12.01
+ PV    -1.00    -1.00     0.02     0.06     0.07     0.09     0.12     0.15     0.15     0.21     0.21     0.28
+
+  LJUNG-BOX Q VALUE OF ORDER  12 IS     12.01 AND IF RESIDUALS ARE RANDOM IT SHOULD BE DISTRIBUTED AS CHI-SQUARE(10)
+  p-value= 0.2841
+
+ APPROXIMATE TEST OF RUNS ON RESIDUALS
+ -------------------------------------
+  NUM.DATA=  29
+   NUM.(+)=  15
+   NUM.(-)=  14
+  NUM.RUNS=  16
+   T-VALUE=  0.3787
+
+
+  NON-PARAMETRIC TEST FOR RESIDUAL SEASONALITY (FRIEDMAN) SEAS_NP =      8.15
+    ASYMP. DISTRIBUTED AS CHI-SQUARE(11)
+    p-value= 0.6995
+
+
+
+ SQUARED RESIDUALS:
+ ------------------
+
+
+
+
+ AUTOCORRELATIONS
+ ----------------
+     -0.1129  -0.0873  -0.0060  -0.1167  -0.1170   0.0529  -0.1709  -0.0081   0.0501   0.0067   0.2525   0.0528
+ SE   0.1857   0.1857   0.1857   0.1857   0.1857   0.1857   0.1857   0.1857   0.1857   0.1857   0.1857   0.1857
+ Q      0.41     0.66     0.66     1.15     1.67     1.78     2.97     2.97     3.08     3.09     6.27     6.42
+ PV    -1.00    -1.00     0.41     0.56     0.64     0.78     0.70     0.81     0.88     0.93     0.71     0.78
+
+  McLEOD-LI Q VALUE OF ORDER  12 IS      6.42 AND IF RESIDUALS ARE RANDOM IT SHOULD BE DISTRIBUTED AS CHI-SQUARE(12)
+  p-value= 0.8935
+ 
+ 
+ 
+SPECTRAL DIAGNOSTICS
+ --------------------
+ 
+A. SEASONAL SPECTRAL PEAKS
+ 
+                           Frequency (cycles per year)
+                     One    Two   Three  Four   Five    Six  
+ Original series      nc     nc     nc     nc     nc     nc
+ Linearized series    nc     nc     nc     nc     nc     nc
+ Residuals            nc     nc     nc     nc     nc     nc
+ 
+ AT : peaks detected in AR(30) and using Tukey spectrum  estimator
+ A- : only peaks detected in AR(30) spectrum estimator
+ -T : only peaks detected using Tukey spectrum estimator
+ -- : No peaks detected in AR(30) nor using Tukey spectrum estimator
+ 
+ 
+ 
+B. STOCHASTIC SEASONALITY: SPECTRAL EVIDENCE
+ 
+ 1 :  SERIES CONTAINS SEASONALITY THAT CAN BE RELIABLY EXTRACTED.
+ 0 :  SEASONALITY IS NOT PRESENT IN THE SERIES OR IS TOO WEAK TO BE RELIABLY CAPTURED.
+ 
+ ORIGINAL SERIES :   -
+ LINEARIZED SERIES : -
+ RESIDUALS :         -
+ 
+ 
+ 
+C. TRADING DAY EFFECT: SPECTRAL EVIDENCE
+ 
+ 1 :  TRADING DAY EFFECT DETECTED
+ 0 :  NO TRADING DAY EFFECT DETECTED
+ 
+ LINEARIZED SERIES : -
+ RESIDUALS :         -
+ 
+ 
+OVERALL TEST FOR IDENTIFIABLE SEASONALITY 
+----------------------------------------- 
+ 
+  AUTOCORRELATION FUNCTION EVIDENCE : YES
+  NON-PARAMETRIC EVIDENCE           : YES
+  F-TEST                            :  - 
+  SPECTRAL EVIDENCE                 : -  
+ 
+IDENTIFIABLE SEASONALITY FOUND IN SERIES
+ 
+ 
+OVERALL TEST FOR RESIDUALS SEASONALITY 
+----------------------------------------- 
+ 
+  AUTOCORRELATION FUNCTION EVIDENCE : NO 
+  NON-PARAMETRIC EVIDENCE           : NO 
+  F-TEST                            : NO 
+  SPECTRAL EVIDENCE                 : -  
+ 
+NO IDENTIFIABLE SEASONALITY FOUND IN RESIDUALS
+ 
+ 
+ARIMA MODEL : GOOD FIT
+----------------------
+
+ALL TEST ARE PASSED
+ 
+QUALITY ARIMA MODEL TESTS
+----------------------------------------
+
+  Mean in residuals                      :GOOD        
+  Autocorrelation in residuals           :GOOD        
+  Normality of residuals                 :GOOD        
+  Skewness of residuals                  :GOOD        
+  Kurtosis of residuals                  :GOOD        
+  Randomness of residual sign            :GOOD        
+  Instability of residual mean           :GOOD        
+  Instability of residual variance       :GOOD        
+  Seasonality in residuals               :GOOD        
+  Trading day in residuals               :GOOD        
+  Out-of-sample forecast errors          :GOOD        
+  Number of outliers                     :GOOD        
+ 
+
+
+ LINEAR SERIES
+
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2021      82.859    89.827   110.257   100.780   105.684   106.390   109.447    64.933   109.307   107.084   109.158   106.136
+ 2022      90.249    97.855   117.833   102.410   111.340   110.418   108.140    67.415   112.236   105.064   107.786   104.427
+ 2023      90.200    96.995   114.643    90.589   106.578   111.529   106.030    65.063   106.781   105.894   109.119    98.397
+ 2024      86.570   100.575   103.810    92.345   105.425   101.427   105.743
+
+
+  AUTOCORRELATION FUNCTION TEST FOR SEASONALITY IN LINEARIZEDSERIES QS =    38.66  ASIMPTOTICALLY DISTRIBUTED AS CHI-SQUARE(2)
+    p-value= 0.0000
+
+
+  NON-PARAMETRIC TEST FOR SEASONALITY IN LINEARIZED SERIES (FRIEDMAN) SEAS_NP =     31.26
+    ASYMP. DISTRIBUTED AS CHI-SQUARE(11)
+    p-value= 0.0010
+
+
+TOTAL REGRESSION EFFECT FACTORS
+
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2021      98.240   103.087   100.311    98.135    98.123   100.761    99.500   100.258    98.987    98.987   102.054    99.495
+ 2022      96.510   101.273   100.311    98.135   101.671    98.987    99.500   102.054    98.987    98.987   102.054    99.495
+ 2023     100.000    99.490   100.311    98.135   103.493    98.987    99.500   102.054    98.987   100.761   100.258    99.495
+ 2024     103.616    97.738    98.545   101.683    99.881    98.987   101.283
+ 
+ 
+ 
+ FORECAST FUNCTION OF ORIGINAL SERIES: 
+  
+ORIGIN:  43 PERIODS AHEAD: 24
+  
+ OBS    DATE         FORECAST          STD ERROR        FORECAST          STD ERROR   
+                        (SERIES IN LOGS)                     (SERIES IN LEVELS)       
+  44  Aug-2024       4.13249          0.364971E-01       62.3331           2.27573    
+  45  Sep-2024       4.65352          0.351288E-01       104.953           3.68803    
+  46  Oct-2024       4.63643          0.360344E-01       103.175           3.71906    
+  47  Nov-2024       4.64269          0.385508E-01       103.824           4.00397    
+  48  Dec-2024       4.57982          0.390539E-01       97.4966           3.80908    
+  49  Jan-2025       4.43522          0.417662E-01       84.3711           3.52540    
+  50  Feb-2025       4.56677          0.412882E-01       96.2325           3.97496    
+  51  Mar-2025       4.63106          0.424732E-01       102.623           4.36068    
+  52  Apr-2025       4.51005          0.433842E-01       90.9264           3.94663    
+  53  May-2025       4.62729          0.446067E-01       102.237           4.56272    
+  54  Jun-2025       4.61056          0.459048E-01       100.541           4.61773    
+  55  Jul-2025       4.64241          0.466046E-01       103.794           4.83992    
+  56  Aug-2025       4.10574          0.618151E-01       60.6877           3.75501    
+  57  Sep-2025       4.64453          0.634006E-01       104.014           6.60119    
+  58  Oct-2025       4.59192          0.653673E-01       98.6834           6.45757    
+  59  Nov-2025       4.61594          0.681317E-01       101.083           6.89496    
+  60  Dec-2025       4.55307          0.698211E-01       94.9231           6.63572    
+  61  Jan-2026       4.40847          0.732028E-01       82.1440           6.02124    
+  62  Feb-2026       4.55778          0.748572E-01       95.3712           7.14924    
+  63  Mar-2026       4.60431          0.763856E-01       99.9139           7.64313    
+  64  Apr-2026       4.46554          0.786989E-01       86.9679           6.85489    
+  65  May-2026       4.58278          0.812506E-01       97.7860           7.95831    
+  66  Jun-2026       4.60157          0.832337E-01       99.6407           8.30784    
+  67  Jul-2026       4.59790          0.847437E-01       99.2756           8.42811    

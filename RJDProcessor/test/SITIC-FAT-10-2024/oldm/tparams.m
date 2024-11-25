@@ -1,7 +1,7 @@
   *** Tramo Revision: 942  Build: 2017/09/25 09:39:13                                                           ***
    Input Parameters 
 Serie     1
-   lam= 0   imean= 0   ireg= 2   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+   lam= 0   imean= 0   ireg= 2   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    
    Reglist01
@@ -13,7 +13,7 @@ Serie     1
       49     LS
  
 Serie     2
-   lam= 0   imean= 0   ireg= 2   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+   lam= 0   imean= 0   ireg= 2   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    
    Reglist01
@@ -25,7 +25,7 @@ Serie     2
      184     AO
  
 Serie     3
-   lam= 0   imean= 0   ireg= 4   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+   lam= 0   imean= 0   ireg= 4   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    
    Reglist01
@@ -39,7 +39,7 @@ Serie     3
      188     AO
  
 Serie     4
-   lam= 0   imean= 0   bq= 0   ireg= 4   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+   lam= 0   imean= 0   bq= 0   ireg= 4   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    
    Reglist01
@@ -56,7 +56,7 @@ Serie     4
     Iuser=-1   Nser= 1   Ilong= 312
  
 Serie     5
-   lam= 1   imean= 0   d= 0   p= 1   q= 0   bq= 0   ireg= 5   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+   lam= 1   imean= 0   d= 0   p= 1   q= 0   bq= 0   ireg= 5   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -71,7 +71,7 @@ Serie     5
      184     AO
  
 Serie     6
-   lam= 1   imean= 0   ireg= 5   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+   lam= 1   imean= 0   ireg= 5   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -86,10 +86,10 @@ Serie     6
      188     AO
  
 Serie     7
-   lam= 0   imean= 0   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+   lam= 0   imean= 0   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
 Serie     8
-   lam= 0   imean= 0   ireg= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+   lam= 0   imean= 0   ireg= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -102,7 +102,7 @@ Serie     8
      184     TC
  
 Serie     9
-   lam= 1   imean= 0   ireg= 7   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+   lam= 1   imean= 0   ireg= 7   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -119,7 +119,7 @@ Serie     9
      193     AO
  
 Serie    10
-   lam= 1   imean= 0   ireg= 4   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+   lam= 1   imean= 0   ireg= 4   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -133,7 +133,7 @@ Serie    10
      186     AO
  
 Serie    11
-   lam= 0   imean= 0   ireg= 1   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+   lam= 0   imean= 0   ireg= 1   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -144,7 +144,7 @@ Serie    11
       61     LS
  
 Serie    12
-   lam= 0   imean= 0   ireg= 4   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+   lam= 0   imean= 0   ireg= 4   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -158,7 +158,7 @@ Serie    12
      186     AO
  
 Serie    13
-   lam= 0   imean= 0   ireg= 8   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+   lam= 0   imean= 0   ireg= 8   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -176,7 +176,7 @@ Serie    13
      184     AO
  
 Serie    14
-   lam= 0   imean= 0   ireg= 2   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+   lam= 0   imean= 0   ireg= 2   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -188,7 +188,7 @@ Serie    14
      184     AO
  
 Serie    15
-   lam= 0   imean= 0   ireg= 6   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+   lam= 0   imean= 0   ireg= 6   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -204,7 +204,7 @@ Serie    15
      184     AO
  
 Serie    16
-   lam= 0   imean= 0   ireg= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+   lam= 0   imean= 0   ireg= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -217,7 +217,7 @@ Serie    16
       61     LS
  
 Serie    17
-   lam= 0   imean= 0   ireg= 4   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+   lam= 0   imean= 0   ireg= 4   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -231,7 +231,7 @@ Serie    17
      184     AO
  
 Serie    18
-   lam= 0   imean= 0   p= 2   ireg= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+   lam= 0   imean= 0   p= 2   ireg= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -244,7 +244,7 @@ Serie    18
       68     AO
  
 Serie    19
-   lam= 0   imean= 0   ireg= 4   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+   lam= 0   imean= 0   ireg= 4   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -261,7 +261,7 @@ Serie    19
     Iuser=-1   Nser= 1   Ilong= 312
  
 Serie    20
-   lam= 0   imean= 0   ireg= 6   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+   lam= 0   imean= 0   ireg= 6   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -277,7 +277,7 @@ Serie    20
       54     AO
  
 Serie    21
-   lam= 0   imean= 0   ireg= 6   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+   lam= 0   imean= 0   ireg= 6   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -293,7 +293,7 @@ Serie    21
      188     AO
  
 Serie    22
-   lam= 0   imean= 0   ireg= 2   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+   lam= 0   imean= 0   ireg= 2   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -305,7 +305,7 @@ Serie    22
       43     AO
  
 Serie    23
-   lam= 1   imean= 0   p= 1   ireg= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+   lam= 1   imean= 0   p= 1   ireg= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -321,38 +321,71 @@ Serie    23
     Iuser=-1   Nser= 1   Ilong= 312
  
 Serie    24
-   lam= 0   imean= 0   ireg= 8   seats= 2   iter= 3   int2=263   rsa= 0   modelsumm= 1   va=   3.832
+   lam= 0   imean= 0   ireg= 1   seats= 2   iter= 3   int2= 43   rsa= 0   modelsumm= 1   va=   3.300
  
    Name : NOT DEFINED.
    Reglist01
-    Iuser=-1   Nser= 1   Ilong= 348
+    Iuser=-1   Nser= 1   Ilong= 120
+ 
+Serie    25
+   lam= 0   imean= 0   ireg= 1   seats= 2   iter= 3   int2= 43   rsa= 0   modelsumm= 1   va=   3.300
  
    Name : NOT DEFINED.
-   Reglist02
-    Iuser=-1   Nser= 1   Ilong= 348
+   Reglist01
+    Iuser=-1   Nser= 1   Ilong= 120
+ 
+Serie    26
+   lam= 1   imean= 0   ireg= 4   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
-   Reglist03
+   Reglist01
+    Iuser= 2   Nser= 4   Ilong=   0
+ 
+   Fixed Outliers:
+   #Observ. Type
+      44     AO
+      30     TC
+      13     TC
+      22     LS
+ 
+Serie    27
+   lam= 0   imean= 0   ireg= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
+ 
+   Name : NOT DEFINED.
+   Reglist01
+    Iuser= 2   Nser= 3   Ilong=   0
+ 
+   Fixed Outliers:
+   #Observ. Type
+      49     TC
+     134     AO
+      66     LS
+ 
+Serie    28
+   lam= 1   imean= 0   ireg= 6   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
+ 
+   Name : NOT DEFINED.
+   Reglist01
     Iuser= 2   Nser= 6   Ilong=   0
  
    Fixed Outliers:
    #Observ. Type
-      72     AO
-      83     LS
-     219     AO
-     220     AO
-     221     AO
-     222     AO
+      44     AO
+      51     AO
+      30     TC
+      38     AO
+      49     LS
+      59     TC
  
-Serie    25
-   lam= 0   d= 0   p= 1   q= 0   ireg= 1   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    29
+   lam= 0   d= 0   p= 1   q= 0   ireg= 1   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
     Iuser=-1   Nser= 1   Ilong= 312
  
-Serie    26
-   lam= 0   imean= 0   ireg= 3   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    30
+   lam= 0   imean= 0   ireg= 3   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -367,8 +400,8 @@ Serie    26
      184     AO
      183     TC
  
-Serie    27
-   lam= 0   imean= 0   ireg= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    31
+   lam= 0   imean= 0   ireg= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -383,8 +416,38 @@ Serie    27
       32     AO
      183     TC
  
-Serie    28
-   lam= 0   imean= 0   ireg= 4   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    32
+   lam= 0   imean= 0   ireg= 1   seats= 2   iter= 3   int2=175   rsa= 0   modelsumm= 1   va=   3.612
+ 
+   Name : NOT DEFINED.
+   Reglist01
+    Iuser= 2   Nser= 1   Ilong=   0
+ 
+   Fixed Outliers:
+   #Observ. Type
+       4     AO
+ 
+Serie    33
+   lam= 0   imean= 0   ireg= 6   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
+ 
+   Name : NOT DEFINED.
+   Reglist01
+    Iuser= 2   Nser= 6   Ilong=   0
+ 
+   Fixed Outliers:
+   #Observ. Type
+     195     TC
+     192     TC
+     189     AO
+     185     LS
+     204     AO
+     175     AO
+ 
+Serie    34
+   lam= 0   imean= 0   seats= 2   iter= 3   int2=175   rsa= 0   modelsumm= 1   va=   3.612
+ 
+Serie    35
+   lam= 0   imean= 0   ireg= 4   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -400,8 +463,8 @@ Serie    28
       36     AO
      184     LS
  
-Serie    29
-   lam= 0   imean= 0   ireg= 2   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    36
+   lam= 0   imean= 0   ireg= 2   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -415,8 +478,8 @@ Serie    29
    #Observ. Type
      184     LS
  
-Serie    30
-   lam= 0   imean= 0   ireg= 6   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    37
+   lam= 0   imean= 0   ireg= 6   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -434,8 +497,8 @@ Serie    30
      145     TC
      181     TC
  
-Serie    31
-   lam= 0   imean= 0   ireg= 2   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    38
+   lam= 0   imean= 0   ireg= 2   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -449,8 +512,8 @@ Serie    31
    #Observ. Type
       45     LS
  
-Serie    32
-   lam= 0   imean= 0   ireg= 8   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    39
+   lam= 0   imean= 0   ireg= 8   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -470,8 +533,8 @@ Serie    32
      184     AO
      191     TC
  
-Serie    33
-   lam= 0   imean= 0   ireg= 2   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    40
+   lam= 0   imean= 0   ireg= 2   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -485,8 +548,50 @@ Serie    33
    #Observ. Type
       16     AO
  
-Serie    34
-   lam= 0   imean= 0   ireg= 8   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    41
+   lam= 0   imean= 0   ireg= 3   seats= 2   iter= 3   int2=175   rsa= 0   modelsumm= 1   va=   3.612
+ 
+   Name : NOT DEFINED.
+   Reglist01
+    Iuser= 2   Nser= 3   Ilong=   0
+ 
+   Fixed Outliers:
+   #Observ. Type
+      19     AO
+      93     AO
+       3     TC
+ 
+Serie    42
+   lam= 0   imean= 0   ireg= 5   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
+ 
+   Name : NOT DEFINED.
+   Reglist01
+    Iuser= 2   Nser= 5   Ilong=   0
+ 
+   Fixed Outliers:
+   #Observ. Type
+      73     LS
+     172     LS
+     184     AO
+       4     AO
+     140     LS
+ 
+Serie    43
+   lam= 0   imean= 0   ireg= 4   seats= 2   iter= 3   int2=175   rsa= 0   modelsumm= 1   va=   3.612
+ 
+   Name : NOT DEFINED.
+   Reglist01
+    Iuser= 2   Nser= 4   Ilong=   0
+ 
+   Fixed Outliers:
+   #Observ. Type
+     110     AO
+      70     TC
+      19     AO
+      14     AO
+ 
+Serie    44
+   lam= 0   imean= 0   ireg= 8   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -506,8 +611,8 @@ Serie    34
      183     LS
      188     AO
  
-Serie    35
-   lam= 0   imean= 0   ireg= 8   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    45
+   lam= 0   imean= 0   ireg= 8   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -527,8 +632,8 @@ Serie    35
      183     TC
      188     AO
  
-Serie    36
-   lam= 0   imean= 0   ireg= 9   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    46
+   lam= 0   imean= 0   ireg= 9   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -549,8 +654,8 @@ Serie    36
      188     AO
      183     LS
  
-Serie    37
-   lam= 0   d= 0   p= 1   q= 0   ireg= 5   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    47
+   lam= 0   d= 0   p= 1   q= 0   ireg= 5   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -567,8 +672,8 @@ Serie    37
      191     AO
      183     TC
  
-Serie    38
-   lam= 0   imean= 0   ireg= 5   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    48
+   lam= 0   imean= 0   ireg= 5   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -585,8 +690,8 @@ Serie    38
      191     TC
      188     TC
  
-Serie    39
-   lam= 0   imean= 0   ireg= 6   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    49
+   lam= 0   imean= 0   ireg= 6   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -604,8 +709,8 @@ Serie    39
      191     TC
      186     TC
  
-Serie    40
-   lam= 0   d= 0   p= 1   q= 0   ireg= 7   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    50
+   lam= 0   d= 0   p= 1   q= 0   ireg= 7   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -624,8 +729,8 @@ Serie    40
      184     AO
      183     TC
  
-Serie    41
-   lam= 0   imean= 0   q= 2   ireg= 5   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    51
+   lam= 0   imean= 0   q= 2   ireg= 5   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -642,8 +747,8 @@ Serie    41
      184     AO
      183     TC
  
-Serie    42
-   lam= 0   imean= 0   ireg=10   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    52
+   lam= 0   imean= 0   ireg=10   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -665,8 +770,8 @@ Serie    42
      185     AO
      188     TC
  
-Serie    43
-   lam= 0   imean= 0   ireg= 4   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    53
+   lam= 0   imean= 0   ireg= 4   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -682,8 +787,8 @@ Serie    43
      184     AO
      183     TC
  
-Serie    44
-   lam= 0   imean= 0   ireg= 8   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    54
+   lam= 0   imean= 0   ireg= 8   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -703,8 +808,8 @@ Serie    44
      188     AO
      185     AO
  
-Serie    45
-   lam= 0   imean= 0   ireg= 7   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    55
+   lam= 0   imean= 0   ireg= 7   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -723,8 +828,8 @@ Serie    45
      184     AO
      183     TC
  
-Serie    46
-   lam= 0   imean= 0   ireg= 5   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    56
+   lam= 0   imean= 0   ireg= 5   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -741,8 +846,8 @@ Serie    46
       12     AO
      184     LS
  
-Serie    47
-   lam= 0   imean= 0   ireg= 5   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    57
+   lam= 0   imean= 0   ireg= 5   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -759,8 +864,8 @@ Serie    47
       46     LS
      184     TC
  
-Serie    48
-   lam= 0   imean= 0   ireg= 6   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    58
+   lam= 0   imean= 0   ireg= 6   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -778,8 +883,8 @@ Serie    48
       61     LS
      184     LS
  
-Serie    49
-   lam= 0   imean= 0   ireg= 3   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    59
+   lam= 0   imean= 0   ireg= 3   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -794,8 +899,8 @@ Serie    49
       19     AO
      184     TC
  
-Serie    50
-   lam= 0   imean= 0   ireg= 7   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    60
+   lam= 0   imean= 0   ireg= 7   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -814,8 +919,8 @@ Serie    50
       54     AO
      183     TC
  
-Serie    51
-   lam= 0   imean= 0   ireg= 3   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    61
+   lam= 0   imean= 0   ireg= 3   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -830,8 +935,20 @@ Serie    51
       51     LS
      184     TC
  
-Serie    52
-   lam= 0   imean= 0   ireg= 4   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    62
+   lam= 0   imean= 0   ireg= 2   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
+ 
+   Name : NOT DEFINED.
+   Reglist01
+    Iuser= 2   Nser= 2   Ilong=   0
+ 
+   Fixed Outliers:
+   #Observ. Type
+     183     LS
+      48     LS
+ 
+Serie    63
+   lam= 0   imean= 0   ireg= 6   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -839,16 +956,30 @@ Serie    52
  
    Name : NOT DEFINED.
    Reglist02
-    Iuser= 2   Nser= 3   Ilong=   0
+    Iuser= 2   Nser= 5   Ilong=   0
  
    Fixed Outliers:
    #Observ. Type
      184     AO
-     183     LS
-     186     LS
+     183     AO
+     186     TC
+     185     AO
+     191     TC
  
-Serie    53
-   lam= 0   imean= 0   ireg= 9   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    64
+   lam= 0   imean= 0   ireg= 2   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
+ 
+   Name : NOT DEFINED.
+   Reglist01
+    Iuser= 2   Nser= 2   Ilong=   0
+ 
+   Fixed Outliers:
+   #Observ. Type
+     183     LS
+     193     AO
+ 
+Serie    65
+   lam= 0   imean= 0   ireg= 9   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -869,8 +1000,8 @@ Serie    53
      185     AO
      186     AO
  
-Serie    54
-   lam= 0   imean= 0   ireg= 5   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    66
+   lam= 0   imean= 0   ireg= 5   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -887,8 +1018,8 @@ Serie    54
      184     TC
      183     TC
  
-Serie    55
-   lam= 0   imean= 0   ireg= 4   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    67
+   lam= 0   imean= 0   ireg= 4   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -904,8 +1035,8 @@ Serie    55
       46     LS
      184     TC
  
-Serie    56
-   lam= 0   imean= 0   ireg= 5   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    68
+   lam= 0   imean= 0   ireg= 5   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -922,8 +1053,8 @@ Serie    56
       63     AO
       75     AO
  
-Serie    57
-   lam= 0   imean= 0   ireg= 4   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    69
+   lam= 0   imean= 0   ireg= 4   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -939,8 +1070,8 @@ Serie    57
      184     TC
      171     AO
  
-Serie    58
-   lam= 0   imean= 0   ireg= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    70
+   lam= 0   imean= 0   ireg= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -955,8 +1086,8 @@ Serie    58
      165     LS
       70     TC
  
-Serie    59
-   lam= 0   imean= 0   ireg= 3   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    71
+   lam= 0   imean= 0   ireg= 3   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -971,8 +1102,8 @@ Serie    59
      183     AO
      184     TC
  
-Serie    60
-   lam= 0   imean= 0   ireg= 6   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    72
+   lam= 0   imean= 0   ireg= 6   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -990,8 +1121,8 @@ Serie    60
      184     AO
      183     TC
  
-Serie    61
-   lam= 0   imean= 0   ireg= 5   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    73
+   lam= 0   imean= 0   ireg= 5   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1008,8 +1139,8 @@ Serie    61
      184     TC
      183     TC
  
-Serie    62
-   lam= 0   imean= 0   ireg= 7   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    74
+   lam= 0   imean= 0   ireg= 7   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1028,8 +1159,8 @@ Serie    62
      183     TC
      185     AO
  
-Serie    63
-   lam= 0   imean= 0   ireg= 5   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    75
+   lam= 0   imean= 0   ireg= 5   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1046,8 +1177,8 @@ Serie    63
      183     TC
      188     AO
  
-Serie    64
-   lam= 0   imean= 0   ireg=10   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    76
+   lam= 0   imean= 0   ireg=10   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1069,8 +1200,8 @@ Serie    64
      185     AO
      186     AO
  
-Serie    65
-   lam= 0   imean= 0   ireg= 7   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    77
+   lam= 0   imean= 0   ireg= 7   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1089,8 +1220,8 @@ Serie    65
      184     AO
      181     TC
  
-Serie    66
-   lam= 0   imean= 0   p= 1   q= 0   ireg= 8   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    78
+   lam= 0   imean= 0   p= 1   q= 0   ireg= 8   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1110,8 +1241,8 @@ Serie    66
      184     AO
      183     TC
  
-Serie    67
-   lam= 0   imean= 0   q= 0   ireg= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    79
+   lam= 0   imean= 0   q= 0   ireg= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1126,8 +1257,8 @@ Serie    67
       57     LS
      184     AO
  
-Serie    68
-   lam= 0   imean= 0   ireg= 7   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    80
+   lam= 0   imean= 0   ireg= 7   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1146,8 +1277,8 @@ Serie    68
      183     TC
      185     TC
  
-Serie    69
-   lam= 0   imean= 0   p= 1   q= 0   ireg= 8   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    81
+   lam= 0   imean= 0   p= 1   q= 0   ireg= 8   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1167,8 +1298,8 @@ Serie    69
      184     AO
      183     TC
  
-Serie    70
-   lam= 0   imean= 0   ireg= 7   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    82
+   lam= 0   imean= 0   ireg= 7   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1187,8 +1318,8 @@ Serie    70
      184     AO
      183     TC
  
-Serie    71
-   lam= 0   imean= 0   ireg= 2   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    83
+   lam= 0   imean= 0   ireg= 2   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1202,8 +1333,8 @@ Serie    71
    #Observ. Type
      184     TC
  
-Serie    72
-   lam= 0   imean= 0   ireg= 5   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    84
+   lam= 0   imean= 0   ireg= 5   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1220,8 +1351,8 @@ Serie    72
      130     AO
      184     TC
  
-Serie    73
-   lam= 0   imean= 0   ireg= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    85
+   lam= 0   imean= 0   ireg= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1236,8 +1367,8 @@ Serie    73
       21     LS
      184     TC
  
-Serie    74
-   lam= 0   imean= 0   ireg= 5   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    86
+   lam= 0   imean= 0   ireg= 5   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1254,8 +1385,8 @@ Serie    74
      183     TC
      180     AO
  
-Serie    75
-   lam= 0   imean= 0   p= 2   q= 0   ireg= 8   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    87
+   lam= 0   imean= 0   p= 2   q= 0   ireg= 8   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1275,8 +1406,8 @@ Serie    75
      183     TC
      187     TC
  
-Serie    76
-   lam= 0   imean= 0   ireg= 4   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    88
+   lam= 0   imean= 0   ireg= 4   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1292,8 +1423,8 @@ Serie    76
      184     AO
      183     TC
  
-Serie    77
-   lam= 0   imean= 0   ireg= 7   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    89
+   lam= 0   imean= 0   ireg= 7   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1312,8 +1443,8 @@ Serie    77
      184     AO
      183     TC
  
-Serie    78
-   lam= 0   imean= 0   ireg= 7   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    90
+   lam= 0   imean= 0   ireg= 7   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1332,8 +1463,8 @@ Serie    78
      184     AO
      183     TC
  
-Serie    79
-   lam= 0   imean= 0   p= 2   q= 0   ireg= 9   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    91
+   lam= 0   imean= 0   p= 2   q= 0   ireg= 9   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1354,8 +1485,8 @@ Serie    79
      184     AO
      183     TC
  
-Serie    80
-   lam= 0   imean= 0   ireg= 9   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    92
+   lam= 0   imean= 0   ireg= 9   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1376,8 +1507,8 @@ Serie    80
      183     TC
      185     AO
  
-Serie    81
-   lam= 0   imean= 0   p= 2   q= 0   ireg= 7   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    93
+   lam= 0   imean= 0   p= 2   q= 0   ireg= 7   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1396,8 +1527,8 @@ Serie    81
      185     TC
      201     AO
  
-Serie    82
-   lam= 0   imean= 0   ireg= 8   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    94
+   lam= 0   imean= 0   ireg= 8   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1417,8 +1548,40 @@ Serie    82
      183     TC
      185     AO
  
-Serie    83
-   lam= 0   imean= 0   ireg= 2   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    95
+   lam= 0   imean= 0   ireg= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
+ 
+   Name : NOT DEFINED.
+   Reglist01
+    Iuser=-1   Nser= 1   Ilong= 312
+ 
+   Name : NOT DEFINED.
+   Reglist02
+    Iuser= 2   Nser= 2   Ilong=   0
+ 
+   Fixed Outliers:
+   #Observ. Type
+     184     AO
+     101     AO
+ 
+Serie    96
+   lam= 0   ireg= 6   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
+ 
+   Name : NOT DEFINED.
+   Reglist01
+    Iuser= 2   Nser= 6   Ilong=   0
+ 
+   Fixed Outliers:
+   #Observ. Type
+      52     AO
+      29     AO
+      61     AO
+      46     AO
+     195     TC
+      88     AO
+ 
+Serie    97
+   lam= 0   imean= 0   ireg= 2   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1430,10 +1593,10 @@ Serie    83
  
    Fixed Outliers:
    #Observ. Type
-     184     AO
+     183     TC
  
-Serie    84
-   lam= 0   imean= 0   p= 2   q= 0   ireg= 9   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    98
+   lam= 0   imean= 0   p= 2   q= 0   ireg= 9   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1454,8 +1617,8 @@ Serie    84
      183     TC
      188     AO
  
-Serie    85
-   lam= 0   imean= 0   ireg= 7   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie    99
+   lam= 0   imean= 0   ireg= 7   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1474,8 +1637,8 @@ Serie    85
      188     AO
      186     LS
  
-Serie    86
-   lam= 0   imean= 0   ireg=10   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie   100
+   lam= 0   imean= 0   ireg=10   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1497,8 +1660,8 @@ Serie    86
      188     AO
      185     AO
  
-Serie    87
-   lam= 0   imean= 0   ireg=10   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie   101
+   lam= 0   imean= 0   ireg=10   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1520,8 +1683,8 @@ Serie    87
      187     AO
      183     TC
  
-Serie    88
-   lam= 0   imean= 0   ireg= 8   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie   102
+   lam= 0   imean= 0   ireg= 8   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1541,8 +1704,8 @@ Serie    88
      183     TC
      188     AO
  
-Serie    89
-   lam= 0   imean= 0   ireg= 4   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie   103
+   lam= 0   imean= 0   ireg= 4   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1558,8 +1721,8 @@ Serie    89
      183     TC
      186     TC
  
-Serie    90
-   lam= 0   imean= 0   ireg= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie   104
+   lam= 0   imean= 0   ireg= 4   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1567,15 +1730,16 @@ Serie    90
  
    Name : NOT DEFINED.
    Reglist02
-    Iuser= 2   Nser= 2   Ilong=   0
+    Iuser= 2   Nser= 3   Ilong=   0
  
    Fixed Outliers:
    #Observ. Type
       18     AO
       19     AO
+     101     AO
  
-Serie    91
-   lam= 0   d= 0   p= 2   q= 0   ireg= 7   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie   105
+   lam= 0   imean= 0   p= 1   ireg= 8   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1583,19 +1747,35 @@ Serie    91
  
    Name : NOT DEFINED.
    Reglist02
-    Iuser= 2   Nser= 6   Ilong=   0
+    Iuser= 2   Nser= 7   Ilong=   0
  
    Fixed Outliers:
    #Observ. Type
-      23     TC
+      15     AO
+      24     AO
+     184     TC
       90     LS
-      22     AO
-      25     AO
-      44     TC
-      56     TC
+      44     LS
+      81     TC
+      75     LS
  
-Serie    92
-   lam= 0   imean= 0   q= 2   ireg= 4   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie   106
+   lam= 0   imean= 0   ireg= 2   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
+ 
+   Name : NOT DEFINED.
+   Reglist01
+    Iuser=-1   Nser= 1   Ilong= 312
+ 
+   Name : NOT DEFINED.
+   Reglist02
+    Iuser= 2   Nser= 1   Ilong=   0
+ 
+   Fixed Outliers:
+   #Observ. Type
+      18     AO
+ 
+Serie   107
+   lam= 0   imean= 0   q= 2   ireg= 4   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1611,33 +1791,12 @@ Serie    92
      122     AO
      184     TC
  
-Serie    93
-   lam= 0   imean= 0   ireg= 8   seats= 2   iter= 3   int2=287   rsa= 0   modelsumm= 1   va=   3.893
+Serie   108
+   lam= 0   imean= 0   ireg= 6   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
-    Iuser=-1   Nser= 1   Ilong= 372
- 
-   Name : NOT DEFINED.
-   Reglist02
-    Iuser= 2   Nser= 7   Ilong=   0
- 
-   Fixed Outliers:
-   #Observ. Type
-      24     AO
-      53     LS
-     110     LS
-     243     AO
-     244     TC
-     251     AO
-     255     TC
- 
-Serie    94
-   lam= 0   imean= 0   ireg= 6   seats= 2   iter= 3   int2=287   rsa= 0   modelsumm= 1   va=   3.893
- 
-   Name : NOT DEFINED.
-   Reglist01
-    Iuser=-1   Nser= 1   Ilong= 372
+    Iuser=-1   Nser= 1   Ilong= 312
  
    Name : NOT DEFINED.
    Reglist02
@@ -1645,35 +1804,63 @@ Serie    94
  
    Fixed Outliers:
    #Observ. Type
-      25     LS
-     111     LS
-     243     AO
-     244     AO
-     245     AO
+      50     LS
+     183     AO
+     184     TC
+     191     AO
+     195     TC
  
-Serie    95
-   lam= 0   imean= 0   ireg= 8   seats= 2   iter= 3   int2=287   rsa= 0   modelsumm= 1   va=   3.893
+Serie   109
+   lam= 0   imean= 0   ireg= 5   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
-    Iuser=-1   Nser= 1   Ilong= 372
+    Iuser=-1   Nser= 1   Ilong= 312
  
    Name : NOT DEFINED.
    Reglist02
-    Iuser= 2   Nser= 7   Ilong=   0
+    Iuser= 2   Nser= 4   Ilong=   0
  
    Fixed Outliers:
    #Observ. Type
-      45     AO
-     243     AO
-     244     AO
-     245     AO
-     246     AO
-     251     AO
-     161     AO
+      51     LS
+     183     AO
+     184     AO
+     185     AO
  
-Serie    96
-   lam= 0   imean= 0   ireg= 3   seats= 2   iter= 3   int2=287   rsa= 0   modelsumm= 1   va=   3.893
+Serie   110
+   lam= 0   imean= 0   ireg= 1   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
+ 
+   Name : NOT DEFINED.
+   Reglist01
+    Iuser= 2   Nser= 1   Ilong=   0
+ 
+   Fixed Outliers:
+   #Observ. Type
+     183     LS
+ 
+Serie   111
+   lam= 0   imean= 0   ireg= 7   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
+ 
+   Name : NOT DEFINED.
+   Reglist01
+    Iuser=-1   Nser= 1   Ilong= 312
+ 
+   Name : NOT DEFINED.
+   Reglist02
+    Iuser= 2   Nser= 6   Ilong=   0
+ 
+   Fixed Outliers:
+   #Observ. Type
+     183     AO
+     184     AO
+     185     AO
+     186     AO
+     191     AO
+     101     AO
+ 
+Serie   112
+   lam= 0   imean= 0   ireg= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1681,12 +1868,12 @@ Serie    96
  
    Fixed Outliers:
    #Observ. Type
-     107     LS
-     243     LS
-     253     AO
+      47     LS
+     183     LS
+     193     AO
  
-Serie    97
-   lam= 0   imean= 0   ireg= 6   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie   113
+   lam= 0   imean= 0   ireg= 6   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1704,53 +1891,49 @@ Serie    97
      183     TC
      186     LS
  
-Serie    98
-   lam= 0   imean= 0   ireg=11   seats= 2   iter= 3   int2=287   rsa= 0   modelsumm= 1   va=   3.893
+Serie   114
+   lam= 0   imean= 0   ireg= 9   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
-    Iuser=-1   Nser= 1   Ilong= 372
+    Iuser=-1   Nser= 1   Ilong= 312
  
    Name : NOT DEFINED.
    Reglist02
-    Iuser= 2   Nser=10   Ilong=   0
+    Iuser= 2   Nser= 8   Ilong=   0
  
    Fixed Outliers:
    #Observ. Type
-      24     AO
-      35     AO
+       8     AO
+      32     TC
+      20     AO
       68     AO
-      92     TC
-      80     AO
-     128     AO
-     243     AO
-     244     AO
-     245     AO
-     248     AO
+     183     AO
+     184     AO
+     185     AO
+     188     AO
  
-Serie    99
-   lam= 0   imean= 0   ireg= 8   seats= 2   iter= 3   int2=287   rsa= 0   modelsumm= 1   va=   3.893
+Serie   115
+   lam= 0   imean= 0   ireg= 6   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
-    Iuser=-1   Nser= 1   Ilong= 372
+    Iuser=-1   Nser= 1   Ilong= 312
  
    Name : NOT DEFINED.
    Reglist02
-    Iuser= 2   Nser= 7   Ilong=   0
+    Iuser= 2   Nser= 5   Ilong=   0
  
    Fixed Outliers:
    #Observ. Type
-     116     AO
-      38     LS
-     107     LS
-       9     TC
-     243     AO
-     244     AO
-     245     AO
+      56     AO
+      47     LS
+     183     AO
+     184     AO
+     185     AO
  
-Serie   100
-   lam= 0   imean= 0   ireg= 6   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie   116
+   lam= 0   imean= 0   ireg= 6   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1768,34 +1951,33 @@ Serie   100
      184     AO
      183     TC
  
-Serie   101
-   lam= 0   imean= 0   ireg= 9   seats= 2   iter= 3   int2=287   rsa= 0   modelsumm= 1   va=   3.893
+Serie   117
+   lam= 0   imean= 0   ireg= 8   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
-    Iuser=-1   Nser= 1   Ilong= 372
+    Iuser=-1   Nser= 1   Ilong= 312
  
    Name : NOT DEFINED.
    Reglist02
-    Iuser= 2   Nser= 8   Ilong=   0
+    Iuser= 2   Nser= 7   Ilong=   0
  
    Fixed Outliers:
    #Observ. Type
-     126     AO
-      58     AO
-     121     AO
-     112     AO
-     243     AO
-     244     AO
-     245     AO
-     246     AO
+      66     AO
+      61     AO
+      52     AO
+     183     AO
+     184     AO
+     185     AO
+     186     AO
  
-Serie   102
-   lam= 0   imean= 0   ireg= 6   seats= 2   iter= 3   int2=287   rsa= 0   modelsumm= 1   va=   3.893
+Serie   118
+   lam= 0   imean= 0   ireg= 6   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
-    Iuser=-1   Nser= 1   Ilong= 372
+    Iuser=-1   Nser= 1   Ilong= 312
  
    Name : NOT DEFINED.
    Reglist02
@@ -1803,14 +1985,14 @@ Serie   102
  
    Fixed Outliers:
    #Observ. Type
-     109     LS
-     243     AO
-     244     AO
-     245     AO
-     246     AO
+      49     LS
+     183     AO
+     184     AO
+     185     AO
+     186     AO
  
-Serie   103
-   lam= 0   imean= 0   ireg= 7   ieast= 3   seats= 2   iter= 3   int2=227   rsa= 0   modelsumm= 1   va=   3.742
+Serie   119
+   lam= 0   imean= 0   ireg= 7   ieast= 3   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
@@ -1829,12 +2011,12 @@ Serie   103
      184     TC
      183     TC
  
-Serie   104
-   lam= 0   imean= 0   p= 1   q= 0   ireg= 7   seats= 2   iter= 3   int2=287   rsa= 0   modelsumm= 1   va=   3.893
+Serie   120
+   lam= 0   imean= 0   p= 1   q= 0   ireg= 7   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
-    Iuser=-1   Nser= 1   Ilong= 372
+    Iuser=-1   Nser= 1   Ilong= 312
  
    Name : NOT DEFINED.
    Reglist02
@@ -1842,32 +2024,31 @@ Serie   104
  
    Fixed Outliers:
    #Observ. Type
-      97     TC
-     107     LS
-     243     AO
-     244     AO
-     245     AO
-     248     AO
+      37     TC
+      47     LS
+     183     AO
+     184     AO
+     185     AO
+     188     AO
  
-Serie   105
-   lam= 0   imean= 0   p= 1   q= 0   ireg= 9   seats= 2   iter= 3   int2=287   rsa= 0   modelsumm= 1   va=   3.893
+Serie   121
+   lam= 0   imean= 0   p= 1   q= 0   ireg= 8   seats= 2   iter= 3   int2=235   rsa= 0   modelsumm= 1   va=   3.762
  
    Name : NOT DEFINED.
    Reglist01
-    Iuser=-1   Nser= 1   Ilong= 372
+    Iuser=-1   Nser= 1   Ilong= 312
  
    Name : NOT DEFINED.
    Reglist02
-    Iuser= 2   Nser= 8   Ilong=   0
+    Iuser= 2   Nser= 7   Ilong=   0
  
    Fixed Outliers:
    #Observ. Type
-      12     AO
-     107     LS
-     109     LS
-     216     AO
-     243     AO
-     244     AO
-     245     AO
-     246     TC
+      47     LS
+      49     LS
+     156     AO
+     183     AO
+     184     AO
+     185     AO
+     186     TC
  

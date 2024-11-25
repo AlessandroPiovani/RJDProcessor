@@ -1,8 +1,8 @@
   *** Seats Revision: 942  Build: 2017/09/25 09:48:03                                                            ***
   Input File: seats.itr
-  Date : 2024-02-26 12:18:37
-  Series in file :      105
-  Series processed :    105
+  Date : 2024-10-17 10:32:47
+  Series in file :      121
+  Series processed :    121
 
   Input Parameters:
   rmod= 0.500  xl=   0.950
@@ -24,8 +24,8 @@
   series with         D = 0           D = 1           D = 2           Total
   --------------------------------------------------------------------------------
       BD = 0         0(  0.00%)       0(  0.00%)       0(  0.00%)       0(  0.00%)
-      BD = 1         5(  4.76%)     100( 95.24%)       0(  0.00%)     105(100.00%)
-      Total          5(  4.76%)     100( 95.24%)       0(  0.00%)     105(100.00%)
+      BD = 1         4(  3.31%)     117( 96.69%)       0(  0.00%)     121(100.00%)
+      Total          4(  3.31%)     117( 96.69%)       0(  0.00%)     121(100.00%)
   --------------------------------------------------------------------------------
  
                                     P     Q     BP    BQ     Total
@@ -35,7 +35,7 @@
  
                  # series           %
   -----------------------------------
-  Airline model        86       81.90
+  Airline model       102       84.30
   -----------------------------------
 
 
@@ -43,15 +43,15 @@
     ----------------------
                                           # of series    %
   -----------------------------------------------------------
-  Stochastic seasonal component                 105    100.00
+  Stochastic seasonal component                 121    100.00
   -----------------------------------------------------------
-  Stochastic trend-cycle component              105    100.00
+  Stochastic trend-cycle component              121    100.00
   -----------------------------------------------------------
-  Stochastic transitory component                11     10.48
+  Stochastic transitory component                12      9.92
   -----------------------------------------------------------
-  Calendar effect component                      28     26.67
+  Calendar effect component                      28     23.14
   -----------------------------------------------------------
-  Cyclical and long-term trend                  105    100.00
+  Cyclical and long-term trend                  119     98.35
   -----------------------------------------------------------
 
 
@@ -93,7 +93,7 @@
   ---------------------------------------------------------------
   Not persistent (higly stationary)                   0      0.00
   ---------------------------------------------------------------
-  Detected but not significant                        3      2.86
+  Detected but not significant                        6      4.96
   ---------------------------------------------------------------
   Unstable too large innovation variance              0      0.00
   ---------------------------------------------------------------
@@ -102,23 +102,23 @@
   ---------------------------------------------------------------
   Revisions in SA series are too large                0      0.00
   ---------------------------------------------------------------
-  Bias in level of SA series is too large             0      0.00
+  Bias in level of SA series is too large             1      0.83
   ---------------------------------------------------------------
-  # of series that fail some quality diagnostics      0      0.00
+  # of series that fail some quality diagnostics      1      0.83
   ---------------------------------------------------------------
 
 
     Seasonal and Calendar adjustment Series
   -----------------------------------------------------------------------
-  Total # of series:                                                  105
+  Total # of series:                                                  121
   ------------------------------------------------------------------------------------
-  With seasonal and calendar effects                                       28( 26.67%)
+  With seasonal and calendar effects                                       28( 23.14%)
   ------------------------------------------------------------------------------------
-  With seasonal and no calendar effects                                    77( 73.33%)
+  With seasonal and no calendar effects                                    93( 76.86%)
   ------------------------------------------------------------------------------------
   With Calendar effects, no seasonal effects                                0(  0.00%)
   ------------------------------------------------------------------------------------
   With no seasonality and no calendar effects                               0(  0.00%)
   ------------------------------------------------------------------------------------
-  # of series with questionable seasonal adjustment                         0(  0.00%)
+  # of series with questionable seasonal adjustment                         1(  0.83%)
   ------------------------------------------------------------------------------------

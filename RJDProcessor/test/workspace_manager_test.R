@@ -1,7 +1,7 @@
 setwd("C:\\Users\\UTENTE\\Desktop\\RJDopenCruncher\\RJDProcessor\\test")
 
+library(RJDemetra)
 library(RJDProcessor)
-
 # TEST 1
 
 single_workspaces_path <- "splitted_workspaces"

@@ -11,9 +11,14 @@ JD_JSON_file_full_reduced <- "specifications_new_full.txt"
 spec_file_name            <- "specifications_new.txt"
 
 
-input_workspace_directory <- "WorkspaceFAT-container\\WS-FAT.xml"
-input_data_file_name      <- "SITIC-FAT\\grezzi.csv"
-regr_directory            <- "SITIC-FAT\\regr"
+input_workspace_directory <- "workspace_FAT_to_load\\workspace_FAT_to_load.xml"
+input_data_file_name      <- "SITIC-FAT-10-2024\\grezzi.csv"
+regr_directory            <- "SITIC-FAT-10-2024\\regr"
+
+# input_workspace_directory <- "WorkspaceFAT-container\\WS-FAT.xml"
+# input_data_file_name      <- "SITIC-FAT\\grezzi.csv"
+# regr_directory            <- "SITIC-FAT\\regr"
+
 # input_workspace_directory <- "WorkspaceTUR-container\\workspace-TUR.xml"
 # input_data_file_name      <- "SITIC-TUR\\grezziTUR.csv"
 # regr_directory            <- "SITIC-TUR\\regr"

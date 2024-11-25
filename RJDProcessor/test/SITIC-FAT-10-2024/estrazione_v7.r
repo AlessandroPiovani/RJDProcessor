@@ -1,5 +1,5 @@
 # setwd("U:\\Desktop\\SITIC-VEE\\")
-setwd("C:\\Users\\UTENTE\\Desktop\\RJDopenCruncher\\RJDProcessor\\test\\SITIC-FAT\\")
+setwd("C:\\Users\\UTENTE\\Desktop\\RJDopenCruncher\\RJDProcessor\\test\\SITIC-FAT-10-2024\\")
 
 
 zz <- file("estrazione.out", open="wt")

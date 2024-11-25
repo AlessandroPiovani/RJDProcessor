@@ -1,0 +1,2010 @@
+
+                                      PROGRAM SEATS+
+
+            (based on program SEATS, Victor Gomez and Agustin Maravall©, 1996)
+
+        Developed at the Bank of Spain by Gianluca Caporello and Agustin Maravall,
+        with programming support from Domingo Pérez Cañete and Roberto López Pavón.
+
+      Help from Gabriele Fiorentini (1990 - 1991) and Christophe Planas (1992 - 1994) 
+      is also acknowleged.
+
+                VERSION: 1.0  (Revision: 942  Build: 2017/09/25 09:48:03)
+
+
+ PART 1 : ARIMA ESTIMATION
+ -------------------------
+
+
+
+
+ SERIES TITLE: dfsezdc                                                                         
+ PREADJUSTED WITH TRAMO :  YES                                                                             
+ METHOD: MAXIMUM LIKELIHOOD
+
+ NO OF OBSERVATIONS = 43
+
+
+
+
+ ORIGINAL UNCORRECTED SERIES (from TRAMO)
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2021      81.400    92.600   110.600    98.900   103.700   107.200   108.900    65.100   108.200   106.000   111.400   105.600
+ 2022      87.100    99.100   118.200   100.500   113.200   109.300   107.600    68.800   111.100   104.000   110.000   103.900
+ 2023      90.200    96.500   115.000    88.900   110.300   110.400   105.500    66.400   105.700   106.700   109.400    97.900
+ 2024      89.700    98.300   102.300    93.900   105.300   100.400   107.100
+
+ PREADJUSTMENT FACTORS
+ Outliers and Other Deterministic Effects
+
+ (from TRAMO)
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2021      98.226   103.072   100.297    98.121    98.109   100.747    99.486   100.243    98.973    98.973   102.040    99.481
+ 2022      96.496   101.258   100.297    98.121   101.656    98.973    99.486   102.040    98.973    98.973   102.040    99.481
+ 2023      99.986    99.476   100.297    98.121   103.478    98.973    99.486   102.040    98.973   100.747   100.243    99.481
+ 2024     103.601    97.724    98.531   101.669    99.867    98.973   101.269
+
+
+ ARIMA SERIES
+ (Corrected by TRAMO)
+ "Original Series" FOR SEATS
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2021      82.870    89.840   110.273   100.794   105.699   106.405   109.462    64.942   109.322   107.100   109.173   106.151
+ 2022      90.262    97.869   117.850   102.425   111.356   110.434   108.156    67.425   112.253   105.079   107.801   104.442
+ 2023      90.213    97.009   114.660    90.602   106.593   111.545   106.045    65.073   106.796   105.909   109.134    98.411
+ 2024      86.582   100.589   103.825    92.359   105.441   101.442   105.758
+
+    DETERMINISTIC EFFECTS ASSIGNED TO THE SEASONAL COMPONENT
+    HAVE BEEN CENTERED.
+
+  INPUT PARAMETERS
+  ----------------
+
+  LAM= 0        IMEAN= 1        RSA= 0        MQ=12
+  P= 0          BP= 0           Q= 1          BQ= 1
+  D= 1          BD= 1           NOADMISS= 1   RMOD=   0.500
+  M=36          QMAX=60         BIAS= 1
+  THLIM=  0.000  THLIM=  0.000  IQM= 24       OUT=  0
+  EPSPHI= 2.000 MAXIT= 20       XL=  0.950    STOCHTD= 0
+
+ TRANSFORMATION: Z -> LOG Z
+
+ TRANSFORMED SERIES
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2021       4.417     4.498     4.703     4.613     4.661     4.667     4.696     4.173     4.694     4.674     4.693     4.665
+ 2022       4.503     4.584     4.769     4.629     4.713     4.704     4.684     4.211     4.721     4.655     4.680     4.649
+ 2023       4.502     4.575     4.742     4.506     4.669     4.714     4.664     4.176     4.671     4.663     4.693     4.589
+ 2024       4.461     4.611     4.643     4.526     4.658     4.619     4.661
+
+ NONSEASONAL DIFFERENCING     D= 1
+    SEASONAL DIFFERENCING    BD= 1
+
+
+ DIFFERENCED SERIES
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2022                 0.000    -0.019    -0.050     0.036    -0.015    -0.049     0.050    -0.011    -0.045     0.006    -0.004
+ 2023       0.016    -0.008    -0.019    -0.095     0.079     0.054    -0.030    -0.016    -0.014     0.058     0.004    -0.072
+ 2024       0.018     0.077    -0.136     0.118    -0.030    -0.084     0.092
+
+ SERIES HAS BEEN MEAN CORRECTED
+
+ DIFFERENCED AND CENTERED TRANSFORMED SERIES
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2022                 0.003    -0.016    -0.047     0.039    -0.012    -0.046     0.052    -0.008    -0.043     0.009    -0.001
+ 2023       0.019    -0.005    -0.016    -0.092     0.082     0.057    -0.027    -0.013    -0.011     0.061     0.007    -0.069
+ 2024       0.021     0.080    -0.133     0.121    -0.027    -0.081     0.095
+
+ MEAN OF DIFFERENCED SERIES= -0.2938D-02
+
+
+  VARIANCE OF Z SERIES =     0.1909D-01
+
+ VARIANCE OF DIFFERENCED SERIES =     0.3172D-02
+
+
+
+ AUTOCORRELATIONS OF STATIONARY SERIES
+ -------------------------------------
+
+     -0.4469  -0.2693   0.3869  -0.2150   0.0792   0.1247  -0.2065   0.0334   0.1189  -0.1079   0.1298  -0.1387
+ SE   0.1826   0.2160   0.2269   0.2479   0.2541   0.2549   0.2569   0.2624   0.2625   0.2643   0.2658   0.2679
+
+      0.0019   0.1484  -0.0714  -0.1090   0.1194  -0.0096  -0.1642   0.2129  -0.0586  -0.1553   0.1983  -0.0825
+ SE   0.2703   0.2703   0.2730   0.2736   0.2750   0.2768   0.2768   0.2800   0.2853   0.2857   0.2885   0.2930
+
+     -0.0568   0.0881  -0.0345  -0.0188   0.0031   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000
+ SE   0.2938   0.2942   0.2951   0.2952   0.2952   0.2952   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000
+
+
+
+ PARTIAL AUTOCORRELATIONS
+ ------------------------
+
+     -0.4469  -0.5861  -0.1257  -0.2905   0.0324   0.1544   0.1368  -0.0124  -0.0002  -0.0878   0.1639  -0.0510
+ SE   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826
+
+      0.0562   0.0152   0.1556  -0.1183  -0.0062  -0.0663  -0.2437  -0.1366  -0.0211  -0.0783   0.0774  -0.0245
+ SE   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826
+
+      0.0317  -0.1230   0.0371  -0.0283  -0.0094   0.0204   0.0002  -0.0548  -0.0647  -0.0588   0.0775  -0.0569
+ SE   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826   0.1826
+
+
+
+
+
+ MODEL FITTED
+
+      NONSEASONAL     P= 0     D= 1     Q= 1
+         SEASONAL    BP= 0    BD= 1    BQ= 1
+      PERIODICITY    MQ= 12
+
+          MEAN     =   -0.293834E-02
+
+          SE       = *******
+
+
+
+
+                 ARMA PARAMETERS 
+
+           TH    =   -0.7035
+           SE    =    *****
+           BTH   =   -0.1752
+           SE    =    *****
+
+ 
+
+ EXTENDED RESIDUALS
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2021      -0.004    -0.003     0.002     0.012    -0.001     0.000     0.008    -0.003    -0.000     0.006     0.002     0.004
+ 2022       0.018     0.016    -0.004    -0.049     0.003    -0.010    -0.052     0.015     0.003    -0.040    -0.019    -0.014
+ 2023       0.012     0.003    -0.016    -0.111     0.010     0.062     0.009     0.002    -0.011     0.045     0.041    -0.040
+ 2024      -0.003     0.077    -0.081     0.047     0.021    -0.057     0.049
+
+
+
+  TEST-STATISTICS ON EXTENDED RESIDUALS
+  -------------------------------------
+
+
+           MEAN= -0.1188D-02
+        ST.DEV.=  0.5276D-02
+        OF MEAN
+        T-VALUE= -0.2252
+
+ NORMALITY TEST=     8.436        ( CHI-SQUARE(2) )
+       SKEWNESS= -0.6825          ( SE =  0.3735 )
+       KURTOSIS=  4.6869          ( SE =  0.7471 )
+
+ SUM OF SQUARES=  0.5153D-01
+
+  DURBIN-WATSON=  2.3734
+
+ STANDARD DEVI.=  0.4369D-01
+ OF RESID.
+       VARIANCE=  0.1908D-02
+       OF RESID.
+
+
+  NON-PARAMETRIC TEST FOR RESIDUAL SEASONALITY (FRIEDMAN) SEAS_NP =      9.62
+   ASYMP. DISTRIBUTED AS CHI-SQUARE(11)
+Critical value 99%:     24.73
+Critical value 95%:     19.68
+
+
+
+ AUTOCORRELATIONS OF EXTENDED RESIDUALS
+ --------------------------------------
+
+     -0.2128  -0.2633   0.2917  -0.1001   0.1401   0.0607  -0.2047   0.0734   0.0880  -0.1266   0.0901  -0.1067
+ SE   0.1525   0.1593   0.1691   0.1804   0.1817   0.1842   0.1846   0.1898   0.1905   0.1914   0.1934   0.1944
+
+     -0.0267   0.0467  -0.1863  -0.1100   0.0984  -0.0387  -0.1564   0.1583  -0.0403  -0.1140   0.1377  -0.0730
+ SE   0.1957   0.1958   0.1961   0.2001   0.2015   0.2026   0.2028   0.2056   0.2084   0.2086   0.2100   0.2121
+
+     -0.0309   0.0609  -0.0032   0.0051  -0.0198   0.0271   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000
+ SE   0.2127   0.2128   0.2132   0.2132   0.2132   0.2133   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000
+
+
+ THE LJUNG-BOX Q VALUE IS      28.38 AND IF RESIDUALS ARE RANDOM IT SHOULD BE DISTRIBUTED AS CHI-SQUARE (22)
+
+THE QS VALUE IS       1.25 AND IF RESIDUALS ARE RANDOM IIT SHOULD BE DISTRIBUTED AS CHI-SQUARE(2)
+
+ APPROXIMATE TEST OF RUNS ON EXTENDED RESIDUALS
+ ----------------------------------------------
+
+  NUM.DATA=  43
+   NUM.(+)=  22
+   NUM.(-)=  21
+   T-VALUE=      -0.151    
+
+
+
+ AUTOCORRELATIONS OF SQUARED EXTENDED RESIDUALS
+ ---------------------------------------------
+
+      0.0733   0.1213   0.0317   0.0734  -0.0113   0.1018  -0.0484   0.0799   0.0912   0.1809   0.2271   0.1238
+ SE   0.1525   0.1533   0.1555   0.1557   0.1565   0.1565   0.1580   0.1584   0.1593   0.1605   0.1652   0.1723
+
+     -0.1183   0.0577  -0.0018  -0.0446  -0.0543  -0.0872  -0.0272  -0.0075  -0.0838  -0.0530  -0.0206  -0.0701
+ SE   0.1744   0.1762   0.1767   0.1767   0.1769   0.1773   0.1783   0.1784   0.1784   0.1793   0.1797   0.1797
+
+     -0.1054  -0.0848  -0.1075  -0.0619  -0.0646  -0.0535   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000
+ SE   0.1804   0.1818   0.1827   0.1842   0.1847   0.1852   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000
+
+
+ THE LJUNG-BOX Q VALUE IS      11.04 AND IF RESIDUALS ARE RANDOM IT SHOULD BE DISTRIBUTED AS CHI-SQUARE (24)
+
+ BACKWARD RESIDUALS
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2021      -0.029    -0.048    -0.035     0.035    -0.024    -0.028     0.028    -0.030    -0.028     0.006    -0.006     0.009
+ 2022      -0.019    -0.039    -0.001     0.101     0.033    -0.013    -0.004     0.021     0.045    -0.020    -0.038     0.041
+ 2023       0.029    -0.069     0.084    -0.049    -0.031     0.068    -0.035    -0.003    -0.007     0.003     0.007    -0.007
+ 2024      -0.004     0.014    -0.014     0.005     0.005    -0.011     0.006
+
+ PART 2 : DERIVATION OF THE MODELS FOR THE COMPONENTS AND ESTIMATORS
+ -------------------------------------------------------------------
+
+
+
+ SERIES TITLE: dfsezdc                                                                         
+
+ MODEL PARAMETERS
+ (0,1,1)(0,1,1)
+
+ PARAMETER VALUES : COEFFIC. OF POLYNOMIALS IN B OF THE MODEL (TRUE SIGNS)
+
+ THETA PARAMETERS
+  1.00  -0.70
+
+ BTHETA PARAMETERS
+  1.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00  -0.18
+
+ PHI PARAMETERS
+  1.00
+
+ BPHI PARAMETERS
+  1.00
+
+ NUMERATOR OF THE MODEL (TOTAL MOVING AVERAGE POLYNOMIAL)
+ --------------------------------------------------------
+  1.0000 -0.7035  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ -0.1752  0.1232
+
+
+
+ FACTORIZATION OF THE TOTAL AUTOREGRESSIVE POLYNOMIAL
+ -----------------------------------------------------
+
+
+ STATIONARY AUTOREGRESSIVE TREND-CYCLE
+  1.0000
+
+ NON-STATIONARY AUTOREGRESSIVE TREND-CYCLE
+  1.0000 -2.0000  1.0000
+
+ AUTOREGRESSIVE TREND-CYCLE
+ --------------------------
+  1.0000 -2.0000  1.0000
+
+ STATIONARY AUTOREGRESSIVE TRANSITORY COMPONENT
+  1.0000
+
+ NON-STATIONARY AUTOREGRESSIVE TRANSITORY COMP
+  1.0000
+
+ AUTOREGRESSIVE TRANSITORY COMP.
+ ------------------------------
+  1.0000
+
+ STATIONARY AUTOREGRESSIVE SEASONAL COMPONENT
+  1.0000
+
+ NON-STATIONARY AUTOREGRESSIVE SEASONAL COMPONENT
+  1.0000  1.0000  1.0000  1.0000  1.0000  1.0000  1.0000  1.0000  1.0000  1.0000  1.0000  1.0000
+
+ AUTOREGRESSIVE SEASONAL COMPONENT
+ ---------------------------------
+  1.0000  1.0000  1.0000  1.0000  1.0000  1.0000  1.0000  1.0000  1.0000  1.0000  1.0000  1.0000
+
+ STATIONARY AUTOREGRESSIVE SEASONALLY ADJUSTED COMPONENT
+  1.0000
+
+ NON-STATIONARY AUTOREGRESSIVE SEASONALLY ADJUSTED COMPONENT
+  1.0000 -2.0000  1.0000
+
+ AUTOREGRESSIVE SEASONALLY ADJUSTED COMPONENT
+ --------------------------------------------
+  1.0000 -2.0000  1.0000
+
+ TOTAL DENOMINATOR (TOTAL AUTOREGRESSIVE POLYOMIAL)
+ --------------------------------------------------
+  1.0000 -1.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ -1.0000  1.0000
+
+
+
+FACTORIZATION OF THE MA POLYN FOR THE COMPONENTS
+-------------------------------------------------
+
+
+     MA ROOTS OF TREND-CYCLE
+     ---------------------------------------------------------
+    REAL PART    IMAGINARY PART     MODULUS        ARGUMENT    PERIOD
+        0.876          0.000           0.876          0.000      -  
+       -1.000          0.000           1.000        180.000     2.0 
+
+     TOTAL SQUARED ERROR=  0.2141824D-34
+
+
+     MA ROOTS OF SEASONAL
+     ---------------------------------------------------------
+    REAL PART    IMAGINARY PART     MODULUS        ARGUMENT    PERIOD
+       -0.858          0.230           0.889        165.000       2.182
+        0.628          0.628           0.888         44.989       8.002
+       -0.628          0.628           0.889        135.001       2.667
+        0.230          0.858           0.888         75.005       4.800
+       -0.230          0.858           0.889        105.003       3.428
+        1.000          0.000           1.000          0.000      -  
+
+     TOTAL SQUARED ERROR=  0.8420397D-21
+
+
+     MA ROOTS OF SEASONALLY ADJUSTED SERIES
+     ---------------------------------------------------------
+    REAL PART    IMAGINARY PART     MODULUS        ARGUMENT    PERIOD
+        0.732          0.000           0.732          0.000      -  
+        0.864          0.000           0.864          0.000      -  
+
+     TOTAL SQUARED ERROR=  0.4930381D-31
+
+      DERIVATION OF THE COMPONENT MODELS :  OK                                                                              
+
+
+
+
+                     MODELS FOR THE COMPONENTS
+                     -------------------------
+
+
+
+
+
+
+ TREND-CYCLE NUMERATOR (MOVING AVERAGE POL.)
+    1.00000    0.12372   -0.87628
+ TREND-CYCLE DENOMINATOR (AUTOREGRESSIVE POL.)
+    1.00000   -2.00000    1.00000
+ INNOV. VAR. (*)    0.006782
+
+
+
+ SEAS. NUMERATOR (MOVING AVERAGE POL.)
+    1.00000    0.71803    0.44047    0.18903   -0.02270   -0.18764   -0.30386   -0.37336   -0.40099   -0.39356   -0.35911   -0.30631
+ SEAS. DENOMINATOR (AUTOREGRESSIVE POL.)
+    1.00000    1.00000    1.00000    1.00000    1.00000    1.00000    1.00000    1.00000    1.00000    1.00000    1.00000    1.00000
+ INNOV. VAR. (*)    0.246434
+
+
+
+ IRREGULAR
+ VAR. (*)      0.20467
+
+
+
+ SEASONALLY ADJUSTED NUMERATOR (MOVING AVERAGE POL.)
+    1.00000   -1.59654    0.63291
+
+ SEASONALLY ADJUSTED DENOMINATOR (AUTOREGRESSIVE POL.)
+    1.00000   -2.00000    1.00000
+ INNOV. VAR. (*)    0.313993
+
+  (*)   IN UNITS OF VAR(A)
+        To obtain the innovation variances in the original units,
+        multiply by VAR(a)=  0.1908E-02
+
+
+    ARIMA MODEL FOR ESTIMATORS
+
+    Innovation are these in observed series (a(t))
+
+
+      1. SA SERIES [n(t)]
+
+
+
+        (1) HISTORICAL ESTIMATOR
+
+        
+        (1 -0.7035F -0.1752F^12 +0.1232F^13)[(1-B)^2]N(t)=KN(1 -1.5965B +0.6329B^2)(1 -1.5965F +0.6329F^2)(1+F+F^2
+        +F^3+F^4+F^5+F^6+F^7+F^8+F^9+F^10+F^11)a(t)
+
+        KN=  0.313993    
+
+
+        (2) CONCURRENT ESTIMATOR[N(t|t)]
+
+        
+        [(1-B)^2]N(t|t)=KcN(1 -1.4134B +0.4606B^2)a(t)
+
+        KcN=  0.431471    
+
+
+     MA ROOTS of concurrent estimator
+     ---------------------------------------------------------
+    REAL PART    IMAGINARY PART     MODULUS        ARGUMENT    PERIOD
+        0.904          0.000           0.904          0.000      -  
+        0.510          0.000           0.510          0.000      -  
+
+
+        (3) REVISION IN CONCURRENT ESTIMATOR [R(t|t)]
+
+        
+        (1 -0.7035F -0.1752F^12 +0.1232F^13)R(t|t)=KrN F(1 +0.1489F +0.1088F^2 +0.0718F^3 +0.0381F^4 +0.0075F^5
+         -0.0198F^6 -0.0440F^7 -0.0649F^8 -0.0827F^9 -0.0972F^10 -1.3716F^11 +1.1215F^12)a(t)
+
+        KrN=  0.129783    
+
+
+      2. TREND-CYCLE COMPONENT [P(t)]
+
+
+
+        (1) HISTORICAL ESTIMATOR
+
+        
+        (1 -0.7035F -0.1752F^12 +0.1232F^13)[(1-B)^2]P(t)=KP(1 +0.1237B -0.8763B^2)(1 +0.1237F -0.8763F^2)(1+F+F^2
+        +F^3+F^4+F^5+F^6+F^7+F^8+F^9+F^10+F^11)a(t)
+
+        KP=  0.678201E-02
+
+
+        (2) CONCURRENT ESTIMATOR[P(t|t)]
+
+        
+        [(1-B)^2]P(t|t)=KcP(1 -0.8839B -0.0262B^2)a(t)
+
+        KcP=  0.226800    
+
+
+     MA ROOTS of concurrent estimator
+     ---------------------------------------------------------
+    REAL PART    IMAGINARY PART     MODULUS        ARGUMENT    PERIOD
+        0.913          0.000           0.913          0.000      -  
+       -0.029          0.000           0.029        180.000     2.0 
+
+
+        (3) REVISION IN CONCURRENT ESTIMATOR [R(t|t)]
+
+        
+        (1 -0.7035F -0.1752F^12 +0.1232F^13)R(t|t)=KrP F(1 +0.1015F +0.0741F^2 +0.0489F^3 +0.0259F^4 +0.0051F^5
+         -0.0135F^6 -0.0300F^7 -0.0442F^8 -0.0563F^9 -0.0663F^10 -0.0483F^11 -0.1780F^12)a(t)
+
+        KrP=  0.190459    
+
+
+      3. SEASONAL COMPONENT [S(t)]
+
+
+
+        (1) HISTORICAL ESTIMATOR
+
+        
+        (1 -0.7035F -0.1752F^12 +0.1232F^13)(1+B+B^2+B^3+B^4+B^5+B^6+B^7+B^8+B^9+B^10+B^11)S(t)=KS(1 +0.7180B
+         +0.4405B^2 +0.1890B^3 -0.0227B^4 -0.1876B^5 -0.3039B^6 -0.3734B^7 -0.4010B^8 -0.3936B^9 -0.3591B^10
+         -0.3063B^11)(1 +0.7180F +0.4405F^2 +0.1890F^3 -0.0227F^4 -0.1876F^5 -0.3039F^6 -0.3734F^7 -0.4010F^8
+         -0.3936F^9 -0.3591F^10 -0.3063F^11)[(1-F)^2]a(t)
+
+        KS=  0.246434    
+
+
+        (2) CONCURRENT ESTIMATOR[S(t|t)]
+
+        
+        (1+B+B^2+B^3+B^4+B^5+B^6+B^7+B^8+B^9+B^10+B^11)S(t|t)=KcS(1 +1.0762B +1.1166B^2 +1.1212B^3 +1.0899B^4
+         +1.0227B^5 +0.9198B^6 +0.7809B^7 +0.6063B^8 +0.3958B^9 +0.1494B^10 -0.1328B^11)a(t)
+
+        KcS=  0.568529    
+
+
+     MA ROOTS of concurrent estimator
+     ---------------------------------------------------------
+    REAL PART    IMAGINARY PART     MODULUS        ARGUMENT    PERIOD
+       -0.627          0.650           0.903        133.969       2.687
+        0.714          0.603           0.935         40.155       8.965
+       -0.206          0.882           0.906        103.126       3.491
+        0.283          0.869           0.913         71.966       5.002
+       -0.870          0.238           0.902        164.670       2.186
+        0.334          0.000           0.334          0.000      -  
+
+
+        (3) REVISION IN CONCURRENT ESTIMATOR [R(t|t)]
+
+        
+        (1 -0.7035F -0.1752F^12 +0.1232F^13)R(t|t)=KrS F(1 +0.1489F +0.1088F^2 +0.0718F^3 +0.0381F^4 +0.0075F^5
+         -0.0198F^6 -0.0440F^7 -0.0649F^8 -0.0827F^9 -0.0972F^10 -1.3716F^11 +1.1215F^12)a(t)
+
+        KrS= -0.129783    
+
+
+      4. IRREGULAR COMPONENT [U(t)]
+
+
+
+        (1) HISTORICAL ESTIMATOR
+
+        
+        (1 -0.7035F -0.1752F^12 +0.1232F^13)U(t)=KU(1-F)(1-F^12)a(t)
+
+        KU=  0.204671    
+
+
+        (2) CONCURRENT ESTIMATOR[U(t|t)]
+
+        
+        U(t|t)=KcUa(t)
+
+        KcU=  0.204671    
+
+
+        (3) REVISION IN CONCURRENT ESTIMATOR [R(t|t)]
+
+        
+        (1 -0.7035F -0.1752F^12 +0.1232F^13)R(t|t)=KrU F(1 +2.7822F^11 -2.9574F^12)a(t)
+
+        KrU= -0.606766E-01
+
+
+    MOVING AVERAGE REPRESENTATION OF ESTIMATORS (NONSTATIONARY)
+
+
+    The model for the components differs from that of its theoretical MMSE estimator.
+    The MA expressions of the estimators in terms of the observed series innovation
+    is given below.
+    (Negative lags represent future values; positive lags represent past values.
+    Lag 0 denotes the last observed period.)
+
+
+    The last column (the sum of the Psi-Weights excluding PSIEA) should be zero
+    for negative lags, 1 for lag=0, and equal to the Box-Jenkins
+    Psi-Weights for positive lags.
+
+    PSIEP(LAG), for example, represents the effect of the overall
+    innovation at period (t-lag) on the estimator of the trend for period t.
+    Similarly for the other components.
+
+
+
+    LAG      PSIEP       PSIES       PSIEC       PSIEA       PSIEU             PSIX
+
+    -24     -0.0049      0.0334      0.0000     -0.0334     -0.0285           0.0000
+    -23     -0.0046      0.0032      0.0000     -0.0032      0.0015          -0.0000
+    -22     -0.0034      0.0014      0.0000     -0.0014      0.0021           0.0000
+    -21     -0.0022     -0.0007      0.0000      0.0007      0.0030          -0.0000
+    -20     -0.0011     -0.0031      0.0000      0.0031      0.0042           0.0000
+    -19     -0.0001     -0.0059      0.0000      0.0059      0.0060          -0.0000
+    -18      0.0005     -0.0090      0.0000      0.0090      0.0085           0.0000
+    -17      0.0005     -0.0126      0.0000      0.0126      0.0120          -0.0000
+    -16     -0.0005     -0.0166      0.0000      0.0166      0.0171           0.0000
+    -15     -0.0030     -0.0213      0.0000      0.0213      0.0243          -0.0000
+    -14     -0.0078     -0.0268      0.0000      0.0268      0.0346           0.0000
+    -13     -0.0159     -0.0332      0.0000      0.0332      0.0492          -0.0000
+    -12     -0.0219      0.1920      0.0000     -0.1920     -0.1701           0.0000
+    -11     -0.0181      0.0199      0.0000     -0.0199     -0.0018          -0.0000
+    -10     -0.0078      0.0103      0.0000     -0.0103     -0.0026           0.0000
+     -9      0.0042     -0.0006      0.0000      0.0006     -0.0036          -0.0000
+     -8      0.0180     -0.0128      0.0000      0.0128     -0.0052           0.0000
+     -7      0.0337     -0.0263      0.0000      0.0263     -0.0074          -0.0000
+     -6      0.0515     -0.0411      0.0000      0.0411     -0.0105           0.0000
+     -5      0.0719     -0.0570      0.0000      0.0570     -0.0149          -0.0000
+     -4      0.0951     -0.0740      0.0000      0.0740     -0.0211           0.0000
+     -3      0.1220     -0.0920      0.0000      0.0920     -0.0300          -0.0000
+     -2      0.1533     -0.1106      0.0000      0.1106     -0.0427           0.0000
+     -1      0.1905     -0.1298      0.0000      0.1298     -0.0607          -0.0000
+ 
+      0      0.2268      0.5685      0.0000      0.4315      0.2047           1.0000
+ 
+      1      0.2531      0.0433      0.0000      0.2531      0.0000           0.2965
+      2      0.2735      0.0230      0.0000      0.2735      0.0000           0.2965
+      3      0.2939      0.0026      0.0000      0.2939      0.0000           0.2965
+      4      0.3143     -0.0178      0.0000      0.3143      0.0000           0.2965
+      5      0.3346     -0.0382      0.0000      0.3346      0.0000           0.2965
+      6      0.3550     -0.0585      0.0000      0.3550      0.0000           0.2965
+      7      0.3754     -0.0789      0.0000      0.3754      0.0000           0.2965
+      8      0.3958     -0.0993      0.0000      0.3958      0.0000           0.2965
+      9      0.4161     -0.1197      0.0000      0.4161      0.0000           0.2965
+     10      0.4365     -0.1401      0.0000      0.4365      0.0000           0.2965
+     11      0.4569     -0.1604      0.0000      0.4569      0.0000           0.2965
+     12      0.4773      0.6440      0.0000      0.4773      0.0000           1.1213
+     13      0.4976      0.0433      0.0000      0.4976      0.0000           0.5410
+     14      0.5180      0.0230      0.0000      0.5180      0.0000           0.5410
+     15      0.5384      0.0026      0.0000      0.5384      0.0000           0.5410
+     16      0.5588     -0.0178      0.0000      0.5588      0.0000           0.5410
+     17      0.5792     -0.0382      0.0000      0.5792      0.0000           0.5410
+     18      0.5995     -0.0585      0.0000      0.5995      0.0000           0.5410
+     19      0.6199     -0.0789      0.0000      0.6199      0.0000           0.5410
+     20      0.6403     -0.0993      0.0000      0.6403      0.0000           0.5410
+     21      0.6607     -0.1197      0.0000      0.6607      0.0000           0.5410
+     22      0.6810     -0.1401      0.0000      0.6810      0.0000           0.5410
+     23      0.7014     -0.1604      0.0000      0.7014      0.0000           0.5410
+     24      0.7218      0.6440      0.0000      0.7218      0.0000           1.3658
+
+
+  DETERMINISTIC COMPONENT FROM TRAMO
+  ----------------------------------
+      REGRESSION VARIABLE
+        SEASONAL REGRESSION EFFECT
+      DERIVATION OF THE FILTERS :  OK                                                                              
+
+
+    WIENER-KOLMOGOROV FILTERS (ONE SIDE)
+    ------------------------------------
+
+    TREND-CYCLE COMPONENT
+
+   0.1143   0.1035   0.0845   0.0698   0.0579   0.0481   0.0394   0.0313   0.0234   0.0151   0.0058  -0.0049
+  -0.0122  -0.0105  -0.0053  -0.0019   0.0002   0.0014   0.0020   0.0020   0.0017   0.0009  -0.0002  -0.0017
+  -0.0027  -0.0023  -0.0012  -0.0005  -0.0001   0.0001   0.0003   0.0003   0.0003   0.0001  -0.0000  -0.0003
+  -0.0005  -0.0004  -0.0002  -0.0001  -0.0000   0.0000   0.0000   0.0001   0.0000   0.0000  -0.0000  -0.0001
+  -0.0001  -0.0001  -0.0000  -0.0000  -0.0000   0.0000   0.0000   0.0000   0.0000   0.0000  -0.0000  -0.0000
+
+    SA SERIES COMPONENT
+
+   0.5243   0.0440   0.0432   0.0415   0.0391   0.0363   0.0333   0.0301   0.0270   0.0238   0.0209   0.0183
+  -0.1820   0.0138   0.0118   0.0103   0.0090   0.0079   0.0069   0.0060   0.0052   0.0045   0.0039   0.0034
+  -0.0318   0.0025   0.0021   0.0018   0.0016   0.0014   0.0012   0.0011   0.0009   0.0008   0.0007   0.0006
+  -0.0056   0.0004   0.0004   0.0003   0.0003   0.0002   0.0002   0.0002   0.0002   0.0001   0.0001   0.0001
+  -0.0010   0.0001   0.0001   0.0001   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000
+
+    SEASONAL COMPONENT
+
+   0.4757  -0.0440  -0.0432  -0.0415  -0.0391  -0.0363  -0.0333  -0.0301  -0.0270  -0.0238  -0.0209  -0.0183
+   0.1820  -0.0138  -0.0118  -0.0103  -0.0090  -0.0079  -0.0069  -0.0060  -0.0052  -0.0045  -0.0039  -0.0034
+   0.0318  -0.0025  -0.0021  -0.0018  -0.0016  -0.0014  -0.0012  -0.0011  -0.0009  -0.0008  -0.0007  -0.0006
+   0.0056  -0.0004  -0.0004  -0.0003  -0.0003  -0.0002  -0.0002  -0.0002  -0.0002  -0.0001  -0.0001  -0.0001
+   0.0010  -0.0001  -0.0001  -0.0001  -0.0000  -0.0000  -0.0000  -0.0000  -0.0000  -0.0000  -0.0000  -0.0000
+
+    IRREGULAR COMPONENT
+
+   0.4100  -0.0595  -0.0413  -0.0283  -0.0188  -0.0117  -0.0061  -0.0012   0.0036   0.0088   0.0151   0.0233
+  -0.1698   0.0242   0.0172   0.0122   0.0088   0.0064   0.0049   0.0040   0.0036   0.0036   0.0041   0.0051
+  -0.0290   0.0048   0.0034   0.0024   0.0017   0.0013   0.0009   0.0008   0.0007   0.0007   0.0007   0.0009
+  -0.0051   0.0008   0.0006   0.0004   0.0003   0.0002   0.0002   0.0001   0.0001   0.0001   0.0001   0.0002
+  -0.0009   0.0001   0.0001   0.0001   0.0001   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000
+
+
+
+
+    CONTRIBUTION OF ORIGINAL SERIES AND OF ITS INNOVATIONS TO THE ESTIMATOR
+    OF THE COMPONENTS FOR THE PRESENT PERIOD.
+
+    COMPONENT                      TREND-CYCLE                  SEASONAL COMPONENT              TRANS.+IRREGULAR
+
+    CONTRIBUTION OF        OBSERVATION    INNOVATION        OBSERVATION    INNOVATION        OBSERVATION    INNOVATION
+
+    LAST PERIOD               0.114          0.227             0.476          0.569             0.410          0.205
+
+    NEXT PERIOD               0.104          0.190            -0.044         -0.130            -0.060         -0.061
+
+    1 YEAR AHEAD             -0.012         -0.022             0.182          0.192            -0.170         -0.170
+
+    2 YEAR AHEAD             -0.003         -0.005             0.032          0.033            -0.029         -0.029
+
+
+
+    Check :
+            - The sum of the 3 weights associated with the observation,
+              for the last period, should be 1.0.
+            - The same should happen with the 3 weights associated with the innovations for the last period.
+            - The sum of the 3 weights associated with the innovation, for future period,
+              should be zero.
+
+    Note : some examples
+            * If the last observation on the series has a relatively large weight for the seasonal
+              component, the series contains a relatively important seasonal component.
+            * If next period innovation has a relatively large weight for the trend-cycle
+              component, the estimator of this component will be strongly affected by the
+              next period forecast error (i.e., the first revision of the concurrent
+              estimator will be large).
+            * If the weight for some component, associated with the innovation two-year into
+              the future is large, this would indicate that the estimator, after two years of
+              revisions is still far from convergence.
+
+
+
+DISTRIBUTION OF COMPONENT, THEORETICAL ESTIMATOR AND EMPIRICAL ESTIMATE
+-----------------------------------------------------------------------
+
+AUTOCORRELATION FUNCTION OF STATIONARY TRANSFORMATION OF COMPONENTS AND THEIR ESTIMATORS
+(Component, theorethical MMSE estimator and empirical estimate share the same stationary transformation)
+
+
+
+                               TREND-CYCLE
+
+ LAG          COMPONENT    ESTIMATOR     ESTIMATE      SE
+
+   1            0.009        0.608        0.364        0.098
+   2           -0.491        0.042       -0.223        0.210
+   3            0.000       -0.106        0.051        0.229
+   4            0.000       -0.058        0.300        0.247
+   5            0.000       -0.024        0.258        0.229
+   6            0.000        0.003        0.026        0.161
+   7            0.000        0.025       -0.193        0.230
+   8            0.000        0.047       -0.105        0.252
+   9            0.000        0.071        0.126        0.241
+  10            0.000        0.013        0.174        0.239
+  11            0.000       -0.220       -0.148        0.209
+  12            0.000       -0.381       -0.413        0.167
+
+
+
+ VAR.(*)        0.012        0.000        0.000        0.000
+
+
+
+                            SA SERIES
+
+ LAG          COMPONENT    ESTIMATOR     ESTIMATE      SE
+
+   1           -0.660       -0.660       -0.569        0.101
+   2            0.160        0.161       -0.122        0.227
+   3            0.000        0.000        0.393        0.252
+   4            0.000        0.000       -0.301        0.251
+   5            0.000        0.000        0.118        0.222
+   6            0.000        0.000        0.074        0.166
+   7            0.000        0.000       -0.177        0.222
+   8            0.000        0.000        0.136        0.251
+   9            0.000        0.000       -0.057        0.252
+  10            0.000       -0.066       -0.079        0.245
+  11            0.000        0.272        0.323        0.206
+  12            0.000       -0.412       -0.410        0.166
+
+
+
+ VAR.(*)        1.240        0.595        0.511        0.212
+
+
+
+                                 SEASONAL
+
+ LAG          COMPONENT    ESTIMATOR     ESTIMATE      SE
+
+   1            0.724        0.640        0.280        0.150
+   2            0.447        0.290       -0.149        0.191
+   3            0.193       -0.018        0.004        0.166
+   4           -0.022       -0.262       -0.142        0.156
+   5           -0.187       -0.428       -0.144        0.220
+   6           -0.297       -0.507       -0.208        0.277
+   7           -0.351       -0.500       -0.289        0.254
+   8           -0.353       -0.412       -0.049        0.234
+   9           -0.308       -0.252        0.023        0.268
+  10           -0.227       -0.037       -0.109        0.311
+  11           -0.120        0.213        0.224        0.311
+  12            0.000        0.474        0.389        0.254
+
+
+
+ VAR.(*)        0.629        0.290        0.104        0.163
+
+
+
+                                 IRREGULAR
+
+ LAG          COMPONENT    ESTIMATOR     ESTIMATE      SE
+
+   1            0.000       -0.145       -0.329        0.163
+   2            0.000       -0.101       -0.290        0.177
+   3            0.000       -0.069        0.278        0.182
+   4            0.000       -0.046       -0.145        0.186
+   5            0.000       -0.029        0.158        0.191
+   6            0.000       -0.015        0.032        0.122
+   7            0.000       -0.003       -0.210        0.191
+   8            0.000        0.009        0.063        0.186
+   9            0.000        0.021        0.008        0.185
+  10            0.000        0.037        0.045        0.183
+  11            0.000        0.057        0.164        0.182
+  12            0.000       -0.414       -0.429        0.121
+
+
+
+ VAR.(*)        0.205        0.084        0.061        0.022
+
+  (*)   IN UNITS OF VAR(A)
+        To obtain the innovation variances in the original units,
+        multiply by VAR(a)=  0.1908E-02
+
+            CROSSCORRELATION BETWEEN STATIONARY TRANSFORMATION OF ESTIMATORS
+
+                                   ESTIMATOR            ESTIMATE        SE
+
+    TREND-CYCLE/SEASONAL            -0.216              -0.353         0.146
+    SEASONAL/IRREGULAR               0.155               0.379         0.129
+    TREND-CYCLE/IRREGULAR           -0.292              -0.032         0.117
+
+
+          For all pairs of components, the crosscorrelation between
+          the estimators and that between the estimates should be
+          broadly in agreement.
+
+    COMPARISON BETWEEN CROSSCORRELATION THEORETICAL AND EMPIRICAL ESTIMATE CROSSCORRELATIONS
+
+    TREND-CYCLE and SEASONAL component estimators can be seen as approximately uncorrelated.
+    SEASONAL and IRREGULAR component estimators can be seen as approximately uncorrelated.
+    TREND-CYCLE and IRREGULAR component estimators are mildly correlated.
+
+
+
+
+  SECOND ORDER MOMENTS OF THE (STATIONARY) COMPONENTS OVER / UNDER ESTIMATION TESTS
+  ---------------------------------------------------------------------------------
+
+
+    For all components it should happen that :
+        - Var(Component) > Var(Estimator)
+        - Var(Estimator) close to Var(Estimate)
+
+
+    * If, for a component,Var(Estimator) >> Var(Estimate), there is UNDERESTIMATION
+      of the component.
+
+    * If Var(Estimator) << Var(Estimate), the component has been OVERESTIMATED.
+
+
+
+    1. VARIANCE
+    -----------
+
+
+    t-test of difference: Estimator-Estimate.
+    (Approx. 99% Critical Value)
+ 
+      TREND-CYCLE     OK ( t =   -1.68 )
+      SEASONAL        OK ( t =   -1.14 )
+      IRREGULAR       OK ( t =   -0.45 )
+
+
+    2. AUTOCORRELATION
+    -------------------
+
+    t-values of difference: ACF of estimator - ACF of estimate (approx. 99% Critical Value)
+
+
+                      FIRST ORDER                     SEASONAL ORDER
+                      AUTOCORRELATION                 AUTOCORRELATION
+
+      TREND-CYCLE     OK ( t =   -2.49 )              OK ( t =   -0.19 )
+      SEASONAL        OK ( t =   -2.40 )              OK ( t =   -0.33 )
+      IRREGULAR       OK ( t =   -1.13 )              OK ( t =   -0.12 )
+
+    Excesive positive first order AC of Trend-cycle estimate may indicate over-smoothing of Trend-cucle.
+    Excesive positive seasonal AC in the seasonal estimate may indicate over-smoothing of the seasonal 
+    component (excesive seasonal inertia).
+    Excesive positive seasonal AC in the irregular mayindicate under-adjustment of the seasonal component.
+
+
+    3. CROSSCORRELATION
+    -------------------
+
+    t-values of difference: CC of estimator - CC of estimate (Approx. 99% Critical Value)
+
+
+                      SEASONAL                 IRREGULAR
+
+      TREND-CYCLE     OK ( t =   -0.93 )       OK ( t =    2.21 )
+      SEASONAL                                 OK ( t =    1.74 )
+
+
+
+  WEIGHTS FOR ASYMMETRIC TREND CONCURRENT ESTIMATOR FILTER(semi-infinite realization)
+
+   exp(B)        WEIGHTS     exp(B)        WEIGHTS     exp(B)        WEIGHTS
+        0         0.226800        1         0.185883        2         0.151153
+        3         0.126720        4         0.109530        5         0.097436
+        6         0.088927        7         0.082941        8         0.078730
+        9         0.075767       10         0.073682       11         0.072216
+       12        -0.115886       13        -0.082863       14        -0.054728
+       15        -0.034934       16        -0.021008       17        -0.011210
+       18        -0.004317       19         0.000532       20         0.003944
+       21         0.006344       22         0.008033       23         0.009221
+       24        -0.022713       25        -0.016213       26        -0.010781
+       27        -0.006960       28        -0.004271       29        -0.002380
+       30        -0.001049       31        -0.000113       32         0.000546
+       33         0.001010       34         0.001336       35         0.001565
+       36        -0.004014       37        -0.002865       38        -0.001906
+       39        -0.001232       40        -0.000757       41        -0.000423
+       42        -0.000188       43        -0.000023       44         0.000094
+       45         0.000175       46         0.000233       47         0.000273
+       48        -0.000704       49        -0.000502       50        -0.000334
+       51        -0.000216       52        -0.000133       53        -0.000074
+       54        -0.000033       55        -0.000004       56         0.000016
+       57         0.000031       58         0.000041       59         0.000048
+       60        -0.000123
+
+
+
+  WEIGHTS FOR ASYMMETRIC SA CONCURRENT ESTIMATOR FILTER(semi-infinite realization)
+
+   exp(B)        WEIGHTS     exp(B)        WEIGHTS     exp(B)        WEIGHTS
+        0         0.431471        1         0.125206        2         0.108465
+        3         0.096687        4         0.088400        5         0.082570
+        6         0.078469        7         0.075583        8         0.073553
+        9         0.072125       10         0.071120       11         0.070413
+       12        -0.285971       13        -0.033707       14        -0.020145
+       15        -0.010603       16        -0.003890       17         0.000833
+       18         0.004155       19         0.006493       20         0.008138
+       21         0.009295       22         0.010109       23         0.010682
+       24        -0.051259       25        -0.006723       26        -0.004105
+       27        -0.002262       28        -0.000966       29        -0.000055
+       30         0.000587       31         0.001038       32         0.001356
+       33         0.001579       34         0.001736       35         0.001847
+       36        -0.008996       37        -0.001190       38        -0.000727
+       39        -0.000402       40        -0.000173       41        -0.000013
+       42         0.000101       43         0.000180       44         0.000236
+       45         0.000276       46         0.000304       47         0.000323
+       48        -0.001576       49        -0.000209       50        -0.000128
+       51        -0.000071       52        -0.000030       53        -0.000002
+       54         0.000018       55         0.000032       56         0.000041
+       57         0.000048       58         0.000053       59         0.000057
+       60        -0.000276
+
+
+         CONCURRENT ESTIMATOR:PHASE DIAGRAM
+
+period of cycle    Delay(in months)
+                       SA series   trend-cycle
+            INF           0.0          0.0
+       20 years cycle     0.1          0.2
+       10 years cycle     0.5          0.7
+        5 years cycle     1.3          1.8
+        2 years cycle     2.4          3.3
+ 
+ 
+SEASONAL DIAGNOSTICS: FULL STOCHASTIC SA SERIES
+ 
+ 
+  Autocorrelation function evidence(QS) :       0.00
+  Non-parametric evidence(NP)           :       4.38
+  Spectral evidence                     : -  
+ 
+ No residual seasonality detected in seasonally adjusted series
+ 
+ 
+ 
+SPECTRAL DIAGNOSTICS
+ --------------------
+ 
+A. STOCHASTIC SEASONAL AND TRADING DAY SPECTRAL PEAKS
+ 
+                                  Frequency (cycles per year)              TD
+                               One    Two   Three  Four   Five    Six    (2.1878 rad)
+ Seasonally adjusted series   nc     nc     nc     nc     nc     nc        nc
+ Trend-Cycle component        nc     nc     nc     nc     nc     nc        nc
+ Irregular   component        nc     nc     nc     nc     nc     nc        nc
+ 
+ AT : peaks detected in AR(30) and using Tukey spectrum  estimator
+ A- : only peaks detected in AR(30) spectrum estimator
+ -T : only peaks detected using Tukey estimator spectrum
+ -- : No peaks detected in AR(30) nor using Tukey spectrum estimator
+ 
+ 
+ 
+B. STOCHASTIC SEASONALITY: SPECTRAL EVIDENCE
+ 
+ 1 :  EVIDENCE OF RESIDUAL SEASONALITY.
+ 0 :  NO EVIDENCE OF RESIDUAL SEASONALITY OR EVIDENCE IS TOO WEAK.
+ 
+ IN SEASONALLY ADJUSTED SERIES : 0
+ IN TREND-CYCLE COMPONENT :      0
+ IN IRREGULAR COMPONENT :        0
+ 
+ 
+ 
+C. TRADING DAY EFFECT: SPECTRAL EVIDENCE
+ 
+ 1 :  EVIDENCE OF RESIDUAL TRADING DAY EFFECT
+ 0 :  NO EVIDENCE OF RESIDUAL.TRADING DAY EFFECT OR EVIDENCE IS TOO WEAK.
+ 
+ IN SEASONALLY ADJUSTED SERIES : 0
+ IN TREND-CYCLE COMPONENT :      0
+ IN IRREGULAR COMPONENT :        0
+ 
+ 
+ Note: With rsa=3, trading day effect can be imposed by entering itrad=1,2,6 or
+  7.
+
+
+
+ PART 3 : ERROR ANALYSIS
+ -----------------------
+
+
+
+
+                          FINAL ESTIMATION ERROR                     REVISION IN CONCURRENT ESTIMATOR
+
+ ACF (LAG)             TREND-CYCLE       SA SERIES               TREND-CYCLE      SA SERIES
+
+       1                 0.863             0.003                    0.780           0.434
+       2                 0.615            -0.040                    0.589           0.311
+       3                 0.420            -0.072                    0.423           0.198
+       4                 0.269            -0.095                    0.280           0.096
+       5                 0.157            -0.107                    0.160           0.008
+       6                 0.078            -0.111                    0.062          -0.065
+       7                 0.028            -0.106                   -0.013          -0.122
+       8                 0.001            -0.094                   -0.066          -0.162
+       9                -0.008            -0.075                   -0.095          -0.184
+      10                -0.005            -0.052                   -0.100          -0.188
+      11                 0.004            -0.024                   -0.080          -0.172
+      12                 0.012             0.367                   -0.046           0.210
+
+ VAR.(*)                 0.035             0.109                    0.094           0.090
+
+
+
+
+      TOTAL ESTIMATION ERROR (CONCURRENT ESTIMATOR)
+      ---------------------------------------------
+
+        ACF (LAG)      TREND-CYCLE      SA SERIES
+
+           1              0.803           0.198
+           2              0.596           0.119
+           3              0.422           0.050
+           4              0.277          -0.008
+           5              0.159          -0.055
+           6              0.066          -0.090
+           7             -0.002          -0.114
+           8             -0.048          -0.125
+           9             -0.071          -0.125
+          10             -0.074          -0.113
+          11             -0.057          -0.091
+          12             -0.030           0.296
+
+       VAR.(*)            0.130           0.200
+
+  (*)   IN UNITS OF VAR(A)
+        To obtain the innovation variances in the original units,
+        multiply by VAR(a)=  0.1908E-02
+
+
+
+ VARIANCE OF THE REVISION ERROR (*)
+ ------------------------------
+
+ ADDITIONAL              TREND-CYCLE      SA SERIES
+  PERIODS
+
+
+      0                  0.9429E-01        0.9027E-01
+     12                  0.4080E-03        0.4090E-02
+     24                  0.1956E-04        0.1295E-03
+     36                  0.6212E-06        0.3985E-05
+     48                  0.1912E-07        0.1223E-06
+     60                  0.5868E-09        0.3753E-08
+
+
+
+  PERCENTAGE REDUCTION IN THE STANDARD ERROR OF THE REVISION AFTER ADDITIONAL YEARS
+ (COMPARISON WITH CONCURRENT ESTIMATORS)
+
+
+
+   AFTER 1 YEAR         93.42             78.71    
+   AFTER 2 YEAR         98.56             96.21    
+   AFTER 3 YEAR         99.74             99.34    
+   AFTER 4 YEAR         99.95             99.88    
+   AFTER 5 YEAR         99.99             99.98    
+
+
+
+ VARIANCE OF THE REVISION ERROR FOR THE SEASONAL COMPONENT (ONE YEAR AHEAD ADJUSTMENT)
+ -------------------------------------------------------------------------------------
+
+ PERIODS AHEAD          VARIANCE (*)
+
+         0                0.9027E-01
+         1                0.4135    
+         2                0.4154    
+         3                0.4159    
+         4                0.4159    
+         5                0.4162    
+         6                0.4177    
+         7                0.4211    
+         8                0.4273    
+         9                0.4372    
+        10                0.4515    
+        11                0.4711    
+        12                0.4969    
+
+
+
+ AVERAGE PERCENTAGE REDUCTION IN RMSE FROM  CONCURRENT ADJUSTMENT  52.46    
+
+  (*)   IN UNITS OF VAR(A)
+        To obtain the innovation variances in the original units,
+        multiply by VAR(a)=  0.1908E-02
+
+
+             LOGS DECOMPOSITION OF THE SERIES: RECENT ESTIMATES
+             --------------------------------------------------
+
+ PERIOD     SERIES                         TREND-CYCLE                                     SA SERIES
+
+                              ESTIMATE          STANDARD ERROR                    ESTIMATE          STANDARD ERROR
+                                              TOTAL         OF  REVISION                           TOTAL         OF  REVISION
+
+   -24    4.684             4.625         0.8220E-02     0.1932E-03              4.614         0.1445E-01     0.4972E-03
+   -23    4.211             4.624         0.8222E-02     0.2873E-03              4.631         0.1453E-01     0.1542E-02
+   -22    4.721             4.621         0.8225E-02     0.3514E-03              4.631         0.1453E-01     0.1548E-02
+   -21    4.655             4.618         0.8226E-02     0.3822E-03              4.606         0.1453E-01     0.1549E-02
+   -20    4.680             4.615         0.8227E-02     0.3942E-03              4.605         0.1453E-01     0.1550E-02
+   -19    4.649             4.613         0.8227E-02     0.3969E-03              4.620         0.1453E-01     0.1556E-02
+   -18    4.502             4.611         0.8227E-02     0.3969E-03              4.618         0.1453E-01     0.1577E-02
+   -17    4.575             4.608         0.8227E-02     0.3976E-03              4.597         0.1454E-01     0.1625E-02
+   -16    4.742             4.604         0.8227E-02     0.3982E-03              4.621         0.1455E-01     0.1715E-02
+   -15    4.506             4.601         0.8227E-02     0.3989E-03              4.567         0.1457E-01     0.1862E-02
+   -14    4.669             4.600         0.8228E-02     0.4203E-03              4.592         0.1460E-01     0.2082E-02
+   -13    4.714             4.599         0.8235E-02     0.5419E-03              4.622         0.1464E-01     0.2387E-02
+   -12    4.664             4.597         0.8265E-02     0.8824E-03              4.589         0.1471E-01     0.2794E-02
+   -11    4.176             4.595         0.8320E-02     0.1302E-02              4.594         0.1694E-01     0.8840E-02
+   -10    4.671             4.594         0.8357E-02     0.1522E-02              4.587         0.1696E-01     0.8883E-02
+    -9    4.663             4.592         0.8364E-02     0.1560E-02              4.600         0.1696E-01     0.8894E-02
+    -8    4.693             4.590         0.8366E-02     0.1570E-02              4.599         0.1696E-01     0.8894E-02
+    -7    4.589             4.586         0.8403E-02     0.1756E-02              4.577         0.1697E-01     0.8912E-02
+    -6    4.461             4.584         0.8531E-02     0.2291E-02              4.580         0.1701E-01     0.8986E-02
+    -5    4.611             4.580         0.8823E-02     0.3213E-02              4.599         0.1711E-01     0.9163E-02
+    -4    4.643             4.576         0.9365E-02     0.4492E-02              4.557         0.1729E-01     0.9496E-02
+    -3    4.526             4.573         0.1025E-01     0.6120E-02              4.582         0.1759E-01     0.1003E-01
+    -2    4.658             4.569         0.1155E-01     0.8115E-02              4.574         0.1804E-01     0.1081E-01
+    -1    4.619             4.564         0.1335E-01     0.1052E-01              4.550         0.1868E-01     0.1184E-01
+     0    4.661             4.560         0.1573E-01     0.1341E-01              4.570         0.1952E-01     0.1312E-01
+
+
+ STANDARD ERROR OF                        0.8217E-02                                           0.1445E-01
+ FINAL ESTIMATOR
+
+
+ PERIOD                    SEASONAL
+
+                  ESTIMATE          STANDARD ERROR
+                                 TOTAL         OF  REVISION
+
+   -24        0.6941E-01     0.1445E-01     0.4972E-03
+   -23       -0.4195         0.1453E-01     0.1542E-02
+   -22        0.9012E-01     0.1453E-01     0.1548E-02
+   -21        0.4910E-01     0.1453E-01     0.1549E-02
+   -20        0.7534E-01     0.1453E-01     0.1550E-02
+   -19        0.2909E-01     0.1453E-01     0.1556E-02
+   -18       -0.1160         0.1453E-01     0.1577E-02
+   -17       -0.2190E-01     0.1454E-01     0.1625E-02
+   -16        0.1207         0.1455E-01     0.1715E-02
+   -15       -0.6042E-01     0.1457E-01     0.1862E-02
+   -14        0.7658E-01     0.1460E-01     0.2082E-02
+   -13        0.9221E-01     0.1464E-01     0.2387E-02
+   -12        0.7451E-01     0.1471E-01     0.2794E-02
+   -11       -0.4183         0.1694E-01     0.8840E-02
+   -10        0.8343E-01     0.1696E-01     0.8883E-02
+    -9        0.6290E-01     0.1696E-01     0.8894E-02
+    -8        0.9341E-01     0.1696E-01     0.8894E-02
+    -7        0.1264E-01     0.1697E-01     0.8912E-02
+    -6       -0.1191         0.1701E-01     0.8986E-02
+    -5        0.1214E-01     0.1711E-01     0.9163E-02
+    -4        0.8596E-01     0.1729E-01     0.9496E-02
+    -3       -0.5627E-01     0.1759E-01     0.1003E-01
+    -2        0.8379E-01     0.1804E-01     0.1081E-01
+    -1        0.6985E-01     0.1868E-01     0.1184E-01
+     0        0.9117E-01     0.1952E-01     0.1312E-01
+
+
+ STANDARD ERROR OF                0.1445E-01
+ FINAL ESTIMATOR
+
+
+             FORECAST OF THE STOCHASTIC SERIES AND COMPONENTS (LOGS)
+             -------------------------------------------------------
+
+ PERIOD     SERIES                                   TREND-CYCLE                                     SA SERIES
+
+          FORECAST        S.E.          FORECAST          STANDARD ERROR                    FORECAST          STANDARD ERROR
+                                                        TOTAL         OF  REVISION                           TOTAL         OF  REVISION
+
+     1    4.148       0.4369E-01      4.567         0.1859E-01     0.1668E-01              4.567         0.2713E-01     0.2297E-01
+     2    4.646       0.4556E-01      4.565         0.2163E-01     0.2001E-01              4.565         0.2930E-01     0.2549E-01
+     3    4.629       0.4737E-01      4.562         0.2471E-01     0.2331E-01              4.562         0.3164E-01     0.2815E-01
+     4    4.658       0.4911E-01      4.560         0.2785E-01     0.2661E-01              4.560         0.3415E-01     0.3094E-01
+     5    4.567       0.5079E-01      4.558         0.3105E-01     0.2994E-01              4.558         0.3680E-01     0.3385E-01
+     6    4.435       0.5241E-01      4.556         0.3432E-01     0.3332E-01              4.556         0.3960E-01     0.3687E-01
+     7    4.572       0.5399E-01      4.553         0.3766E-01     0.3675E-01              4.553         0.4253E-01     0.4000E-01
+     8    4.628       0.5552E-01      4.551         0.4107E-01     0.4024E-01              4.551         0.4558E-01     0.4323E-01
+     9    4.493       0.5701E-01      4.549         0.4456E-01     0.4380E-01              4.549         0.4875E-01     0.4656E-01
+    10    4.628       0.5846E-01      4.547         0.4813E-01     0.4742E-01              4.547         0.5203E-01     0.4998E-01
+    11    4.603       0.5988E-01      4.545         0.5177E-01     0.5111E-01              4.545         0.5541E-01     0.5350E-01
+    12    4.630       0.6126E-01      4.542         0.5548E-01     0.5487E-01              4.542         0.5890E-01     0.5710E-01
+    13    4.121       0.7844E-01      4.540         0.5927E-01     0.5870E-01              4.540         0.6248E-01     0.6079E-01
+    14    4.619       0.8192E-01      4.538         0.6313E-01     0.6260E-01              4.538         0.6615E-01     0.6456E-01
+    15    4.602       0.8526E-01      4.536         0.6707E-01     0.6656E-01              4.536         0.6992E-01     0.6841E-01
+    16    4.631       0.8848E-01      4.533         0.7107E-01     0.7059E-01              4.533         0.7377E-01     0.7234E-01
+    17    4.540       0.9158E-01      4.531         0.7515E-01     0.7470E-01              4.531         0.7770E-01     0.7635E-01
+    18    4.408       0.9458E-01      4.529         0.7929E-01     0.7886E-01              4.529         0.8172E-01     0.8043E-01
+    19    4.545       0.9749E-01      4.527         0.8350E-01     0.8310E-01              4.527         0.8581E-01     0.8459E-01
+    20    4.601       0.1003          4.524         0.8779E-01     0.8740E-01              4.524         0.8998E-01     0.8882E-01
+    21    4.467       0.1031          4.522         0.9213E-01     0.9177E-01              4.522         0.9423E-01     0.9312E-01
+    22    4.602       0.1057          4.520         0.9655E-01     0.9620E-01              4.520         0.9855E-01     0.9749E-01
+    23    4.576       0.1083          4.517         0.1010         0.1007                  4.517         0.1029         0.1019    
+    24    4.603       0.1109          4.515         0.1056         0.1053                  4.515         0.1074         0.1064    
+
+
+ 
+ PERIOD                     SEASONAL
+
+                  FORECAST          STANDARD ERROR
+                                 TOTAL         OF  REVISION
+
+     1       -0.4192         0.3159E-01     0.2809E-01
+     2        0.8141E-01     0.3164E-01     0.2815E-01
+     3        0.6662E-01     0.3166E-01     0.2817E-01
+     4        0.9791E-01     0.3166E-01     0.2817E-01
+     5        0.9340E-02     0.3167E-01     0.2818E-01
+     6       -0.1204         0.3171E-01     0.2823E-01
+     7        0.1842E-01     0.3182E-01     0.2835E-01
+     8        0.7673E-01     0.3200E-01     0.2856E-01
+     9       -0.5564E-01     0.3230E-01     0.2888E-01
+    10        0.8171E-01     0.3272E-01     0.2935E-01
+    11        0.5844E-01     0.3328E-01     0.2999E-01
+    12        0.8735E-01     0.3401E-01     0.3079E-01
+    13       -0.4192         0.4414E-01     0.4171E-01
+    14        0.8133E-01     0.4418E-01     0.4175E-01
+    15        0.6647E-01     0.4419E-01     0.4177E-01
+    16        0.9773E-01     0.4419E-01     0.4177E-01
+    17        0.9204E-02     0.4420E-01     0.4177E-01
+    18       -0.1205         0.4423E-01     0.4181E-01
+    19        0.1842E-01     0.4431E-01     0.4188E-01
+    20        0.7673E-01     0.4444E-01     0.4203E-01
+    21       -0.5558E-01     0.4465E-01     0.4225E-01
+    22        0.8196E-01     0.4496E-01     0.4257E-01
+    23        0.5899E-01     0.4537E-01     0.4301E-01
+    24        0.8833E-01     0.4591E-01     0.4358E-01
+
+
+ SAMPLE MEANS
+ ------------
+
+               COMPLETE PERIOD    LAST THREE YEARS
+ SERIES          4.605            4.604    
+ TREND-CYCLE     4.601            4.604    
+ SA SERIES       4.601            4.604    
+ SEASONAL       0.3627E-02      -0.5107E-03
+      BIAS PARAMETER = 1
+
+
+  SERIES OF LEVELS (INCLUDING FORECASTS) HAVE
+  BEEN CORRECTED FOR BIAS IN OVERALL LEVEL.
+
+
+
+
+   ANNUAL AVERAGES
+   ---------------
+   (including forecasting period)
+
+    YEAR           SERIES              SA SERIES            TREND-CYCLE
+
+    2021            100.2                100.1                 100.1    
+    2022            102.9                103.0                 102.9    
+    2023            100.2                100.1                 100.2    
+    2024            97.29                97.30                 97.26    
+    2025            94.71                94.88                 94.89    
+
+  FULL PERIOD       165.1                165.1                 165.1    
+
+    AVERAGE VALUE OF ABSOLUTE
+    DIFFERENCES IN ANNUAL AVERAGES :
+    (in % of average level)
+
+
+    ADJUSTED SERIES :      0.621E-01
+
+        TREND-CYCLE :      0.720E-01
+
+
+  SIGNIFICANCE OF SEASONALITY
+  ---------------------------
+
+    Significance of the individual seasonal component estimator is assessed using the variances of the
+    total estimation error, which includes the error in the preliminary estimator (the revision error)
+    and the error in the final estimator.
+
+    Because the S.E. of the seasonal component estimator varies (it reaches a minimum for historical
+    estimation and a maximum for the most distant forecast),the significance of seasonality will be
+    different for different periods. For example, a series may show significant seasonality for historical
+    estimates, that is poorly captured concurrently, and useless for forecasting.
+
+
+        SEASONAL                      NUMBER OF PERIODS IN A YEAR THAT
+        COMPONENT                     HAVE SIGNIFICANT SEASONALITY
+                                            95%          99%
+
+    HISTORICAL ESTIMATOR                    10            9
+       (CENTRAL YEAR)
+
+    PRELIMINARY ESTIMATOR                   10           10
+       (LAST YEAR)
+
+         FORECAST                            8            7
+       (NEXT YEAR)
+
+
+    Lack of significance of the individual seasonal component is not sufficient to conclude that there is
+    no significant seasonality. If for the same period of the year (for example, for January or for the
+    first quarter) the seasonal component is systematically >0 (or <0), seasonality can be suspected.
+    This systematic behaviour is checked by means of a test for significant runs in the sign of the seasonal
+    component for each period of the year. 
+
+
+    Persistence of sign in seasonal component:
+        Number of runs in sign of seasonal
+
+   Months       JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC
+# Observ.         4         4         4         4         4         4         4         3         3         3         3         3
+#    runs         1         2         1         2         1         1         1         1         1         1         1         1
+  t-value         -         -         -         -         -         -         -         -         -         -         -         -
+    RunsTest=    0.00
+    If there is no seasonality it should (approx.) behave as a chi-squared of order 12 and be less 
+    than chi2(99%,12)=  26.22
+      TOO MANY CHANGES IN MONTHLY   SEASONAL SIGN
+
+
+
+ CONFIDENCE INTERVAL AROUND A SEASONAL FACTOR OF 100
+ ---------------------------------------------------
+
+                                     FINAL ESTIMATOR                        CONCURRENT ESTIMATOR
+    95%
+ CONFIDENCE              97.65      102.4                      96.84      103.3    
+ INTERVAL
+
+    70%
+ CONFIDENCE              98.51      101.5                      98.00      102.0    
+ INTERVAL
+
+
+
+  Overall significant of seassonality
+  -----------------------------------
+ 
+  Seasonallity is considered not significant when:
+ 
+   - For the same period of the year the seasonal component estimators change sign too often, and
+ 
+   - the seasonal component estimators for the last year are (individually) not-significant.
+ 
+
+
+
+ PART 4 : ESTIMATES OF THE COMPONENTS (LEVELS)
+ ---------------------------------------------
+
+
+
+
+ ARIMA SERIES
+ (Corrected by TRAMO)
+ "Original Series" FOR SEATS
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2021      82.870    89.840   110.273   100.794   105.699   106.405   109.462    64.942   109.322   107.100   109.173   106.151
+ 2022      90.262    97.869   117.850   102.425   111.356   110.434   108.156    67.425   112.253   105.079   107.801   104.442
+ 2023      90.213    97.009   114.660    90.602   106.593   111.545   106.045    65.073   106.796   105.909   109.134    98.411
+ 2024      86.582   100.589   103.825    92.359   105.441   101.442   105.758
+
+
+    STOCHASTIC COMPONENT
+    --------------------
+
+    THE SE ARE THOSE OF THE TOTAL ESTIMATION ERROR =
+    REVISION ERROR AND FINAL ESTIMATION ERROR.
+
+
+ SEASONAL FACTORS (X 100)
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2021      86.219    93.003   112.742   100.745   106.646   106.677   107.752    64.537   107.899   104.372   106.370   102.779
+ 2022      87.323    94.620   113.149    97.622   107.076   107.557   106.209    65.138   108.432   104.074   106.841   102.012
+ 2023      88.231    96.940   111.795    93.277   106.973   108.658   106.752    65.217   107.708   105.520   108.789   100.347
+ 2024      87.965   100.297   107.982    93.666   107.748   106.256   108.545
+
+ STANDARD ERROR OF SEASONAL FACTORS (X 100)
+
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2021       1.625     1.693     2.001     1.758     1.841     1.832     1.846     1.105     1.847     1.786     1.818     1.526
+ 2022       1.290     1.394     1.663     1.433     1.571     1.577     1.557     0.955     1.590     1.526     1.567     1.496
+ 2023       1.294     1.422     1.640     1.370     1.573     1.601     1.578     0.968     1.841     1.806     1.863     1.718
+ 2024       1.507     1.722     1.864     1.634     1.913     1.935     2.046
+
+ TREND-CYCLE
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2021      96.693    97.379    98.115    98.833    99.474   100.081   100.659   101.175   101.670   102.150   102.570   102.921
+ 2022     103.199   103.410   103.552   103.573   103.437   103.206   102.986   102.797   102.541   102.218   101.948   101.738
+ 2023     101.479   101.174   100.847   100.543   100.402   100.328   100.152    99.946    99.776    99.607    99.365    99.055
+ 2024      98.765    98.449    98.072    97.709    97.312    96.878    96.462
+
+ STANDARD ERROR OF TREND-CYCLE
+
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2021       1.279     1.114     0.996     0.917     0.870     0.846     0.838     0.839     0.843     0.846     0.846     0.843
+ 2022       0.842     0.843     0.844     0.844     0.843     0.841     0.839     0.838     0.836     0.833     0.831     0.829
+ 2023       0.827     0.825     0.822     0.820     0.818     0.818     0.817     0.818     0.823     0.825     0.823     0.821
+ 2024       0.822     0.832     0.857     0.907     0.988     1.109     1.276
+
+ SEASONALLY ADJUSTED SERIES
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2021      96.117    96.599    97.810   100.049    99.112    99.745   101.588   100.628   101.319   102.613   102.635   103.281
+ 2022     103.367   103.434   104.155   104.919   103.997   102.674   101.833   103.511   103.524   100.966   100.899   102.383
+ 2023     102.247   100.071   102.562    97.133    99.645   102.657    99.337    99.779    99.154   100.369   100.317    98.070
+ 2024      98.428   100.291    96.151    98.605    97.859    95.469    97.432
+
+ STANDARD ERROR OF SEASONALLY ADJUSTED SERIES
+
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2021       1.779     1.727     1.705     1.714     1.680     1.682     1.709     1.692     1.703     1.724     1.723     1.506
+ 2022       1.500     1.496     1.503     1.512     1.498     1.478     1.466     1.490     1.490     1.454     1.453     1.474
+ 2023       1.472     1.441     1.477     1.400     1.438     1.485     1.441     1.455     1.664     1.687     1.686     1.649
+ 2024       1.656     1.691     1.630     1.689     1.705     1.707     1.803
+
+ IRREGULAR FACTORS (X 100)
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2021      99.404    99.199    99.689   101.230    99.636    99.664   100.922    99.459    99.654   100.454   100.063   100.350
+ 2022     100.163   100.023   100.582   101.300   100.540    99.485    98.880   100.695   100.959    98.775    98.971   100.634
+ 2023     100.756    98.910   101.701    96.608    99.245   102.321    99.187    99.833    99.377   100.765   100.958    99.006
+ 2024      99.659   101.871    98.041   100.917   100.562    98.545   101.006
+
+
+
+   FORECAST OF STOCHASTIC SERIES AND COMPONENTS (LEVELS)
+   -----------------------------------------------------
+
+ PERIOD     SERIES                               TREND-CYCLE                  ADJUSTED
+
+            FORECAST        S.E.         FORECAST          S.E.         FORECAST         S.E.
+
+     1    63.29        2.767          97.14          1.806          97.13           2.636    
+     2    104.2        4.750          96.91          2.097          96.90           2.840    
+     3    102.4        4.855          96.68          2.390          96.68           3.061    
+     4    105.4        5.182          96.47          2.687          96.46           3.296    
+     5    96.27        4.895          96.26          2.990          96.25           3.545    
+     6    84.37        4.428          96.05          3.298          96.04           3.806    
+     7    96.73        5.229          95.84          3.611          95.84           4.079    
+     8    102.3        5.688          95.63          3.931          95.62           4.363    
+     9    89.42        5.105          95.41          4.256          95.41           4.656    
+    10    102.4        5.993          95.20          4.587          95.20           4.959    
+    11    99.78        5.985          94.99          4.924          94.98           5.271    
+    12    102.5        6.289          94.78          5.266          94.77           5.591    
+    13    61.62        4.847          94.57          5.614          94.56           5.919    
+    14    101.4        8.333          94.36          5.968          94.35           6.254    
+    15    99.69        8.528          94.15          6.327          94.14           6.597    
+    16    102.6        9.113          93.94          6.691          93.93           6.946    
+    17    93.73        8.616          93.73          7.061          93.72           7.302    
+    18    82.14        7.801          93.52          7.436          93.51           7.665    
+    19    94.17        9.220          93.31          7.816          93.31           8.033    
+    20    99.60        10.04          93.10          8.202          93.10           8.408    
+    21    87.06        9.015          92.89          8.591          92.88           8.788    
+    22    99.66        10.59          92.67          8.984          92.66           9.172    
+    23    97.15        10.58          92.43          9.381          92.43           9.560    
+    24    99.77        11.13          92.19          9.781          92.18           9.952    
+
+
+ 
+ PERIOD                 SEASONAL FACTORS
+
+                  FORECAST          S.E.
+
+     1         65.16          2.059    
+     2         107.5          3.403    
+     3         105.9          3.355    
+     4         109.3          3.461    
+     5         100.0          3.169    
+     6         87.85          2.787    
+     7         100.9          3.213    
+     8         107.0          3.426    
+     9         93.72          3.028    
+    10         107.5          3.519    
+    11         105.1          3.498    
+    12         108.1          3.680    
+    13         65.16          2.879    
+    14         107.5          4.753    
+    15         105.9          4.684    
+    16         109.3          4.833    
+    17         100.0          4.424    
+    18         87.84          3.889    
+    19         100.9          4.476    
+    20         107.0          4.759    
+    21         93.73          4.189    
+    22         107.6          4.839    
+    23         105.1          4.773    
+    24         108.2          4.974    
+
+
+    DETERMINISTIC COMPONENT (from TRAMO)
+    ------------------------------------
+
+
+  SEASONAL REGRESSION EFFECT FACTORS (X100)
+
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2021      98.226   103.072   100.297    98.121    98.109   100.747    99.486   100.244    98.973    98.973   102.039    99.481
+ 2022      96.496   101.258   100.297    98.121   101.656    98.973    99.486   102.039    98.973    98.973   102.039    99.481
+ 2023      99.986    99.476   100.297    98.121   103.478    98.973    99.486   102.039    98.973   100.747   100.244    99.481
+ 2024     103.601    97.724    98.531   101.668    99.867    98.973   101.268
+
+
+  FINAL DECOMPOSITION
+  -------------------
+
+
+  FINAL COMPONENT
+  ---------------
+
+
+  FINAL SEASONALLY ADJUSTED SERIES
+
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2021      96.117    96.599    97.810   100.049    99.112    99.745   101.588   100.628   101.319   102.613   102.636   103.281
+ 2022     103.367   103.434   104.155   104.919   103.996   102.674   101.833   103.511   103.524   100.966   100.899   102.383
+ 2023     102.247   100.071   102.562    97.133    99.644   102.657    99.337    99.779    99.154   100.369   100.317    98.070
+ 2024      98.428   100.291    96.150    98.605    97.859    95.469    97.433
+
+
+  FINAL TREND-CYCLE
+
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2021      96.693    97.379    98.115    98.833    99.474   100.081   100.659   101.175   101.670   102.150   102.570   102.921
+ 2022     103.199   103.410   103.552   103.573   103.437   103.206   102.986   102.797   102.541   102.218   101.948   101.738
+ 2023     101.479   101.174   100.847   100.543   100.402   100.328   100.152    99.946    99.776    99.607    99.365    99.055
+ 2024      98.765    98.449    98.072    97.709    97.312    96.878    96.462
+
+
+  FINAL SEASONAL FACTORS
+
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2021      84.689    95.860   113.077    98.852   104.629   107.474   107.198    64.694   106.792   103.301   108.539   102.246
+ 2022      84.263    95.810   113.485    95.788   108.850   106.453   105.663    66.466   107.319   103.005   109.020   101.482
+ 2023      88.218    96.432   112.127    91.524   110.694   107.542   106.204    66.547   106.602   106.308   109.054    99.826
+ 2024      91.133    98.015   106.396    95.228   107.604   105.165   109.922
+
+
+  FINAL IRREGULAR FACTORS
+
+    The same as the stochastic irregular.
+
+
+SAMPLE SIGNAL TO NOISE RATIO:
+-----------------------------
+SIGD=SD(Stochastic Seasonal Series in logarithms)= 0.13769    
+
+
+
+  STANDARD ERROR OF REVISION IN TREND-CYCLE ESTIMATOR
+  LAST YEARS
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2021       0.001     0.001     0.001     0.001     0.001     0.002     0.003     0.005     0.006     0.007     0.007     0.007
+ 2022       0.007     0.007     0.007     0.008     0.009     0.012     0.020     0.030     0.036     0.039     0.040     0.040
+ 2023       0.040     0.040     0.040     0.040     0.042     0.054     0.088     0.130     0.152     0.155     0.156     0.174
+ 2024       0.226     0.316     0.441     0.598     0.790     1.019     1.294
+
+
+  STANDARD ERROR OF REVISION IN SA SERIES ESTIMATOR
+  LAST YEARS
+
+ YEAR        JAN       FEB       MAR       APR       MAY       JUN       JUL       AUG       SEP       OCT       NOV       DEC 
+
+ 2021       0.005     0.005     0.005     0.006     0.006     0.007     0.009     0.027     0.027     0.028     0.028     0.028
+ 2022       0.029     0.029     0.031     0.034     0.038     0.043     0.051     0.160     0.160     0.156     0.156     0.159
+ 2023       0.161     0.163     0.176     0.181     0.207     0.245     0.278     0.882     0.881     0.893     0.892     0.874
+ 2024       0.884     0.919     0.913     0.989     1.057     1.130     1.279
+
+
+ FORECAST OF FINAL COMPONENT
+
+
+
+                         ORIGINAL                         TREND-CYCLE                      SA SERIES    
+                         (UNCORRECTED)                                                     SERIES       
+                         SERIES                                                                         
+ 
+      DATE           FORECAST           SE             FORECAST           SER            FORECAST           SER
+ 
+  AUG-2024            62.3331           2.2757          97.1435           1.6199          97.1435           2.2309
+  SEP-2024           104.9530           3.6880          96.9153           1.9391          96.9153           2.4702
+  OCT-2024           103.1750           3.7191          96.6927           2.2532          96.6927           2.7217
+  NOV-2024           103.8240           4.0040          96.4755           2.5667          96.4755           2.9847
+  DEC-2024            97.4966           3.8091          96.2639           2.8819          96.2639           3.2581
+  JAN-2025            84.3711           3.5254          96.0576           3.2002          96.0576           3.5413
+  FEB-2025            96.2325           3.9750          95.8490           3.5222          95.8490           3.8335
+  MAR-2025           102.6230           4.3607          95.6355           3.8484          95.6355           4.1339
+  APR-2025            90.9264           3.9466          95.4226           4.1791          95.4226           4.4423
+  MAY-2025           102.2370           4.5627          95.2101           4.5147          95.2101           4.7582
+  JUN-2025           100.5410           4.6177          94.9980           4.8552          94.9980           5.0814
+  JUL-2025           103.7940           4.8399          94.7865           5.2007          94.7865           5.4115
+  AUG-2025            60.6877           3.7550          94.5754           5.5510          94.5754           5.7481
+  SEP-2025           104.0140           6.6012          94.3648           5.9063          94.3648           6.0911
+  OCT-2025            98.6834           6.4576          94.1546           6.2665          94.1546           6.4401
+  NOV-2025           101.0830           6.8950          93.9450           6.6314          93.9450           6.7949
+  DEC-2025            94.9231           6.6357          93.7357           7.0010          93.7357           7.1554
+  JAN-2026            82.1440           6.0212          93.5270           7.3753          93.5270           7.5213
+  FEB-2026            95.3712           7.1492          93.3187           7.7540          93.3187           7.8924
+  MAR-2026            99.9139           7.6431          93.1109           8.1372          93.1109           8.2685
+  APR-2026            86.9679           6.8549          92.8979           8.5242          92.8979           8.6491
+  MAY-2026            97.7860           7.9583          92.6740           8.9144          92.6740           9.0332
+  JUN-2026            99.6407           8.3078          92.4394           9.3073          92.4394           9.4205
+  JUL-2026            99.2756           8.4281          92.1940           9.7029          92.1940           9.8109
+
+
+                         SEASONAL     
+                         FACTORS      
+                                      
+  AUG-2024               64.1660
+  SEP-2024              108.2935
+  OCT-2024              106.7040
+  NOV-2024              107.6169
+  DEC-2024              101.2806
+  JAN-2025               87.8339
+  FEB-2025              100.4001
+  MAR-2025              107.3064
+  APR-2025               95.2882
+  MAY-2025              107.3805
+  JUN-2025              105.8348
+  JUL-2025              109.5029
+  AUG-2025               64.1686
+  SEP-2025              110.2254
+  OCT-2025              104.8099
+  NOV-2025              107.5981
+  DEC-2025              101.2667
+  JAN-2026               87.8292
+  FEB-2026              102.1995
+  MAR-2026              107.3063
+  APR-2026               93.6166
+  MAY-2026              105.5161
+  JUN-2026              107.7903
+  JUL-2026              107.6812
+
+
+  SE  : STANDARD ERROR OF THE OBSERVED SERIES FORECAST.
+  SER : STANDARD ERROR OF THE REVISION.
+
+  Note 1 : SINCE THE COMPONENT IS NEVER OBSERVED,THE FORECAST ERROR IS OF LITTLE
+  APPLIED INTEREST. WHAT IS OF INTEREST IS THE SE OF THE REVISION THE FORECAST
+  OF THE COMPONENT WILL UNDERGO (UNTIL IT BECOMES THE FINAL OR HISTORICAL ESTIMATOR).
+
+  Note 2 : SER(Seasonal) = SER (SA Series)
+
+
+
+  SEASONALITY: QUALITY DIAGNOSTICS
+  --------------------------------
+
+  Even when model is acceptable, the seasonality of the series may be of no interest
+  becouse of the following reasons:
+
+    - Effect is very small and may be spurious:   No 
+
+    - The seasonal component is highly stationary and moving: No 
+
+    - Detected Seasonality is not significant:   No 
+
+    - The seasonal component is unstable:   No 
+      (SD of seasonal component innovation > SD(a).)
+
+    - Unreliable estimation of the seasonal component:   No 
+      (SD of error in concurrent estimator > SD(a).)
+
+    - Revisions in seasonal component are too large:   No 
+      (SD of full revision in concurrent estimator of SA series > 0.9*SD(a).)
+
+    - Bias in level of SA series is too large:    No 
+
+  Failure to pass any of the previous quality diagnostics makes seasonal adjustment of the series of questionable interest.
+
+
+
+ PART 5 : RATES OF GROWTH
+ ------------------------
+
+
+   THE RATE-OF-GROWTH OF SERIES Z(t) OVER THE PERIOD (t1,t2) IS EXPRESSED
+   IN PERCENT POINTS AS
+                        [ (Z(t2) / Z(t1)) -1] * 100
+
+
+   ALL STANDARD ERRORS REPORTED FOR THE RATES-OF GROWTH IN THE FOLLOWING TABLES ARE COMPUTED
+   USING LINEAR APPROXIMATION TO THE RATES.
+   WHEN PERIOD-TO-PERIOD CHANGES ARE LARGE, THESE STANDARD ERRORS SHOULD BE INTERPRETED
+   AS BROAD APPROXIMATIONS, THAT WILL TEND TO UNDERESTIMATE THE TRUE VALUES
+
+
+   THE ERROR VARIANCES ARE BASED ON THE ESTIMATION ERROR OF THE STOCHASTIC TREND AND SA
+   SERIES, AND THE ERRORS IN THE PARAMETER ESTIMATES ARE NOT CONSIDERED.
+   GIVEN THAT THE VARIANCES OF THE LATER GO TO ZERO AS t BECOMES LARGE, THEY WILL TYPICALLY
+   BE DOMINATED BY THE ESTIMATION ERROR VARIANCE OF THE STOCHASTIC COMPONENTS.
+   (THIS DOMINANCE WILL BE WEAKEST IN THE VICINITY OF OUTLIERS.)
+
+
+   IN THE TABLES THAT FOLLOW :
+
+   ORIGINAL SERIES
+   ---------------
+                  DENOTES THE OBSERVED SERIES, UNLESS THERE ARE MISSING VALUES,
+                  IN WHICH CASE IT DENOTES THE INTERPOLATED SERIES.
+
+   TREND-CYCLE AND SA SERIES
+   -------------------------
+                             DENOTE THE FINAL ESTIMATORS, WITH DETERMINISTIC 
+                             EFFECTS (IF PRESENT) INCLUDED.
+
+
+    A. PERIOD-TO-PERIOD RATE-OF-GROWTH OF THE SERIES. T(1,1)
+
+      TABLE 5.1 RATE T(1,1) : ESTIMATION ERROR VARIANCE
+      -------------------------------------------------
+
+
+        CONCURRENT ESTIMATOR            TREND-CYCLE    SA SERIES
+
+        FINAL ESTIMATION ERROR             0.186         4.162
+
+        REVISION ERROR                     0.099         1.629
+
+        TOTAL ESTIMATION ERROR             0.285         5.791
+
+               (SD)                   (    0.534)   (    2.406)
+
+
+
+   AS MENTIONED BEFORE, FOR APPLIED PURPOSES, THE RELEVANT ERROR IS THE FULL REVISION THE
+   MEASUREMENT WILL UNDERGO.
+   ACCORDINGLY, THE STANDARD ERRORS APPEARING IN MOST OF THE NEXT TABLES ARE THE
+   ONES IMPLIED BY THE  REVISION ERROR.
+   THESE S.E. CAN BE USED TO BUILD CONFIDENCE INTERVALS AROUND THE CONCURRENT OR,
+   IN GENERAL, PRELIMINARY ESTIMATORS, THAT INDICATE A LIKELY RANGE FOR THE EVENTUAL
+   FINAL ESTIMATOR.
+   THE S.E. CAN ALSO BE USED TO TEST FOR SPECIFIC HYPOTHESIS.
+   FOR EXAMPLE IN TABLE 5.2 (BELOW), LET RC(t) BE THE CONCURRENT ESTIMATOR OF A RATE FOR 
+   PERIOD t. IF : 
+
+                  | RC(t)/SE[RC(t)] | > 1.645
+
+   WE CAN REJECT (AT THE 90% LEVEL) THAT THE EVENTUAL FINAL ESTIMATOR OF THE RATE
+   FOR PERIOD t COULD BE ZERO.
+
+
+      TABLE 5.2 PERIOD-TO-PERIOD RATE T(1,1) FOR THE MOST RECENT PERIODS
+      ------------------------------------------------------------------
+                   With associated SE in Percent points.
+
+
+        DATE           ORIGINAL                     TREND-CYCLE                        SA SERIES
+                       SERIES
+                                              ESTIMATE            SER           ESTIMATE            SER
+
+     JUL-2024        6.67                   -0.430         0.315                2.06          1.28    
+     JUN-2024       -4.65                   -0.446         0.270               -2.44          1.27    
+     MAY-2024        12.1                   -0.406         0.233              -0.757          1.27    
+     APR-2024       -8.21                   -0.371         0.201                2.55          1.27    
+     MAR-2024        4.07                   -0.383         0.173               -4.13          1.27    
+     FEB-2024        9.59                   -0.320         0.149                1.89          1.26    
+     JAN-2024       -8.38                   -0.293         0.127               0.364          1.26    
+     DEC-2023       -10.5                   -0.312         0.107               -2.24          1.26    
+     NOV-2023        2.53                   -0.243         0.883E-01          -0.520E-01      1.26    
+     OCT-2023       0.946                   -0.169         0.711E-01            1.23          1.26    
+     SEP-2023        59.2                   -0.170         0.550E-01          -0.627          1.26    
+     AUG-2023       -37.1                   -0.206         0.524E-01           0.445          1.01    
+     JUL-2023       -4.44                   -0.176         0.454E-01           -3.23         0.227    
+     JUN-2023       0.907E-01               -0.738E-01     0.284E-01            3.02         0.225    
+     MAY-2023        24.1                   -0.139         0.192E-01            2.59         0.224    
+     APR-2023       -22.7                   -0.302         0.157E-01           -5.29         0.223    
+     MAR-2023        19.2                   -0.323         0.150E-01            2.49         0.222    
+     FEB-2023        6.98                   -0.301         0.150E-01           -2.13         0.222    
+     JAN-2023       -13.2                   -0.254         0.148E-01          -0.133         0.221    
+     DEC-2022       -5.55                   -0.206         0.142E-01            1.47         0.221    
+     NOV-2022        5.77                   -0.264         0.132E-01          -0.660E-01     0.221    
+     OCT-2022       -6.39                   -0.315         0.121E-01           -2.47         0.221    
+     SEP-2022        61.5                   -0.249         0.109E-01           0.120E-01     0.221    
+     AUG-2022       -36.1                   -0.184         0.109E-01            1.65         0.177    
+     JUL-2022       -1.56                   -0.213         0.913E-02          -0.819         0.398E-01
+     JUN-2022       -3.45                   -0.224         0.568E-02           -1.27         0.395E-01
+     MAY-2022        12.6                   -0.130         0.367E-02          -0.880         0.393E-01
+     APR-2022       -15.0                    0.202E-01     0.278E-02           0.734         0.391E-01
+     MAR-2022        19.3                    0.137         0.255E-02           0.698         0.390E-01
+     FEB-2022        13.8                    0.205         0.254E-02           0.649E-01     0.389E-01
+     JAN-2022       -17.5                    0.270         0.252E-02           0.830E-01     0.388E-01
+     DEC-2021       -5.21                    0.341         0.244E-02           0.628         0.387E-01
+     NOV-2021        5.09                    0.412         0.230E-02           0.221E-01     0.387E-01
+     OCT-2021       -2.03                    0.472         0.212E-02            1.28         0.387E-01
+     SEP-2021        66.2                    0.489         0.194E-02           0.687         0.386E-01
+     AUG-2021       -40.2                    0.513         0.193E-02          -0.945         0.309E-01
+
+    B. ACCUMULATED RATE OF GROWTH DURING THE PRESENT YEAR.
+
+
+      TABLE 5.3 ACCUMULATED RATE OF GROWTH DURING THE PRESENT YEAR
+      ------------------------------------------------------------
+                              (In percent points)
+
+
+        JUL-2024                  ESTIMATE              SER
+
+        ORIGINAL SERIES           9.40                 -
+
+        TREND-CYCLE              -2.62            1.37    
+
+        SA SERIES               -0.650            1.71    
+
+
+    C. RATES OF ANNUAL GROWTH T(1,MQ)
+
+
+      TABLE 5.4 ESTIMATION ERROR VARIANCE :
+      -------------------------------------
+        Rate of annual growth T(1,MQ), not-centered and
+        dated at last observation.
+        (X  1.0D3)
+
+
+        CONCURRENT ESTIMATOR            TREND-CYCLE        SA SERIES
+
+        FINAL ESTIMATION ERROR                0.133            0.264
+
+        REVISION ERROR                        0.197            0.108
+
+        TOTAL ESTIMATION ERROR                0.331            0.372
+
+            (SD x 1.0D1)               (    0.182)       (    0.193)
+
+
+      TABLE 5.5 INTERANNUAL RATE OF GROWTH :
+      --------------------------------------
+        Rate T(1,MQ), not-centered and dated at last observation,
+        FOR THE MOST RECENT PERIODS.
+        This rate measures the rate of growth with respect to 1-year ago.
+        With standard errors.
+        In Percent points.
+
+
+        DATE         ORIGINAL                     TREND-CYCLE                        SA SERIES
+                     SERIES
+                                              ESTIMATE            SER           ESTIMATE            SER
+
+     JUL-2024        1.52                    -3.68          1.40               -1.92          1.04    
+     JUN-2024       -9.06                    -3.44          1.08               -7.00         0.948    
+     MAY-2024       -4.53                    -3.08         0.814               -1.79         0.875    
+     APR-2024        5.62                    -2.82         0.604                1.52         0.818    
+     MAR-2024       -11.0                    -2.75         0.436               -6.25         0.779    
+     FEB-2024        1.87                    -2.69         0.305               0.220         0.754    
+     JAN-2024      -0.554                    -2.68         0.209               -3.74         0.741    
+     DEC-2023       -5.77                    -2.64         0.148               -4.21         0.736    
+     NOV-2023      -0.545                    -2.53         0.122              -0.577         0.735    
+     OCT-2023        2.60                    -2.55         0.119              -0.591         0.735    
+     SEP-2023       -4.86                    -2.70         0.117               -4.22         0.733    
+     AUG-2023       -3.49                    -2.77         0.102               -3.61         0.730    
+     JUL-2023       -1.95                    -2.75         0.691E-01           -2.45         0.230    
+     JUN-2023        1.01                    -2.79         0.428E-01          -0.169E-01     0.196    
+     MAY-2023       -2.56                    -2.93         0.340E-01           -4.18         0.171    
+     APR-2023       -11.5                    -2.93         0.327E-01           -7.42         0.153    
+     MAR-2023       -2.71                    -2.61         0.327E-01           -1.53         0.141    
+     FEB-2023       -2.62                    -2.16         0.326E-01           -3.25         0.134    
+     JAN-2023        3.56                    -1.67         0.325E-01           -1.08         0.130    
+     DEC-2022       -1.61                    -1.15         0.325E-01          -0.870         0.128    
+     NOV-2022       -1.26                   -0.607         0.323E-01           -1.69         0.128    
+     OCT-2022       -1.89                    0.665E-01     0.314E-01           -1.61         0.128    
+     SEP-2022        2.68                    0.856         0.289E-01            2.18         0.128    
+     AUG-2022        5.68                     1.60         0.236E-01            2.87         0.127    
+     JUL-2022       -1.19                     2.31         0.159E-01           0.242         0.410E-01
+
+   THE ANNUAL RATE OF GROWTH IN TABLE 5.5 MEASURES GROWTH WITH RESPECT TO ONE-YEAR AGO
+   BECAUSE IT IS NOT CENTERED, THE MEASURE INDUCES AN IMPORTANT PHASE EFFECT,
+   AND CAN BE STRONGLY INFLUENCED BY THE IRREGULAR AND MOVING SEASONAL COMPONENTS.
+   IT IS THUS A POOR INDICATOR OF THE PRESENT RATE OF ANNUAL
+   GROWTH, USEFUL IN SHORT-TERM ANALYSIS.
+
+   ASSESSMENTS ON THE PRESENT RATE OF ANNUAL GROWTH SHOULD BE PREFERABLY BE BASED
+   ON THE CENTERED MEASUREMENT OF TABLE 5.6 BELOW, WHICH REQUIRES HALF-A-YEAR
+   OF FORECAST. THIS CENTERING MINIMIZES PHASE EFFECT AND IS LESS AFFECTED BY THE
+   IRREGULAR OR SEASONAL INNOVATIONS.
+
+      TABLE 5.6 PRESENT RATE OF ANNUAL GROWTH :
+      -----------------------------------------
+        Rate T(1,MQ), centered and dated Annual rate computed as the rate of growth 
+        over the last (MQ/2) observed periods and the next (MQ/2) forecasts
+        at last observed period.
+        With associated standard errors.
+        In Percent points.
+
+
+                                DATE              CENTERED RATE OF          SER                 TSE
+                                                  ANNUAL GROWTH
+
+        ORIGINAL SERIES       JUL-2024              -5.94               5.24               5.24    
+
+                              JUN-2024           ( -0.412    )      (   5.08    )      (   5.08    )
+
+        TREND-CYCLE           JUL-2024              -2.74               3.33               3.52    
+
+                              JUN-2024           (  -2.82    )      (   3.06    )      (   3.27    )
+
+        SA SERIES             JUL-2024              -2.41               4.08               4.39    
+
+                              JUN-2024           (  -1.84    )      (   3.85    )      (   4.18    )
+
+
+    D. FORECAST
+
+
+      TABLE 5.7 RATES OF GROWTH FORECASTS :
+      -------------------------------------
+                In Percent Points
+
+
+    FORECAST                      ORIGINAL                TREND-CYCLE                SA SERIES
+    ORIGIN :                      SERIES
+    JUL-2024                        (SER)                      (SER)                      (SER)
+
+
+  ONE-PERIOD-AHEAD
+  FORECAST PERIOD 
+  TO PERIOD RATE                -42.                       0.71                     -0.30    
+  T(1,1)                    (    4.4    )              (   0.35    )             (    1.8    )
+
+
+  FORECAST OF ANNUAL
+  RATE OF GROWTH OVER
+  THE NEXT 12 PERIODS           -3.1                       -1.7                      -2.7    
+  (one year horizon)        (       6.13)              (    4.6    )             (    5.3    )
+
+
+  FORECAST OF ANNUAL
+  RATE OF GROWTH FOR
+  THE PRESENT YEAR             -0.41                       -2.8                      -1.8    
+  (December over December)  (    5.1    )              (    3.1    )             (    3.9    )
+
+
