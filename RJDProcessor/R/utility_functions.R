@@ -331,3 +331,49 @@ get_mts <- function(time_series_matrix) {
   return(mts_result)
 }
 
+
+#' Convert a numeric matrix to an mts object
+#'
+#' This function takes a numeric matrix with dates as row names and series names
+#'  as column names, and converts it to an mts (multivariate time series) object.
+#' It is goot for converting data read by data_readers and ext_reg_data_readers
+#' into mts that could be useful as input as usrdef.var for RJDemetra functions
+#' tramoseats() and X13()
+#'
+#' @param data_matrix A numeric matrix where row names are dates in "YYYY-MM-DD" format,
+#'                    and column names are the names of the time series.
+#' @param freq -optional- The frequency of the time series. If not provided, the function will
+#'                        try to infer the frequency based on the difference between the first two dates.
+#' @return An mts object with the given time series data.
+#' @examples
+#' input_data_file_name <- system.file("extdata","CSV-FAS/grezzi_trim_FAS.csv", package = "RJDProcessor")
+#' input_data_reader    <- Data_reader_csv(input_source = input_data_file_name)
+#' data_matrix <- input_data_reader@read_data()
+#'
+#' # Convert the matrix to an mts object
+#' mts_object <- convert_numeric_matrix_to_mts(data_matrix)
+#' print(mts_object)
+#' @export
+convert_numeric_matrix_to_mts <- function(data_matrix, freq = NULL) {
+  # Convert row names to Date
+  dates <- as.Date(rownames(data_matrix))
+
+  # If frequency is not provided, try to infer it
+  if (is.null(freq)) {
+    d1 <- dates[1]
+    d2 <- dates[2]
+    month_diff <- abs(as.numeric(format(d1, "%m")) - as.numeric(format(d2, "%m")))
+    freq <- 12 / month_diff
+  }
+
+  # Create a list of ts objects
+  ts_list <- lapply(seq_len(ncol(data_matrix)), function(i) {
+    ts(data_matrix[, i], start = c(as.numeric(format(dates[1], "%Y")), as.numeric(format(dates[1], "%m"))), frequency = freq)
+  })
+
+  # Combine ts objects into an mts object
+  mts <- do.call(ts.union, ts_list)
+  colnames(mts) <- colnames(data_matrix)
+
+  return(mts)
+}

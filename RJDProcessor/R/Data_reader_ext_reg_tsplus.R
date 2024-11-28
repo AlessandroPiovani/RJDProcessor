@@ -74,7 +74,7 @@ setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg_tsplus", "ANY", "
                start_date <- c(y, m)
 
 
-              # frequency  <- user_def_var$frequency # if I passed the frequency as a metadata
+               # frequency  <- user_def_var$frequency # if I passed the frequency as a metadata
                if(is.na(frequency)) # Auto detect of frequency, not possible for TS txt format (this if is never used)
                {
                  #Auto detect of frequency from the data
@@ -91,31 +91,31 @@ setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg_tsplus", "ANY", "
                # Iterates over file's columns
                for (j in 1:ncol(data))
                {
-                   # Get column name
-                   column_name <- user_def_var$container
-                   column_name <- gsub("\\.txt", "", column_name)
+                 # Get column name
+                 column_name <- user_def_var$container
+                 column_name <- gsub("\\.txt", "", column_name)
 
-                   # Get column data
-                   column_data <- data[[j]]
+                 # Get column data
+                 column_data <- data[[j]]
 
-                   # create a dummy variable allowing to work with an MTS instead of a TS. Working with MTS allows to set the series names
-                   if(j==1 && length(ts_list)==0)
-                   {
-                     dummy <- ts(data = column_data, class="ts", frequency = frequency, start = start_date)
-                     ts_list <- list("dummy"=dummy)
-                     mts_file_col_names <- c("dummy")
-                   }
+                 # create a dummy variable allowing to work with an MTS instead of a TS. Working with MTS allows to set the series names
+                 if(j==1 && length(ts_list)==0)
+                 {
+                   dummy <- ts(data = column_data, class="ts", frequency = frequency, start = start_date)
+                   ts_list <- list("dummy"=dummy)
+                   mts_file_col_names <- c("dummy")
+                 }
 
-                   # Case of the 6 Trading Days variables in one file
-                   if(user_def_var$n_var > 1)
-                   {
-                     column_name <- paste(column_name, "_", j, sep="")
-                   }
-                   mts_file_col_names <- c(mts_file_col_names, column_name)
+                 # Case of the 6 Trading Days variables in one file
+                 if(user_def_var$n_var > 1)
+                 {
+                   column_name <- paste(column_name, "_", j, sep="")
+                 }
+                 mts_file_col_names <- c(mts_file_col_names, column_name)
 
-                   time_series_new <- ts(column_data, start = start_date, frequency = frequency)
+                 time_series_new <- ts(column_data, start = start_date, frequency = frequency)
 
-                   ts_list[[column_name]] <- time_series_new
+                 ts_list[[column_name]] <- time_series_new
                }
              }
 
@@ -442,7 +442,7 @@ getUserDefinedTdVariables_info_tsplus <- function(jmodel ,input_mode=c("TS_regre
 
     #coef_info_list[[name]] = append(coef_info_list[[name]], coef_list)
 
-  # Fixed coefficients reading
+    # Fixed coefficients reading
     #browser()
     jtramoSeatsSpec<-jmodel[[1]][[name]]
     res<-jtramoSeatsSpec$result
@@ -537,8 +537,3 @@ get_intervention_vars<- function(series)
   return(ivs_ret)
 
 }
-
-
-
-
-

@@ -77,7 +77,6 @@ create_diagnostic_report1 <- function(workspace, output_file="report.txt") {
         Not_significant_coeff = if (has_non_significant) paste(non_significant_coeffs, collapse = ", ") else ""
       )
       
-      # Aggiungi alla lista delle serie problematiche solo se c'è almeno un problema
       if (any(c(lb[2], lb_squared[2], normality[2]) < 0.05) || has_non_significant) {
         problematic_series[[idx]] <- report_data[[idx]]
       }
@@ -171,7 +170,7 @@ create_diagnostic_report1 <- function(workspace, output_file="report.txt") {
   
   cat("\n\n", file = output_file, append = TRUE)
   
-  # PROBLEMS RESUME: solo serie con problemi
+  # PROBLEMS RESUME: only problematic series
   cat(resume_separator, file = output_file, append = TRUE)
   cat(sprintf("%-5s %-5s %-15s %-8s %-10s %-10s %-10s %-10s %-25s\n", "", "Freq", "TITLE", "BIC", "LB_Prob", "LB2_Prob", "Norm_Prob", "Norm_Test", "Not_significant_coeff"), file = output_file, append = TRUE)
   cat("--------------------------------------------------------------------------------------------------------------\n", file = output_file, append = TRUE)
@@ -241,7 +240,6 @@ create_diagnostic_report2 <- function(workspace, output_file="series_info.txt") 
       ts <- get_indicators(x = time_series, "y")
       freq <- 12 / frequency(ts)
       
-      # Altri indicatori
       bic        <- get_indicators(x = time_series, "preprocessing.likelihood.bic")[[1]]
       lb         <- get_indicators(x = time_series, "preprocessing.residuals.lb")[[1]]
       lb_squared <- get_indicators(x = time_series, "preprocessing.residuals.lb2")[[1]]

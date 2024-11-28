@@ -268,8 +268,3 @@ compare_sa_ts <- function(new_r_model=NA, new_model_workspace, old_model_workspa
 
 }
 
-
-# report functions are in report.R
-
-
-
