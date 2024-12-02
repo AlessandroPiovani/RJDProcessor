@@ -1,6 +1,5 @@
 setwd("C:\\Users\\UTENTE\\Desktop\\RJDopenCruncher\\RJDProcessor\\test\\")
 
-
 library(RJDProcessor)
 library(RJDemetra)
 

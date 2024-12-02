@@ -557,7 +557,7 @@ to_named_list <- function(object) {
 }
 
 
-extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader_ext_reg, method="TS", java_processing=TRUE ,...)
+extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader_ext_reg, method="TS", java_processing=FALSE ,...)
 {
   compute(workspace)
   #browser()
