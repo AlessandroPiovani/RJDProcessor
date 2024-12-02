@@ -56,6 +56,7 @@ setMethod ("read_data", signature("Data_reader_csv"),
               # Loop to create a ts object for each column
               for (i in 1:ncol(mts)) {
                   suppressWarnings({
+                    data[[i]] <- gsub(",", ".", data[[i]])
                     data[[i]] <- as.numeric(data[[i]])  # Convert string "NA" to numeric NA
                   })
                   mts[, i] <- ts(data[[i]], start = timestamps[1], frequency = freq)
