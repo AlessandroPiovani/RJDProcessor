@@ -62,6 +62,7 @@ require(rjson)
 #' @export
 JD_JSON_file_processor <- function(input_data_reader, ext_reg_data_reader, spec_file_name, output_workspace_dir=NA, series_to_proc_names=NA, java_processing=TRUE)
 {
+    require(RJDemetra)
     wk <- JD_JSON_to_materialized_workspace(workspace_dir=output_workspace_dir, JSON_file = spec_file_name, input_data_reader = input_data_reader, ext_reg_data_reader= ext_reg_data_reader, series_to_proc_names = series_to_proc_names)
 
 
@@ -119,6 +120,55 @@ JD_JSON_file_processor <- function(input_data_reader, ext_reg_data_reader, spec_
 }
 
 
+
+#' Process a JD_JSON file
+#'
+#' This function processes a JSON file with JD_JSON fields and returns a virtual
+#' workspace
+#'
+#' @param ext_reg_input_data_reader A specific Data_reader_ext_reg object
+#'                                  (CSV, XLSX, ...) to read the external
+#'                                  regressors. Default=NA.
+#' @param original_ws_xml xml file (also with path) of the workspace to be
+#'                        transformed into a fully R workspace
+#' @param new_r_ws_folder Name of the directory that will contain
+#'                        the output, fully R, workspace.
+#' @return a virtual workspace, already processed
+#' @examples
+#' require(RJDemetra)
+#' original_directory <- getwd()
+#' extdata_directory  <- system.file("extdata", package = "RJDProcessor")
+#' setwd(extdata_directory)
+#' original_ws_xml <- "WorkspaceTUR-container/workspace-TUR.xml"
+#' new_r_ws_folder <- "output_fully_R_ws"
+#' regr_directory  <- "SITIC-TUR/regr"
+#' ext_reg_input_data_reader <- Data_reader_ext_reg_tsplus(regr_directory)
+#' produce_fully_R_workspace(ext_reg_input_data_reader, original_ws_xml, new_r_ws_folder)
+#'
+#'
+#' extdata_directory  <- system.file("extdata", package = "RJDProcessor")
+#' setwd(extdata_directory)
+#' original_ws_xml <- "WorkspaceFAS-standard-container//FAS.xml"
+#' new_r_ws_folder <- "output_fully_R_ws"
+#' regr_directory  <- "CSV-FAS//regr"
+#' ext_reg_input_data_reader <- Data_reader_ext_reg_csv(regr_directory)
+#' produce_fully_R_workspace(ext_reg_input_data_reader, original_ws_xml, new_r_ws_folder)
+#' setwd(original_directory)
+#'
+#' @export
+produce_fully_R_workspace <- function(ext_reg_input_data_reader=NA, original_ws_xml, new_r_ws_folder)
+{
+  require(RJDemetra)
+
+  # original_ws_xml <-input_workspace
+  input_data_reader <- Data_reader_workspace(original_ws_xml)
+
+  #browser()
+  JD_JSON_from_materialized_workspace(original_ws_xml, ext_reg_input_data_reader, JSON_file_name = "spec_temp.txt", diff=TRUE, java_processing=FALSE)
+  ws<-JD_JSON_to_materialized_workspace(input_data_reader = input_data_reader, ext_reg_data_reader = ext_reg_input_data_reader, JSON_file = "spec_temp.txt", workspace_dir = new_r_ws_folder)
+  file.remove("spec_temp.txt")
+  return(ws)
+}
 
 
 #' Get an R list with model information from java model
@@ -197,6 +247,8 @@ get_r_model_from_j_model <- function(j_model)
 #' @export
 compare_sa_ts <- function(new_r_model=NA, new_model_workspace, old_model_workspace, materialized_ws_new=FALSE, materialized_ws_old=TRUE, java_processing_old_model=TRUE)
 {
+  require(RJDemetra)
+
   #browser()
   if(!is.na(new_r_model))
   {

@@ -132,6 +132,7 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_reader, ext_reg_d
 #' @export
 JD_JSON_to_materialized_workspace <- function(workspace_dir=NA, JSON_file, input_data_reader, ext_reg_data_reader=NA, series_to_proc_names=NA)
 {
+  # browser()
   wk <- JD_JSON_to_virtual_workspace(JSON_file, input_data_reader, ext_reg_data_reader, series_to_proc_names)
 
   if(is.na(workspace_dir))
@@ -141,16 +142,18 @@ JD_JSON_to_materialized_workspace <- function(workspace_dir=NA, JSON_file, input
 
   #browser()
   # Extract the name of the directory
+  dir_path      <- dirname(workspace_dir)
   workspace_dir <- basename(workspace_dir)
 
   # Check whether the path contains an absolute path or the directory name only
-  if (dirname(workspace_dir) == ".") {
+  if (dir_path == ".") {
     # If the path is only the directory name, set dir_path to getwd()
     dir_path <- getwd()
-  } else {
-    # Else, extract the directory path (excluding the directory itself)
-    dir_path <- dirname(workspace_dir)
   }
+  # else {
+  #   # Else, extract the directory path (excluding the directory itself)
+  #   dir_path <- dirname(workspace_dir)
+  # }
 
   if (!file.exists(file.path(dir_path, workspace_dir))) {
     # If do not exist, create the dir_path directory
@@ -174,7 +177,7 @@ JD_JSON_to_materialized_workspace <- function(workspace_dir=NA, JSON_file, input
 #'
 #' This function represent model specifications contained into a materialized workspace in JD_JSON
 #'
-#' @param workspace_directory Name of the workspace xml file (also with path).
+#' @param workspace Name of the workspace xml file (also with path).
 #' @param input_data_reader A Data_Reader object
 #' @param ext_reg_input_data_reader A Data_reader_ext_reg object, to read the external regressors
 #'                            in the desired format (csv, xlsx, tramoseats+, ...)
@@ -186,13 +189,13 @@ JD_JSON_to_materialized_workspace <- function(workspace_dir=NA, JSON_file, input
 #'              In the reduced version, fields with default values equals to the ones of the
 #'              default specification (i.e. "RSA0", "RSA1", ...) are not reported Default=TRUE
 #' @param java_processing -optional- If TRUE, the function works internally with Java API (faster),
-#'                        otherwise it uses R API. Default=TRUE
+#'                        otherwise it uses R API. Default=FALSE
 #' @return A JSON file saved on the filesystem
 #' @examples
 #'
 #' require(RJDemetra)
 #'
-#' input_workspace_directory <- system.file("extdata", "WorkspaceTUR-container/workspace-TUR.xml",
+#' input_workspace <- system.file("extdata", "WorkspaceTUR-container/workspace-TUR.xml",
 #'                                          package = "RJDProcessor")
 #' input_data_file_name      <- system.file("extdata", "CSV-TUR/grezzi_trim_TUR.csv",
 #'                                           package = "RJDProcessor")
@@ -201,11 +204,13 @@ JD_JSON_to_materialized_workspace <- function(workspace_dir=NA, JSON_file, input
 #'
 #' input_data_reader         <- Data_reader_csv(input_source = input_data_file_name)
 #' ext_reg_input_data_reader <- Data_reader_ext_reg_csv(regr_directory)
-#' JD_JSON_from_materialized_workspace(input_workspace_directory, ext_reg_input_data_reader, JSON_file_name = "specifications_new_ex2.txt", diff=TRUE, java_processing=FALSE)
+#' JD_JSON_from_materialized_workspace(input_workspace, ext_reg_input_data_reader, JSON_file_name = "specifications_new_ex2.txt", diff=TRUE, java_processing=FALSE)
 #' @export
-JD_JSON_from_materialized_workspace <- function(workspace_directory, ext_reg_input_data_reader, regr_directory=NA, JSON_file_name = "JD_JSON_specification.txt", diff=TRUE, java_processing = TRUE)
+JD_JSON_from_materialized_workspace <- function(workspace, ext_reg_input_data_reader, regr_directory=NA, JSON_file_name = "JD_JSON_specification.txt", diff=TRUE, java_processing = FALSE)
 {
-  ws<-load_workspace(file = workspace_directory)
+  require(RJDemetra)
+
+  ws<-load_workspace(file = workspace)
   series_spec_list <- JD_JSON_from_virtual_workspace(ws, ext_reg_input_data_reader, JSON_file_name = JSON_file_name, diff=diff, java_processing = java_processing)
   #return(series_spec_list)
 }
@@ -255,6 +260,8 @@ JD_JSON_from_materialized_workspace <- function(workspace_directory, ext_reg_inp
 #' @export
 JD_JSON_from_virtual_workspace <- function(ws, ext_reg_input_data_reader, JSON_file_name = "JD_JSON_specification.txt", diff=TRUE, java_processing=TRUE)
 {
+  require(RJDemetra)
+
   #browser()
 
   compute(ws)
@@ -307,6 +314,7 @@ JD_JSON_from_virtual_workspace <- function(ws, ext_reg_input_data_reader, JSON_f
 
 from_reduced_to_full_JD_JSON_obj<-function(JD_JSON_obj, basic_spec="RSA0")
 {
+
   basic_spec   <- from_SA_spec(SA_spec = tramoseats_spec(basic_spec), userdef.varFromFile = FALSE)
   full_JD_JSON <- merge_objects_precedence_to_reduced(JD_JSON_obj, basic = basic_spec)
   return(full_JD_JSON)
@@ -349,6 +357,8 @@ merge_objects_precedence_to_reduced <- function(reduced, basic_spec = "RSA0")
 #' @export
 from_reduced_to_full_JD_JSON_file <- function(JD_JSON_file, output_file_name=NA, indent= TRUE)
 {
+  require(RJDemetra)
+
   # Define file name
   if(is.na(output_file_name))
   {
@@ -422,6 +432,8 @@ from_reduced_to_full_JD_JSON_file <- function(JD_JSON_file, output_file_name=NA,
 #' @export
 from_full_to_reduced_JD_JSON_file<-function(JD_JSON_file, output_file_name=NA, indent= TRUE, basic_spec=NA)
 {
+  require(RJDemetra)
+
   # Define file name
   if(is.na(output_file_name))
   {

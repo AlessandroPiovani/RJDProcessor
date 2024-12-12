@@ -45,6 +45,8 @@ adjust_xml_external_variables_read_from_plugin <- function(file_path) {
 #' @export
 get_single_ts_workspaces <- function(full_workspace, single_workspaces_path, compressed_ws=TRUE, clean_single_ws_directory=TRUE, from_TS_PLUS_plugin=TRUE)
 {
+  require(RJDemetra)
+
   #browser()
   remove_full_ws_in_the_end <- FALSE
 
@@ -186,6 +188,8 @@ get_single_ts_workspaces <- function(full_workspace, single_workspaces_path, com
 #' @export
 check_data <- function(raw_data, ws_single_ts, raw_data_start=NA, raw_data_freq=NA)
 {
+  require(RJDemetra)
+
   #browser()
 
   compute(ws_single_ts)
@@ -256,6 +260,8 @@ check_data <- function(raw_data, ws_single_ts, raw_data_start=NA, raw_data_freq=
 #' @export
 check_external_regressors <- function(ws_single_ts)
 {
+  require(RJDemetra)
+
   #browser()
   multiproc_list <- get_ts(ws_single_ts)
   ts_data        <- multiproc_list[[1]][[1]]
@@ -358,6 +364,8 @@ check_external_regressors <- function(ws_single_ts)
 #' @export
 merge_workspaces <- function(source_workspaces_path, merged_ws_name = "merged_ws", merged_ws_dir=NA, compressed = TRUE, delete_originals = TRUE, silent=TRUE)
 {
+  require(RJDemetra)
+
   # make sure that workspaces' path does not end with "/"
   source_workspaces_path <- sub("/$", "", source_workspaces_path)
 
@@ -484,6 +492,8 @@ merge_workspaces <- function(source_workspaces_path, merged_ws_name = "merged_ws
 #' @export
 update_data <- function(workspace_xml_path, data_reader)
 {
+  require(RJDemetra)
+
   #browser()
   ws_path          <- dirname(workspace_xml_path)
   temp_new_ws_path <- paste0(ws_path, "_temp")

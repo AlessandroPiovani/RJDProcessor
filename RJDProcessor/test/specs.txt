@@ -1,0 +1,179 @@
+[
+{
+"series_name":"VATASA", 
+"frequency":12, 
+"method":"TS", 
+"spec":"RSA0", 
+"transform.function":"Log", 
+"usrdef.outliersEnabled":true, 
+"usrdef.outliersType":["TC", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO"], 
+"usrdef.outliersDate":["2001-10-01", "2020-02-01", "2020-03-01", "2020-04-01", "2020-05-01", "2020-06-01", "2020-07-01", "2020-08-01", "2020-09-01", "2020-10-01", "2020-11-01", "2020-12-01", "2021-01-01", "2021-02-01", "2021-03-01", "2021-04-01", "2021-05-01", "2021-06-01", "2021-07-01", "2021-08-01", "2021-09-01", "2021-10-01", "2021-11-01", "2021-12-01", "2022-01-01", "2022-02-01", "2022-03-01", "2022-04-01", "2022-05-01"], 
+"userdef.varFromFile":true, 
+"userdef.varFromFile.infoList":[{
+"container":"pent_dur6_iem.txt", 
+"start":"2000-01-01", 
+"n_var":1}], 
+"usrdef.varEnabled":true, 
+"usrdef.varType":"Undefined", 
+"easter.type":"IncludeEasterMonday", 
+"easter.duration":3, 
+"arima.mu":false
+},
+
+
+{
+"series_name":"VATAIA", 
+"frequency":12, 
+"method":"TS", 
+"spec":"RSA0", 
+"transform.function":"Log", 
+"usrdef.outliersEnabled":true, 
+"usrdef.outliersType":["AO", "LS", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "TC"], 
+"usrdef.outliersDate":["2015-05-01", "2011-11-01", "2020-02-01", "2020-03-01", "2020-04-01", "2020-05-01", "2020-06-01", "2020-07-01", "2020-09-01", "2020-10-01", "2020-11-01", "2020-12-01", "2021-01-01", "2021-02-01", "2021-03-01", "2021-04-01", "2021-05-01", "2021-11-01", "2022-01-01", "2022-02-01", "2022-03-01", "2022-04-01", "2022-08-01"], 
+"userdef.varFromFile":true, 
+"userdef.varFromFile.infoList":[{
+"container":"td6m00.txt", 
+"start":"2000-01-01", 
+"n_var":6
+}, {
+"container":"lym_00.txt", 
+"start":"2000-01-01", 
+"n_var":1}], 
+"usrdef.varEnabled":true, 
+"usrdef.varType":["Calendar", "Calendar", "Calendar", "Calendar", "Calendar", "Calendar", "Calendar"], 
+"tradingdays.option":"UserDefined", 
+"easter.type":"IncludeEasterMonday", 
+"easter.duration":3, 
+"arima.p":3, 
+"arima.d":0, 
+"arima.bq":0
+},
+
+
+{
+"series_name":"VATASC", 
+"frequency":12, 
+"method":"TS", 
+"spec":"RSA0", 
+"transform.function":"Log", 
+"usrdef.outliersEnabled":true, 
+"usrdef.outliersType":["TC", "TC", "AO", "AO", "LS", "AO", "AO", "AO", "AO", "AO", "TC", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "TC", "AO", "AO", "TC", "TC"], 
+"usrdef.outliersDate":["2002-03-01", "2003-03-01", "2004-05-01", "2011-05-01", "2015-01-01", "2020-03-01", "2020-04-01", "2020-05-01", "2020-06-01", "2020-07-01", "2015-06-01", "2015-04-01", "2008-05-01", "2020-08-01", "2020-09-01", "2020-10-01", "2020-11-01", "2020-12-01", "2021-01-01", "2021-02-01", "2021-03-01", "2021-04-01", "2021-05-01", "2021-06-01", "2021-07-01", "2021-09-01", "2021-11-01", "2021-12-01", "2022-01-01", "2022-03-01"], 
+"userdef.varFromFile":true, 
+"userdef.varFromFile.infoList":[{
+"container":"s00m1102.txt", 
+"start":"2000-01-01", 
+"n_var":1
+}, {
+"container":"pent_dur6_iem.txt", 
+"start":"2000-01-01", 
+"n_var":1}], 
+"usrdef.varEnabled":true, 
+"usrdef.varType":["Seasonal", "Calendar"], 
+"tradingdays.option":"UserDefined", 
+"easter.type":"IncludeEaster", 
+"arima.d":0, 
+"arima.q":2
+},
+
+
+{
+"series_name":"VATAIC", 
+"frequency":12, 
+"method":"TS", 
+"spec":"RSA3"
+},
+
+
+{
+"series_name":"VATPSA", 
+"frequency":12, 
+"method":"TS", 
+"spec":"RSA0", 
+"transform.function":"Log", 
+"usrdef.outliersEnabled":true, 
+"usrdef.outliersType":["AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "TC", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO"], 
+"usrdef.outliersDate":["2020-03-01", "2020-04-01", "2020-05-01", "2020-06-01", "2020-07-01", "2020-08-01", "2020-09-01", "2020-10-01", "2020-11-01", "2020-12-01", "2021-01-01", "2021-02-01", "2021-03-01", "2021-04-01", "2021-05-01", "2021-09-01", "2021-10-01", "2021-11-01", "2021-12-01", "2022-01-01", "2022-02-01", "2022-03-01", "2022-04-01", "2022-05-01", "2022-06-01", "2022-07-01", "2023-02-01"], 
+"userdef.varFromFile":true, 
+"userdef.varFromFile.infoList":[{
+"container":"pent_dur6_iem.txt", 
+"start":"2000-01-01", 
+"n_var":1}], 
+"usrdef.varEnabled":true, 
+"usrdef.varType":"Calendar", 
+"tradingdays.option":"UserDefined", 
+"easter.type":"IncludeEaster", 
+"arima.mu":false
+},
+
+
+{
+"series_name":"VATPIA", 
+"frequency":12, 
+"method":"TS", 
+"spec":"RSA0", 
+"transform.function":"Log", 
+"usrdef.outliersEnabled":true, 
+"usrdef.outliersType":["AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "TC"], 
+"usrdef.outliersDate":["2015-05-01", "2020-03-01", "2020-04-01", "2020-05-01", "2020-06-01", "2020-07-01", "2020-10-01", "2020-11-01", "2020-12-01", "2021-01-01", "2021-02-01", "2021-03-01", "2021-04-01", "2021-05-01", "2021-07-01", "2021-08-01", "2021-09-01", "2021-10-01", "2022-01-01", "2022-06-01", "2022-07-01"], 
+"userdef.varFromFile":true, 
+"userdef.varFromFile.infoList":[{
+"container":"td6m00.txt", 
+"start":"2000-01-01", 
+"n_var":6}], 
+"usrdef.varEnabled":true, 
+"usrdef.varType":["Calendar", "Calendar", "Calendar", "Calendar", "Calendar", "Calendar"], 
+"tradingdays.option":"UserDefined", 
+"easter.type":"IncludeEasterMonday", 
+"easter.duration":3, 
+"arima.mu":false
+},
+
+
+{
+"series_name":"VATPSC", 
+"frequency":12, 
+"method":"TS", 
+"spec":"RSA0", 
+"transform.function":"Log", 
+"usrdef.outliersEnabled":true, 
+"usrdef.outliersType":["AO", "AO", "AO", "TC", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "TC", "TC"], 
+"usrdef.outliersDate":["2002-05-01", "2011-05-01", "2014-05-01", "2002-11-01", "2020-03-01", "2020-04-01", "2020-05-01", "2020-06-01", "2020-07-01", "2020-08-01", "2020-09-01", "2020-10-01", "2018-05-01", "2004-05-01", "2020-11-01", "2020-12-01", "2021-01-01", "2021-02-01", "2021-03-01", "2021-04-01", "2021-05-01", "2021-07-01"], 
+"userdef.varFromFile":true, 
+"userdef.varFromFile.infoList":[{
+"container":"pent_dur6_iem.txt", 
+"start":"2000-01-01", 
+"n_var":1}], 
+"usrdef.varEnabled":true, 
+"usrdef.varType":"Calendar", 
+"tradingdays.option":"UserDefined", 
+"easter.type":"IncludeEaster", 
+"arima.p":2, 
+"arima.d":0, 
+"arima.q":0
+},
+
+
+{
+"series_name":"VATPIC", 
+"frequency":12, 
+"method":"TS", 
+"spec":"RSA0", 
+"transform.function":"Log", 
+"usrdef.outliersEnabled":true, 
+"usrdef.outliersType":["AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO", "AO"], 
+"usrdef.outliersDate":["2020-03-01", "2020-04-01", "2020-05-01", "2020-06-01", "2020-07-01", "2020-10-01", "2020-11-01", "2020-12-01", "2021-01-01", "2021-02-01", "2021-03-01", "2021-04-01", "2021-05-01"], 
+"userdef.varFromFile":true, 
+"userdef.varFromFile.infoList":[{
+"container":"td6m00.txt", 
+"start":"2000-01-01", 
+"n_var":6}], 
+"usrdef.varEnabled":true, 
+"usrdef.varType":["Calendar", "Calendar", "Calendar", "Calendar", "Calendar", "Calendar"], 
+"tradingdays.option":"UserDefined", 
+"easter.type":"IncludeEaster", 
+"easter.duration":3, 
+"arima.mu":false, 
+"arima.q":2
+}
+]

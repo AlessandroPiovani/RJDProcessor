@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:demetraGenericWorkspace xmlns="ec/tss.core" xmlns:ns2="ec/tss.demetra" name="C:/Users/UTENTE/Desktop/RJDopenCruncher/RJDProcessor/test/Workspace_from_scratch_container_R_from_GUI/workspace">
+    <ns2:items>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@multi-documents</ns2:family>
+            <ns2:name>SAProcessing-1</ns2:name>
+            <ns2:file>SAProcessing-1</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>working_days_ext_reg</ns2:name>
+            <ns2:file>working_days_ext_reg</ns2:file>
+        </ns2:item>
+    </ns2:items>
+</ns2:demetraGenericWorkspace>

@@ -10,7 +10,7 @@ Data_reader_xml(input_source = NA, ...)
 \item{input_source}{A string with file name (also with path).}
 }
 \value{
-The Data_reader_xlsx object
+The Data_reader_xml object
 }
 \description{
 This function creates a Data_reader object capable of reading data from XLSX files and returning it using the \code{read_data()} function.

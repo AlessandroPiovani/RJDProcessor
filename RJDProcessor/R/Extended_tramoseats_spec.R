@@ -379,6 +379,8 @@ setMethod("to_JD_JSON", "Extended_tramoseats_spec", function(object, indent = FA
   #to_JD_JSON <- function(object, indent = FALSE, diff = TRUE)
   #{
   require(rjson)
+  require(RJDemetra)
+
 
   # browser()
   if(diff == TRUE)
@@ -559,6 +561,8 @@ to_named_list <- function(object) {
 
 extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader_ext_reg, method="TS", java_processing=FALSE ,...)
 {
+  require(RJDemetra)
+
   compute(workspace)
   #browser()
 
@@ -567,18 +571,18 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
 
 
   ##browser()
-  # This part of code should be optimized (always do java)
-  if(java_processing == FALSE)
-  {
+  ##This part of code should be optimized (always do java)
+  # if(java_processing == FALSE)
+  # {
     jm <- get_jmodel(workspace, progress_bar = FALSE) #added later: jmodel is necessary in any case for ramps and intervention variables
     m <- get_model(workspace, progress_bar = TRUE)
-  }else
-  {
-    #browser()
-    m  <- get_jmodel(workspace, progress_bar = TRUE)
-    jm <- m
-    m  <- get_r_model_from_j_model(m)
-  }
+  # }else
+  # {
+  #   #browser()
+  #   m  <- get_jmodel(workspace, progress_bar = TRUE)
+  #   jm <- m
+  #   m  <- get_r_model_from_j_model(m)
+  # }
 
   cat("Loading external variables\n")
   ##browser()
@@ -611,10 +615,11 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
 
 
 
-# From SA_spec relies on Workspace to assign a value to the custom fields of Extended_tramoseats_spec (in particular the filename)
-##' @export
+
 from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_integer_  ,method = "TS" ,basic_spec="RSA0", userdef.varFromFile=TRUE, all_model_vars_info=NULL, data_reader_ext_reg=NULL ,workspace=NA)
 {
+  require(RJDemetra)
+
   # if(series_name=="C_DEFL")
   # {
   #   browser()
@@ -803,9 +808,7 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_in
   return(extended_tramoseats_spec)
 }
 
-# if spec_format=="Extended_tramoseats_spec" the function returns a list of "Extended_tramoseats_object", if spec_format=="list", the elements of the list are named lists with the same names of the objects elements.
-# a list of "Extended_tramoseats_object"s is heavier in terms of memory than a list of lists
-##' @export
+
 read_spec_list_from_json_file <- function(file_name, spec_format="Extended_tramoseats_spec") {
 
   require(rjson)
@@ -863,7 +866,6 @@ read_spec_list_from_json_file <- function(file_name, spec_format="Extended_tramo
 }
 
 
-##' @export
 to_tramoseats_spec_args<-function(extended_tramoseats_spec, data_reader_ext_reg)
 {
 

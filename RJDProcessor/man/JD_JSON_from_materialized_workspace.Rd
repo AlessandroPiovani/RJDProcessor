@@ -5,16 +5,16 @@
 \title{Turn model spec of a materialized workspace in JD_JSON}
 \usage{
 JD_JSON_from_materialized_workspace(
-  workspace_directory,
+  workspace,
   ext_reg_input_data_reader,
   regr_directory = NA,
   JSON_file_name = "JD_JSON_specification.txt",
   diff = TRUE,
-  java_processing = TRUE
+  java_processing = FALSE
 )
 }
 \arguments{
-\item{workspace_directory}{Name of the workspace xml file (also with path).}
+\item{workspace}{Name of the workspace xml file (also with path).}
 
 \item{ext_reg_input_data_reader}{A Data_reader_ext_reg object, to read the external regressors
 in the desired format (csv, xlsx, tramoseats+, ...)}
@@ -30,7 +30,7 @@ In the reduced version, fields with default values equals to the ones of the
 default specification (i.e. "RSA0", "RSA1", ...) are not reported Default=TRUE}
 
 \item{java_processing}{-optional- If TRUE, the function works internally with Java API (faster),
-otherwise it uses R API. Default=TRUE}
+otherwise it uses R API. Default=FALSE}
 
 \item{input_data_reader}{A Data_Reader object}
 }
@@ -44,7 +44,7 @@ This function represent model specifications contained into a materialized works
 
 require(RJDemetra)
 
-input_workspace_directory <- system.file("extdata", "WorkspaceTUR-container/workspace-TUR.xml",
+input_workspace <- system.file("extdata", "WorkspaceTUR-container/workspace-TUR.xml",
                                          package = "RJDProcessor")
 input_data_file_name      <- system.file("extdata", "CSV-TUR/grezzi_trim_TUR.csv",
                                           package = "RJDProcessor")
@@ -53,5 +53,5 @@ diff <- TRUE   # Reduced JSON if diff=TRUE, Full JSON format otherwise
 
 input_data_reader         <- Data_reader_csv(input_source = input_data_file_name)
 ext_reg_input_data_reader <- Data_reader_ext_reg_csv(regr_directory)
-JD_JSON_from_materialized_workspace(input_workspace_directory, ext_reg_input_data_reader, JSON_file_name = "specifications_new_ex2.txt", diff=TRUE, java_processing=FALSE)
+JD_JSON_from_materialized_workspace(input_workspace, ext_reg_input_data_reader, JSON_file_name = "specifications_new_ex2.txt", diff=TRUE, java_processing=FALSE)
 }

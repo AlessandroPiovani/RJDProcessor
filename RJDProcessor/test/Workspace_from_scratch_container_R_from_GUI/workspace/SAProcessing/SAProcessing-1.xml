@@ -1,0 +1,979 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<informationSet xmlns="ec/tss.core">
+    <item name="metadata">
+        <subset>
+            <item name="timestamp">
+                <string>9-dic-2024 18.41.20</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa1">
+        <subset>
+            <item name="ts">
+                <ts name="values_report_20200312-180114&#10;VAL.FINAL.EU27.LCI_O.BTN.Q.CH.W.NOTRANS">
+                    <freq>4</freq>
+                    <firstYear>2009</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>85.8687144 91.368582 88.5393795 95.1982273 88.0571259 93.3544911 89.8688429 97.3507122 90.4793584 96.3007513 92.3070485 100.1278575 92.6619303 99.1201514 94.4848275 102.4257777 93.1328052 98.4584383 93.9422543 101.6580354 93.8912419 100.7368291 95.4468973 103.1284639 94.7470544 100.6050152 95.7518265 103.8742786 96.1850552 101.8599627 96.7730477 105.1819344 98.2834749 104.0150738 99.0533213 107.4131441 100.5628798 106.3755556 101.4352305 109.471231 102.7624254 109.4804567 104.1346685 112.1024593</data>
+                    <metaData>
+                        <property name="@timestamp" value="Mon Dec 09 08:51:27 CET 2024"/>
+                        <property name="@source" value="XCLPRVDR"/>
+                        <property name="@id" value="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=C%3A%5CUsers%5CUTENTE%5CDesktop%5CRJDopenCruncher%5CRJDProcessor%5Ctest%5CWorkspace_from_scratch_container%5CLCI.xlsx#seriesName=VAL.FINAL.EU27.LCI_O.BTN.Q.CH.W.NOTRANS&amp;sheetName=values_report_20200312-180114"/>
+                    </metaData>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec1</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Log</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="mu">
+        <param type="Estimated">
+            <value>0.01849776170560322</value>
+        </param>
+    </item>
+    <item name="phi">
+        <params>
+            <coef type="Estimated">
+                <value>-0.8508800612137163</value>
+                <stde>0.08748122427930505</stde>
+                <tstat>-9.726430650959744</tstat>
+            </coef>
+        </params>
+    </item>
+    <item name="d">
+        <integer>0</integer>
+    </item>
+    <item name="bphi">
+        <params>
+            <coef type="Estimated">
+                <value>0.3269418073099528</value>
+                <stde>0.16569824808253047</stde>
+                <tstat>1.9731156550738584</tstat>
+            </coef>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="calendar">
+        <subset>
+            <item name="td">
+                <subset>
+                    <item name="user">
+                        <strings>
+                            <items>working_days_ext_reg.working_days_ext_reg_1</items>
+                        </strings>
+                    </item>
+                </subset>
+            </item>
+        </subset>
+    </item>
+    <item name="coefficients">
+        <subset>
+            <item name="td">
+                <double>2.7437561461718797E-4</double>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+            <item name="policy">
+                <string>Interactive</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa2">
+        <subset>
+            <item name="ts">
+                <ts name="values_report_20200312-180114&#10;VAL.FINAL.EU27.LCI_O.BTS.Q.CH.W.NOTRANS">
+                    <freq>4</freq>
+                    <firstYear>2009</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>84.72679 89.8778215 87.882094 94.4736342 86.8529371 91.986697 89.2499839 96.5415164 89.2668237 94.7942658 91.8045966 99.0254891 91.0991385 96.9984179 93.7485265 101.4822355 92.4038066 97.163555 94.0184398 101.3781954 92.9692901 99.3724613 95.7191661 103.20858 94.1117549 99.6076476 96.2806511 104.3426839 95.5335411 101.0337945 97.6306336 105.8020308 98.0639503 103.1158089 99.7599875 107.8227924 100.2037018 105.6433242 101.9966395 109.895029 102.4141907 108.8871975 104.6940562 112.7119686</data>
+                    <metaData>
+                        <property name="@timestamp" value="Mon Dec 09 08:51:27 CET 2024"/>
+                        <property name="@source" value="XCLPRVDR"/>
+                        <property name="@id" value="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=C%3A%5CUsers%5CUTENTE%5CDesktop%5CRJDopenCruncher%5CRJDProcessor%5Ctest%5CWorkspace_from_scratch_container%5CLCI.xlsx#seriesName=VAL.FINAL.EU27.LCI_O.BTS.Q.CH.W.NOTRANS&amp;sheetName=values_report_20200312-180114"/>
+                    </metaData>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec2</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Log</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="btheta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.37973505216529546</value>
+                <stde>0.15007027214968155</stde>
+                <tstat>-2.5303815787482815</tstat>
+            </coef>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+            <item name="policy">
+                <string>Complete</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa3">
+        <subset>
+            <item name="ts">
+                <ts name="values_report_20200312-180114&#10;VAL.FINAL.EU27.LCI_WAG.BTN.Q.CH.W.NOTRANS">
+                    <freq>4</freq>
+                    <firstYear>2009</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>81.8417845 91.1459728 85.0821479 91.9301655 83.6141527 92.7260618 86.0356523 93.7080067 85.6162082 95.6131144 88.1958008 96.0505538 87.0662275 98.384677 90.2906364 98.6492582 88.8319276 99.6588423 91.2540732 99.7487539 90.3128719 101.4794816 92.76806 101.2195609 92.466948 103.5079166 94.711652 103.1722908 94.2938897 104.4269579 96.2850419 104.9941104 95.9812852 107.2818987 98.4816717 107.3922865 98.7118585 110.4282825 101.5008295 110.4399968 101.6821493 113.6768264 104.6313099 113.3814417</data>
+                    <metaData>
+                        <property name="@timestamp" value="Mon Dec 09 08:51:27 CET 2024"/>
+                        <property name="@source" value="XCLPRVDR"/>
+                        <property name="@id" value="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=C%3A%5CUsers%5CUTENTE%5CDesktop%5CRJDopenCruncher%5CRJDProcessor%5Ctest%5CWorkspace_from_scratch_container%5CLCI.xlsx#seriesName=VAL.FINAL.EU27.LCI_WAG.BTN.Q.CH.W.NOTRANS&amp;sheetName=values_report_20200312-180114"/>
+                    </metaData>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec2</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Log</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="phi">
+        <params>
+            <coef type="Estimated">
+                <value>0.2064908899679817</value>
+                <stde>0.15482637437698482</stde>
+                <tstat>1.3336932470252103</tstat>
+            </coef>
+            <coef type="Estimated">
+                <value>-0.013452400364045993</value>
+                <stde>0.1593516522778645</stde>
+                <tstat>-0.08441958506077356</tstat>
+            </coef>
+            <coef type="Estimated">
+                <value>0.4370021957425703</value>
+                <stde>0.15274600198392943</stde>
+                <tstat>2.860973053740207</tstat>
+            </coef>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="calendar">
+        <subset>
+            <item name="easter">
+                <subset>
+                    <item name="type">
+                        <string>IncludeEaster</string>
+                    </item>
+                </subset>
+            </item>
+        </subset>
+    </item>
+    <item name="coefficients">
+        <subset>
+            <item name="easter">
+                <double>0.0023180817666709733</double>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+            <item name="policy">
+                <string>Complete</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa4">
+        <subset>
+            <item name="ts">
+                <ts name="values_report_20200312-180114&#10;VAL.FINAL.EU27.LCI_WAG.BTS.Q.CH.W.NOTRANS">
+                    <freq>4</freq>
+                    <firstYear>2009</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>82.437937 91.4993828 86.3234409 93.3597122 84.0829322 93.0886412 87.1746675 94.8675392 85.6029395 95.336614 89.1501768 96.8680481 86.8635003 97.5674423 91.0897874 99.108443 88.5452304 98.8877053 92.0379008 100.4942419 89.8931191 100.5130143 93.4874611 101.8699114 91.9063488 102.3878312 95.3192732 103.8406108 93.738011 103.4450222 97.1067183 105.7102485 95.5176955 106.1822856 99.1517734 108.0300072 98.0501289 109.0896418 102.2228422 111.2302021 101.0557096 112.4650898 105.2857183 114.2810949</data>
+                    <metaData>
+                        <property name="@timestamp" value="Mon Dec 09 08:51:27 CET 2024"/>
+                        <property name="@source" value="XCLPRVDR"/>
+                        <property name="@id" value="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=C%3A%5CUsers%5CUTENTE%5CDesktop%5CRJDopenCruncher%5CRJDProcessor%5Ctest%5CWorkspace_from_scratch_container%5CLCI.xlsx#seriesName=VAL.FINAL.EU27.LCI_WAG.BTS.Q.CH.W.NOTRANS&amp;sheetName=values_report_20200312-180114"/>
+                    </metaData>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec2</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Log</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="theta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.3501776558361029</value>
+                <stde>0.15398978637182859</stde>
+                <tstat>-2.274031700976277</tstat>
+            </coef>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="calendar">
+        <subset>
+            <item name="easter">
+                <subset>
+                    <item name="type">
+                        <string>IncludeEaster</string>
+                    </item>
+                </subset>
+            </item>
+        </subset>
+    </item>
+    <item name="coefficients">
+        <subset>
+            <item name="easter">
+                <double>0.002055226007298051</double>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+            <item name="policy">
+                <string>Complete</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa5">
+        <subset>
+            <item name="ts">
+                <ts name="values_report_20200312-180114&#10;VAL.FINAL.EA19.LCI_O.BTN.Q.CH.W.NOTRANS">
+                    <freq>4</freq>
+                    <firstYear>2009</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>86.7375094 92.8164109 89.7002894 96.7867578 89.1098736 95.0054194 91.0285369 99.0978272 91.5161852 97.970226 93.4171961 101.8885873 93.5402304 100.6508123 95.3982522 104.0708178 93.7728178 99.7026938 94.633426 103.0308435 94.311339 101.9039804 95.9974897 104.2845173 94.961411 101.4424241 95.9048124 104.6336895 95.8900622 102.2670504 96.3368471 105.5060403 97.7407509 103.8599645 98.296827 107.3600299 100.3337491 106.5940288 101.1624644 109.8552458 102.4251931 109.6046468 103.8443584 112.3977641</data>
+                    <metaData>
+                        <property name="@timestamp" value="Mon Dec 09 08:51:27 CET 2024"/>
+                        <property name="@source" value="XCLPRVDR"/>
+                        <property name="@id" value="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=C%3A%5CUsers%5CUTENTE%5CDesktop%5CRJDopenCruncher%5CRJDProcessor%5Ctest%5CWorkspace_from_scratch_container%5CLCI.xlsx#seriesName=VAL.FINAL.EA19.LCI_O.BTN.Q.CH.W.NOTRANS&amp;sheetName=values_report_20200312-180114"/>
+                    </metaData>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec2</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Log</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="mu">
+        <param type="Estimated">
+            <value>0.0189999635790074</value>
+        </param>
+    </item>
+    <item name="phi">
+        <params>
+            <coef type="Estimated">
+                <value>-0.8362849110593388</value>
+                <stde>0.09138252135551382</stde>
+                <tstat>-9.151475562879938</tstat>
+            </coef>
+        </params>
+    </item>
+    <item name="d">
+        <integer>0</integer>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="outliers">
+        <strings>
+            <items>LS.2013-01-01 TC.2014-04-01</items>
+        </strings>
+    </item>
+    <item name="coefficients">
+        <subset>
+            <item name="LS (2013-01-01)">
+                <double>-0.017722619180572097</double>
+            </item>
+            <item name="TC (2014-04-01)">
+                <double>0.013856023516369319</double>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+            <item name="policy">
+                <string>Complete</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa6">
+        <subset>
+            <item name="ts">
+                <ts name="values_report_20200312-180114&#10;VAL.FINAL.EA19.LCI_O.BTS.Q.CH.W.NOTRANS">
+                    <freq>4</freq>
+                    <firstYear>2009</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>85.3475746 91.0823235 88.7307089 95.88034 87.6051191 93.3798837 90.1354439 98.1324938 90.0482139 96.2406441 92.6196451 100.6018395 91.7155687 98.2430043 94.3350244 102.9796977 92.8578357 98.2315947 94.5018999 102.7023901 93.2227977 100.3877157 96.1230148 104.371699 94.2014266 100.3617634 96.3535442 105.1951787 95.1783822 101.4308525 97.1622968 106.2284685 97.5284474 102.9760418 98.9472487 107.8590119 99.8550982 105.8035059 101.5444072 110.2676029 101.9006228 108.9177988 104.1661821 112.9397245</data>
+                    <metaData>
+                        <property name="@timestamp" value="Mon Dec 09 08:51:27 CET 2024"/>
+                        <property name="@source" value="XCLPRVDR"/>
+                        <property name="@id" value="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=C%3A%5CUsers%5CUTENTE%5CDesktop%5CRJDopenCruncher%5CRJDProcessor%5Ctest%5CWorkspace_from_scratch_container%5CLCI.xlsx#seriesName=VAL.FINAL.EA19.LCI_O.BTS.Q.CH.W.NOTRANS&amp;sheetName=values_report_20200312-180114"/>
+                    </metaData>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec2</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Log</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="theta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.21824928633024102</value>
+                <stde>0.16043582947340665</stde>
+                <tstat>-1.3603525287748603</tstat>
+            </coef>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="outliers">
+        <strings>
+            <items>TC.2014-04-01</items>
+        </strings>
+    </item>
+    <item name="coefficients">
+        <subset>
+            <item name="TC (2014-04-01)">
+                <double>0.014548476099210679</double>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+            <item name="policy">
+                <string>Complete</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa7">
+        <subset>
+            <item name="ts">
+                <ts name="values_report_20200312-180114&#10;VAL.FINAL.EA19.LCI_WAG.BTN.Q.CH.W.NOTRANS">
+                    <freq>4</freq>
+                    <firstYear>2009</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>82.2088473 92.469485 85.826241 93.3148976 83.9620142 93.9523937 86.5325866 94.8974558 85.8535761 96.840334 88.5755098 97.149987 87.1655741 99.5831447 90.5621797 99.7785729 88.8428002 100.7790712 91.4270634 100.724069 90.1711807 102.4519539 92.811807 102.0168257 92.2077897 104.3524136 94.5658109 103.7483338 93.8387523 105.023153 95.8036666 105.3344281 95.1947818 107.3835906 97.5924778 107.2380528 97.324378 109.9070093 100.087731 109.7233378 99.9004477 112.7185233 102.7858182 112.2193644</data>
+                    <metaData>
+                        <property name="@timestamp" value="Mon Dec 09 08:51:27 CET 2024"/>
+                        <property name="@source" value="XCLPRVDR"/>
+                        <property name="@id" value="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=C%3A%5CUsers%5CUTENTE%5CDesktop%5CRJDopenCruncher%5CRJDProcessor%5Ctest%5CWorkspace_from_scratch_container%5CLCI.xlsx#seriesName=VAL.FINAL.EA19.LCI_WAG.BTN.Q.CH.W.NOTRANS&amp;sheetName=values_report_20200312-180114"/>
+                    </metaData>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec2</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Log</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="phi">
+        <params>
+            <coef type="Estimated">
+                <value>0.20764719654859204</value>
+                <stde>0.15042689791867025</stde>
+                <tstat>1.3803860840157622</tstat>
+            </coef>
+            <coef type="Estimated">
+                <value>0.013069579995113273</value>
+                <stde>0.15509172375021693</stde>
+                <tstat>0.0842700028027446</tstat>
+            </coef>
+            <coef type="Estimated">
+                <value>0.5023809636344524</value>
+                <stde>0.14543187093806206</stde>
+                <tstat>3.454407623267195</tstat>
+            </coef>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="calendar">
+        <subset>
+            <item name="easter">
+                <subset>
+                    <item name="type">
+                        <string>IncludeEaster</string>
+                    </item>
+                </subset>
+            </item>
+        </subset>
+    </item>
+    <item name="coefficients">
+        <subset>
+            <item name="easter">
+                <double>0.0021639546359557937</double>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+            <item name="policy">
+                <string>Complete</string>
+            </item>
+        </subset>
+    </item>
+    <item name="sa8">
+        <subset>
+            <item name="ts">
+                <ts name="values_report_20200312-180114&#10;VAL.FINAL.EA19.LCI_WAG.BTS.Q.CH.W.NOTRANS">
+                    <freq>4</freq>
+                    <firstYear>2009</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>82.7332401 92.8302941 86.9529903 94.8311974 84.3201569 94.3326948 87.633391 96.217478 85.734919 96.5917981 89.4339482 98.1247425 86.8726585 98.7376369 91.2402067 100.36139 88.4209367 99.9737393 92.1026661 101.6639192 89.6370815 101.4776167 93.4558634 102.8471756 91.5254199 103.2238069 95.097163 104.6234997 93.1764517 104.0571201 96.5566329 106.2097953 94.6406107 106.2963913 98.1259167 108.0168397 96.5323379 108.5364748 100.6303117 110.6638543 99.1178534 111.4928817 103.2594939 113.2540963</data>
+                    <metaData>
+                        <property name="@timestamp" value="Mon Dec 09 08:51:27 CET 2024"/>
+                        <property name="@source" value="XCLPRVDR"/>
+                        <property name="@id" value="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=C%3A%5CUsers%5CUTENTE%5CDesktop%5CRJDopenCruncher%5CRJDProcessor%5Ctest%5CWorkspace_from_scratch_container%5CLCI.xlsx#seriesName=VAL.FINAL.EA19.LCI_WAG.BTS.Q.CH.W.NOTRANS&amp;sheetName=values_report_20200312-180114"/>
+                    </metaData>
+                </ts>
+            </item>
+            <item name="domainspec">
+                <string>spec2</string>
+            </item>
+            <item name="pointspec">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Log</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="theta">
+        <params>
+            <coef type="Estimated">
+                <value>-0.47165374641997587</value>
+                <stde>0.143044227931158</stde>
+                <tstat>-3.297258150443971</tstat>
+            </coef>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>false</boolean>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="quality">
+                <string>Good</string>
+            </item>
+            <item name="policy">
+                <string>Complete</string>
+            </item>
+        </subset>
+    </item>
+    <item name="domainspecs">
+        <subset>
+            <item name="spec1">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Auto</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="mu">
+        <param/>
+    </item>
+    <item name="theta">
+        <params>
+            <coef/>
+        </params>
+    </item>
+    <item name="btheta">
+        <params>
+            <coef/>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>true</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="outlier">
+<subset>
+    <item name="types">
+        <strings>
+            <items>AO TC LS</items>
+        </strings>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="calendar">
+        <subset>
+            <item name="td">
+                <subset>
+                    <item name="user">
+                        <strings>
+                            <items>working_days_ext_reg.working_days_ext_reg_1</items>
+                        </strings>
+                    </item>
+                </subset>
+            </item>
+            <item name="easter">
+                <subset>
+                    <item name="type">
+                        <string>IncludeEaster</string>
+                    </item>
+                    <item name="test">
+                        <boolean>true</boolean>
+                    </item>
+                </subset>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+            <item name="spec2">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>tramoseats</name>
+                            <family>Seasonal adjustment</family>
+                        </method>
+                    </item>
+                    <item name="tramo">
+                        <subset>
+                            <item name="algorithm">
+<method version="0.1.0.0">
+    <name>tramo</name>
+    <family>Modelling</family>
+</method>
+                            </item>
+                            <item name="transform">
+<subset>
+    <item name="function">
+        <string>Auto</string>
+    </item>
+</subset>
+                            </item>
+                            <item name="arima">
+<subset>
+    <item name="mu">
+        <param/>
+    </item>
+    <item name="theta">
+        <params>
+            <coef/>
+        </params>
+    </item>
+    <item name="btheta">
+        <params>
+            <coef/>
+        </params>
+    </item>
+</subset>
+                            </item>
+                            <item name="automdl">
+<subset>
+    <item name="enabled">
+        <boolean>true</boolean>
+    </item>
+</subset>
+                            </item>
+                            <item name="outlier">
+<subset>
+    <item name="types">
+        <strings>
+            <items>AO TC LS</items>
+        </strings>
+    </item>
+</subset>
+                            </item>
+                            <item name="regression">
+<subset>
+    <item name="calendar">
+        <subset>
+            <item name="td">
+                <subset>
+                    <item name="mauto">
+                        <string>FTest</string>
+                    </item>
+                    <item name="option">
+                        <string>TradingDays</string>
+                    </item>
+                    <item name="leapyear">
+                        <boolean>true</boolean>
+                    </item>
+                    <item name="testtype">
+                        <string>Separate_T</string>
+                    </item>
+                </subset>
+            </item>
+            <item name="easter">
+                <subset>
+                    <item name="type">
+                        <string>IncludeEaster</string>
+                    </item>
+                    <item name="test">
+                        <boolean>true</boolean>
+                    </item>
+                </subset>
+            </item>
+        </subset>
+    </item>
+</subset>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="benchmarking">
+                        <subset/>
+                    </item>
+                </subset>
+            </item>
+        </subset>
+    </item>
+</informationSet>

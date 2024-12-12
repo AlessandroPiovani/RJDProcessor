@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tsVariables xmlns="ec/tss.core">
+    <dynamicTsVariable name="working_days_ext_reg_1">
+        <tsdata name="var">
+            <freq>4</freq>
+            <firstYear>2009</firstYear>
+            <firstPeriod>1</firstPeriod>
+            <data>-1.0 0.0 1.0 1.0 -1.0 0.0 1.0 1.0 -1.0 0.0 1.0 -2.5 0.0 0.0 -2.5 1.0 -1.0 0.0 1.0 1.0 -1.0 0.0 1.0 1.0 -1.0 0.0 1.0 1.0 0.0 0.0 1.0 -2.5 2.5 0.0 -2.5 -2.5 2.5 0.0 -2.5 1.0 -1.0 0.0 1.0 1.0 -1.0 0.0 1.0 1.0 -1.0</data>
+        </tsdata>
+        <moniker>
+            <source>XCLPRVDR</source>
+            <id>demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=C%3A%5CUsers%5CUTENTE%5CDesktop%5CRJDopenCruncher%5CRJDProcessor%5Ctest%5CWorkspace_from_scratch_container%5Cregr%5Cworking_days_ext_reg.xlsx#seriesName=Week+days&amp;sheetName=Foglio1</id>
+        </moniker>
+    </dynamicTsVariable>
+</tsVariables>

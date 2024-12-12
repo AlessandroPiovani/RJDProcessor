@@ -32,6 +32,7 @@ Collate: import_and_interface_definition.R
   Data_reader_xlsx.R
   Data_reader_list.R
   Data_reader_xml.R
+  Data_reader_workspace.R
   Extended_tramoseats_spec.R
   JD_JSON.R
   JD_JSON_file_processor.R

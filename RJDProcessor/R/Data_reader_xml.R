@@ -68,7 +68,7 @@ setMethod ("read_data", signature("Data_reader_xml"),
 #' This function creates a Data_reader object capable of reading data from XLSX files and returning it using the \code{read_data()} function.
 #'
 #' @param input_source A string with file name (also with path).
-#' @return The Data_reader_xlsx object
+#' @return The Data_reader_xml object
 #' @examples
 #' input_data_file_name <- system.file("extdata","Prod.xml", package = "RJDProcessor")
 #' # NOTE: absolute paths are better for this Data_reader
