@@ -79,7 +79,9 @@ get_basic_spec <- function(spec)
       seats.seasdBoundary1 = 0.8,
       seats.seasTol = 2,
       seats.maBoundary = 0.95,
-      seats.method = "Burman"
+      seats.method = "Burman",
+      ramps = NA,
+      intervention_variables = NA
     )
     return(RSA0)
   }else if(spec == "RSA1")
@@ -161,9 +163,11 @@ get_basic_spec <- function(spec)
       seats.seasdBoundary1 = 0.8,
       seats.seasTol = 2,
       seats.maBoundary = 0.95,
-      seats.method = "Burman"
-	)
-	return(RSA1)
+      seats.method = "Burman",
+      ramps = NA,
+      intervention_variables = NA
+    )
+    return(RSA1)
   }else if(spec == "RSA2")
   {
     RSA2 <- list(
@@ -243,9 +247,11 @@ get_basic_spec <- function(spec)
       seats.seasdBoundary1 = 0.8,
       seats.seasTol = 2,
       seats.maBoundary = 0.95,
-      seats.method = "Burman"
-	)
-	return(RSA2)
+      seats.method = "Burman",
+      ramps = NA,
+      intervention_variables = NA
+    )
+    return(RSA2)
   }else if(spec == "RSA3")
   {
     RSA3 <- list(
@@ -325,9 +331,11 @@ get_basic_spec <- function(spec)
       seats.seasdBoundary1 = 0.8,
       seats.seasTol = 2,
       seats.maBoundary = 0.95,
-      seats.method = "Burman"
-	)
-	return(RSA3)
+      seats.method = "Burman",
+      ramps = NA,
+      intervention_variables = NA
+    )
+    return(RSA3)
   }else if(spec == "RSA4")
   {
     RSA4 <- list(
@@ -407,9 +415,11 @@ get_basic_spec <- function(spec)
       seats.seasdBoundary1 = 0.8,
       seats.seasTol = 2,
       seats.maBoundary = 0.95,
-      seats.method = "Burman"
-	)
-	return(RSA4)
+      seats.method = "Burman",
+      ramps = NA,
+      intervention_variables = NA
+    )
+    return(RSA4)
   }else if(spec == "RSA5")
   {
     RSA5 <- list(
@@ -489,9 +499,11 @@ get_basic_spec <- function(spec)
       seats.seasdBoundary1 = 0.8,
       seats.seasTol = 2,
       seats.maBoundary = 0.95,
-      seats.method = "Burman"
-	)
-	return(RSA5)
+      seats.method = "Burman",
+      ramps = NA,
+      intervention_variables = NA
+    )
+    return(RSA5)
   }else if(spec == "RSAfull")
   {
     RSAfull <- list(
@@ -571,13 +583,15 @@ get_basic_spec <- function(spec)
       seats.seasdBoundary1 = 0.8,
       seats.seasTol = 2,
       seats.maBoundary = 0.95,
-      seats.method = "Burman"
-	)
-	return(RSAfull)
+      seats.method = "Burman",
+      ramps = NA,
+      intervention_variables = NA
+    )
+    return(RSAfull)
   }
-
+  
   #...
-
+  
   else
   {
     print("Default specification does not exists")

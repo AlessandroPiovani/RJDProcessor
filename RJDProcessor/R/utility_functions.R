@@ -8,6 +8,7 @@ check_character <- function(arg) {
 }
 
 
+
 span_unpack <- function(span_string) {
   output_list <- list()
   #browser()
@@ -100,6 +101,7 @@ span_unpack_into_spec <- function(span = "All") {
 
   return(ret_list)
 }
+
 
 
 get_outliers_info <- function(spec)

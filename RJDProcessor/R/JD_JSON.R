@@ -5,6 +5,97 @@ require(rjson)
 #source("utility_functions.R")
 #source("Extended_tramoseats_spec.R")
 
+
+
+
+
+rJavaRampsAndIVsHandling <- function(sa, ramps, intervention_variables)
+{
+
+  Day      <- J("ec/tstoolkit/timeseries/Day")
+  Ramp     <- J("ec/tstoolkit/timeseries/regression/Ramp")
+  IV       <- J("ec/tstoolkit/timeseries/regression/InterventionVariable")
+  Sequence <- J("ec/tstoolkit/timeseries/regression/Sequence")
+
+  series_j <- sa$spec
+
+  if(!(is.null(ramps) || all(is.na(ramps))))
+  {
+    for(ramp in ramps)
+    {
+      year_s  <- as.integer(substr(ramp$start, 1, 4))
+      month_s <- as.integer(substr(ramp$start, 6, 7))
+      day_s   <- as.integer(substr(ramp$start, 9, 10))
+      #day_start <- Day$calc(year_s, month_s, day_s)
+      day_start <- Day$calc(year_s, as.integer(month_s-1), as.integer(day_s-1))
+
+      year_e  <- as.integer(substr(ramp$end, 1, 4))
+      month_e <- as.integer(substr(ramp$end, 6, 7))
+      day_e   <- as.integer(substr(ramp$end, 9, 10))
+      day_end <- Day$calc(year_e, as.integer(month_e-1), as.integer(day_e-1))
+
+      day_start_obj <- .jnew(Day, day_start)
+      day_end_obj   <- .jnew(Day, day_end)
+
+      r <-.jnew(Ramp, day_start_obj, day_end_obj)
+
+      series_j$getCore()$getTramoSpecification()$getRegression()$add(r)
+      #series_j$getCore()$getTramoSpecification()$getRegression()$setInterventionVariables(NULL)
+    }
+    #sa$spec <- series_j
+
+  }
+  #browser()
+  if(!(is.null(intervention_variables) || all(is.na(intervention_variables))))
+  {
+    for(iv in intervention_variables)
+    {
+      #browser()
+      seq_list <- list()
+
+      idx_seq<-1
+      for(sequ in iv$seq)
+      {
+        year_s  <- as.integer(substr(sequ$start, 1, 4))
+        month_s <- as.integer(substr(sequ$start, 6, 7))
+        day_s   <- as.integer(substr(sequ$start, 9, 10))
+        day_start <- Day$calc(year_s, as.integer(month_s-1), as.integer(day_s-1))
+
+        year_e  <- as.integer(substr(sequ$end, 1, 4))
+        month_e <- as.integer(substr(sequ$end, 6, 7))
+        day_e   <- as.integer(substr(sequ$end, 9, 10))
+        day_end <- Day$calc(year_e, as.integer(month_e-1), as.integer(day_e-1))
+
+        day_start_obj <- .jnew(Day, day_start)
+        day_end_obj   <- .jnew(Day, day_end)
+        s <-.jnew(Sequence, day_start_obj, day_end_obj)
+
+        seq_list[[idx_seq]] <- s
+        idx_seq <- idx_seq+1
+      }
+      # Convert Sequence list to Java array (Sequence[] in Java) and set it into the IV
+      seq_array <- .jarray(seq_list, contents.class = "ec/tstoolkit/timeseries/regression/Sequence")
+
+      intervention_variable <-.jnew(IV)
+
+
+      intervention_variable$setSequences(seq_array)
+      intervention_variable$setDelta(iv$delta)
+      intervention_variable$setDelta(iv$delta_s)
+
+      series_j$getCore()$getTramoSpecification()$getRegression()$add(intervention_variable)
+    }
+
+  }
+
+  sa$spec <- series_j
+  return(sa)
+}
+
+
+
+
+
 #' Turn a JD_JSON in a virtual workspace
 #'
 #' This function obtain a virtual workspace from a JD_JSON file.
@@ -30,7 +121,9 @@ require(rjson)
 #' @export
 JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_reader, ext_reg_data_reader=NA, series_to_proc_names=NA)
 {
+  require(rJava)
 
+  #browser()
   wk <- new_workspace()
   new_multiprocessing(wk, "sa1")
 
@@ -86,20 +179,30 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_reader, ext_reg_d
       extended_tramoseats_spec_list <- read_spec_list_from_json_file(JSON_file, spec_format="list")
       extended_tramoseats_spec_obj  <- extended_tramoseats_spec_list[[ts_name]]
 
-
+      #browser()
       tramoseats_spec_args <- to_tramoseats_spec_args(extended_tramoseats_spec_obj, ext_reg_data_reader)
 
+      # Handle Ramps and IVs that RJDemetra cannot receive in input, because it does not support them
+      ramps                  <- tramoseats_spec_args$ramps
+      intervention_variables <- tramoseats_spec_args$intervention_variables
+      tramoseats_spec_args$ramps=NULL
+      tramoseats_spec_args$intervention_variables=NULL
+      #tramoseats_spec_args$ramps <-  empty arraylist()?? NOT HERE
+      #tramoseats_spec_args$intervention_variables <- empty arraylist()?? NOT HERE
 
       spec <- do.call(RJDemetra::tramoseats_spec, tramoseats_spec_args)
       #browser()
-      sa <- tramoseats(ts_obj, spec = spec)
+      sa <- jtramoseats(ts_obj, spec = spec)
 
+      sa <- rJavaRampsAndIVsHandling(sa, ramps, intervention_variables)
+      #browser()
 
       add_sa_item(wk, "sa1", sa, ts_name)
     }
 
 
   }
+  #browser()
   return(wk)
 
 }
@@ -132,6 +235,8 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_reader, ext_reg_d
 #' @export
 JD_JSON_to_materialized_workspace <- function(workspace_dir=NA, JSON_file, input_data_reader, ext_reg_data_reader=NA, series_to_proc_names=NA)
 {
+  require(rJava)
+
   # browser()
   wk <- JD_JSON_to_virtual_workspace(JSON_file, input_data_reader, ext_reg_data_reader, series_to_proc_names)
 
@@ -209,12 +314,12 @@ JD_JSON_to_materialized_workspace <- function(workspace_dir=NA, JSON_file, input
 JD_JSON_from_materialized_workspace <- function(workspace, ext_reg_input_data_reader, regr_directory=NA, JSON_file_name = "JD_JSON_specification.txt", diff=TRUE, java_processing = FALSE)
 {
   require(RJDemetra)
+  require(rJava)
 
   ws<-load_workspace(file = workspace)
   series_spec_list <- JD_JSON_from_virtual_workspace(ws, ext_reg_input_data_reader, JSON_file_name = JSON_file_name, diff=diff, java_processing = java_processing)
   #return(series_spec_list)
 }
-
 
 
 #' Turn model spec of a virtual (R) workspace in JD_JSON
@@ -261,6 +366,7 @@ JD_JSON_from_materialized_workspace <- function(workspace, ext_reg_input_data_re
 JD_JSON_from_virtual_workspace <- function(ws, ext_reg_input_data_reader, JSON_file_name = "JD_JSON_specification.txt", diff=TRUE, java_processing=TRUE)
 {
   require(RJDemetra)
+  require(rJava)
 
   #browser()
 
@@ -358,6 +464,9 @@ merge_objects_precedence_to_reduced <- function(reduced, basic_spec = "RSA0")
 from_reduced_to_full_JD_JSON_file <- function(JD_JSON_file, output_file_name=NA, indent= TRUE)
 {
   require(RJDemetra)
+  require(rJava)
+
+  #browser()
 
   # Define file name
   if(is.na(output_file_name))
@@ -433,6 +542,9 @@ from_reduced_to_full_JD_JSON_file <- function(JD_JSON_file, output_file_name=NA,
 from_full_to_reduced_JD_JSON_file<-function(JD_JSON_file, output_file_name=NA, indent= TRUE, basic_spec=NA)
 {
   require(RJDemetra)
+  require(rJava)
+
+  #browser()
 
   # Define file name
   if(is.na(output_file_name))

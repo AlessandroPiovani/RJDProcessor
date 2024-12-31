@@ -1,6 +1,5 @@
 require(RJDemetra)
 require(rjson)
-
 #source("utility_functions.R")
 #source("JD_JSON.R")
 
@@ -62,38 +61,42 @@ require(rjson)
 #' @export
 JD_JSON_file_processor <- function(input_data_reader, ext_reg_data_reader, spec_file_name, output_workspace_dir=NA, series_to_proc_names=NA, java_processing=TRUE)
 {
-    require(RJDemetra)
-    wk <- JD_JSON_to_materialized_workspace(workspace_dir=output_workspace_dir, JSON_file = spec_file_name, input_data_reader = input_data_reader, ext_reg_data_reader= ext_reg_data_reader, series_to_proc_names = series_to_proc_names)
+  require(RJDemetra)
+
+  #browser()
+
+  wk <- JD_JSON_to_materialized_workspace(workspace_dir=output_workspace_dir, JSON_file = spec_file_name, input_data_reader = input_data_reader, ext_reg_data_reader= ext_reg_data_reader, series_to_proc_names = series_to_proc_names)
 
 
-    if(java_processing==FALSE)
-    {
-      model=get_model(wk)
-    } else
-    {
-      j_model <- get_jmodel(wk)
-      model   <- get_r_model_from_j_model(j_model)
-    }
+  if(java_processing==FALSE)
+  {
+    model=get_model(wk)
+  } else
+  {
+    j_model <- get_jmodel(wk)
+    # model   <- get_r_model_from_j_model(j_model)
+    model   <- j_model
+  }
+  #browser()
 
-
-    zz <- file("elaborazione.out", open="wt")
+  if(java_processing==FALSE)
+  {
+    zz <- file("processing_results.out", open="wt")
     sink(zz, type)
-
     print(model)
-
     sink(file=NULL)
 
-    i=1
-    nomi_serie = names(model[[1]])
+    name_series = names(model[[1]])
 
+    i=1
     pdf(file="plots.pdf")
 
     for(serie in model[[1]])
     {
       #browser()
-      #print(nomi_serie[i])
+      #print(name_series[i])
       plot.new()
-      text(x=.5, y=.5, nomi_serie[i], cex=2)  # first 2 numbers are xy-coordinates within [0, 1]
+      text(x=.5, y=.5, name_series[i], cex=2)  # first 2 numbers are xy-coordinates within [0, 1]
       plot(serie, type_chart = "sa-trend")
 
       serie_plot <- serie
@@ -109,14 +112,18 @@ JD_JSON_file_processor <- function(input_data_reader, ext_reg_data_reader, spec_
       plot(serie_plot$decomposition)
 
       i=i+1
-
     }
 
     dev.off()
     close.connection(zz)
+  }
+  else # Java Processing == TRUE
+  {
+    print("No processing results file with Java processing yet (waiting for rjdmarkdown package to be fixed)")
+  }
 
-    #return(model)
-    return(wk)
+
+  return(wk)
 }
 
 
@@ -191,7 +198,6 @@ produce_fully_R_workspace <- function(ext_reg_input_data_reader=NA, original_ws_
 #' @export
 get_r_model_from_j_model <- function(j_model)
 {
-  #browser()
   model=list()
   k=1
   for(sa_name in names(j_model))
@@ -249,9 +255,13 @@ compare_sa_ts <- function(new_r_model=NA, new_model_workspace, old_model_workspa
 {
   require(RJDemetra)
 
+  #################### Prepare model_new and model_old #########################
+
+  r_new_models_loaded <- FALSE
   #browser()
   if(!is.na(new_r_model))
   {
+    r_new_models_loaded <- TRUE
     model_new <- new_r_model
   }
   else
@@ -260,34 +270,39 @@ compare_sa_ts <- function(new_r_model=NA, new_model_workspace, old_model_workspa
     {
       compute(new_model_workspace)
       j_model_new <- get_jmodel(new_model_workspace)
+      model_new <- j_model_new
     } else
     {
       j_ws_new <- RJDemetra::load_workspace(new_model_workspace)
       compute(j_ws_new)
+      j_model_new <- get_jmodel(j_ws_new)
+      model_new <- j_model_new
     }
-    model_new <- get_r_model_from_j_model(j_model_new)
+    #model_new <- get_r_model_from_j_model(j_model_new)
   }
 
   if(materialized_ws_old == FALSE)
   {
     compute(j_ws_old)
-    j_ws_old <- get_jmodel(old_model_workspace)
+    j_model_old <- get_jmodel(old_model_workspace)
+    model_old <- j_model_old
   } else
   {
     j_ws_old <- RJDemetra::load_workspace(old_model_workspace)
     compute(j_ws_old)
+    j_model_old <- get_jmodel(j_ws_old)
+    model_old <- j_model_old
   }
 
   if(java_processing_old_model==TRUE)
   {
-    model_old <- get_jmodel(j_ws_old)
-    model_old <- get_r_model_from_j_model(model_old)
+    model_old_j <- get_jmodel(j_ws_old)
+    #model_old   <- get_r_model_from_j_model(model_old_j)
+    model_old <- model_old_j
   } else
   {
     model_old <- get_model(j_ws_old)
   }
-
-
 
 
   pdf(file="comparisons.pdf")
@@ -297,13 +312,61 @@ compare_sa_ts <- function(new_r_model=NA, new_model_workspace, old_model_workspa
 
   for(series in model_new[[1]])
   {
-    new_model_ts   <- series$final$series[,"sa"]
-    new_model_name <- series_names[i]
+    # new_model_ts   <- series$final$series[,"sa"]
+    # new_model_name <- series_names[i]
+    #
+    # browser()
+    # if(java_processing_old_model==TRUE)
+    # {
+    #   old_model_ts <- 1
+    #   old_models   <- 1
+    # }  else # R processing
+    # {
+    #   old_model_ts <- model_old[[1]][[new_model_name]]$final$series[,"sa"]
+    #   old_models   <- model_old[[1]][[new_model_name]]
+    # }
+
+    ######################## Adapt to R or Java models #########################
 
     #browser()
-    old_model_ts <- model_old[[1]][[new_model_name]]$final$series[,"sa"]
+
+
+    new_model_name <- series_names[i]
+
+    if(r_new_models_loaded) # model_new is in R
+    {
+      new_model_ts   <- series$final$series[,"sa"]
+    }
+    else # model_new is in Java
+    {
+      new_model_ts <- RJDemetra::get_indicators(model_new[[1]][[new_model_name]], "sa")[[1]]
+    }
+
+    if(java_processing_old_model==FALSE) # model_old is in R
+    {
+      old_model_ts <- model_old[[1]][[new_model_name]]$final$series[,"sa"]
+      old_models   <- model_old[[1]][[new_model_name]]
+      if(is.null(old_models))
+      {
+        old_models <- NA
+      }
+    }
+    else # model_old is in Java
+    {
+      old_model_ts <- RJDemetra::get_indicators(model_old[[1]][[new_model_name]], "sa")[[1]]
+      old_models   <- model_old[[1]][[new_model_name]]
+      if(is.null(old_models))
+      {
+        old_models <- NA
+      }
+    }
+    ################################ Plots #####################################
+
+
+
+
     plot(new_model_ts,  col = "blue", lty = 1, ylab = "Values", xlab = "Time", main = new_model_name)
-    if(!is.null(model_old[[1]][[new_model_name]]) && !all(is.na(model_old[[1]][[new_model_name]])))
+    if(!is.null(old_models) && !all(is.na(old_models)))
     {
       lines(old_model_ts, col = "red",  lty = 2)
       legend("topright", legend = c("new model", "old model"), col = c("blue", "red"), lty = c(1, 2))
