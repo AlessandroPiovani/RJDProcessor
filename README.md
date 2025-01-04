@@ -22,7 +22,7 @@ See the files in **Documentation folder** to understand how to use the package, 
 <h2><b>Install</b></h2>
 
 Download the package and install it:
-  * **_install.packages("your_local_path\\RJDProcessor_1.1.0.tar.gz", repos = NULL, type = "source")_**
+  * **_install.packages("your_local_path\\RJDProcessor_1.1.1.tar.gz", repos = NULL, type = "source")_**
   * **_library(RJDProcessor)_**
 
 <h2><b>Test</b></h2>

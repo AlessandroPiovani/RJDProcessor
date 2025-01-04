@@ -1,0 +1,8 @@
+- Fixed Coefficients for Intervention Variables (now ypu need to transform them into UsrDefined variables…)
+  
+- Fixed Coefficients for JD+'s automatic TD and Leap Year should be tested and eventually added. Should Leap year be treated as Easter with its coef? 
+    Do I need to order the td variables and leap year (lp) to be at the end of the array of coefficients like td from external file? (remember that if 
+    td are generated utomatically, external td ["td|..."] are not present). See reorder_ext_vars_td_at_the_end(strings) function in 
+    utility_functions.R 
+
+NOTE: Ramps, UserDefinedVariables, Easter and Outliers fixed coefficents are ok 

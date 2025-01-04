@@ -4,10 +4,12 @@ setwd("C:\\Users\\UTENTE\\Desktop\\RJDopenCruncher\\RJDProcessor\\test")
 library("RJDProcessor")
 library("RJDemetra")
 
+# source("JD_JSON_DEBUG.R")
 # source("Extended_tramoseats_spec_DEBUG.R")
+# source("utility_functions_DEBUG.R")
 # source("basic_spec_DEBUG.R")
+# source("Data_reader_ext_reg_tsplus_DEBUG.R")
 # source("JD_JSON_file_processor_DEBUG.R")
-# source("C:\\Users\\UTENTE\\Desktop\\RJDopenCruncher\\RJDProcessor\\R\\utility_functions.R")
 
 
 
@@ -40,6 +42,7 @@ ext_reg_input_data_reader <- Data_reader_ext_reg_tsplus(regr_directory)
 #browser()
 
 JD_JSON_from_materialized_workspace(input_workspace, ext_reg_input_data_reader, JSON_file_name = "specifications_new.txt", diff=TRUE, java_processing=FALSE)
+#browser()
 
 series_to_proc_names <- NA #c("FATEXP_13", "C_DEFL", "FATEXP_14") # NA to process all the series #NA
 

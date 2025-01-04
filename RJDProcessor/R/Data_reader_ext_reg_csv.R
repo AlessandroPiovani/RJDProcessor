@@ -402,13 +402,50 @@ getUserDefinedTdVariables_info_csv <- function(jmodel ,input_mode=c("TS_regresso
     allFixedRegr <- jReg$getAllFixedCoefficients()
     allFixedRegrS<- .jstrVal(allFixedRegr)
     fixedUsrDefVarNames <- extract_variable_names(allFixedRegrS) #extract_variable_names() code is in utility_functions.R
-    #idx_coef_list=1
-    for(variable_name in fixedUsrDefVarNames)
+    # REPLACED
+    # #idx_coef_list=1
+    # for(variable_name in fixedUsrDefVarNames)
+    # {
+    #   coef<-jReg$getFixedCoefficients(variable_name)
+    #   coef_list <- append(coef_list, coef)
+    # }
+    # coef_info_list[[name]] = append(coef_info_list[[name]], coef_list)
+
+    ############################### start added ################################
+    TsFrequency <- J("ec/tstoolkit/timeseries/simplets/TsFrequency")
+
+    jsa  <- jmodel[[1]][name][[1]]
+    ts   <- get_indicators(jsa, "y")
+    freq <- 12/frequency(ts)
+    if(freq==12)
     {
-      coef<-jReg$getFixedCoefficients(variable_name)
-      coef_list <- append(coef_list, coef)
+      freq_enum <- TsFrequency$Monthly
+    } else { freq_enum <- TsFrequency$Quarterly }
+
+    varNames           <- jReg$getRegressionVariableNames(freq_enum)
+    #browser()
+    filtered_var_names <- varNames[grepl("@", varNames)]
+    filtered_var_names <- reorder_ext_vars_td_at_the_end(filtered_var_names)
+
+    # change with respect to the original
+
+    #coef_list <- c()
+    for(var_name in filtered_var_names)
+    {
+      #idx_coef_list=1
+      if(var_name %in% fixedUsrDefVarNames)
+      {
+        coef<-jReg$getFixedCoefficients(var_name)
+        coef_list <- append(coef_list, coef)
+      } else
+      {
+        #coef_list <- append(coef_list, NA) # put 0 instead of NA?
+        coef_list <- append(coef_list, 0) # error in some part of my code if i put NA
+      }
     }
     coef_info_list[[name]] = append(coef_info_list[[name]], coef_list)
+
+    ############################# end added/modified ###########################
 
 
   }

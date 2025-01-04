@@ -62,12 +62,12 @@ require(rjson)
 JD_JSON_file_processor <- function(input_data_reader, ext_reg_data_reader, spec_file_name, output_workspace_dir=NA, series_to_proc_names=NA, java_processing=TRUE)
 {
   require(RJDemetra)
-
+  
   #browser()
-
+  
   wk <- JD_JSON_to_materialized_workspace(workspace_dir=output_workspace_dir, JSON_file = spec_file_name, input_data_reader = input_data_reader, ext_reg_data_reader= ext_reg_data_reader, series_to_proc_names = series_to_proc_names)
-
-
+  
+  
   if(java_processing==FALSE)
   {
     model=get_model(wk)
@@ -78,19 +78,19 @@ JD_JSON_file_processor <- function(input_data_reader, ext_reg_data_reader, spec_
     model   <- j_model
   }
   #browser()
-
+  
   if(java_processing==FALSE)
   {
     zz <- file("processing_results.out", open="wt")
     sink(zz, type)
     print(model)
     sink(file=NULL)
-
+    
     name_series = names(model[[1]])
-
+    
     i=1
     pdf(file="plots.pdf")
-
+    
     for(serie in model[[1]])
     {
       #browser()
@@ -98,9 +98,9 @@ JD_JSON_file_processor <- function(input_data_reader, ext_reg_data_reader, spec_
       plot.new()
       text(x=.5, y=.5, name_series[i], cex=2)  # first 2 numbers are xy-coordinates within [0, 1]
       plot(serie, type_chart = "sa-trend")
-
+      
       serie_plot <- serie
-
+      
       # if decomposition is not feasible some columns are not plottable (all NA): set values to 0
       if (all(is.na(serie_plot$decomposition[["linearized"]][, "s_lin"]))) {
         serie_plot$decomposition[["linearized"]][, "s_lin"] <- 0
@@ -108,12 +108,12 @@ JD_JSON_file_processor <- function(input_data_reader, ext_reg_data_reader, spec_
       if (all(is.na(serie_plot$decomposition[["components"]][, "s_cmp"]))) {
         serie_plot$decomposition[["components"]][, "s_cmp"] <- 0
       }
-
+      
       plot(serie_plot$decomposition)
-
+      
       i=i+1
     }
-
+    
     dev.off()
     close.connection(zz)
   }
@@ -121,8 +121,8 @@ JD_JSON_file_processor <- function(input_data_reader, ext_reg_data_reader, spec_
   {
     print("No processing results file with Java processing yet (waiting for rjdmarkdown package to be fixed)")
   }
-
-
+  
+  
   return(wk)
 }
 
@@ -166,10 +166,10 @@ JD_JSON_file_processor <- function(input_data_reader, ext_reg_data_reader, spec_
 produce_fully_R_workspace <- function(ext_reg_input_data_reader=NA, original_ws_xml, new_r_ws_folder)
 {
   require(RJDemetra)
-
+  
   # original_ws_xml <-input_workspace
   input_data_reader <- Data_reader_workspace(original_ws_xml)
-
+  
   #browser()
   JD_JSON_from_materialized_workspace(original_ws_xml, ext_reg_input_data_reader, JSON_file_name = "spec_temp.txt", diff=TRUE, java_processing=FALSE)
   ws<-JD_JSON_to_materialized_workspace(input_data_reader = input_data_reader, ext_reg_data_reader = ext_reg_input_data_reader, JSON_file = "spec_temp.txt", workspace_dir = new_r_ws_folder)
@@ -254,9 +254,9 @@ get_r_model_from_j_model <- function(j_model)
 compare_sa_ts <- function(new_r_model=NA, new_model_workspace, old_model_workspace, materialized_ws_new=FALSE, materialized_ws_old=TRUE, java_processing_old_model=TRUE)
 {
   require(RJDemetra)
-
+  
   #################### Prepare model_new and model_old #########################
-
+  
   r_new_models_loaded <- FALSE
   #browser()
   if(!is.na(new_r_model))
@@ -280,7 +280,7 @@ compare_sa_ts <- function(new_r_model=NA, new_model_workspace, old_model_workspa
     }
     #model_new <- get_r_model_from_j_model(j_model_new)
   }
-
+  
   if(materialized_ws_old == FALSE)
   {
     compute(j_ws_old)
@@ -293,7 +293,7 @@ compare_sa_ts <- function(new_r_model=NA, new_model_workspace, old_model_workspa
     j_model_old <- get_jmodel(j_ws_old)
     model_old <- j_model_old
   }
-
+  
   if(java_processing_old_model==TRUE)
   {
     model_old_j <- get_jmodel(j_ws_old)
@@ -303,13 +303,13 @@ compare_sa_ts <- function(new_r_model=NA, new_model_workspace, old_model_workspa
   {
     model_old <- get_model(j_ws_old)
   }
-
-
+  
+  
   pdf(file="comparisons.pdf")
-
+  
   i=1
   series_names = names(model_new[[1]])
-
+  
   for(series in model_new[[1]])
   {
     # new_model_ts   <- series$final$series[,"sa"]
@@ -325,14 +325,14 @@ compare_sa_ts <- function(new_r_model=NA, new_model_workspace, old_model_workspa
     #   old_model_ts <- model_old[[1]][[new_model_name]]$final$series[,"sa"]
     #   old_models   <- model_old[[1]][[new_model_name]]
     # }
-
+    
     ######################## Adapt to R or Java models #########################
-
+    
     #browser()
-
-
+    
+    
     new_model_name <- series_names[i]
-
+    
     if(r_new_models_loaded) # model_new is in R
     {
       new_model_ts   <- series$final$series[,"sa"]
@@ -341,7 +341,7 @@ compare_sa_ts <- function(new_r_model=NA, new_model_workspace, old_model_workspa
     {
       new_model_ts <- RJDemetra::get_indicators(model_new[[1]][[new_model_name]], "sa")[[1]]
     }
-
+    
     if(java_processing_old_model==FALSE) # model_old is in R
     {
       old_model_ts <- model_old[[1]][[new_model_name]]$final$series[,"sa"]
@@ -361,10 +361,10 @@ compare_sa_ts <- function(new_r_model=NA, new_model_workspace, old_model_workspa
       }
     }
     ################################ Plots #####################################
-
-
-
-
+    
+    
+    
+    
     plot(new_model_ts,  col = "blue", lty = 1, ylab = "Values", xlab = "Time", main = new_model_name)
     if(!is.null(old_models) && !all(is.na(old_models)))
     {
@@ -374,12 +374,12 @@ compare_sa_ts <- function(new_r_model=NA, new_model_workspace, old_model_workspa
     {
       legend("topright", legend = c("new model"), col = c("blue"), lty = c(1))
     }
-
+    
     i=i+1
-
+    
   }
   dev.off()
   closeAllConnections()
-
+  
 }
 

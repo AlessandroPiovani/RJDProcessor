@@ -81,7 +81,11 @@ get_basic_spec <- function(spec)
       seats.maBoundary = 0.95,
       seats.method = "Burman",
       ramps = NA,
-      intervention_variables = NA
+      intervention_variables = NA,
+      # leap_yearCoef         = NA,
+      easterCoef            = NA
+      #rampsCoef             = NA,
+      #intervention_variablesCoef = NA
     )
     return(RSA0)
   }else if(spec == "RSA1")
@@ -165,7 +169,11 @@ get_basic_spec <- function(spec)
       seats.maBoundary = 0.95,
       seats.method = "Burman",
       ramps = NA,
-      intervention_variables = NA
+      intervention_variables = NA,
+      # leap_yearCoef         = NA,
+      easterCoef            = NA
+      #rampsCoef             = NA,
+      #intervention_variablesCoef = NA
     )
     return(RSA1)
   }else if(spec == "RSA2")
@@ -249,8 +257,12 @@ get_basic_spec <- function(spec)
       seats.maBoundary = 0.95,
       seats.method = "Burman",
       ramps = NA,
-      intervention_variables = NA
-    )
+      intervention_variables = NA,
+      # leap_yearCoef         = NA,
+      easterCoef            = NA
+      #rampsCoef             = NA,
+      #intervention_variablesCoef = NA
+      )
     return(RSA2)
   }else if(spec == "RSA3")
   {
@@ -333,7 +345,11 @@ get_basic_spec <- function(spec)
       seats.maBoundary = 0.95,
       seats.method = "Burman",
       ramps = NA,
-      intervention_variables = NA
+      intervention_variables = NA,
+      # leap_yearCoef         = NA,
+      easterCoef            = NA
+      #rampsCoef             = NA,
+      #intervention_variablesCoef = NA
     )
     return(RSA3)
   }else if(spec == "RSA4")
@@ -417,7 +433,11 @@ get_basic_spec <- function(spec)
       seats.maBoundary = 0.95,
       seats.method = "Burman",
       ramps = NA,
-      intervention_variables = NA
+      intervention_variables = NA,
+      # leap_yearCoef         = NA,
+      easterCoef            = NA
+      #rampsCoef             = NA,
+      #intervention_variablesCoef = NA
     )
     return(RSA4)
   }else if(spec == "RSA5")
@@ -501,7 +521,11 @@ get_basic_spec <- function(spec)
       seats.maBoundary = 0.95,
       seats.method = "Burman",
       ramps = NA,
-      intervention_variables = NA
+      intervention_variables = NA,
+      # leap_yearCoef         = NA,
+      easterCoef            = NA
+      #rampsCoef             = NA,
+      #intervention_variablesCoef = NA
     )
     return(RSA5)
   }else if(spec == "RSAfull")
@@ -585,13 +609,17 @@ get_basic_spec <- function(spec)
       seats.maBoundary = 0.95,
       seats.method = "Burman",
       ramps = NA,
-      intervention_variables = NA
-    )
+      intervention_variables = NA,
+      # leap_yearCoef         = NA,
+      easterCoef            = NA
+      #rampsCoef             = NA,
+      #intervention_variablesCoef = NA
+      )
     return(RSAfull)
   }
-  
+
   #...
-  
+
   else
   {
     print("Default specification does not exists")
