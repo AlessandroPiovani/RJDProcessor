@@ -22,7 +22,7 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"container":"pent_dur6_iem.csv", 
+"container":"pent_dur6_iem.xlsx", 
 "start":"2000-01-01", 
 "n_var":1}], 
 "usrdef.varEnabled":true, 
@@ -111,11 +111,11 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"container":"td6m00.csv", 
+"container":"td6m00.xlsx", 
 "start":"2000-01-01", 
 "n_var":6
 }, {
-"container":"lym_00.csv", 
+"container":"lym_00.xlsx", 
 "start":"2000-01-01", 
 "n_var":1}], 
 "usrdef.varEnabled":true, 
@@ -204,11 +204,11 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"container":"s00m1102.csv", 
+"container":"s00m1102.xlsx", 
 "start":"2000-01-01", 
 "n_var":1
 }, {
-"container":"pent_dur6_iem.csv", 
+"container":"pent_dur6_iem.xlsx", 
 "start":"2000-01-01", 
 "n_var":1}], 
 "usrdef.varEnabled":true, 
@@ -382,7 +382,7 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"container":"pent_dur6_iem.csv", 
+"container":"pent_dur6_iem.xlsx", 
 "start":"2000-01-01", 
 "n_var":1}], 
 "usrdef.varEnabled":true, 
@@ -471,7 +471,7 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"container":"td6m00.csv", 
+"container":"td6m00.xlsx", 
 "start":"2000-01-01", 
 "n_var":6}], 
 "usrdef.varEnabled":true, 
@@ -560,7 +560,7 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"container":"pent_dur6_iem.csv", 
+"container":"pent_dur6_iem.xlsx", 
 "start":"2000-01-01", 
 "n_var":1}], 
 "usrdef.varEnabled":true, 
@@ -649,7 +649,7 @@
 "usrdef.outliersCoef":"NA", 
 "userdef.varFromFile":true, 
 "userdef.varFromFile.infoList":[{
-"container":"td6m00.csv", 
+"container":"td6m00.xlsx", 
 "start":"2000-01-01", 
 "n_var":6}], 
 "usrdef.varEnabled":true, 

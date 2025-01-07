@@ -6,13 +6,11 @@ library("RJDemetra")
 
 # source("JD_JSON_DEBUG.R")
 # source("Extended_tramoseats_spec_DEBUG.R")
-# source("utility_functions_DEBUG.R")
 # source("basic_spec_DEBUG.R")
 # source("Data_reader_ext_reg_tsplus_DEBUG.R")
 # source("JD_JSON_file_processor_DEBUG.R")
-
-
-
+# source("utility_functions_DEBUG.R")
+# source("Data_reader_ext_reg_tsplus_DEBUG.R")
 
 
 
@@ -22,6 +20,8 @@ JD_JSON_file_full_reduced <- "specifications_new_full.txt"
 spec_file_name            <- "specifications_new.txt"
 
 input_workspace      <- "TURwithRAMPS_fullyR_ws\\workspace.xml"
+#input_workspace      <- "TURwithRAMPS_fullyR_ws_alphabetic_order_test\\workspace.xml"
+
 input_data_file_name <- "SITIC-TUR\\grezzi.csv"
 regr_directory       <- "SITIC-TUR\\regr"
 #input_workspace      <- "WorkspaceTURwithRAMPSandIV-container\\TUR.xml"

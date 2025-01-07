@@ -528,6 +528,11 @@ get_intervention_vars<- function(series)
     iv_i_delta     <- int_var_i$getDelta()
     iv_i_deltaS    <- int_var_i$getDeltaS()
     iv_i_sequences <- int_var_i$getSequences() #every IV could be created in different times thanks to multiple sequences associated
+    iv_i_D1DS      <- FALSE
+    if(!is.null(int_var_i$getD1DS()))
+    {
+      iv_i_D1DS      <- int_var_i$getD1DS()
+    }
     n_seq <- iv_i_sequences$length #iterate over this
     j<-0
     seq_list <- list()
@@ -543,7 +548,7 @@ get_intervention_vars<- function(series)
       j<-j+1
     }
 
-    iv<- list("delta"=iv_i_delta, "delta_s"=iv_i_deltaS , "seq"=seq_list)
+    iv<- list("delta"=iv_i_delta, "delta_s"=iv_i_deltaS , "seq"=seq_list, "D1DS"=iv_i_D1DS)
     ivs_ret[[length(ivs_ret) + 1]] <- iv
 
     i <- i+1

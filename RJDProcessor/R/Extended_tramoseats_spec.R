@@ -132,14 +132,14 @@ setMethod("initialize", "Extended_tramoseats_spec",
                    seats.seasdBoundary1 = NA_integer_, seats.seasTol = NA_integer_,
                    seats.maBoundary = NA_integer_, seats.method = NA, ramps=NA, intervention_variables=NA, #rampsCoef=NA, intervention_variablesCoef=NA, easterCoef=NA) {
                    easterCoef=NA) {
-            
+
             # Convert possible numeric arguments to integer if they are compatible
             integer_args_to_check <- c( "frequency", "estimate.first", "estimate.last", "estimate.exclFirst", "estimate.exclLast", "tradingdays.stocktd",
                                         "easter.duration", "outlier.first", "outlier.last", "outlier.exclFirst", "outlier.exclLast",
                                         "arima.p", "arima.d", "arima.q", "arima.bp", "arima.bd", "arima.bq",
                                         "seats.predictionLength")
             numeric_args_with_NA_integer <- c("estimate.tol", "transform.fct", "outlier.cv", "outlier.tcrate", "automdl.cancel", "automdl.ub1", "automdl.ub2", "automdl.armalimit", "automdl.reducecv", "automdl.ljungboxlimit", "fcst.horizon", "seats.trendBoundary", "seats.seasdBoundary", "seats.seasdBoundary1", "seats.seasTol", "seats.maBoundary")
-            
+
             for (arg_name in integer_args_to_check)
             {
               if (!is.na(eval(parse(text = arg_name))) && is.numeric(eval(parse(text = arg_name))) && all(eval(parse(text = arg_name)) %% 1 == 0)) {
@@ -149,7 +149,7 @@ setMethod("initialize", "Extended_tramoseats_spec",
                 assign(arg_name, NA_integer_)
               }
             }
-            
+
             # Some numeric arguments have NA_integer_ as missing value. Sometimes simple NA is passed (i.e. when data are read from JSON),
             # so simple NAs have to be replaced with NA_integer_in some fields
             for (arg_name in numeric_args_with_NA_integer) {
@@ -158,15 +158,15 @@ setMethod("initialize", "Extended_tramoseats_spec",
                 assign(arg_name, NA_integer_)
               }
             }
-            
-            
-            
-            
+
+
+
+
             .Object@series_name <- series_name
             .Object@frequency   <- frequency
             .Object@method      <- method
             .Object@spec        <- spec
-            
+
             # All the following rows are replaced by the dynamic evaluation below this commented rows
             # This is done because if an argument is not specified, we want the default given by the basic_spec (e.g. "RSA0") and not NA
             #
@@ -245,7 +245,7 @@ setMethod("initialize", "Extended_tramoseats_spec",
             # .Object@seats.seasTol <- seats.seasTol
             # .Object@seats.maBoundary <- seats.maBoundary
             # .Object@seats.method <- seats.method
-            
+
             # Set the default value as it is in the basic_spec (e.g. "RSA0") instead of NA if an argument is not specified
             attributes <- c("preliminary.check", "estimate.from", "estimate.to",
                             "estimate.first", "estimate.last", "estimate.exclFirst",
@@ -272,10 +272,10 @@ setMethod("initialize", "Extended_tramoseats_spec",
                             "seats.seasdBoundary", "seats.seasdBoundary1", "seats.seasTol",
                             "seats.maBoundary", "seats.method", "ramps", "intervention_variables", #"rampsCoef", "intervention_variablesCoef", "easterCoef")
                             "easterCoef")
-                            
+
             #basic_spec <- get_basic_spec("RSA0")
             basic_spec <- get_basic_spec(spec)
-            
+
             for (attr in attributes)
             {
               attr_value <- eval(parse(text = attr))
@@ -291,7 +291,7 @@ setMethod("initialize", "Extended_tramoseats_spec",
                 slot(.Object, attr) <- basic_spec[[attr]]
               }
             }
-            
+
             return(.Object)
           })
 
@@ -335,7 +335,7 @@ Extended_tramoseats_spec_helper <- function(series_name = NULL, frequency=NA_int
                                             seats.seasTol = NA_integer_, seats.maBoundary = NA_integer_,
                                             seats.method = NA, ramps = NA, intervention_variables = NA, #rampsCoef=NA, intervention_variablesCoef=NA, easterCoef=NA) {
                                             easterCoef=NA) {
-                                            
+
   new("Extended_tramoseats_spec", series_name = series_name, frequency=frequency, method=method, spec = spec, preliminary.check = preliminary.check,
       estimate.from = estimate.from, estimate.to = estimate.to, estimate.first = estimate.first,
       estimate.last = estimate.last, estimate.exclFirst = estimate.exclFirst, estimate.exclLast = estimate.exclLast,
@@ -386,26 +386,26 @@ setMethod("to_JD_JSON", "Extended_tramoseats_spec", function(object, indent = FA
   #{
   require(rjson)
   require(RJDemetra)
-  
-  
+
+
   # browser()
   if(diff == TRUE)
   {
-    
-    
+
+
     #browser()
     basic_spec_instance   <- from_SA_spec(SA_spec = tramoseats_spec(basic_spec), method="TS", userdef.varFromFile = FALSE)
-    
+
     object       <- difference_objects_preserving_name_and_spec(object, basic = basic_spec_instance)
   }
   else
   {
     object <- to_named_list(object)
   }
-  
+
   # Convert the object in JSON using rjson
   json_spec <- rjson::toJSON(object)#, indent = indent)
-  
+
   if(indent == TRUE)
   {
     # Aggiungi andare a capo dopo ogni coppia chiave-valore che termina per "
@@ -419,8 +419,8 @@ setMethod("to_JD_JSON", "Extended_tramoseats_spec", function(object, indent = FA
     json_spec <- gsub("\\}(?!\\])", "\n}", json_spec, perl = TRUE) # without PERL: json_spec <- gsub("}([^\\]])", "\n}\\1", json_spec)
     # Aggiungi degli spazi dopo le virgole, ma solo quando non sono seguite da un carattere di nuova riga
     json_spec <- gsub(",([^\\r\\n])", ", \\1", json_spec)
-    
-    
+
+
     require(stringr)
     vec_pattern <- "\\[[^\\[\\{\\}]*?\\]"
     json_spec <- str_replace_all(json_spec, vec_pattern, function(match) {
@@ -430,7 +430,7 @@ setMethod("to_JD_JSON", "Extended_tramoseats_spec", function(object, indent = FA
       return(match)
     })
   }
-  
+
   return(json_spec)
 })
 
@@ -441,7 +441,7 @@ setGeneric("from_JD_JSON", function(object, json) standardGeneric("from_JD_JSON"
 setMethod ("from_JD_JSON", "Extended_tramoseats_spec", function(object, json) {
   require(rjson)
   json_list <- fromJSON(json)
-  
+
   # Inizializza gli argomenti per il costruttore
   args <- list(
     series_name = json_list$series_name,
@@ -526,13 +526,13 @@ setMethod ("from_JD_JSON", "Extended_tramoseats_spec", function(object, json) {
     ramps = json_list$ramps,
     intervention_variables = json_list$intervention_variables
   )
-  
+
   # Removes arguments not specified
   args <- args[sapply(args, Negate(is.null))]
-  
+
   # Build a new Extended_tramoseats_spec object
   do.call("Extended_tramoseats_spec", args)
-  
+
 })
 
 
@@ -554,15 +554,15 @@ setMethod ("from_JD_JSON", "Extended_tramoseats_spec", function(object, json) {
 to_named_list <- function(object) {
   # Obtain slot names for S4 object
   slot_names <- slotNames(class(object))
-  
+
   # Initialize an empty named list
   result_list <- list()
-  
+
   # Add slot values to named list using slot()
   for (slot_name in slot_names) {
     result_list[[slot_name]] <- slot(object, slot_name)
   }
-  
+
   return(result_list)
 }
 
@@ -570,14 +570,13 @@ to_named_list <- function(object) {
 extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader_ext_reg, method="TS", java_processing=FALSE ,...)
 {
   require(RJDemetra)
-  
+
   compute(workspace)
-  #browser()
-  
+
   #jmodel          <- RJDemetra::get_jmodel(workspace, progress_bar = TRUE) # to retrieve external regressors by name
   cat("Loading models\n")
-  
-  
+
+
   ##browser()
   ##This part of code should be optimized (always do java)
   # if(java_processing == FALSE)
@@ -591,52 +590,52 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
   #   jm <- m
   #   m  <- get_r_model_from_j_model(m)
   # }
-  
+
   cat("Loading external variables\n")
   ##browser()
   all_model_vars_info <- data_reader_ext_reg@read_ext_reg_info(workspace)
-  
+
   #all_jmodel_vars <- getUserDefinedTdVariables_info(jmodel) # per editare la scrittura
-  
+
   #browser()
-  
+
   extended_tramoseats_spec_list <- list()
-  
+
   for (series_name in names(m[[1]]))
   {
     easterCoef <- NA
-    
+
     series        <-  m[[1]][[series_name]]
     #browser()
     if(is.null(m[[1]][[series_name]])) # due to ramps or Intervention variable...
     {
       #... try to load series from jm
-      
+
       message("Some series have value NULL in the R object, they are taken from Java objects")
-      
+
       ts              <- jm[[1]][[series_name]]
       time_series_obj <- get_indicators(x = ts, "y")[[1]]
-      
+
       message(paste("Series", series_name,"has been found in Java object;"))
       message("despite the some warnings-(non-blocking)errors below, the JD_JSON has been producted correctly!!")
       message("(you can use it for the processing on Java Servers or in RJDProcessor, for example)")
       message("Workspaces produced by RJDProcessor are OK fro the GUI application")
       message("Warning-(non-blocking)errors are due to missing RAMP and INTERVENTION_VARIABLE support in RJDemetra")
       message("Because of this some plots won't be produces or you must use get_jmodel instead of get_model in RJDemetra")
-      
-      
+
+
       frequency     <-  frequency(time_series_obj)
       basic_spec    <-  jm[[1]][[series_name]]$spec$getCore()$toString()
       #if(basic_spec=="TS") { basic_spec<-"RSA0" } #TS=custom spec --> by default set "RSA0" #encoded in the constructor call of Extended_tramoseats_spec
-      
+
       #browser()
       series   <- jm[[1]][[series_name]]#$spec #$getCore()
-      
-      
-      
-      
+
+
+
+
       ##########################################
-      
+
 
       # READING OF FIXED COEFFICIENTS (FOR EASTER, LY, RAMPS AND INTERVENTION_VARS) #
       # see also the part before
@@ -653,32 +652,32 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
       # jTradingDays    <- jCalendar$getTradingDays()
       # jUser_Td_VarsString      <- jTradingDays$getUserVariables()
       # file_list <- list()
-      # 
+      #
       # coef_list <- list() #Added
-      # 
+      #
       # idx_file_list = 1
-      # 
+      #
       # usrDefVarCount    <- jRegression$getUserDefinedVariablesCount()
-      
+
       #browser()
-      
+
       if(!is.null(series_name) && !is.na(series_name) && !is.null(workspace))
       {
         #jm           <- get_jmodel(workspace)
         #series_j     <- jm[[1]][[series_name]]$spec
-        series_j     <- ts$spec 
+        series_j     <- ts$spec
         jRegression  <- series_j$getCore()$getTramoSpecification()$getRegression()
         if(jRegression$hasFixedCoefficients())
         {
           fixed_coef <- jRegression$getAllFixedCoefficients()
-          
+
           jRegression$getFixedCoefficients("easter")
           if(!is.null(jRegression$getFixedCoefficients("easter")) && !is.na(jRegression$getFixedCoefficients("easter")))
           {
             easterCoef <- jRegression$getFixedCoefficients("easter")
           }
 
-          
+
           rps <- get_ramps_from_java(ts)
           if(length(rps)>0)
           {
@@ -687,32 +686,32 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
             {
               #browser()
               all_model_vars_info$ramps[[series_name]] <- lapply(all_model_vars_info$ramps[[series_name]], function(ramp) {
-                if (ramp$start == rp$start && ramp$end == rp$end) {  if(!is.null(jRegression$getFixedCoefficients(rp$name))){ramp$fixed_coef <- jRegression$getFixedCoefficients(rp$name)} else {ramp$fixed_coef <- NA}   }  
+                if (ramp$start == rp$start && ramp$end == rp$end) {  if(!is.null(jRegression$getFixedCoefficients(rp$name))){ramp$fixed_coef <- jRegression$getFixedCoefficients(rp$name)} else {ramp$fixed_coef <- NA}   }
                     return(ramp)  })
-            }  
-            
-          }  
-          
+            }
+
+          }
+
           ivs <- get_intervention_variables_from_java(ts)
-          
-          
-          
-        }  
-        
+
+
+
+        }
+
         #asd
-        
+
         # browser()
         # j_Regression <- series_j$getCore()$getTramoSpecification()$getRegression()
         # series_j     <- jm[[1]][[series_name]]$spec
         # jRegression  <- series_j$getRegression()
-        
-      }  
-        
-        
-        
+
+      }
+
+
+
       ##############################################################################
-        
-      
+
+
       # Fundamental to make everything works!
       series_j <- jm[[1]][[series_name]]$spec
       Ramp                 <- J("ec/tstoolkit/timeseries/regression/Ramp")
@@ -720,19 +719,19 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
       ArrayList            <- J("java/util/ArrayList")
       empty_ramps                  <- .jarray(list(), contents.class = "ec/tstoolkit/timeseries/regression/Ramp")
       empty_intervention_variables <- .jarray(list(), contents.class = "ec/tstoolkit/timeseries/regression/InterventionVariable")
-      
+
       series_j$getCore()$getTramoSpecification()$getRegression()$setRamps(empty_ramps)
       series_j$getCore()$getTramoSpecification()$getRegression()$setInterventionVariables(empty_intervention_variables)
       # series_j$getCore()$getTramoSpecification()$getRegression()$setRamps(NULL) # place an empty arraylist()?
       # series_j$getCore()$getTramoSpecification()$getRegression()$setInterventionVariables(NULL) # place an empty arraylist()?
       series$spec <- series_j
-      
+
       series   <- jSA2R(x = series)
     } else # series in R, not everything is available in R, e.g. easter Fixed Coefficient
     {
       #browser()
       frequency     <-  frequency(get_ts(series))
-      
+
       jRegression<-jm[[1]][[series_name]]$spec$getCore()$getTramoSpecification()$getRegression()
       if(jRegression$hasFixedCoefficients())
       {
@@ -741,16 +740,16 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
           easterCoef <- jRegression$getFixedCoefficients("easter")
         }
       }
-      
+
       # Suppress warning here?
       suppressWarnings({
         #browser()
         basic_spec    <- get_jspec(jm[[1]][[series_name]])$toString()
       })
-      
+
       #if(basic_spec=="TS") { basic_spec<-"RSA0" } #TS=custom spec --> by default set "RSA0" #encoded in the constructor call of Extended_tramoseats_spec
     }
-    
+
     #asd
     #browser()
     spec <- from_SA_spec(series, series_name = series_name, frequency = frequency, method = method, basic_spec=basic_spec, all_model_vars_info = all_model_vars_info, data_reader_ext_reg = data_reader_ext_reg, workspace = workspace, easterCoef=easterCoef)
@@ -759,9 +758,9 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
   }
   #browser()
   gc() # to clean memory after the use of rJava
-  
+
   return(extended_tramoseats_spec_list)
-  
+
 }
 
 
@@ -770,7 +769,7 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
 from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_integer_  ,method = "TS" ,basic_spec="RSA0", userdef.varFromFile=TRUE, all_model_vars_info=NULL, data_reader_ext_reg=NULL ,workspace=NA, easterCoef=NA)
 {
   require(RJDemetra)
-  
+
   ##### for additional fields handling #####
   #browser()
   ramps                  = NA
@@ -779,27 +778,27 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_in
   #rampsCoef             = NA
   #intervention_variablesCoef = NA
   #leap_yearCoef         = NA
-  
+
   suppressWarnings(NA_workspace <- is.na(workspace))
   if(!is.null(workspace) && !NA_workspace) # for the basic_specs there is no workspace
   {
     #browser()
-    
+
     #all_model_vars_info = data_reader_ext_reg@read_ext_reg_info(workspace)
-    
+
     #browser()  # Move the istructions to retrieve all_model_vars_info into this function instead of the Data_reader_ext_reg?
     all_model_ivs_info        <- all_model_vars_info[["intervention_vars"]]
     all_model_ramps_info      <- all_model_vars_info[["ramps"]]
     all_model_ext_vars_info   <- all_model_vars_info[["ext_vars"]]
     all_model_usrDef_var_coef <- all_model_vars_info[["varCoef"]]
-    
+
     no_ramps <- all(sapply(all_model_ramps_info, function(x) length(x) == 0))
     no_ivs   <- all(sapply(all_model_ivs_info  , function(x) length(x) == 0))
     no_coef  <- (all(sapply(all_model_usrDef_var_coef  , function(x) length(x) == 0)) || all(unlist(all_model_usrDef_var_coef) == 0))
-    
+
     if(!(no_ramps && no_ivs))
     {
-      
+
       # cat("\n\n_____________________________________________________\n")
       # cat(paste("time series:", series_name, "\n" ))
       # print("WARNING: In your JDemetra+ Workspace RAMPS or INTERVENTION VARIABLES are used")
@@ -807,33 +806,33 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_in
       # print("However you can produce JSONs for Java Servers")
       # #print("SUGGESTION: replace them with External Variables with the same values to obtain similar results")
       # cat("_____________________________________________________\n\n")
-      
+
       if(!no_ramps)
       {
         ramps =  all_model_ramps_info[[series_name]]
-        
+
         # To add rampsCoef as separate fields in JD_JSON, but we want to pass the coefficients in the ramo_info JSON object, together with start and end
         # if (length(ramps) > 0)
         # {
         #   rampsCoef <- numeric(0)  # inizializza il vettore vuoto
-        #   for (r in ramps) 
+        #   for (r in ramps)
         #   {
         #       rampsCoef <- append(rampsCoef, r$fixed_coef)  # aggiungi l'elemento a rampsCoef
         #   }
-        # }  
- 
-        
+        # }
+
+
       }
       if(!no_ivs)
       {
         intervention_variables =  all_model_ivs_info[[series_name]]
       }
-      
+
     }
   }
-    
-  
-  
+
+
+
   #browser()
   if(!is.null(SA_spec$regarima$specification))#added for diff #tramoseats_spec object
   {
@@ -844,25 +843,25 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_in
     regarima_spec <- SA_spec$regarima
     seats_spec    <- SA_spec$seats
   }
-  
+
   if(nrow(regarima_spec$estimate) == 3)
   {
     regarima_spec <- simplify_leaves(regarima_spec)
     seats_spec    <- simplify_leaves(seats_spec)
   }
-  
-  
+
+
   estimate_span_details <- span_unpack_into_spec(span = regarima_spec$estimate$span)
   outliers_span_details <- span_unpack_into_spec(span = regarima_spec$outliers$span)
-  
-  
+
+
   if(userdef.varFromFile == TRUE)
   {
     vars_mts       <- NA #ts()
     usrdef.varType <- NA
     usrdef.varCoef <- NA
     userdef.varFromFile.infoList <- NULL
-    
+
     if(!is.null(all_model_ext_vars_info))
     {
       if(is.na(series_name))
@@ -871,7 +870,7 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_in
       }else
       {
         vars_mts          <- data_reader_ext_reg@read_ext_reg_data(all_model_ext_vars_info, series_name, frequency=frequency) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        
+
         user_def_var_info <- get_user_def_var_info(regarima_spec) # si può prendere anche dal workspace?
         usrdef.varType    <- user_def_var_info$type
         #usrdef.varCoef    <- user_def_var_info$coef
@@ -882,7 +881,7 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_in
         {
           usrdef.varCoef <- NA
         }
-        
+
         userdef.varFromFile.infoList = all_model_ext_vars_info[[series_name]]
         #browser()
         if (!inherits(vars_mts, c("ts", "mts")) && is.na(vars_mts))  {  userdef.varFromFile = FALSE  } #se è un problema togliere questa riga
@@ -902,11 +901,11 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_in
     {
       usrdef.varCoef <- NA
     }
-    
+
     userdef.varFromFile.infoList <- NULL
   }
-  
-  
+
+
   extended_tramoseats_spec <- Extended_tramoseats_spec(
     spec               = ifelse(basic_spec=="TS", "RSA0", basic_spec),
     series_name        = series_name, # custom field
@@ -1001,99 +1000,99 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_in
 
 
 read_spec_list_from_json_file <- function(file_name, spec_format="Extended_tramoseats_spec") {
-  
+
   require(rjson)
   #browser()
-  
+
   # print("here\n")
   # print(file_name)
-  
+
   json_text <- readLines(file_name)
-  
+
   # Comments removal pt1 of 2
   # How to do it? at this point, remove only the text between // (included) at the end of the line
   # Removes single rows comments (the ones that start with //)
   json_text <- gsub("//.*$", "", json_text)
-  
-  
+
+
   # Merge the rows in a single string
   json_string <- paste(json_text, collapse = "")
-  
+
   # Comments removal pt2 of 2
   # How to do it? at this point, remove only /*...*/ multiline comments, considreing that all the lines have been merged into one
   # Removes multiline comments (the ones which starts with /* and ends with */)
   # json_string <- gsub("/\\*.*?\\*/", "", json_string, fixed = TRUE)
   json_string <- gsub("/\\*(.|\\n)*?\\*/", "", json_string)
-  
-  
+
+
   # Parsing of JSON array
   json_array <- fromJSON(json_string)
-  
+
   json_list <- list()
   i=1
   for (json in json_array)
   {
     json <- NA_not_as_char(json)
-    
+
     #browser()
     if(spec_format=="Extended_tramoseats_spec")
     {
       json  <- do.call(Extended_tramoseats_spec, json)
       series_name <- json@series_name
     } else {series_name <- json$series_name}
-    
-    
+
+
     if(!is.null(series_name)){
       json_list[[series_name]]=json
     } else{
       json_list[[as.character(i)]]=json
       i=i+1
     }
-    
+
   }
-  
+
   return(json_list)
-  
+
 }
 
 
 to_tramoseats_spec_args<-function(extended_tramoseats_spec, data_reader_ext_reg)
 {
   # TODO: remove also ramps, intervention_variables, rampsCoef, intervention_variablesCoef and easterCoef that are not supported in R
-  
+
   # Extract the elements which are in Extended_tramoseats_spec and not in tramoseats_spec
   userdef.varFromFile          <- extended_tramoseats_spec$userdef.varFromFile
   userdef.varFromFile.infoList <- extended_tramoseats_spec$userdef.varFromFile.infoList
   series_name                  <- extended_tramoseats_spec$series_name
   frequency                    <- extended_tramoseats_spec$frequency
   method                       <- extended_tramoseats_spec$method
-  
+
   # Remove the elements present in Extended_tramoseats_spec and not in tramoseats_spec
   extended_tramoseats_spec <- extended_tramoseats_spec[ ! names(extended_tramoseats_spec) %in% c("series_name") ] # è già memorizzato in ts_name; lo tolgo
   extended_tramoseats_spec <- extended_tramoseats_spec[ ! names(extended_tramoseats_spec) %in% c("frequency") ]
   extended_tramoseats_spec <- extended_tramoseats_spec[ ! names(extended_tramoseats_spec) %in% c("method") ]
   extended_tramoseats_spec <- extended_tramoseats_spec[ ! names(extended_tramoseats_spec) %in% c("userdef.varFromFile") ]
   extended_tramoseats_spec <- extended_tramoseats_spec[ ! names(extended_tramoseats_spec) %in% c("userdef.varFromFile.infoList") ]
-  
+
   #browser()
-  
+
   # Use the elements extracted from Extended_tramoseats_spec to prepare the external regressors
   if(!(is.null(userdef.varFromFile) || userdef.varFromFile == FALSE)){
     if(!is.null(userdef.varFromFile.infoList)){
-      
+
       # the  ext_regr_data_reader wants a named list of info as an input
       info_list <- list()
       info_list[[series_name]]  <- userdef.varFromFile.infoList
-      
+
       vars_mts                  <- data_reader_ext_reg@read_ext_reg_data(info_list, series_name, frequency) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      
+
       extended_tramoseats_spec[["usrdef.var"]] <- vars_mts
     }
   }
-  
+
   tramoseats_spec <- extended_tramoseats_spec
   return(tramoseats_spec)
-  
+
 }
 
 
@@ -1110,15 +1109,15 @@ to_SA_spec<-function(extended_tramoseats_spec)
 get_ramps_from_java<- function(series)
 {
   #browser()
-  
+
   ramps_ret <- list()
-  
+
   regression<-series$spec$getRegression()
   core<-regression$getCore()
   core_regression<-core$getRegression()
   ramps_count<-core_regression$getRampsCount() # for loop over this
-  
-  
+
+
   i<-0
   while(i < ramps_count)
   {
@@ -1127,37 +1126,37 @@ get_ramps_from_java<- function(series)
     end_ramp_i   <- ramp_i$getEnd()$toString()
     name_ramp_i  <- ramp_i$getName()
     ramp_i_ret   <- list("start"=begin_ramp_i, "end"=end_ramp_i, name=name_ramp_i)
-    
+
     ramps_ret[[length(ramps_ret) + 1]] <- ramp_i_ret
-    
+
     i<-i+1
   }
   return(ramps_ret)
-  
-  
+
+
 }
 
 
 get_intervention_variables_from_java<- function(series)
 {
   #browser()
-  
+
   ivs_ret <- list()
-  
+
   regression<-series$spec$getRegression()
 
   core<-regression$getCore()
   core_regression<-core$getRegression()
   ivs_count<-core_regression$getInterventionVariablesCount() # for loop over this
-  
+
   if(ivs_count>0)
   {
-    message("NOTE: Your project seems to contain INTERVENTION VARIABLES: It is 
+    message("NOTE: Your project seems to contain INTERVENTION VARIABLES: It is
       not possible to FIX INTERVENTION VARIABLES coefficients,
       if you want to do it, convert them into UserDefined Variables, if you don't
       need to do it, everything is ok")
-  }  
-  
+  }
+
   i<-0
   while(i < ivs_count)
   {
@@ -1167,13 +1166,13 @@ get_intervention_variables_from_java<- function(series)
     # end_ramp_i   <- ramp_i$getEnd()$toString()
     # name_ramp_i  <- ramp_i$getName()
     # ramp_i_ret   <- list("start"=begin_ramp_i, "end"=end_ramp_i, name=name_ramp_i)
-    # 
+    #
     # ramps_ret[[length(ramps_ret) + 1]] <- ramp_i_ret
-    
+
     i<-i+1
   }
   return(ivs_ret)
-  
-  
+
+
 }
 
