@@ -83,7 +83,7 @@ get_basic_spec <- function(spec)
       ramps = NA,
       intervention_variables = NA,
       # leap_yearCoef         = NA,
-      easterCoef            = NA
+      easterCoef            = 0#NA
       #rampsCoef             = NA,
       #intervention_variablesCoef = NA
     )
@@ -171,7 +171,7 @@ get_basic_spec <- function(spec)
       ramps = NA,
       intervention_variables = NA,
       # leap_yearCoef         = NA,
-      easterCoef            = NA
+      easterCoef            = 0#NA
       #rampsCoef             = NA,
       #intervention_variablesCoef = NA
     )
@@ -259,7 +259,7 @@ get_basic_spec <- function(spec)
       ramps = NA,
       intervention_variables = NA,
       # leap_yearCoef         = NA,
-      easterCoef            = NA
+      easterCoef            = 0#NA
       #rampsCoef             = NA,
       #intervention_variablesCoef = NA
       )
@@ -347,7 +347,7 @@ get_basic_spec <- function(spec)
       ramps = NA,
       intervention_variables = NA,
       # leap_yearCoef         = NA,
-      easterCoef            = NA
+      easterCoef            = 0#NA
       #rampsCoef             = NA,
       #intervention_variablesCoef = NA
     )
@@ -435,7 +435,7 @@ get_basic_spec <- function(spec)
       ramps = NA,
       intervention_variables = NA,
       # leap_yearCoef         = NA,
-      easterCoef            = NA
+      easterCoef            = 0#NA
       #rampsCoef             = NA,
       #intervention_variablesCoef = NA
     )
@@ -523,7 +523,7 @@ get_basic_spec <- function(spec)
       ramps = NA,
       intervention_variables = NA,
       # leap_yearCoef         = NA,
-      easterCoef            = NA
+      easterCoef            = 0#NA
       #rampsCoef             = NA,
       #intervention_variablesCoef = NA
     )
@@ -611,7 +611,7 @@ get_basic_spec <- function(spec)
       ramps = NA,
       intervention_variables = NA,
       # leap_yearCoef         = NA,
-      easterCoef            = NA
+      easterCoef            = 0#NA
       #rampsCoef             = NA,
       #intervention_variablesCoef = NA
       )

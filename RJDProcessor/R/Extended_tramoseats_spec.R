@@ -131,7 +131,7 @@ setMethod("initialize", "Extended_tramoseats_spec",
                    seats.trendBoundary = NA_integer_, seats.seasdBoundary = NA_integer_,
                    seats.seasdBoundary1 = NA_integer_, seats.seasTol = NA_integer_,
                    seats.maBoundary = NA_integer_, seats.method = NA, ramps=NA, intervention_variables=NA, #rampsCoef=NA, intervention_variablesCoef=NA, easterCoef=NA) {
-                   easterCoef=NA) {
+                   easterCoef=0) {
 
             # Convert possible numeric arguments to integer if they are compatible
             integer_args_to_check <- c( "frequency", "estimate.first", "estimate.last", "estimate.exclFirst", "estimate.exclLast", "tradingdays.stocktd",
@@ -334,7 +334,7 @@ Extended_tramoseats_spec_helper <- function(series_name = NULL, frequency=NA_int
                                             seats.seasdBoundary = NA_integer_, seats.seasdBoundary1 = NA_integer_,
                                             seats.seasTol = NA_integer_, seats.maBoundary = NA_integer_,
                                             seats.method = NA, ramps = NA, intervention_variables = NA, #rampsCoef=NA, intervention_variablesCoef=NA, easterCoef=NA) {
-                                            easterCoef=NA) {
+                                            easterCoef=0) {
 
   new("Extended_tramoseats_spec", series_name = series_name, frequency=frequency, method=method, spec = spec, preliminary.check = preliminary.check,
       estimate.from = estimate.from, estimate.to = estimate.to, estimate.first = estimate.first,
@@ -603,7 +603,7 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
 
   for (series_name in names(m[[1]]))
   {
-    easterCoef <- NA
+    easterCoef <- 0
 
     series        <-  m[[1]][[series_name]]
     #browser()
@@ -686,7 +686,7 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
             {
               #browser()
               all_model_vars_info$ramps[[series_name]] <- lapply(all_model_vars_info$ramps[[series_name]], function(ramp) {
-                if (ramp$start == rp$start && ramp$end == rp$end) {  if(!is.null(jRegression$getFixedCoefficients(rp$name))){ramp$fixed_coef <- jRegression$getFixedCoefficients(rp$name)} else {ramp$fixed_coef <- NA}   }
+                if (ramp$start == rp$start && ramp$end == rp$end) {  if(!is.null(jRegression$getFixedCoefficients(rp$name))){ramp$fixed_coef <- jRegression$getFixedCoefficients(rp$name)} else {ramp$fixed_coef <- 0} } #{ramp$fixed_coef <- NA}   }
                     return(ramp)  })
             }
 
@@ -766,7 +766,7 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
 
 
 
-from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_integer_  ,method = "TS" ,basic_spec="RSA0", userdef.varFromFile=TRUE, all_model_vars_info=NULL, data_reader_ext_reg=NULL ,workspace=NA, easterCoef=NA)
+from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_integer_  ,method = "TS" ,basic_spec="RSA0", userdef.varFromFile=TRUE, all_model_vars_info=NULL, data_reader_ext_reg=NULL ,workspace=NA, easterCoef=0)#NA)
 {
   require(RJDemetra)
 

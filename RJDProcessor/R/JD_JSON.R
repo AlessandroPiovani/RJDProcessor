@@ -44,7 +44,7 @@ rJavaRampsAndIVsHandling <- function(sa, ramps, intervention_variables)
       jRegr<-series_j$getCore()$getTramoSpecification()$getRegression()
 
       #browser()
-      if(ramp$fixed_coef!="NA" && !is.na(ramp$fixed_coef))
+      if(ramp$fixed_coef!=0 && ramp$fixed_coef!="NA" && !is.na(ramp$fixed_coef)) # also 0.0 means "do not fix". Maybe it could be a default
       {
         jRegr$setFixedCoefficients( r$getName(), .jarray(as.double(ramp$fixed_coef)))
       }
@@ -211,7 +211,7 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_reader, ext_reg_d
       sa <- jtramoseats(ts_obj, spec = spec)
 
       #browser()
-      if(!is.null(easterCoef) && !is.na(easterCoef) && easterCoef!="NA")
+      if(!is.null(easterCoef) && !is.na(easterCoef) && easterCoef!="NA" && easterCoef!=0) # 0 MEANS "DO NOT FIX"
       {
         jRegr<-sa$spec$getCore()$getTramoSpecification()$getRegression()
         jRegr$setFixedCoefficients( "easter", .jarray(as.double(easterCoef)))
