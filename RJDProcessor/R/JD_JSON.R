@@ -93,7 +93,10 @@ rJavaRampsAndIVsHandling <- function(sa, ramps, intervention_variables)
       intervention_variable$setSequences(seq_array)
       intervention_variable$setDelta(iv$delta)
       intervention_variable$setDeltaS(iv$delta_s)
-      intervention_variable$setD1DS(iv$D1DS)
+      if(iv$D1DS==TRUE) # beacause also the setting of D1DS=FALSE resets all the deltas
+      {
+        intervention_variable$setD1DS(iv$D1DS)
+      }
       series_j$getCore()$getTramoSpecification()$getRegression()$add(intervention_variable)
     }
 
