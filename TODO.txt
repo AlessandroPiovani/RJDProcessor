@@ -1,5 +1,7 @@
 - Fixed Coefficients for Intervention Variables (now you need to transform them into UsrDefined variables…)
+	To see how to format the variable name for the variable whose coefficent has to be fixed, see the FixedCoefficient panel on the GUI
   
 - Fixed Coefficients for JD+'s automatic TD and Leap Year should be tested and eventually added. I think that Leap Year and automatic TD most have dedicated slots for their coefficents (leapYearCoef and automaticTdCoef)  
     
 NOTE: Ramps, UserDefinedVariables, Easter and Outliers fixed coefficents are ok 
+
