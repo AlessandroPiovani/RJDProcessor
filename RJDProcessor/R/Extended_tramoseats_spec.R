@@ -1074,6 +1074,19 @@ to_tramoseats_spec_args<-function(extended_tramoseats_spec, data_reader_ext_reg)
   extended_tramoseats_spec <- extended_tramoseats_spec[ ! names(extended_tramoseats_spec) %in% c("userdef.varFromFile") ]
   extended_tramoseats_spec <- extended_tramoseats_spec[ ! names(extended_tramoseats_spec) %in% c("userdef.varFromFile.infoList") ]
 
+
+  # If "estimate.first", "estimate.last", "outlier.first", "outlier.last" are "NA" (string), remove them
+  suspectedNA <- c("estimate.first", "estimate.last", "outlier.first", "outlier.last")
+
+  for(field in suspectedNA)
+  {
+    if(!is.null(extended_tramoseats_spec[[field]]) && is.na(extended_tramoseats_spec[[field]]))
+    {
+      extended_tramoseats_spec <- extended_tramoseats_spec[ ! names(extended_tramoseats_spec) %in% c(field) ]
+    }
+  }
+
+
   #browser()
 
   # Use the elements extracted from Extended_tramoseats_spec to prepare the external regressors

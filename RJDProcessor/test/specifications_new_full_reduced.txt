@@ -19,7 +19,12 @@
 "usrdef.varCoef":0.6, 
 "easter.type":"IncludeEasterMonday", 
 "easter.duration":3, 
-"arima.mu":false, 
+"arima.p":1, 
+"arima.q":3, 
+"arima.bp":1, 
+"arima.coefEnabled":true, 
+"arima.coef":[0, 0.11, 0.1, 0, 0.2, 0.34], 
+"arima.coefType":["Undefined", "Fixed", "Fixed", "Undefined", "Fixed", "Fixed"], 
 "ramps":[{
 "start":"2020-01-01", 
 "end":"2020-12-31", 
@@ -70,8 +75,12 @@
 "usrdef.varCoef":[3, 0], 
 "tradingdays.option":"UserDefined", 
 "easter.type":"IncludeEaster", 
+"arima.p":1, 
 "arima.d":0, 
-"arima.q":2, 
+"arima.q":0, 
+"arima.coefEnabled":true, 
+"arima.coef":[0.7, 0], 
+"arima.coefType":["Fixed", "Undefined"], 
 "easterCoef":2.5
 },
 
@@ -207,6 +216,11 @@
 "usrdef.varType":"Calendar", 
 "tradingdays.option":"UserDefined", 
 "easter.type":"IncludeEaster", 
+"outlier.enabled":true, 
+"outlier.ao":true, 
+"outlier.tc":true, 
+"outlier.ls":true, 
+"automdl.enabled":true, 
 "arima.mu":false
 }
 ]

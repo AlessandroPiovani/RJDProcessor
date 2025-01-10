@@ -21,6 +21,7 @@ spec_file_name            <- "specifications_new.txt"
 
 input_workspace      <- "TURwithRAMPS_fullyR_ws\\workspace.xml"
 #input_workspace      <- "TURwithRAMPS_fullyR_ws_alphabetic_order_test\\workspace.xml"
+input_workspace<-"C:\\Users\\UTENTE\\Documents\\NetBeansProjects3\\JD_JSON_processor_Java-main\\JD_JSON_processor_Java-main\\src\\resources\\TURwithRAMPS_fullyR_ws\\workspace.xml"
 
 input_data_file_name <- "SITIC-TUR\\grezzi.csv"
 regr_directory       <- "SITIC-TUR\\regr"

@@ -1,6 +1,6 @@
 setwd("C:\\Users\\UTENTE\\Desktop\\RJDopenCruncher\\RJDProcessor")
 
-#install.packages("C:\\Users\\UTENTE\\Desktop\\RJDopenCruncher\\RJDProcessor_1.1.1.tar.gz", repos = NULL, type = "source")
+# install.packages("C:\\Users\\UTENTE\\Desktop\\RJDopenCruncher\\RJDProcessor_1.1.1.tar.gz", repos = NULL, type = "source")
 
 
 # Make sure to have all the necessary packages
