@@ -3,7 +3,7 @@
     <item name="metadata">
         <subset>
             <item name="timestamp">
-                <string>7-gen-2025 18.42.13</string>
+                <string>28-gen-2025 16.55.41</string>
             </item>
         </subset>
     </item>
@@ -1326,6 +1326,9 @@
                     <firstYear>2000</firstYear>
                     <firstPeriod>1</firstPeriod>
                     <data>165249.0 150973.0 166636.0 434543.0 363922.0 897666.0 1632602.0 2088758.0 521028.0 170617.0 110446.0 258820.0 172756.0 172334.0 187984.0 473640.0 379879.0 1075194.0 1526365.0 2223411.0 533357.0 202078.0 147757.0 262450.0 162049.0 189254.0 321453.0 408957.0 412090.0 1157509.0 1518648.0 2263211.0 518365.0 232402.0 191306.0 289476.0 200136.0 200264.0 241180.0 560782.0 706843.0 1236951.0 1616884.0 2453188.0 572256.0 263676.0 172037.0 338741.0 227059.0 226519.0 225787.0 485362.0 602833.0 1151821.0 1815353.0 2296139.0 621484.0 318509.0 173336.0 329227.0 260366.0 215516.0 369326.0 482110.0 546487.0 1336020.0 1863947.0 2283314.0 673034.0 350559.0 191517.0 364029.0 260666.0 231482.0 268746.0 776009.0 586623.0 1360370.0 1856099.0 2272948.0 739228.0 318983.0 221431.0 437352.0 263312.0 256271.0 319524.0 890389.0 590087.0 1529538.0 1833647.0 2455521.0 790961.0 342094.0 283110.0 440048.0 269273.0 300165.0 447297.0 643710.0 953463.0 1429763.0 1768872.0 2621542.0 734191.0 372456.0 255335.0 455141.0 321720.0 323364.0 332840.0 730681.0 1053116.0 1364883.0 1867007.0 2707256.0 802511.0 416746.0 266723.0 490150.0 321331.0 318059.0 352891.0 723520.0 781361.0 1438880.0 2145355.0 2576456.0 809838.0 457663.0 275195.0 465227.0 362379.0 308087.0 391087.0 795173.0 761928.0 1529820.0 2172464.0 2640900.0 940820.0 513404.0 289750.0 485113.0 341003.0 282228.0 437940.0 844897.0 639824.0 1645088.0 1835588.0 2600003.0 903195.0 446334.0 349584.0 484025.0 315426.0 330923.0 514880.0 665161.0 631890.0 1584507.0 1947154.0 2757836.0 877830.0 451411.0 383950.0 488274.0 354389.0 328143.0 470383.0 868280.0 940899.0 1490407.0 1897652.0 2794771.0 879989.0 506579.0 356223.0 558335.0 393183.0 371318.0 454255.0 857917.0 1173938.0 1580859.0 2149056.0 2929895.0 952342.0 545640.0 379544.0 642776.0 438369.0 464761.0 706624.0 851448.0 866996.0 1743624.0 2473144.0 2894319.0 1143003.0 669734.0 394429.0 682594.0 479789.0 482153.0 577068.0 1260340.0 887348.0 2012142.0 2484300.0 2965497.0 1154199.0 654094.0 472173.0 787987.0 505785.0 510045.0 707072.0 1204264.0 967116.0 2183517.0 2370576.0 3033734.0 1349856.0 701495.0 595077.0 828986.0 527208.0 544957.0 766718.0 1342209.0 1027830.0 2217798.0 2430658.0 3381633.0 1339408.0 820742.0 683952.0 866336.0 587179.0 531153.0 132532.0 40769.0 134592.0 1087630.0 2290488.0 3573214.0 1358464.0 529479.0 140576.0 146178.0 146670.0 252317.0 173787.0 216447.0 898009.0 2055027.0 2995755.0 3594439.0 1576730.0 994475.0 533332.0 718458.0 512797.0 553484.0 615371.0 1269988.0 1183771.0 2352785.0 2892196.0 3218467.0 1500282.0 1042279.0 607488.0 912530.0 708603.0 600685.0 724499.0 1428823.0 990286.0 2145526.0 2605188.0 3336978.0 1570608.0 872143.0 619728.0 1600000.0 1700000.0</data>
+                    <metaData>
+                        <property name="@timestamp" value="Tue Jan 28 16:55:38 CET 2025"/>
+                    </metaData>
                 </ts>
             </item>
             <item name="domainspec">
@@ -1351,43 +1354,24 @@
 <subset>
     <item name="mu">
         <param type="Estimated">
-            <value>257.11776300476527</value>
+            <value>1205.6037611351187</value>
         </param>
-    </item>
-    <item name="phi">
-        <params>
-            <coef type="Estimated">
-                <value>0.2986071171097749</value>
-                <stde>0.06908602187622659</stde>
-                <tstat>4.322250854807571</tstat>
-            </coef>
-            <coef type="Estimated">
-                <value>-0.03252559977646491</value>
-                <stde>0.0747679165432593</stde>
-                <tstat>-0.4350208121373318</tstat>
-            </coef>
-            <coef type="Estimated">
-                <value>-0.11522290995513136</value>
-                <stde>0.06761969603153417</stde>
-                <tstat>-1.703984441181126</tstat>
-            </coef>
-        </params>
     </item>
     <item name="theta">
         <params>
             <coef type="Estimated">
-                <value>-0.9319455433105397</value>
-                <stde>0.028812366769032607</stde>
-                <tstat>-32.3453311135894</tstat>
+                <value>-0.2858578017472089</value>
+                <stde>0.061801239649124394</stde>
+                <tstat>-4.625437990729025</tstat>
             </coef>
         </params>
     </item>
     <item name="btheta">
         <params>
             <coef type="Estimated">
-                <value>-0.47009269036205703</value>
-                <stde>0.0580584035019852</stde>
-                <tstat>-8.096893162864582</tstat>
+                <value>-0.7561767409730864</value>
+                <stde>0.04674637380821377</stde>
+                <tstat>-16.1761582636431</tstat>
             </coef>
         </params>
     </item>
@@ -1402,39 +1386,64 @@
                             </item>
                             <item name="regression">
 <subset>
-    <item name="outliers">
-        <strings>
-            <items>TC.2020-08-01 LS.2021-05-01 LS.2023-12-01 LS.2020-03-01 TC.2020-07-01 TC.2021-07-01 AO.2021-02-01 TC.2022-05-01 AO.2015-05-01</items>
-        </strings>
+    <item name="calendar">
+        <subset>
+            <item name="td">
+                <subset>
+                    <item name="option">
+                        <string>TradingDays</string>
+                    </item>
+                    <item name="leapyear">
+                        <boolean>true</boolean>
+                    </item>
+                </subset>
+            </item>
+            <item name="easter">
+                <subset>
+                    <item name="type">
+                        <string>Standard</string>
+                    </item>
+                </subset>
+            </item>
+        </subset>
+    </item>
+    <item name="intervention1">
+        <subset>
+            <item name="delta">
+                <double>1.0</double>
+            </item>
+            <item name="deltas">
+                <double>1.0</double>
+            </item>
+            <item name="name">
+                <string>Intervention variable</string>
+            </item>
+            <item name="sequences">
+                <strings>
+                    <items>2020-01-01.2021-01-31</items>
+                </strings>
+            </item>
+        </subset>
+    </item>
+    <item name="fixedcoefficients">
+        <subset>
+            <item name="td">
+                <doubles>
+                    <data>0.0 0.2 0.0 0.0 0.0 0.0</data>
+                </doubles>
+            </item>
+            <item name="lp">
+                <double>0.1</double>
+            </item>
+            <item name="I:{2020-01-01$2021-01-31}(delta=1, deltas=1)">
+                <double>0.11</double>
+            </item>
+        </subset>
     </item>
     <item name="coefficients">
         <subset>
-            <item name="TC (2020-08-01)">
-                <double>804444.4216137282</double>
-            </item>
-            <item name="LS (2021-05-01)">
-                <double>714046.6634081746</double>
-            </item>
-            <item name="LS (2023-12-01)">
-                <double>812659.5746078966</double>
-            </item>
-            <item name="LS (2020-03-01)">
-                <double>-1032140.9846156075</double>
-            </item>
-            <item name="TC (2020-07-01)">
-                <double>695770.1906466866</double>
-            </item>
-            <item name="TC (2021-07-01)">
-                <double>599584.7074918296</double>
-            </item>
-            <item name="AO (2021-02-01)">
-                <double>551157.7042525393</double>
-            </item>
-            <item name="TC (2022-05-01)">
-                <double>387791.4883862586</double>
-            </item>
-            <item name="AO (2015-05-01)">
-                <double>301732.4111150771</double>
+            <item name="easter">
+                <double>125444.01493789941</double>
             </item>
         </subset>
     </item>
@@ -1449,6 +1458,9 @@
             </item>
             <item name="quality">
                 <string>Severe</string>
+            </item>
+            <item name="policy">
+                <string>Interactive</string>
             </item>
         </subset>
     </item>
@@ -2286,13 +2298,6 @@
     <family>Modelling</family>
 </method>
                             </item>
-                            <item name="transform">
-<subset>
-    <item name="function">
-        <string>Auto</string>
-    </item>
-</subset>
-                            </item>
                             <item name="arima">
 <subset>
     <item name="mu">
@@ -2313,16 +2318,65 @@
                             <item name="automdl">
 <subset>
     <item name="enabled">
-        <boolean>true</boolean>
+        <boolean>false</boolean>
     </item>
 </subset>
                             </item>
-                            <item name="outlier">
+                            <item name="regression">
 <subset>
-    <item name="types">
-        <strings>
-            <items>AO LS TC</items>
-        </strings>
+    <item name="calendar">
+        <subset>
+            <item name="td">
+                <subset>
+                    <item name="option">
+                        <string>TradingDays</string>
+                    </item>
+                    <item name="leapyear">
+                        <boolean>true</boolean>
+                    </item>
+                </subset>
+            </item>
+            <item name="easter">
+                <subset>
+                    <item name="type">
+                        <string>Standard</string>
+                    </item>
+                </subset>
+            </item>
+        </subset>
+    </item>
+    <item name="intervention1">
+        <subset>
+            <item name="delta">
+                <double>1.0</double>
+            </item>
+            <item name="deltas">
+                <double>1.0</double>
+            </item>
+            <item name="name">
+                <string>Intervention variable</string>
+            </item>
+            <item name="sequences">
+                <strings>
+                    <items>2020-01-01.2021-01-31</items>
+                </strings>
+            </item>
+        </subset>
+    </item>
+    <item name="fixedcoefficients">
+        <subset>
+            <item name="td">
+                <doubles>
+                    <data>0.0 0.2 0.0 0.0 0.0 0.0</data>
+                </doubles>
+            </item>
+            <item name="lp">
+                <double>0.1</double>
+            </item>
+            <item name="I:{2020-01-01$2021-01-31}(delta=1, deltas=1)">
+                <double>0.11</double>
+            </item>
+        </subset>
     </item>
 </subset>
                             </item>

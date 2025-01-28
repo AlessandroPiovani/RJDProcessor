@@ -185,7 +185,7 @@
 "series_name":"VATAIC", 
 "frequency":12, 
 "method":"TS", 
-"spec":"RSA3"
+"spec":"RSA0"
 },
 
 

@@ -619,7 +619,7 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
       message(paste("Series", series_name,"has been found in Java object;"))
       message("despite the some warnings-(non-blocking)errors below, the JD_JSON has been producted correctly!!")
       message("(you can use it for the processing on Java Servers or in RJDProcessor, for example)")
-      message("Workspaces produced by RJDProcessor are OK fro the GUI application")
+      message("Workspaces produced by RJDProcessor are OK for the GUI application")
       message("Warning-(non-blocking)errors are due to missing RAMP and INTERVENTION_VARIABLE support in RJDemetra")
       message("Because of this some plots won't be produces or you must use get_jmodel instead of get_model in RJDemetra")
 
@@ -693,17 +693,25 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
           }
 
           ivs <- get_intervention_variables_from_java(ts)
+        #   if(length(ivs)>0)
+        #   {
+        #     #browser()
+        #     for (iv in ivs)
+        #     {
+        #       #browser()
+        #
+        #       # correspondingSequence = function that returns TRUE if the sequence of intervention_var is the same as the sequence of an iv
+        #       all_model_vars_info$intervention_vars[[series_name]] <- lapply(all_model_vars_info$intervention_vars[[series_name]], function(intervention_var) {
+        #         if(correspondingSequence && intervention_var$delta == iv$delta && intervention_var$delta_s == iv$delta_s && intervention_var$D1DS == iv$D1DS) {  if(!is.null(jRegression$getFixedCoefficients(iv$name))){intervention_var$fixed_coef <- jRegression$getFixedCoefficients(iv$name)} else {iv$fixed_coef <- 0} } #{iv$fixed_coef <- NA}   }
+        #         return(intervention_var)  })
+        #     }
+        #
+        #   }
+        #
+        #
+        #
+        # }
 
-
-
-        }
-
-        #asd
-
-        # browser()
-        # j_Regression <- series_j$getCore()$getTramoSpecification()$getRegression()
-        # series_j     <- jm[[1]][[series_name]]$spec
-        # jRegression  <- series_j$getRegression()
 
       }
 

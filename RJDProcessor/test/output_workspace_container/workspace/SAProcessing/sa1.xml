@@ -772,13 +772,6 @@
     <family>Modelling</family>
 </method>
                             </item>
-                            <item name="transform">
-<subset>
-    <item name="function">
-        <string>Auto</string>
-    </item>
-</subset>
-                            </item>
                             <item name="arima">
 <subset>
     <item name="mu">
@@ -799,16 +792,7 @@
                             <item name="automdl">
 <subset>
     <item name="enabled">
-        <boolean>true</boolean>
-    </item>
-</subset>
-                            </item>
-                            <item name="outlier">
-<subset>
-    <item name="types">
-        <strings>
-            <items>AO LS TC</items>
-        </strings>
+        <boolean>false</boolean>
     </item>
 </subset>
                             </item>
