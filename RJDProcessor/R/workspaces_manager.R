@@ -490,11 +490,13 @@ merge_workspaces <- function(source_workspaces_path, merged_ws_name = "merged_ws
 #' update_data(ws_xml_path, dr)
 #' setwd(original_directory)
 #' @export
+#'
+#'
+#'
 update_data <- function(workspace_xml_path, data_reader)
 {
   require(RJDemetra)
 
-  #browser()
   ws_path          <- dirname(workspace_xml_path)
   temp_new_ws_path <- paste0(ws_path, "_temp")
 
@@ -532,12 +534,12 @@ update_data <- function(workspace_xml_path, data_reader)
       }
       else #series with data not present in file
       {
-         multiproc_list  <- get_ts(ws_single_ts)
-         timeser         <- multiproc_list[[mp_name]][[ts_name]]
-         spec_and_data   <- get_sa_spec(class, ts_info, timeser)
-         add_sa_item(workspace = new_ws, multiprocessing = mp_name, name = ts_name, sa_obj = spec_and_data)
+        multiproc_list  <- get_ts(ws_single_ts)
+        timeser         <- multiproc_list[[mp_name]][[ts_name]]
+        spec_and_data   <- get_sa_spec(class, ts_info, timeser)
+        add_sa_item(workspace = new_ws, multiprocessing = mp_name, name = ts_name, sa_obj = spec_and_data)
       }
-        pos_sa=pos_sa+1
+      pos_sa=pos_sa+1
     }
     pos_mp=pos_mp+1
   }
@@ -557,44 +559,73 @@ update_data <- function(workspace_xml_path, data_reader)
 }
 
 
-# utility function
+
+
+# utility functions
+ts_r2jd<-function(s){
+  require(rJava)
+  freq<-frequency(s)
+  start<-start(s)
+  jd_freq<-.jcall("ec/tstoolkit/timeseries/simplets/TsFrequency", "Lec/tstoolkit/timeseries/simplets/TsFrequency;", "valueOf", as.integer(freq))
+  jd_period<-.jnew("ec/tstoolkit/timeseries/simplets/TsPeriod", jd_freq, as.integer(start[1]), as.integer(start[2]-1))
+  ts<-.jnew("ec/tstoolkit/timeseries/simplets/TsData", jd_period, as.double(s), FALSE)
+  return (ts)
+}
+
+
 get_sa_spec <-function(class, ts_info, new_data)
 {
-
+  require(rJava)
   class <- tolower(class)
-
+  # browser()
   contains_tramoseats <- grepl("tramoseats", class)
   contains_x13 <- grepl("x13", class)
   contains_regarima <- grepl("regarima", class)
 
-  rSA    <- jSA2R(ts_info)
+  # rSA    <- jSA2R(ts_info)
 
-  if (contains_regarima && contains_tramoseats) {
-          suppressWarnings({
-            spec <- RJDemetra::regarima_spec_tramoseats(spec=rSA)
-            spec_with_data <- regarima_tramoseats(series= new_data , spec = spec)
-          })
-  } else if (contains_regarima && contains_x13) {
-          suppressWarnings({
-                spec <- RJDemetra::regarima_spec_x13(spec=rSA)
-                spec_with_data <- regarima_x13(series= new_data , spec = spec)
-          })
-  } else if (contains_tramoseats) {
-          suppressWarnings({
-               spec <- RJDemetra::tramoseats_spec(spec=rSA)
-               spec_with_data <- tramoseats(series= new_data , spec = spec)
-          })
-  } else if (contains_x13) {
-          suppressWarnings({
-                spec <- RJDemetra::x13_spec(spec=rSA)
-                spec_with_data <- x13(series= new_data , spec = spec)
-          })
-  } else if (contains_regarima) {
-          suppressWarnings({
-                spec <- RJDemetra::regarima_spec_x13(spec=rSA)
-                spec_with_data <- regarima(series= new_data , spec = spec)
-          })
+  # if (contains_regarima && contains_tramoseats) {
+  #   suppressWarnings({
+  #     spec <- RJDemetra::regarima_spec_tramoseats(spec=rSA)
+  #     spec_with_data <- regarima_tramoseats(series= new_data , spec = spec)
+  #   })
+  # } else if (contains_regarima && contains_x13) {
+  #   suppressWarnings({
+  #     spec <- RJDemetra::regarima_spec_x13(spec=rSA)
+  #     spec_with_data <- regarima_x13(series= new_data , spec = spec)
+  #   })
+  # } else if (contains_tramoseats) {
+  if (contains_tramoseats) {
+    suppressWarnings({
+
+      # browser()
+
+      # jrspec <- .jcall("jdr/spec/tramoseats/TramoSeatsSpec", "Ljdr/spec/tramoseats/TramoSeatsSpec;", "of", "RSA0")
+      # jspec  <- .jcall(jrspec, "Lec/satoolkit/tramoseats/TramoSeatsSpecification;", "getCore")
+      jspec  <- .jcall(ts_info$spec, "Lec/satoolkit/tramoseats/TramoSeatsSpecification;", "getCore")
+      jrslt  <- .jcall("ec/tstoolkit/jdr/sa/Processor", "Lec/tstoolkit/jdr/sa/TramoSeatsResults;", "tramoseats", ts_r2jd(new_data), jspec,  ts_info$dictionary)
+      jrslt  <- new("TramoSeats_java", internal = jrslt)
+
+      ts_info$result <- jrslt
+      spec_with_data <- ts_info
+
+
+      # old way: does not work for Java modified objects (e.g. with Ramos or Intervention Variables)
+      # spec <- RJDemetra::tramoseats_spec(spec=rSA)
+      # spec_with_data <- tramoseats(series= new_data , spec = spec)
+    })
   }
+  # else if (contains_x13) {
+  #   suppressWarnings({
+  #     spec <- RJDemetra::x13_spec(spec=rSA)
+  #     spec_with_data <- x13(series= new_data , spec = spec)
+  #   })
+  # } else if (contains_regarima) {
+  #   suppressWarnings({
+  #     spec <- RJDemetra::regarima_spec_x13(spec=rSA)
+  #     spec_with_data <- regarima(series= new_data , spec = spec)
+  #   })
+  # }
 
   return(spec_with_data)
 }
@@ -603,7 +634,195 @@ get_sa_spec <-function(class, ts_info, new_data)
 
 
 
+#' Compare two RJDemetra workspaces
+#'
+#' This function compares two RJDemetra workspaces, either provided as objects
+#' or file paths, and generates a report of the differences in the final
+#' seasonally adjusted series and likelihood BIC values.
+#'
+#' @param workspace1 Either an RJDemetra workspace object or a file path to a workspace.
+#' @param patworkspace2 Either an RJDemetra workspace object or a file path to a workspace.
+#' @param output_file Character string specifying the path of the output report file.
+#' Default is "differences_report.txt".
+#'
+#' @return The function does not return a value but writes a report to the specified file.
+#'
+#' @details The function loads the workspaces if they are provided as file paths,
+#' computes the models, and extracts the seasonally adjusted series and likelihood BIC.
+#' It then compares these values and records any differences in the output file.
+#'
+#' Differences are checked for the last 36 observations of the seasonally adjusted series
+#' and the likelihood BIC values.
+#'
+#' @export
+compare_workspaces <- function(workspace1, workspace2, output_file="differences_report.txt")
+{
+  require(RJDemetra)
+  require(RJDProcessor)
 
+  # Caricare i workspace se sono dei file
+  if (is.character(workspace1) && file.exists(workspace1)) {
+    workspace1 <- load_workspace(workspace1)
+  }
+
+  if (is.character(workspace2) && file.exists(workspace2)) {
+    workspace2 <- load_workspace(workspace2)
+  }
+
+  RJDemetra::compute(workspace1)
+  RJDemetra::compute(workspace2)
+
+  multiprocessing <- RJDemetra::get_jmodel(workspace1)
+  ts_names<- names(multiprocessing[[1]])
+  reference_results <- multiprocessing[[1]]
+  rm(multiprocessing)
+
+  multiprocessing2 <- RJDemetra::get_jmodel(workspace2)
+  ts_names2<- names(multiprocessing2[[1]])
+  db_results <- multiprocessing2[[1]]
+  rm(multiprocessing2)
+
+
+
+
+  # Inizializzo il file di report
+  filename <- output_file
+  con <- file(filename, open = "w")
+
+  # Scrivo l'intestazione del report
+  cat("Rapporto sulle differenze tra le serie temporali destagionalizzate\n", file = con)
+
+  # Variabile per controllare se ci sono differenze
+  ci_sono_differenze <- FALSE
+
+  # Ciclo per ogni serie temporale
+  for(ts_name in ts_names) {
+    #browser()
+
+    ########################## Serie lette da workspace1 ##########################
+    #sa_values_ts <- reference_results[[ts_name]]$final$series[,"sa"]
+    sa_values_ts <- RJDemetra::get_indicators(reference_results[[ts_name]], "sa")[[1]]
+
+    sa_values_reference <- as.vector(sa_values_ts)
+    sa_values_reference <- tail(sa_values_reference, 36)  # prendo solo gli ultimi 36 elementi
+
+    sa_dates_reference <- time(sa_values_ts)
+    years <- floor(sa_dates_reference)
+    months <- as.numeric(round((sa_dates_reference - years) * 12) + 1)
+    sa_dates_reference <- format(as.Date(paste(years, months, "01", sep = "-")), "%d-%m-%Y")
+    sa_dates_reference <- tail(sa_dates_reference, 36)  # prendo solo gli ultimi 36 elementi
+
+    #likelihoodbic_reference <- reference_results[[ts_name]]$regarima$loglik["bicc",]
+    likelihoodbic_reference <- RJDemetra::get_indicators(reference_results[[ts_name]], "preprocessing.likelihood.bicc")[[1]]
+
+
+    ##################### Serie lette da db (workspace2) #########################
+
+
+    #sa_values_ts <- db_results[[ts_name]]$final$series[,"sa"]
+    sa_values_db <- RJDemetra::get_indicators(db_results[[ts_name]], "sa")[[1]]
+
+    sa_values <- as.vector(sa_values_db)
+    sa_values <- tail(sa_values, 36)  # prendo solo gli ultimi 36 elementi
+
+    sa_dates <- time(sa_values_db)
+    years2   <- floor(sa_dates)
+    months2  <- as.numeric(round((sa_dates - years) * 12) + 1)
+    sa_dates <- format(as.Date(paste(years2, months2, "01", sep = "-")), "%d-%m-%Y")
+    sa_dates <- tail(sa_dates, 36)  # prendo solo gli ultimi 36 elementi
+
+    #likelihoodbic_reference <- reference_results[[ts_name]]$regarima$loglik["bicc",]
+    likelihoodbic <- RJDemetra::get_indicators(db_results[[ts_name]], "preprocessing.likelihood.bicc")[[1]]
+
+
+    ###################### Confronti ######################
+
+    # Variabili per le differenze
+    differenze <- ""
+
+    # Confronto dei valori 'sa'
+    if (!isTRUE(all.equal(sa_values_reference, sa_values, tolerance = 1e-9))) {
+      differenze <- paste(differenze, "valori", sep = "/")
+    }
+
+    # Confronto delle date 'sa_dates'
+    if (!identical(sa_dates_reference, sa_dates)) {
+      differenze <- paste(differenze, "date", sep = "/")
+    }
+
+    # Confronto di 'likelihoodbic'
+    #if (!identical(likelihoodbic_reference, likelihoodbic)) {
+    if (!isTRUE(all.equal(sa_values_reference, sa_values, tolerance = 1e-9)))
+    {
+      differenze <- paste(differenze, "likelihoodbic", sep = "/")
+    }
+
+    # Se ci sono differenze, aggiorno la variabile e stampo a video
+    if (differenze != "") {
+      if (!ci_sono_differenze) {
+        print("DIFFERENCES ARE PRESENT")
+        cat("DIFFERENCES ARE PRESENT\n", file = con)  # Scrivo solo una volta nel report
+        ci_sono_differenze <- TRUE
+      }
+
+      # Stampa a video del messaggio per ogni serie
+      print(paste(ts_name, "differs for", substr(differenze, 2, nchar(differenze))))
+
+      # Scrivo nel report le differenze dettagliate
+      cat(paste("Differences for the series: ", ts_name, "\n", sep = ""), file = con)
+      cat("------------------------------------------------------------\n", file = con)
+
+      # Calcolo la larghezza massima per ogni colonna (per allineare correttamente)
+      max_date_len <- max(nchar(sa_dates_reference), nchar(sa_dates), nchar("dates_series_ws1"), nchar("dates_series_ws2"))
+      max_value_len <- max(nchar(format(sa_values_reference, scientific = FALSE)),
+                           nchar(format(sa_values, scientific = FALSE)),
+                           nchar("values_series_ws1"), nchar("values_series_ws2"))
+      max_x_len <- max(nchar("X"), nchar(" "), nchar("non_corresponding_dates"), nchar("non_corresponding_values"))
+
+      # Scrivo l'intestazione della tabella con una formattazione ben allineata
+      cat(sprintf("%-*s| %-*s| %-*s| %-*s| %-*s| %-*s\n",
+                  max_date_len, "dates_series_ws1", max_value_len, "values_series_ws1",
+                  max_date_len, "dates_series_ws2", max_value_len, "values_series_ws2",
+                  max_x_len, "non_corresponding_dates", max_x_len, "non_corresponding_values"), file = con)
+      cat(rep("-", sum(c(max_date_len, max_value_len, max_date_len, max_value_len, max_x_len, max_x_len)) + 5), "\n", file = con)
+
+      # Creazione del confronto tabellare
+      for (i in 1:length(sa_values_reference)) {
+
+        # Se ci sono differenze tra date e valori, lo segnalo con "X"
+        date_diff <- ifelse(sa_dates_reference[i] != sa_dates[i], "X", " ")
+        value_diff <- ifelse(sa_values_reference[i] != sa_values[i], "X", " ")
+
+        # Scrivo nel file con una formattazione corretta per colonne allineate
+        cat(sprintf("%-*s| %-*s| %-*s| %-*s| %-*s| %-*s\n",
+                    max_date_len, sa_dates_reference[i], max_value_len, format(sa_values_reference[i], scientific = FALSE),
+                    max_date_len, sa_dates[i], max_value_len, format(sa_values[i], scientific = FALSE),
+                    max_x_len, date_diff, max_x_len, value_diff), file = con)
+      }
+
+      # Aggiungo la sezione per 'likelihoodbic'
+      cat("\n", file = con)
+      if (!identical(likelihoodbic_reference, likelihoodbic)) {
+        cat(sprintf("different likelihoodbic: %.6f (ws1) vs %.6f (ws2)\n", likelihoodbic_reference, likelihoodbic), file = con)
+      }
+
+      cat("\n", file = con)  # Linea vuota tra i report delle serie
+    }
+  }
+
+  # Se non ci sono differenze, scrivo un messaggio
+  if (!ci_sono_differenze) {
+    print("No differences found between the series.")
+    cat("No differences found between the series.\n", file = con)
+  }
+
+  close(con)
+
+  print(paste("The report has been written to the file ", filename, sep = ""))
+
+
+
+}
 
 
 

@@ -582,7 +582,7 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
   # if(java_processing == FALSE)
   # {
   jm <- get_jmodel(workspace, progress_bar = FALSE) #added later: jmodel is necessary in any case for ramps and intervention variables
-  m  <- get_model(workspace, progress_bar = TRUE) # Suppress warning here??
+  suppressWarnings(m  <- get_model(workspace, progress_bar = TRUE)) # Suppress warning here??
   # }else
   # {
   #   #browser()
@@ -708,9 +708,9 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
         #
         #   }
         #
-        #
-        #
-        # }
+
+
+        }
 
 
       }

@@ -1,7 +1,9 @@
 - Fixed Coefficients for Intervention Variables (now you need to transform them into UsrDefined variables…)
 	To see how to format the variable name for the variable whose coefficent has to be fixed, see the FixedCoefficient panel on the GUI
   
-- Fixed Coefficients for JD+'s automatic TD and Leap Year should be tested and eventually added. Same for ARIMA_mean (it must also have a type slot: "Fixed" or "Initial" or "Undefined", "NA" by default). I think that ARIMA_mean, Leap Year and automatic TD must have dedicated slots for their fixed coefficents (leapYearCoef and automaticTdCoef) in JSON 
+- Fixed Coefficients for JD+'s automatic TD and Leap Year should be tested and eventually added. Same for ARIMA_mean (it must also have a type slot: "Fixed" or "Initial" or "Undefined", "NA" by default). I think that ARIMA_mean and Leap Year must have dedicated slots for their fixed coefficents (leapYearCoef and ARIMA_meanCoef) in JSON 
+
+- Automatic TD fixed coefficients should be ok
     
 NOTE: Ramps, UserDefinedVariables, Easter and Outliers fixed coefficents are ok 
 

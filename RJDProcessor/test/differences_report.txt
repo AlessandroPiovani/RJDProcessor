@@ -1,0 +1,2 @@
+Rapporto sulle differenze tra le serie temporali destagionalizzate
+No differences found between the series.
