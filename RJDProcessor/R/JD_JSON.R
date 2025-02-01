@@ -7,6 +7,31 @@ require(rjson)
 
 
 
+adjust_trading_days_specs <- function(spec) {
+  fields <- c("option", "automatic", "pftd", "leapyear", "stocktd", "test")
+  # browser()
+  for (field in fields) {
+    left <- spec$regarima$regression$trading.days[[field]][1]
+    right <- spec$regarima$regression$trading.days[[field]][2]
+
+    # Confronto sicuro che gestisce NA
+    if (!isTRUE(all.equal(left, right, na.rm = FALSE))) {
+      if(!is.na(right))
+      {
+        spec$regarima$regression$trading.days[[field]][3] <- right
+      } else
+      {
+        spec$regarima$regression$trading.days[[field]][3] <- left
+      }
+
+    } else {
+      spec$regarima$regression$trading.days[[field]][3] <- left
+    }
+  }
+
+  return(spec)
+}
+
 
 
 rJavaRampsAndIVsHandling <- function(sa, ramps, intervention_variables)
@@ -211,6 +236,9 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_reader, ext_reg_d
 
       spec <- do.call(RJDemetra::tramoseats_spec, tramoseats_spec_args)
       #browser()
+
+      spec<-adjust_trading_days_specs(spec)
+
       sa <- jtramoseats(ts_obj, spec = spec)
 
       #browser()

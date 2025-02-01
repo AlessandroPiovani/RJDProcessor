@@ -34,7 +34,7 @@ setClass("Data_reader_ext_reg_tsplus",
 setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg_tsplus", "ANY", "ANY", "ANY"),
            function(object, var_info=NULL, time_series_info=NULL, frequency=NA_integer_, ...) {
 
-
+             #browser()
              series_name <- time_series_info
 
              # if(series_name=="C_DEFL")
@@ -58,8 +58,14 @@ setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg_tsplus", "ANY", "
              for (i in seq_along(var_info[[series_name]]))
              {
 
-               ##browser()
+
                user_def_var <- var_info[[series_name]][[i]]
+
+
+               # if(user_def_var$container=="s00m0110.txt")
+               # {
+               #   browser()
+               # }
 
                # Build the complete file path
                full_file_path <- file.path(reg_directory, user_def_var$container)
@@ -98,6 +104,11 @@ setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg_tsplus", "ANY", "
                  # Get column data
                  column_data <- data[[j]]
 
+                 if (all(is.na(column_data))) # to avoid spurious NA columns
+                 {
+                   next
+                 }
+
                  # create a dummy variable allowing to work with an MTS instead of a TS. Working with MTS allows to set the series names
                  if(j==1 && length(ts_list)==0)
                  {
@@ -111,6 +122,7 @@ setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg_tsplus", "ANY", "
                  {
                    column_name <- paste(column_name, "_", j, sep="")
                  }
+
                  mts_file_col_names <- c(mts_file_col_names, column_name)
 
                  time_series_new <- ts(column_data, start = start_date, frequency = frequency)
@@ -123,7 +135,7 @@ setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg_tsplus", "ANY", "
              {
                mts_file <- do.call(ts.union, ts_list)
 
-               colnames(mts_file) <- mts_file_col_names
+               colnames(mts_file) <- unique(mts_file_col_names)
                mts_file <- mts_file[,-1]
                if(all(is.na(mts_total)))
                {
