@@ -30,7 +30,6 @@ create_diagnostic_report1 <- function(workspace, output_file="report.txt") {
   #      stop("You need to install RJDemetra to use this function")
   # }else{require("RJDemetra")}
 
-
   if (file.exists(output_file)) {
     file.remove(output_file)
   }
@@ -40,6 +39,8 @@ create_diagnostic_report1 <- function(workspace, output_file="report.txt") {
 
   report_data <- list()
   problematic_series <- list()
+  arima_data <- list()
+
   idx <- 1
   for (multiprocessing in jmodel) {
     for (series_name in names(multiprocessing)) {
@@ -64,8 +65,61 @@ create_diagnostic_report1 <- function(workspace, output_file="report.txt") {
       arimaparams <- get_indicators(x = time_series, "preprocessing.arima.parameters")[[1]]
       lb          <- get_indicators(x = time_series, "preprocessing.residuals.lb")[[1]]
       lb_squared  <- get_indicators(x = time_series, "preprocessing.residuals.lb2")[[1]]
+      arima_se    <- sqrt(diag(get_indicators(time_series, "preprocessing.model.pcovar")[[1]]))
+
+      # Estrai i valori dei coefficienti
+      p <- get_indicators(x = time_series, "preprocessing.arima.p")[[1]]
+      d <- get_indicators(x = time_series, "preprocessing.arima.d")[[1]]
+      q <- get_indicators(x = time_series, "preprocessing.arima.q")[[1]]
+      bp <- get_indicators(x = time_series, "preprocessing.arima.bp")[[1]]
+      bd <- get_indicators(x = time_series, "preprocessing.arima.bd")[[1]]
+      bq <- get_indicators(x = time_series, "preprocessing.arima.bq")[[1]]
+
+      # Initialize coefficient names and model tracking
+      coeff_names <- c()
+      model_labels <- c()  # Track which model each coefficient belongs to
+
+      # Loop through AR terms (p)
+      if (p > 0) {
+        for (i in 1:p) {
+          coeff_names <- c(coeff_names, paste0("phi", i))
+          model_labels <- c(model_labels, paste0("Model", " (", p, ",", d, ",", q, ")(", bp, ",", bd, ",", bq, ")"))
+        }
+      }
+
+      # Loop through MA terms (q)
+      if (q > 0) {
+        for (i in 1:q) {
+          coeff_names <- c(coeff_names, paste0("theta", i))
+          model_labels <- c(model_labels, paste0("Model", " (", p, ",", d, ",", q, ")(", bp, ",", bd, ",", bq, ")"))
+        }
+      }
+
+      # Loop through Seasonal AR terms (bp)
+      if (bp > 0) {
+        for (i in 1:bp) {
+          coeff_names <- c(coeff_names, paste0("Bphi", i))
+          model_labels <- c(model_labels, paste0("Model", " (", p, ",", d, ",", q, ")(", bp, ",", bd, ",", bq, ")"))
+        }
+      }
+
+      # Loop through Seasonal MA terms (bq)
+      if (bq > 0) {
+        for (i in 1:bq) {
+          coeff_names <- c(coeff_names, paste0("Btheta", i))
+          model_labels <- c(model_labels, paste0("Model", " (", p, ",", d, ",", q, ")(", bp, ",", bd, ",", bq, ")"))
+        }
+      }
+
+      arima_coeffs_T_stat <- arimaparams/ arima_se
+      non_significant_coeffs_arima <- coeff_names[abs(arima_coeffs_T_stat) < 2]
+      has_non_significant_arima <- length(non_significant_coeffs_arima) > 0
+
+
 
       non_significant_coeffs <- model_descr[[1]][abs(model_coeffs_T_stat) < 2]
+      non_significant_coeffs <- c(non_significant_coeffs, non_significant_coeffs_arima)
+
       has_non_significant <- length(non_significant_coeffs) > 0
 
       report_data[[idx]] <- data.frame(
@@ -82,6 +136,7 @@ create_diagnostic_report1 <- function(workspace, output_file="report.txt") {
       if (any(c(lb[2], lb_squared[2], normality[2]) < 0.05) || has_non_significant) {
         problematic_series[[idx]] <- report_data[[idx]]
       }
+
 
       idx <- idx + 1
     }
@@ -196,6 +251,9 @@ create_diagnostic_report1 <- function(workspace, output_file="report.txt") {
   }
 
   cat("\n", file = output_file, append = TRUE)
+
+
+  cat("\n\n", file = output_file, append = TRUE)
 }
 
 
@@ -252,6 +310,51 @@ create_diagnostic_report2 <- function(workspace, output_file="series_info.txt") 
       model_coeffs <- get_indicators(x = time_series, "preprocessing.model.coefficients")[[1]]
       model_coeffs_T_stat <- model_coeffs[, 1] / model_coeffs[, 2]
 
+      arimaparams <- get_indicators(x = time_series, "preprocessing.arima.parameters")[[1]]
+      arima_se    <- sqrt(diag(get_indicators(time_series, "preprocessing.model.pcovar")[[1]]))
+      arima_coeffs_T_stat <- arimaparams/ arima_se
+      # Estrai i valori dei coefficienti
+      p <- get_indicators(x = time_series, "preprocessing.arima.p")[[1]]
+      d <- get_indicators(x = time_series, "preprocessing.arima.d")[[1]]
+      q <- get_indicators(x = time_series, "preprocessing.arima.q")[[1]]
+      bp <- get_indicators(x = time_series, "preprocessing.arima.bp")[[1]]
+      bd <- get_indicators(x = time_series, "preprocessing.arima.bd")[[1]]
+      bq <- get_indicators(x = time_series, "preprocessing.arima.bq")[[1]]
+      # Initialize coefficient names and model tracking
+      coeff_names <- c()
+      model_labels <- c()  # Track which model each coefficient belongs to
+      # Loop through AR terms (p)
+      if (p > 0) {
+        for (i in 1:p) {
+          coeff_names <- c(coeff_names, paste0("phi", i))
+          model_labels <- c(model_labels, paste0("Model", " (", p, ",", d, ",", q, ")(", bp, ",", bd, ",", bq, ")"))
+        }
+      }
+
+      # Loop through MA terms (q)
+      if (q > 0) {
+        for (i in 1:q) {
+          coeff_names <- c(coeff_names, paste0("theta", i))
+          model_labels <- c(model_labels, paste0("Model", " (", p, ",", d, ",", q, ")(", bp, ",", bd, ",", bq, ")"))
+        }
+      }
+
+      # Loop through Seasonal AR terms (bp)
+      if (bp > 0) {
+        for (i in 1:bp) {
+          coeff_names <- c(coeff_names, paste0("Bphi", i))
+          model_labels <- c(model_labels, paste0("Model", " (", p, ",", d, ",", q, ")(", bp, ",", bd, ",", bq, ")"))
+        }
+      }
+
+      # Loop through Seasonal MA terms (bq)
+      if (bq > 0) {
+        for (i in 1:bq) {
+          coeff_names <- c(coeff_names, paste0("Btheta", i))
+          model_labels <- c(model_labels, paste0("Model", " (", p, ",", d, ",", q, ")(", bp, ",", bd, ",", bq, ")"))
+        }
+      }
+
       cat("\n\n", file = output_file, append = TRUE)
       cat(sprintf("TITLE: %s\n", series_name), file = output_file, append = TRUE)
 
@@ -275,9 +378,14 @@ create_diagnostic_report2 <- function(workspace, output_file="series_info.txt") 
         cat(sprintf("%-25s %-15.3f %-15.3f %-15s\n", model_descr[i], model_coeffs[i], model_coeffs_T_stat[i], not_significant),
             file = output_file, append = TRUE)
       }
+      # if(series_name=="VA4711")
+      # {browser()}
+      for (i in 1:length(arimaparams)) {
+        not_significant_arima <- ifelse(abs(arima_coeffs_T_stat[i]) < 2, "X", "")
+
+        cat(sprintf("%-25s %-15.3f %-15f %-15s\n", coeff_names[i], arimaparams[i], arima_coeffs_T_stat[i], not_significant_arima),
+            file = output_file, append = TRUE)
+      }
     }
   }
 }
-
-
-
