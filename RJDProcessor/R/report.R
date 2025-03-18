@@ -53,7 +53,7 @@ create_diagnostic_report1 <- function(workspace, output_file="report.txt") {
       model_descr  <- get_indicators(x = time_series, "preprocessing.model.description")
       model_coeffs <- get_indicators(x = time_series, "preprocessing.model.coefficients")
       model_coeffs_T_stat <- model_coeffs[[1]][, 1] / model_coeffs[[1]][, 2]
-      bic <- get_indicators(x = time_series, "preprocessing.likelihood.bic")[[1]]
+      bic <- get_indicators(x = time_series, "preprocessing.likelihood.bicc")[[1]]
       normality    <- get_indicators(x = time_series, "preprocessing.residuals.dh")[[1]]
       n_outliers   <- get_indicators(x = time_series, "preprocessing.model.nout")[[1]]
       outliers <- list()
