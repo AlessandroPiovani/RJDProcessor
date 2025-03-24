@@ -34,7 +34,7 @@ create_diagnostic_report1 <- function(workspace, output_file="report.txt") {
     file.remove(output_file)
   }
 
-  compute(workspace)
+  RJDemetra::compute(workspace)
   jmodel <- get_jmodel(workspace)
 
   report_data <- list()
@@ -289,7 +289,7 @@ create_diagnostic_report2 <- function(workspace, output_file="series_info.txt") 
     file.remove(output_file)
   }
 
-  compute(workspace)
+  RJDemetra::compute(workspace)
   jmodel <- get_jmodel(workspace)
 
   report_data <- list()
