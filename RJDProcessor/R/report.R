@@ -49,6 +49,7 @@ create_diagnostic_report1 <- function(workspace, output_file="report.txt") {
       ts <- get_indicators(x = time_series, "y")
       freq <- 12 / frequency(ts)
 
+      log          <- get_indicators(x = time_series, "preprocessing.model.log")[[1]]
       qs           <- get_indicators(x = time_series, "diagnostics.qs")[[1]]
       model_descr  <- get_indicators(x = time_series, "preprocessing.model.description")
       model_coeffs <- get_indicators(x = time_series, "preprocessing.model.coefficients")
@@ -301,7 +302,8 @@ create_diagnostic_report2 <- function(workspace, output_file="series_info.txt") 
       ts <- get_indicators(x = time_series, "y")
       freq <- 12 / frequency(ts)
 
-      bic        <- get_indicators(x = time_series, "preprocessing.likelihood.bic")[[1]]
+      log        <- get_indicators(x = time_series, "preprocessing.model.log")[[1]]
+      bic        <- get_indicators(x = time_series, "preprocessing.likelihood.bicc")[[1]]
       lb         <- get_indicators(x = time_series, "preprocessing.residuals.lb")[[1]]
       lb_squared <- get_indicators(x = time_series, "preprocessing.residuals.lb2")[[1]]
       normality  <- get_indicators(x = time_series, "preprocessing.residuals.dh")[[1]]
@@ -358,6 +360,8 @@ create_diagnostic_report2 <- function(workspace, output_file="series_info.txt") 
       cat("\n\n", file = output_file, append = TRUE)
       cat(sprintf("TITLE: %s\n", series_name), file = output_file, append = TRUE)
 
+      cat("\nlog:", log, "\n", file = output_file, append = TRUE)
+
       cat(sprintf("%-15s %-15s %-15s %-15s %-15s\n", "BIC", "LB_Prob", "LB2_Prob", "Norm_Prob", "Norm_Test"), file = output_file, append = TRUE)
       cat("-----------------------------------------------------------------------------------------\n", file = output_file, append = TRUE)
       cat(sprintf("%-15.2f %-15.3f %-15.3f %-15.3f %-15.2f\n",
@@ -368,7 +372,7 @@ create_diagnostic_report2 <- function(workspace, output_file="series_info.txt") 
                   normality[1]),
           file = output_file, append = TRUE)
 
-      cat(sprintf("\n%-25s %-15s %-15s %-15s\n", "Regressor", "Coefficients", "T-Stats", "Not significant"), file = output_file, append = TRUE)
+      cat(sprintf("\n%-25s %-15s %-15s %-15s\n", " Name   ", "Coefficients", "T-Stats", "Not significant"), file = output_file, append = TRUE)
       cat("-------------------------------------------------------------------------------\n", file = output_file, append = TRUE)
 
 
