@@ -1,7 +1,7 @@
 get_basic_spec <- function(spec)
 {
   if(spec=="RSA0" || spec=="TS")
-  {# aad
+  {
     RSA0 <- list(
       series_name = NA,
       spec = "RSA0",
