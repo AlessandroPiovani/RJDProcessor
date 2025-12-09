@@ -7,6 +7,8 @@ setClass(
   "Extended_tramoseats_spec",
   slots = list(
     series_name             = "character",    # ISTAT custom field
+    series_start            = "character",    # ISTAT custom field
+    series_end              = "character",    # ISTAT custom field
     frequency               = "integer",
     method                  = "character",
     spec                    = "character",
@@ -98,7 +100,7 @@ setClass(
 # Costruttore
 #costruttore initialize per la classe
 setMethod("initialize", "Extended_tramoseats_spec",
-          function(.Object, series_name, frequency=NA_integer_, method ="TS" ,spec = "RSA0", preliminary.check = NA,
+          function(.Object, series_name, series_start = NA_character_, series_end = NA_character_,frequency=NA_integer_, method ="TS" ,spec = "RSA0", preliminary.check = NA,
                    estimate.from = NA_character_, estimate.to = NA_character_,
                    estimate.first = NA_integer_, estimate.last = NA_integer_,
                    estimate.exclFirst = NA_integer_, estimate.exclLast = NA_integer_,
@@ -247,7 +249,7 @@ setMethod("initialize", "Extended_tramoseats_spec",
             # .Object@seats.method <- seats.method
 
             # Set the default value as it is in the basic_spec (e.g. "RSA0") instead of NA if an argument is not specified
-            attributes <- c("preliminary.check", "estimate.from", "estimate.to",
+            attributes <- c("series_start", "series_end", "preliminary.check", "estimate.from", "estimate.to",
                             "estimate.first", "estimate.last", "estimate.exclFirst",
                             "estimate.exclLast", "estimate.tol", "estimate.eml",
                             "estimate.urfinal", "transform.function", "transform.fct",
@@ -300,7 +302,8 @@ setMethod("initialize", "Extended_tramoseats_spec",
 
 # R-like Constructor:
 # Helper function for creating an Extended_tramoseats object
-Extended_tramoseats_spec_helper <- function(series_name = NULL, frequency=NA_integer_, method="TS" ,spec = NULL, preliminary.check = NA,
+Extended_tramoseats_spec_helper <- function(series_name = NULL, series_start = NA_character_, series_end = NA_character_,
+                                            frequency = NA_integer_, method = "TS" ,spec = NULL, preliminary.check = NA,
                                             estimate.from = NA_character_, estimate.to = NA_character_,
                                             estimate.first = NA_integer_, estimate.last = NA_integer_,
                                             estimate.exclFirst = NA_integer_, estimate.exclLast = NA_integer_,
@@ -336,7 +339,7 @@ Extended_tramoseats_spec_helper <- function(series_name = NULL, frequency=NA_int
                                             seats.method = NA, ramps = NA, intervention_variables = NA, #rampsCoef=NA, intervention_variablesCoef=NA, easterCoef=NA) {
                                             easterCoef=0) {
 
-  new("Extended_tramoseats_spec", series_name = series_name, frequency=frequency, method=method, spec = spec, preliminary.check = preliminary.check,
+  new("Extended_tramoseats_spec", series_start, series_end, series_name = series_name, frequency=frequency, method=method, spec = spec, preliminary.check = preliminary.check,
       estimate.from = estimate.from, estimate.to = estimate.to, estimate.first = estimate.first,
       estimate.last = estimate.last, estimate.exclFirst = estimate.exclFirst, estimate.exclLast = estimate.exclLast,
       estimate.tol = estimate.tol, estimate.eml = estimate.eml, estimate.urfinal = estimate.urfinal,
@@ -445,6 +448,8 @@ setMethod ("from_JD_JSON", "Extended_tramoseats_spec", function(object, json) {
   # Inizializza gli argomenti per il costruttore
   args <- list(
     series_name = json_list$series_name,
+    series_start = json_list$series_start,
+    series_end = json_list$series_end,
     frequency   = frequency,
     method = json_list$method,
     spec = json_list$spec,
@@ -614,6 +619,8 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
       message("Some series have value NULL in the R object, they are taken from Java objects")
 
       ts              <- jm[[1]][[series_name]]
+      # browser()
+
       time_series_obj <- get_indicators(x = ts, "y")[[1]]
 
       message(paste("Series", series_name,"has been found in Java object;"))
@@ -760,8 +767,12 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
 
     #asd
     #browser()
-    spec <- from_SA_spec(series, series_name = series_name, frequency = frequency, method = method, basic_spec=basic_spec, all_model_vars_info = all_model_vars_info, data_reader_ext_reg = data_reader_ext_reg, workspace = workspace, easterCoef=easterCoef)
+    spec <- from_SA_spec(series, series_name = series_name, frequency = frequency, method = method, basic_spec=basic_spec, all_model_vars_info = all_model_vars_info, data_reader_ext_reg = data_reader_ext_reg, workspace = workspace, easterCoef=easterCoef, jm=jm)
     spec <- list(spec)
+
+
+
+
     extended_tramoseats_spec_list <- append(extended_tramoseats_spec_list ,spec)
   }
   #browser()
@@ -774,7 +785,7 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
 
 
 
-from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_integer_  ,method = "TS" ,basic_spec="RSA0", userdef.varFromFile=TRUE, all_model_vars_info=NULL, data_reader_ext_reg=NULL ,workspace=NA, easterCoef=0)#NA)
+from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_integer_  ,method = "TS" ,basic_spec="RSA0", userdef.varFromFile=TRUE, all_model_vars_info=NULL, data_reader_ext_reg=NULL ,workspace=NA, easterCoef=0, jm=NA)#NA)
 {
   require(RJDemetra)
 
@@ -786,6 +797,9 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_in
   #rampsCoef             = NA
   #intervention_variablesCoef = NA
   #leap_yearCoef         = NA
+  series_start = NA
+  series_end   = NA
+
 
   suppressWarnings(NA_workspace <- is.na(workspace))
   if(!is.null(workspace) && !NA_workspace) # for the basic_specs there is no workspace
@@ -913,10 +927,43 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_in
     userdef.varFromFile.infoList <- NULL
   }
 
+  if(!is.na(jm))
+  {
+    span_type <- jm[[1]][[series_name]]$spec$getBasic()$getSpan()$getType()
+    if(!is.null(span_type) && !is.na(span_type))
+    {
+      if(span_type=="All")
+      {
+        series_start <- NA
+        series_end   <- NA
+      } else if(span_type=="Between")
+      {
+        series_start <- jm[[1]][[series_name]]$spec$getBasic()$getSpan()$getD0()
+        series_end   <- jm[[1]][[series_name]]$spec$getBasic()$getSpan()$getD1()
+      } else if((span_type=="From"))
+      {
+        series_start <- jm[[1]][[series_name]]$spec$getBasic()$getSpan()$getD0()
+        series_end   <- NA
+      } else if((span_type=="To"))
+      {
+        series_start <- NA
+        series_end   <- jm[[1]][[series_name]]$spec$getBasic()$getSpan()$getD1()
+      } else # other options still to be implemented, anyway the current one are sufficient for all the settings
+      {
+        series_start <- NA
+        series_end   <- NA
+      }
+
+    }
+
+  }
+
 
   extended_tramoseats_spec <- Extended_tramoseats_spec(
     spec               = ifelse(basic_spec=="TS", "RSA0", basic_spec),
     series_name        = series_name, # custom field
+    series_start       = series_start,# custom field
+    series_end         = series_end,  # custom field
     frequency          = frequency,   # custom field
     method             = method,      # custom field
     preliminary.check  = regarima_spec$estimate$preliminary.check,

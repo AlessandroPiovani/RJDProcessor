@@ -180,7 +180,6 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_reader, ext_reg_d
     #browser()
     if(all(is.na(series_to_proc_names)) || series_names[i] %in% series_to_proc_names)
     {
-      #browser()
       # Extract the ts from mts matrix
       series <- mts_input_time_series[, i]
 
@@ -215,7 +214,7 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_reader, ext_reg_d
 
       ts_name <- series_names[i]
 
-      #browser()
+      # browser()
       extended_tramoseats_spec_list <- read_spec_list_from_json_file(JSON_file, spec_format="list")
       extended_tramoseats_spec_obj  <- extended_tramoseats_spec_list[[ts_name]]
 
@@ -225,14 +224,21 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_reader, ext_reg_d
       # Handle Ramps and IVs that RJDemetra cannot receive in input, because it does not support them
       ramps                  <- tramoseats_spec_args$ramps
       intervention_variables <- tramoseats_spec_args$intervention_variables
-      tramoseats_spec_args$ramps=NULL
-      tramoseats_spec_args$intervention_variables=NULL
+      tramoseats_spec_args$ramps = NULL
+      tramoseats_spec_args$intervention_variables = NULL
       #tramoseats_spec_args$ramps <-  empty arraylist()?? NOT HERE
       #tramoseats_spec_args$intervention_variables <- empty arraylist()?? NOT HERE
 
       #browser()
       easterCoef <- tramoseats_spec_args$easterCoef
       tramoseats_spec_args$easterCoef=NULL  # re-set it after do.call(...)
+
+      # Handle series span that RJDemetra cannot receive in input (not supported yet)
+      series_start <- tramoseats_spec_args$series_start
+      series_end   <- tramoseats_spec_args$series_end
+      tramoseats_spec_args$series_start = NULL  # re-set it after do.call(...)
+      tramoseats_spec_args$series_end   = NULL  # re-set it after do.call(...)
+
 
       spec <- do.call(RJDemetra::tramoseats_spec, tramoseats_spec_args)
       #browser()
@@ -249,7 +255,21 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_reader, ext_reg_d
       }
       sa <- rJavaRampsAndIVsHandling(sa, ramps, intervention_variables)
 
-      #browser()
+      # browser()
+
+      if((is.null(series_start) || is.na(series_start)) && (is.null(series_end) || is.na(series_end)))
+      {
+        sa$spec$getBasic()$getSpan()$all()
+      } else if(!(is.null(series_start) || is.na(series_start)) && (is.null(series_end) || is.na(series_end)))
+      {
+        sa$spec$getBasic()$getSpan()$from(series_start)
+      } else if((is.null(series_start) || is.na(series_start)) && !(is.null(series_end) || is.na(series_end)))
+      {
+        sa$spec$getBasic()$getSpan()$to(series_end)
+      } else if(!(is.null(series_start) || is.na(series_start)) && !(is.null(series_end) || is.na(series_end)))
+      {
+        sa$spec$getBasic()$getSpan()$between(series_start, series_end)
+      }
 
       add_sa_item(wk, "sa1", sa, ts_name)
     }

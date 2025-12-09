@@ -4,6 +4,8 @@ get_basic_spec <- function(spec)
   {
     RSA0 <- list(
       series_name = NA,
+      series_start = NA_character_,
+      series_end = NA_character_,
       spec = "RSA0",
       preliminary.check = TRUE,
       estimate.from = NA_character_,
@@ -92,6 +94,8 @@ get_basic_spec <- function(spec)
   {
     RSA1 <- list(
       series_name = NA,
+      series_start = NA_character_,
+      series_end = NA_character_,
       spec = "RSA1",
       preliminary.check = TRUE,
       estimate.from = NA_character_,
@@ -180,6 +184,8 @@ get_basic_spec <- function(spec)
   {
     RSA2 <- list(
       series_name = NA,
+      series_start = NA_character_,
+      series_end = NA_character_,
       spec = "RSA2",
       preliminary.check = TRUE,
       estimate.from = NA_character_,
@@ -268,6 +274,8 @@ get_basic_spec <- function(spec)
   {
     RSA3 <- list(
       series_name = NA,
+      series_start = NA_character_,
+      series_end = NA_character_,
       spec = "RSA3",
       preliminary.check = TRUE,
       estimate.from = NA_character_,
@@ -356,6 +364,8 @@ get_basic_spec <- function(spec)
   {
     RSA4 <- list(
       series_name = NA,
+      series_start = NA_character_,
+      series_end = NA_character_,
       spec = "RSA4",
       preliminary.check = TRUE,
       estimate.from = NA_character_,
@@ -444,6 +454,8 @@ get_basic_spec <- function(spec)
   {
     RSA5 <- list(
       series_name = NA,
+      series_start = NA_character_,
+      series_end = NA_character_,
       spec = "RSA5",
       preliminary.check = TRUE,
       estimate.from = NA_character_,
@@ -532,6 +544,8 @@ get_basic_spec <- function(spec)
   {
     RSAfull <- list(
       series_name = NA,
+      series_start = NA_character_,
+      series_end = NA_character_,
       spec = "RSAfull",
       preliminary.check = TRUE,
       estimate.from = NA_character_,

@@ -1,6 +1,6 @@
-setwd("C:\\Users\\UTENTE\\Desktop\\RJDopenCruncher\\RJDProcessor")
+setwd("C:\\Users\\UTENTE\\OneDrive - ISTAT\\Desktop\\RJDopenCruncher\\RJDProcessor")
 
-# install.packages("C:\\Users\\UTENTE\\Desktop\\RJDopenCruncher\\RJDProcessor_1.1.1.tar.gz", repos = NULL, type = "source")
+# install.packages("C:\\Users\\UTENTE\\Desktop\\RJDopenCruncher\\RJDProcessor_1.2.1.tar.gz", repos = NULL, type = "source")
 
 
 # Make sure to have all the necessary packages
@@ -27,7 +27,7 @@ devtools::build()
 # Check the package
 check()
 
-devtools::build_manual(pkg = "C:\\Users\\UTENTE\\Desktop\\RJDopenCruncher\\RJDProcessor")
+devtools::build_manual(pkg = "C:\\Users\\UTENTE\\OneDrive - ISTAT\\Desktop\\RJDopenCruncher\\RJDProcessor")
 
 #C:\Users\UTENTE\AppData\Local\Programs\MiKTeX\miktex\bin\x64\pdflatex.exe
 
