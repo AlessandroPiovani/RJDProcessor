@@ -1,15 +1,122 @@
 require(RJDemetra)
 
 
+
+#' Report dei cambiamenti nella stagionalità tra due workspace
+#'
+#' @description Confronta i modelli ARIMA di due workspace (vecchio e nuovo) e identifica le serie
+#' che hanno cambiato il loro stato di stagionalità (passando da modelli stagionali a non stagionali e viceversa).
+#'
+#' @param workspace_old Oggetto workspace di RJDemetra precedente.
+#' @param workspace_new Oggetto workspace di RJDemetra attuale.
+#' @param output_file Percorso del file .txt dove verrà salvato il report.
+#'
+#' @return La funzione non restituisce oggetti in R, ma scrive un file di testo.
+#' @export
+seasonality_changes_report <- function(workspace_old, workspace_new, output_file="seasonality_changes.txt") {
+
+  require(RJDemetra)
+
+  # Pulizia file esistente
+  if (file.exists(output_file)) {
+    file.remove(output_file)
+  }
+
+  # --- ANALISI WORKSPACE NUOVO ---
+  RJDemetra::compute(workspace_new)
+  jmodel_new <- get_jmodel(workspace_new)
+  non_seasonal_ts_new <- c()
+
+  for (multiprocessing in jmodel_new) {
+    for (series_name in names(multiprocessing)) {
+      time_series <- multiprocessing[[series_name]]
+
+      bp <- get_indicators(x = time_series, "preprocessing.arima.bp")[[1]]
+      bd <- get_indicators(x = time_series, "preprocessing.arima.bd")[[1]]
+      bq <- get_indicators(x = time_series, "preprocessing.arima.bq")[[1]]
+
+      # Se tutti i parametri stagionali sono 0, è non stagionale
+      if(bp == 0 && bd == 0 && bq == 0) {
+        non_seasonal_ts_new <- c(non_seasonal_ts_new, series_name)
+      }
+    }
+  }
+
+  # --- ANALISI WORKSPACE VECCHIO ---
+  RJDemetra::compute(workspace_old)
+  jmodel_old <- get_jmodel(workspace_old)
+  non_seasonal_ts_old <- c()
+
+  for (multiprocessing in jmodel_old) {
+    for (series_name in names(multiprocessing)) {
+      time_series <- multiprocessing[[series_name]]
+
+      bp <- get_indicators(x = time_series, "preprocessing.arima.bp")[[1]]
+      bd <- get_indicators(x = time_series, "preprocessing.arima.bd")[[1]]
+      bq <- get_indicators(x = time_series, "preprocessing.arima.bq")[[1]]
+
+      if(bp == 0 && bd == 0 && bq == 0) {
+        non_seasonal_ts_old <- c(non_seasonal_ts_old, series_name)
+      }
+    }
+  }
+
+  # --- LOGICA DI CONFRONTO (Set Theory) ---
+
+  # 1. New entries NON seasonal: presenti nel nuovo come non-stag, ma non nel vecchio
+  new_non_seasonal <- setdiff(non_seasonal_ts_new, non_seasonal_ts_old)
+
+  # 2. New entries seasonal: erano non-stag nel vecchio, ma non lo sono più nel nuovo
+  new_seasonal <- setdiff(non_seasonal_ts_old, non_seasonal_ts_new)
+
+  # 3. Unchanged NON seasonal: non-stagionali in entrambi
+  unchanged_non_seasonal <- intersect(non_seasonal_ts_new, non_seasonal_ts_old)
+
+  # --- SCRITTURA REPORT ---
+  sink(output_file)
+
+  cat("========================================================\n")
+  cat("          SEASONALITY CHANGES REPORT\n")
+  cat("========================================================\n\n")
+
+  cat("New entries NON seasonal series:\n")
+  cat("--------------------------------\n")
+  if(length(new_non_seasonal) > 0) cat(new_non_seasonal, sep = "\n") else cat("None\n")
+  cat("\n")
+
+  cat("New entries seasonal series:\n")
+  cat("----------------------------\n")
+  if(length(new_seasonal) > 0) cat(new_seasonal, sep = "\n") else cat("None\n")
+  cat("\n")
+
+  cat("Unchanged NON seasonal series:\n")
+  cat("------------------------------\n")
+  if(length(unchanged_non_seasonal) > 0) cat(unchanged_non_seasonal, sep = "\n") else cat("None\n")
+  cat("\n")
+
+  sink()
+
+  #message(paste("Report generato con successo:", output_file))
+}
+
+
+
+
+
+
+
+
 #' Create Diagnostic Report for Time Series Models
 #'
 #' This function generates a diagnostic report for time series models,
 #' including BIC, p-values from Ljung-Box tests, and normality test results.
 #' It organizes the output into categories: all series, series with Ljung-Box problems,
 #' series with normality issues, and a summary of problematic series.
+#' Time series without a seasonal part are excluded from the diagnostics.
 #'
 #' @param workspace A workspace object containing the time series models.
 #' @param output_file A string specifying the output file path where the report will be saved (default is "report.txt").
+#' @param exclude_non_seas Logical. TRUE to exclude time series without a seasonal part from the diagnostics.
 #' @return NULL
 #' @examples
 #' require(RJDemetra)
@@ -23,7 +130,7 @@ require(RJDemetra)
 #' create_diagnostic_report1(workspace, output_file = "report.out")
 #' setwd(original_directory)
 #' @export
-create_diagnostic_report1 <- function(workspace, output_file="report.txt") {
+create_diagnostic_report1 <- function(workspace, output_file="report.txt", exclude_non_seas=TRUE) {
   require(RJDemetra)
 
   # if(!requireNamespace("RJDemetra", quietly = TRUE)) {
@@ -37,9 +144,14 @@ create_diagnostic_report1 <- function(workspace, output_file="report.txt") {
   RJDemetra::compute(workspace)
   jmodel <- get_jmodel(workspace)
 
-  report_data <- list()
+  report_data        <- list()
   problematic_series <- list()
-  arima_data <- list()
+  arima_data         <- list()
+  non_seasonal       <- c()
+  #problematic_series_df <- data.frame()
+  #report_df <- data.frame()
+
+  # browser()
 
   idx <- 1
   for (multiprocessing in jmodel) {
@@ -49,212 +161,240 @@ create_diagnostic_report1 <- function(workspace, output_file="report.txt") {
       ts <- get_indicators(x = time_series, "y")
       freq <- 12 / frequency(ts)
 
-      log          <- get_indicators(x = time_series, "preprocessing.model.log")[[1]]
-      qs           <- get_indicators(x = time_series, "diagnostics.qs")[[1]]
-      model_descr  <- get_indicators(x = time_series, "preprocessing.model.description")
-      model_coeffs <- get_indicators(x = time_series, "preprocessing.model.coefficients")
-      model_coeffs_T_stat <- model_coeffs[[1]][, 1] / model_coeffs[[1]][, 2]
-      bic <- get_indicators(x = time_series, "preprocessing.likelihood.bicc")[[1]]
-      normality    <- get_indicators(x = time_series, "preprocessing.residuals.dh")[[1]]
-      n_outliers   <- get_indicators(x = time_series, "preprocessing.model.nout")[[1]]
-      outliers <- list()
-      for (i_out in 1:n_outliers) {
-        o <- get_indicators(x = time_series, paste0("preprocessing.model.out(", i_out, ")"))
-        outliers <- append(outliers, list(o[[1]]))
-      }
-
-      arimaparams <- get_indicators(x = time_series, "preprocessing.arima.parameters")[[1]]
-      lb          <- get_indicators(x = time_series, "preprocessing.residuals.lb")[[1]]
-      lb_squared  <- get_indicators(x = time_series, "preprocessing.residuals.lb2")[[1]]
-      arima_se    <- sqrt(diag(get_indicators(time_series, "preprocessing.model.pcovar")[[1]]))
-
       # Estrai i valori dei coefficienti
-      p <- get_indicators(x = time_series, "preprocessing.arima.p")[[1]]
-      d <- get_indicators(x = time_series, "preprocessing.arima.d")[[1]]
-      q <- get_indicators(x = time_series, "preprocessing.arima.q")[[1]]
+      p  <- get_indicators(x = time_series, "preprocessing.arima.p" )[[1]]
+      d  <- get_indicators(x = time_series, "preprocessing.arima.d" )[[1]]
+      q  <- get_indicators(x = time_series, "preprocessing.arima.q" )[[1]]
       bp <- get_indicators(x = time_series, "preprocessing.arima.bp")[[1]]
       bd <- get_indicators(x = time_series, "preprocessing.arima.bd")[[1]]
       bq <- get_indicators(x = time_series, "preprocessing.arima.bq")[[1]]
 
-      # Initialize coefficient names and model tracking
-      coeff_names <- c()
-      model_labels <- c()  # Track which model each coefficient belongs to
+      if(exclude_non_seas==FALSE || !(bp==0 && bd==0 && bq==0)) # exclude time series without seasonal models
+      {
+          log          <- get_indicators(x = time_series, "preprocessing.model.log")[[1]]
+          qs           <- get_indicators(x = time_series, "diagnostics.qs")[[1]]
+          model_descr  <- get_indicators(x = time_series, "preprocessing.model.description")
+          model_coeffs <- get_indicators(x = time_series, "preprocessing.model.coefficients")
+          model_coeffs_T_stat <- model_coeffs[[1]][, 1] / model_coeffs[[1]][, 2]
+          bic <- get_indicators(x = time_series, "preprocessing.likelihood.bicc")[[1]]
+          normality    <- get_indicators(x = time_series, "preprocessing.residuals.dh")[[1]]
+          n_outliers   <- get_indicators(x = time_series, "preprocessing.model.nout")[[1]]
+          outliers <- list()
+          for (i_out in 1:n_outliers) {
+            o <- get_indicators(x = time_series, paste0("preprocessing.model.out(", i_out, ")"))
+            outliers <- append(outliers, list(o[[1]]))
+          }
 
-      # Loop through AR terms (p)
-      if (p > 0) {
-        for (i in 1:p) {
-          coeff_names <- c(coeff_names, paste0("phi", i))
-          model_labels <- c(model_labels, paste0("Model", " (", p, ",", d, ",", q, ")(", bp, ",", bd, ",", bq, ")"))
-        }
+          arimaparams <- get_indicators(x = time_series, "preprocessing.arima.parameters")[[1]]
+          lb          <- get_indicators(x = time_series, "preprocessing.residuals.lb")[[1]]
+          lb_squared  <- get_indicators(x = time_series, "preprocessing.residuals.lb2")[[1]]
+          arima_se    <- sqrt(diag(get_indicators(time_series, "preprocessing.model.pcovar")[[1]]))
+
+
+
+          # Initialize coefficient names and model tracking
+          coeff_names <- c()
+          model_labels <- c()  # Track which model each coefficient belongs to
+
+          # Loop through AR terms (p)
+          if (p > 0) {
+            for (i in 1:p) {
+              coeff_names <- c(coeff_names, paste0("phi", i))
+              model_labels <- c(model_labels, paste0("Model", " (", p, ",", d, ",", q, ")(", bp, ",", bd, ",", bq, ")"))
+            }
+          }
+
+          # Loop through MA terms (q)
+          if (q > 0) {
+            for (i in 1:q) {
+              coeff_names <- c(coeff_names, paste0("theta", i))
+              model_labels <- c(model_labels, paste0("Model", " (", p, ",", d, ",", q, ")(", bp, ",", bd, ",", bq, ")"))
+            }
+          }
+
+          # Loop through Seasonal AR terms (bp)
+          if (bp > 0) {
+            for (i in 1:bp) {
+              coeff_names <- c(coeff_names, paste0("Bphi", i))
+              model_labels <- c(model_labels, paste0("Model", " (", p, ",", d, ",", q, ")(", bp, ",", bd, ",", bq, ")"))
+            }
+          }
+
+          # Loop through Seasonal MA terms (bq)
+          if (bq > 0) {
+            for (i in 1:bq) {
+              coeff_names <- c(coeff_names, paste0("Btheta", i))
+              model_labels <- c(model_labels, paste0("Model", " (", p, ",", d, ",", q, ")(", bp, ",", bd, ",", bq, ")"))
+            }
+          }
+
+          arima_coeffs_T_stat <- arimaparams/ arima_se
+          non_significant_coeffs_arima <- coeff_names[abs(arima_coeffs_T_stat) < 2]
+          has_non_significant_arima <- length(non_significant_coeffs_arima) > 0
+
+
+
+          non_significant_coeffs <- model_descr[[1]][abs(model_coeffs_T_stat) < 2]
+          non_significant_coeffs <- c(non_significant_coeffs, non_significant_coeffs_arima)
+
+          has_non_significant <- length(non_significant_coeffs) > 0
+
+          report_data[[idx]] <- data.frame(
+            frequency = round(freq),
+            TITLE = series_name,
+            BIC = bic,
+            LB_Prob = round(lb[2], 3),
+            LB2_Prob = round(lb_squared[2], 3),
+            Norm_Prob = round(normality[2], 3),
+            Norm_Test = normality[1],
+            Not_significant_coeff = if (has_non_significant) paste(non_significant_coeffs, collapse = ", ") else ""
+          )
+
+          if (any(c(lb[2], lb_squared[2], normality[2]) < 0.05) || has_non_significant) {
+            problematic_series[[idx]] <- report_data[[idx]]
+          }
+
+
+          idx <- idx + 1
+
+          if(bp==0 && bd==0 && bq==0)
+          {
+            non_seasonal <- append(non_seasonal, series_name)
+          }
       }
-
-      # Loop through MA terms (q)
-      if (q > 0) {
-        for (i in 1:q) {
-          coeff_names <- c(coeff_names, paste0("theta", i))
-          model_labels <- c(model_labels, paste0("Model", " (", p, ",", d, ",", q, ")(", bp, ",", bd, ",", bq, ")"))
-        }
+      else{
+        non_seasonal <- append(non_seasonal, series_name)
       }
-
-      # Loop through Seasonal AR terms (bp)
-      if (bp > 0) {
-        for (i in 1:bp) {
-          coeff_names <- c(coeff_names, paste0("Bphi", i))
-          model_labels <- c(model_labels, paste0("Model", " (", p, ",", d, ",", q, ")(", bp, ",", bd, ",", bq, ")"))
-        }
-      }
-
-      # Loop through Seasonal MA terms (bq)
-      if (bq > 0) {
-        for (i in 1:bq) {
-          coeff_names <- c(coeff_names, paste0("Btheta", i))
-          model_labels <- c(model_labels, paste0("Model", " (", p, ",", d, ",", q, ")(", bp, ",", bd, ",", bq, ")"))
-        }
-      }
-
-      arima_coeffs_T_stat <- arimaparams/ arima_se
-      non_significant_coeffs_arima <- coeff_names[abs(arima_coeffs_T_stat) < 2]
-      has_non_significant_arima <- length(non_significant_coeffs_arima) > 0
-
-
-
-      non_significant_coeffs <- model_descr[[1]][abs(model_coeffs_T_stat) < 2]
-      non_significant_coeffs <- c(non_significant_coeffs, non_significant_coeffs_arima)
-
-      has_non_significant <- length(non_significant_coeffs) > 0
-
-      report_data[[idx]] <- data.frame(
-        frequency = round(freq),
-        TITLE = series_name,
-        BIC = bic,
-        LB_Prob = round(lb[2], 3),
-        LB2_Prob = round(lb_squared[2], 3),
-        Norm_Prob = round(normality[2], 3),
-        Norm_Test = normality[1],
-        Not_significant_coeff = if (has_non_significant) paste(non_significant_coeffs, collapse = ", ") else ""
-      )
-
-      if (any(c(lb[2], lb_squared[2], normality[2]) < 0.05) || has_non_significant) {
-        problematic_series[[idx]] <- report_data[[idx]]
-      }
-
-
-      idx <- idx + 1
     }
-  }
 
-  report_df <- do.call(rbind, report_data)
-  problematic_series_df <- do.call(rbind, problematic_series)
+    # Trasforma le liste in data frame in modo sicuro
+    report_df <- if(length(report_data) > 0) do.call(rbind, report_data) else data.frame()
+    problematic_series_df <- if(length(problematic_series) > 0) do.call(rbind, problematic_series) else data.frame()
 
-  lb_problems_df         <- report_df[report_df$LB_Prob < 0.05, ]
-  lb_squared_problems_df <- report_df[report_df$LB2_Prob < 0.05, ]
-  normality_problems_df  <- report_df[report_df$Norm_Prob < 0.05, ]
+    # Crea i subset solo se report_df non è vuoto
+    if (nrow(report_df) > 0) {
+      lb_problems_df         <- report_df[report_df$LB_Prob < 0.05, ]
+      lb_squared_problems_df <- report_df[report_df$LB2_Prob < 0.05, ]
+      normality_problems_df  <- report_df[report_df$Norm_Prob < 0.05, ]
+    } else {
+      # Crea data frame vuoti con le stesse colonne se non ci sono dati
+      lb_problems_df <- lb_squared_problems_df <- normality_problems_df <- report_df
+    }
 
-  header <- sprintf("%-5s %-5s %-15s %-8s %-10s %-10s %-10s %-10s\n", "", "Freq", "TITLE", "BIC", "LB_Prob", "LB2_Prob", "Norm_Prob", "Norm_Test")
-  separator            <- "------------------------------------------------------------------------------------------\n"
-  lb_separator         <- "-------------------------------------- LB PROBLEMS --------------------------------------\n"
-  lb_squared_separator <- "---------------------------------- LB SQUARED PROBLEMS ----------------------------------\n"
-  normality_separator  <- "----------------------------------- NORMALITY PROBLEMS ----------------------------------\n"
-  resume_separator     <- "------------------------------------ PROBLEMS RESUME ------------------------------------\n"
+    header <- sprintf("%-5s %-5s %-15s %-8s %-10s %-10s %-10s %-10s\n", "", "Freq", "TITLE", "BIC", "LB_Prob", "LB2_Prob", "Norm_Prob", "Norm_Test")
+    separator            <- "------------------------------------------------------------------------------------------\n"
+    lb_separator         <- "-------------------------------------- LB PROBLEMS --------------------------------------\n"
+    lb_squared_separator <- "---------------------------------- LB SQUARED PROBLEMS ----------------------------------\n"
+    normality_separator  <- "----------------------------------- NORMALITY PROBLEMS ----------------------------------\n"
+    resume_separator     <- "------------------------------------ PROBLEMS RESUME ------------------------------------\n"
 
-  cat(header, file = output_file)
-  cat(separator, file = output_file, append = TRUE)
-  for (i in 1:nrow(report_df)) {
-    cat(sprintf("%-5d %-5d %-15s %-8.2f %-10.3f %-10.3f %-10.3f %-10.2f\n",
-                i,
-                report_df$frequency[i],
-                report_df$TITLE[i],
-                report_df$BIC[i],
-                report_df$LB_Prob[i],
-                report_df$LB2_Prob[i],
-                report_df$Norm_Prob[i],
-                report_df$Norm_Test[i]),
-        file = output_file, append = TRUE)
-  }
+    cat(header, file = output_file)
+    cat(separator, file = output_file, append = TRUE)
+    for (i in seq_len(nrow(report_df))) {
+      cat(sprintf("%-5d %-5d %-15s %-8.2f %-10.3f %-10.3f %-10.3f %-10.2f\n",
+                  i,
+                  report_df$frequency[i],
+                  report_df$TITLE[i],
+                  report_df$BIC[i],
+                  report_df$LB_Prob[i],
+                  report_df$LB2_Prob[i],
+                  report_df$Norm_Prob[i],
+                  report_df$Norm_Test[i]),
+          file = output_file, append = TRUE)
+    }
 
-  cat("\n\n", file = output_file, append = TRUE)
-  cat(lb_separator, file = output_file, append = TRUE)
-  cat(header, file = output_file, append = TRUE)
-  cat(separator, file = output_file, append = TRUE)
-  for (i in 1:nrow(lb_problems_df)) {
-    idx <- which(rownames(report_df) == rownames(lb_problems_df)[i])
-    cat(sprintf("%-5d %-5d %-15s %-8.2f %-10.3f %-10.3f %-10.3f %-10.2f\n",
-                idx,
-                lb_problems_df$frequency[i],
-                lb_problems_df$TITLE[i],
-                lb_problems_df$BIC[i],
-                lb_problems_df$LB_Prob[i],
-                lb_problems_df$LB2_Prob[i],
-                lb_problems_df$Norm_Prob[i],
-                lb_problems_df$Norm_Test[i]),
-        file = output_file, append = TRUE)
-  }
+    cat("\n\n", file = output_file, append = TRUE)
+    cat(lb_separator, file = output_file, append = TRUE)
+    cat(header, file = output_file, append = TRUE)
+    cat(separator, file = output_file, append = TRUE)
+    for (i in seq_len(nrow(lb_problems_df))) {
+      idx <- which(rownames(report_df) == rownames(lb_problems_df)[i])
+      cat(sprintf("%-5d %-5d %-15s %-8.2f %-10.3f %-10.3f %-10.3f %-10.2f\n",
+                  idx,
+                  lb_problems_df$frequency[i],
+                  lb_problems_df$TITLE[i],
+                  lb_problems_df$BIC[i],
+                  lb_problems_df$LB_Prob[i],
+                  lb_problems_df$LB2_Prob[i],
+                  lb_problems_df$Norm_Prob[i],
+                  lb_problems_df$Norm_Test[i]),
+          file = output_file, append = TRUE)
+    }
 
-  cat("\n\n", file = output_file, append = TRUE)
-  cat(normality_separator, file = output_file, append = TRUE)
-  cat(header, file = output_file, append = TRUE)
-  cat(separator, file = output_file, append = TRUE)
-  for (i in 1:nrow(normality_problems_df)) {
-    idx <- which(rownames(report_df) == rownames(normality_problems_df)[i])
-    cat(sprintf("%-5d %-5d %-15s %-8.2f %-10.3f %-10.3f %-10.3f %-10.2f\n",
-                idx,
-                normality_problems_df$frequency[i],
-                normality_problems_df$TITLE[i],
-                normality_problems_df$BIC[i],
-                normality_problems_df$LB_Prob[i],
-                normality_problems_df$LB2_Prob[i],
-                normality_problems_df$Norm_Prob[i],
-                normality_problems_df$Norm_Test[i]),
-        file = output_file, append = TRUE)
-  }
+    cat("\n\n", file = output_file, append = TRUE)
+    cat(normality_separator, file = output_file, append = TRUE)
+    cat(header, file = output_file, append = TRUE)
+    cat(separator, file = output_file, append = TRUE)
+    for (i in seq_len(nrow(normality_problems_df))) {
+      idx <- which(rownames(report_df) == rownames(normality_problems_df)[i])
+      cat(sprintf("%-5d %-5d %-15s %-8.2f %-10.3f %-10.3f %-10.3f %-10.2f\n",
+                  idx,
+                  normality_problems_df$frequency[i],
+                  normality_problems_df$TITLE[i],
+                  normality_problems_df$BIC[i],
+                  normality_problems_df$LB_Prob[i],
+                  normality_problems_df$LB2_Prob[i],
+                  normality_problems_df$Norm_Prob[i],
+                  normality_problems_df$Norm_Test[i]),
+          file = output_file, append = TRUE)
+    }
 
-  cat("\n\n", file = output_file, append = TRUE)
-  cat(lb_squared_separator, file = output_file, append = TRUE)
-  cat(header, file = output_file, append = TRUE)
-  cat(separator, file = output_file, append = TRUE)
-  for (i in 1:nrow(lb_squared_problems_df)) {
-    idx <- which(rownames(report_df) == rownames(lb_squared_problems_df)[i])
-    cat(sprintf("%-5d %-5d %-15s %-8.2f %-10.3f %-10.3f %-10.3f %-10.2f\n",
-                idx,
-                lb_squared_problems_df$frequency[i],
-                lb_squared_problems_df$TITLE[i],
-                lb_squared_problems_df$BIC[i],
-                lb_squared_problems_df$LB_Prob[i],
-                lb_squared_problems_df$LB2_Prob[i],
-                lb_squared_problems_df$Norm_Prob[i],
-                lb_squared_problems_df$Norm_Test[i]),
-        file = output_file, append = TRUE)
-  }
+    cat("\n\n", file = output_file, append = TRUE)
+    cat(lb_squared_separator, file = output_file, append = TRUE)
+    cat(header, file = output_file, append = TRUE)
+    cat(separator, file = output_file, append = TRUE)
+    for (i in seq_len(nrow(lb_squared_problems_df))) {
+      idx <- which(rownames(report_df) == rownames(lb_squared_problems_df)[i])
+      cat(sprintf("%-5d %-5d %-15s %-8.2f %-10.3f %-10.3f %-10.3f %-10.2f\n",
+                  idx,
+                  lb_squared_problems_df$frequency[i],
+                  lb_squared_problems_df$TITLE[i],
+                  lb_squared_problems_df$BIC[i],
+                  lb_squared_problems_df$LB_Prob[i],
+                  lb_squared_problems_df$LB2_Prob[i],
+                  lb_squared_problems_df$Norm_Prob[i],
+                  lb_squared_problems_df$Norm_Test[i]),
+          file = output_file, append = TRUE)
+    }
 
-  cat("\n\n", file = output_file, append = TRUE)
+    cat("\n\n", file = output_file, append = TRUE)
 
-  # PROBLEMS RESUME: only problematic series
-  cat(resume_separator, file = output_file, append = TRUE)
-  cat(sprintf("%-5s %-5s %-15s %-8s %-10s %-10s %-10s %-10s %-25s\n", "", "Freq", "TITLE", "BIC", "LB_Prob", "LB2_Prob", "Norm_Prob", "Norm_Test", "Not_significant_coeff"), file = output_file, append = TRUE)
-  cat("--------------------------------------------------------------------------------------------------------------\n", file = output_file, append = TRUE)
+    # PROBLEMS RESUME: only problematic series
+    cat(resume_separator, file = output_file, append = TRUE)
+    cat(sprintf("%-5s %-5s %-15s %-8s %-10s %-10s %-10s %-10s %-25s\n", "", "Freq", "TITLE", "BIC", "LB_Prob", "LB2_Prob", "Norm_Prob", "Norm_Test", "Not_significant_coeff"), file = output_file, append = TRUE)
+    cat("--------------------------------------------------------------------------------------------------------------\n", file = output_file, append = TRUE)
 
-  for (i in 1:nrow(problematic_series_df)) {
-    lb_prob_display <- ifelse(problematic_series_df$LB_Prob[i] < 0.05, paste0(problematic_series_df$LB_Prob[i], "(*)"), problematic_series_df$LB_Prob[i])
-    lb2_prob_display <- ifelse(problematic_series_df$LB2_Prob[i] < 0.05, paste0(problematic_series_df$LB2_Prob[i], "(*)"), problematic_series_df$LB2_Prob[i])
-    norm_prob_display <- ifelse(problematic_series_df$Norm_Prob[i] < 0.05, paste0(problematic_series_df$Norm_Prob[i], "(*)"), problematic_series_df$Norm_Prob[i])
+    for (i in seq_len(nrow(problematic_series_df))) {
+      lb_prob_display <- ifelse(problematic_series_df$LB_Prob[i] < 0.05, paste0(problematic_series_df$LB_Prob[i], "(*)"), problematic_series_df$LB_Prob[i])
+      lb2_prob_display <- ifelse(problematic_series_df$LB2_Prob[i] < 0.05, paste0(problematic_series_df$LB2_Prob[i], "(*)"), problematic_series_df$LB2_Prob[i])
+      norm_prob_display <- ifelse(problematic_series_df$Norm_Prob[i] < 0.05, paste0(problematic_series_df$Norm_Prob[i], "(*)"), problematic_series_df$Norm_Prob[i])
 
-    cat(sprintf("%-5d %-5d %-15s %-8.2f %-10s %-10s %-10s %-10.2f %-25s\n",
-                i,
-                problematic_series_df$frequency[i],
-                problematic_series_df$TITLE[i],
-                problematic_series_df$BIC[i],
-                lb_prob_display,
-                lb2_prob_display,
-                norm_prob_display,
-                problematic_series_df$Norm_Test[i],
-                problematic_series_df$Not_significant_coeff[i]),
-        file = output_file, append = TRUE)
-  }
+      cat(sprintf("%-5d %-5d %-15s %-8.2f %-10s %-10s %-10s %-10.2f %-25s\n",
+                  i,
+                  problematic_series_df$frequency[i],
+                  problematic_series_df$TITLE[i],
+                  problematic_series_df$BIC[i],
+                  lb_prob_display,
+                  lb2_prob_display,
+                  norm_prob_display,
+                  problematic_series_df$Norm_Test[i],
+                  problematic_series_df$Not_significant_coeff[i]),
+          file = output_file, append = TRUE)
+    }
 
-  cat("\n", file = output_file, append = TRUE)
+    cat("\n",   file = output_file, append = TRUE)
+    cat("\n\n", file = output_file, append = TRUE)
 
+    cat("Time series without seasonality: \n\n", file=output_file, append=TRUE)
+    if(length(non_seasonal)==0)
+    {
+      cat("NONE", file=output_file, append=TRUE)
+    }else{
+      cat(non_seasonal, sep = ", ", file=output_file, append=TRUE)
+    }
+    cat("\n\n", file = output_file, append = TRUE)
+   }
 
-  cat("\n\n", file = output_file, append = TRUE)
 }
 
 
@@ -262,10 +402,11 @@ create_diagnostic_report1 <- function(workspace, output_file="report.txt") {
 #'
 #' This function generates a diagnostic report for time series models.
 #' It shows for every time series a complete view, including regression coefficients
-#' with their T-statistics as well as LB, LB2, Normality tests and BIC
+#' with their T-statistics as well as LB, LB2, Normality tests and BIC.
 #'
 #' @param workspace A workspace object containing the time series models.
 #' @param output_file A string specifying the output file path where the report will be saved (default is "report.txt").
+#' @param exclude_non_seas Logical. TRUE to exclude time series without a seasonal part from the diagnostics.
 #' @return NULL
 #' @examples
 #' require(RJDemetra)
@@ -279,7 +420,7 @@ create_diagnostic_report1 <- function(workspace, output_file="report.txt") {
 #' create_diagnostic_report2(workspace, output_file = "report.out")
 #' setwd(original_directory)
 #' @export
-create_diagnostic_report2 <- function(workspace, output_file="series_info.txt") {
+create_diagnostic_report2 <- function(workspace, output_file="series_info.txt", exclude_non_seas=TRUE) {
   require(RJDemetra)
 
   # if (!requireNamespace("RJDemetra", quietly = TRUE)) {
@@ -293,28 +434,18 @@ create_diagnostic_report2 <- function(workspace, output_file="series_info.txt") 
   RJDemetra::compute(workspace)
   jmodel <- get_jmodel(workspace)
 
+  non_seasonal <- c()
+
   report_data <- list()
   idx <- 1
   for (multiprocessing in jmodel) {
     for (series_name in names(multiprocessing)) {
+
       time_series <- multiprocessing[[series_name]]
 
       ts <- get_indicators(x = time_series, "y")
       freq <- 12 / frequency(ts)
 
-      log        <- get_indicators(x = time_series, "preprocessing.model.log")[[1]]
-      bic        <- get_indicators(x = time_series, "preprocessing.likelihood.bicc")[[1]]
-      lb         <- get_indicators(x = time_series, "preprocessing.residuals.lb")[[1]]
-      lb_squared <- get_indicators(x = time_series, "preprocessing.residuals.lb2")[[1]]
-      normality  <- get_indicators(x = time_series, "preprocessing.residuals.dh")[[1]]
-
-      model_descr  <- get_indicators(x = time_series, "preprocessing.model.description")[[1]]
-      model_coeffs <- get_indicators(x = time_series, "preprocessing.model.coefficients")[[1]]
-      model_coeffs_T_stat <- model_coeffs[, 1] / model_coeffs[, 2]
-
-      arimaparams <- get_indicators(x = time_series, "preprocessing.arima.parameters")[[1]]
-      arima_se    <- sqrt(diag(get_indicators(time_series, "preprocessing.model.pcovar")[[1]]))
-      arima_coeffs_T_stat <- arimaparams/ arima_se
       # Estrai i valori dei coefficienti
       p <- get_indicators(x = time_series, "preprocessing.arima.p")[[1]]
       d <- get_indicators(x = time_series, "preprocessing.arima.d")[[1]]
@@ -322,74 +453,114 @@ create_diagnostic_report2 <- function(workspace, output_file="series_info.txt") 
       bp <- get_indicators(x = time_series, "preprocessing.arima.bp")[[1]]
       bd <- get_indicators(x = time_series, "preprocessing.arima.bd")[[1]]
       bq <- get_indicators(x = time_series, "preprocessing.arima.bq")[[1]]
-      # Initialize coefficient names and model tracking
-      coeff_names <- c()
-      model_labels <- c()  # Track which model each coefficient belongs to
-      # Loop through AR terms (p)
-      if (p > 0) {
-        for (i in 1:p) {
-          coeff_names <- c(coeff_names, paste0("phi", i))
-          model_labels <- c(model_labels, paste0("Model", " (", p, ",", d, ",", q, ")(", bp, ",", bd, ",", bq, ")"))
-        }
+
+
+      if(exclude_non_seas==FALSE || !(bp==0 && bd==0 && bq==0)) # exclude time series without seasonal models
+      {
+            log        <- get_indicators(x = time_series, "preprocessing.model.log")[[1]]
+            bic        <- get_indicators(x = time_series, "preprocessing.likelihood.bicc")[[1]]
+            lb         <- get_indicators(x = time_series, "preprocessing.residuals.lb")[[1]]
+            lb_squared <- get_indicators(x = time_series, "preprocessing.residuals.lb2")[[1]]
+            normality  <- get_indicators(x = time_series, "preprocessing.residuals.dh")[[1]]
+
+            model_descr  <- get_indicators(x = time_series, "preprocessing.model.description")[[1]]
+            model_coeffs <- get_indicators(x = time_series, "preprocessing.model.coefficients")[[1]]
+            model_coeffs_T_stat <- model_coeffs[, 1] / model_coeffs[, 2]
+
+            arimaparams <- get_indicators(x = time_series, "preprocessing.arima.parameters")[[1]]
+            arima_se    <- sqrt(diag(get_indicators(time_series, "preprocessing.model.pcovar")[[1]]))
+            arima_coeffs_T_stat <- arimaparams/ arima_se
+
+            # Initialize coefficient names and model tracking
+            coeff_names <- c()
+            model_labels <- c()  # Track which model each coefficient belongs to
+            # Loop through AR terms (p)
+
+
+
+            if (p > 0) {
+              for (i in 1:p) {
+                coeff_names <- c(coeff_names, paste0("phi", i))
+                model_labels <- c(model_labels, paste0("Model", " (", p, ",", d, ",", q, ")(", bp, ",", bd, ",", bq, ")"))
+              }
+            }
+
+            # Loop through MA terms (q)
+            if (q > 0) {
+              for (i in 1:q) {
+                coeff_names <- c(coeff_names, paste0("theta", i))
+                model_labels <- c(model_labels, paste0("Model", " (", p, ",", d, ",", q, ")(", bp, ",", bd, ",", bq, ")"))
+              }
+            }
+
+            # Loop through Seasonal AR terms (bp)
+            if (bp > 0) {
+              for (i in 1:bp) {
+                coeff_names <- c(coeff_names, paste0("Bphi", i))
+                model_labels <- c(model_labels, paste0("Model", " (", p, ",", d, ",", q, ")(", bp, ",", bd, ",", bq, ")"))
+              }
+            }
+
+            # Loop through Seasonal MA terms (bq)
+            if (bq > 0) {
+              for (i in 1:bq) {
+                coeff_names <- c(coeff_names, paste0("Btheta", i))
+                model_labels <- c(model_labels, paste0("Model", " (", p, ",", d, ",", q, ")(", bp, ",", bd, ",", bq, ")"))
+              }
+            }
+
+            cat("\n\n", file = output_file, append = TRUE)
+            cat(sprintf("TITLE: %s\n", series_name), file = output_file, append = TRUE)
+
+            cat("\nlog:", log, "\n", file = output_file, append = TRUE)
+
+            cat(sprintf("%-15s %-15s %-15s %-15s %-15s\n", "BIC", "LB_Prob", "LB2_Prob", "Norm_Prob", "Norm_Test"), file = output_file, append = TRUE)
+            cat("-----------------------------------------------------------------------------------------\n", file = output_file, append = TRUE)
+            cat(sprintf("%-15.2f %-15.3f %-15.3f %-15.3f %-15.2f\n",
+                        bic,
+                        lb[2],
+                        lb_squared[2],
+                        normality[2],
+                        normality[1]),
+                file = output_file, append = TRUE)
+
+            cat(sprintf("\n%-25s %-15s %-15s %-15s\n", " Name   ", "Coefficients", "T-Stats", "Not significant"), file = output_file, append = TRUE)
+            cat("-------------------------------------------------------------------------------\n", file = output_file, append = TRUE)
+
+
+            for (i in 1:length(model_descr)) {
+              not_significant <- ifelse(abs(model_coeffs_T_stat[i]) < 2, "X", "")
+
+              cat(sprintf("%-25s %-15.3f %-15.3f %-15s\n", model_descr[i], model_coeffs[i], model_coeffs_T_stat[i], not_significant),
+                  file = output_file, append = TRUE)
+            }
+            # if(series_name=="VA4711")
+            # {browser()}
+            for (i in 1:length(arimaparams)) {
+              not_significant_arima <- ifelse(abs(arima_coeffs_T_stat[i]) < 2, "X", "")
+
+              cat(sprintf("%-25s %-15.3f %-15f %-15s\n", coeff_names[i], arimaparams[i], arima_coeffs_T_stat[i], not_significant_arima),
+                  file = output_file, append = TRUE)
+            }
+
+            if(bp==0 && bd==0 && bq==0)
+            {
+              non_seasonal <- append(non_seasonal, series_name)
+            }
+
+      }else{ # no seasonality
+        non_seasonal <- append(non_seasonal, series_name)
       }
 
-      # Loop through MA terms (q)
-      if (q > 0) {
-        for (i in 1:q) {
-          coeff_names <- c(coeff_names, paste0("theta", i))
-          model_labels <- c(model_labels, paste0("Model", " (", p, ",", d, ",", q, ")(", bp, ",", bd, ",", bq, ")"))
-        }
-      }
-
-      # Loop through Seasonal AR terms (bp)
-      if (bp > 0) {
-        for (i in 1:bp) {
-          coeff_names <- c(coeff_names, paste0("Bphi", i))
-          model_labels <- c(model_labels, paste0("Model", " (", p, ",", d, ",", q, ")(", bp, ",", bd, ",", bq, ")"))
-        }
-      }
-
-      # Loop through Seasonal MA terms (bq)
-      if (bq > 0) {
-        for (i in 1:bq) {
-          coeff_names <- c(coeff_names, paste0("Btheta", i))
-          model_labels <- c(model_labels, paste0("Model", " (", p, ",", d, ",", q, ")(", bp, ",", bd, ",", bq, ")"))
-        }
-      }
-
-      cat("\n\n", file = output_file, append = TRUE)
-      cat(sprintf("TITLE: %s\n", series_name), file = output_file, append = TRUE)
-
-      cat("\nlog:", log, "\n", file = output_file, append = TRUE)
-
-      cat(sprintf("%-15s %-15s %-15s %-15s %-15s\n", "BIC", "LB_Prob", "LB2_Prob", "Norm_Prob", "Norm_Test"), file = output_file, append = TRUE)
-      cat("-----------------------------------------------------------------------------------------\n", file = output_file, append = TRUE)
-      cat(sprintf("%-15.2f %-15.3f %-15.3f %-15.3f %-15.2f\n",
-                  bic,
-                  lb[2],
-                  lb_squared[2],
-                  normality[2],
-                  normality[1]),
-          file = output_file, append = TRUE)
-
-      cat(sprintf("\n%-25s %-15s %-15s %-15s\n", " Name   ", "Coefficients", "T-Stats", "Not significant"), file = output_file, append = TRUE)
-      cat("-------------------------------------------------------------------------------\n", file = output_file, append = TRUE)
-
-
-      for (i in 1:length(model_descr)) {
-        not_significant <- ifelse(abs(model_coeffs_T_stat[i]) < 2, "X", "")
-
-        cat(sprintf("%-25s %-15.3f %-15.3f %-15s\n", model_descr[i], model_coeffs[i], model_coeffs_T_stat[i], not_significant),
-            file = output_file, append = TRUE)
-      }
-      # if(series_name=="VA4711")
-      # {browser()}
-      for (i in 1:length(arimaparams)) {
-        not_significant_arima <- ifelse(abs(arima_coeffs_T_stat[i]) < 2, "X", "")
-
-        cat(sprintf("%-25s %-15.3f %-15f %-15s\n", coeff_names[i], arimaparams[i], arima_coeffs_T_stat[i], not_significant_arima),
-            file = output_file, append = TRUE)
-      }
     }
   }
+
+  cat("\n\nNon-seasonal time series:\n\n", sep=", ", file=output_file, append = TRUE)
+  cat(non_seasonal, sep=", ", file=output_file, append = TRUE)
+
 }
+
+
+
+
+

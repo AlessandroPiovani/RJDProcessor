@@ -4,18 +4,25 @@
 \alias{create_diagnostic_report1}
 \title{Create Diagnostic Report for Time Series Models}
 \usage{
-create_diagnostic_report1(workspace, output_file = "report.txt")
+create_diagnostic_report1(
+  workspace,
+  output_file = "report.txt",
+  exclude_non_seas = TRUE
+)
 }
 \arguments{
 \item{workspace}{A workspace object containing the time series models.}
 
 \item{output_file}{A string specifying the output file path where the report will be saved (default is "report.txt").}
+
+\item{exclude_non_seas}{Logical. TRUE to exclude time series without a seasonal part from the diagnostics.}
 }
 \description{
 This function generates a diagnostic report for time series models,
 including BIC, p-values from Ljung-Box tests, and normality test results.
 It organizes the output into categories: all series, series with Ljung-Box problems,
 series with normality issues, and a summary of problematic series.
+Time series without a seasonal part are excluded from the diagnostics.
 }
 \examples{
 require(RJDemetra)
