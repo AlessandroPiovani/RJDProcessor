@@ -134,6 +134,80 @@ get_arima_coef_info <- function(spec)
 }
 
 
+# Indica se e' disponibile il modello Java (get_jmodel) del workspace
+java_model_available <- function(jm)
+{
+  return(!is.null(jm) && is.list(jm) && length(jm) > 0)
+}
+
+
+# Legge ordini e coefficienti ARIMA direttamente dalla specifica Java della serie
+# (spec di dominio, la stessa che legge il processore Java).
+# Serve perche' nelle specifiche R semplificate (simplify_leaves) la tabella dei
+# coefficienti ARIMA viene ridotta a una sola riga e si perdono i coefficienti.
+#
+# Ordine dei coefficienti: phi(1..p), bphi(1..bp), theta(1..q), btheta(1..bq),
+# lo stesso di RJDemetra (arima.coef) e del processore Java (splitArimaCoefficients).
+# Tipi: Fixed/Initial -> valore e tipo; Undefined/Estimated/altro -> NA e "Undefined" (libero).
+get_arima_info_from_java <- function(jsa_series)
+{
+  jArima <- jsa_series$spec$getCore()$getTramoSpecification()$getArima()
+
+  read_params <- function(params, order)
+  {
+    values <- rep(NA_real_, order)
+    types  <- rep("Undefined", order)
+    # rJava puo' restituire l'array come lista R oppure come riferimento Java (anche null)
+    if (inherits(params, "jobjRef"))
+    {
+      params <- if (rJava::is.jnull(params)) NULL else rJava::.jevalArray(params)
+    }
+    if (order > 0 && !is.null(params))
+    {
+      for (k in seq_len(min(order, length(params))))
+      {
+        par <- params[[k]]
+        if (is.null(par) || rJava::is.jnull(par)) next
+        type <- par$getType()$toString()
+        if (type %in% c("Fixed", "Initial"))
+        {
+          values[k] <- par$getValue()
+          types[k]  <- type
+        }
+      }
+    }
+    return(list(value = values, type = types))
+  }
+
+  p  <- as.integer(jArima$getP())
+  d  <- as.integer(jArima$getD())
+  q  <- as.integer(jArima$getQ())
+  bp <- as.integer(jArima$getBP())
+  bd <- as.integer(jArima$getBD())
+  bq <- as.integer(jArima$getBQ())
+
+  phi    <- read_params(jArima$getPhi(),    p)
+  bphi   <- read_params(jArima$getBPhi(),   bp)
+  theta  <- read_params(jArima$getTheta(),  q)
+  btheta <- read_params(jArima$getBTheta(), bq)
+
+  coef     <- c(phi$value, bphi$value, theta$value, btheta$value)
+  coefType <- c(phi$type,  bphi$type,  theta$type,  btheta$type)
+
+  # Se nessun coefficiente e' fissato o iniziale, i coefficienti non sono usati:
+  # stessi valori (NA) della specifica di base, cosi' il JSON ridotto non li riporta
+  coefEnabled <- length(coefType) > 0 && any(coefType != "Undefined")
+  if (!coefEnabled)
+  {
+    coef     <- NA
+    coefType <- NA
+  }
+
+  return(list(p = p, d = d, q = q, bp = bp, bd = bd, bq = bq,
+              coef = coef, coefType = coefType, coefEnabled = coefEnabled))
+}
+
+
 get_user_def_var_info <- function(spec)
 {
   #browser()

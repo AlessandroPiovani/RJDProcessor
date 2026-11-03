@@ -424,14 +424,11 @@ setMethod("to_JD_JSON", "Extended_tramoseats_spec", function(object, indent = FA
     json_spec <- gsub(",([^\\r\\n])", ", \\1", json_spec)
 
 
-    require(stringr)
+    # Rimuove gli a capo all'interno dei vettori [ ... ] (senza stringr: solo R base)
     vec_pattern <- "\\[[^\\[\\{\\}]*?\\]"
-    json_spec <- str_replace_all(json_spec, vec_pattern, function(match) {
-      # Manipola il vettore isolato
-      # In questo caso, possiamo rimuovere gli andare a capo all'interno del vettore
-      match <- gsub("[\r\n]", "", match)
-      return(match)
-    })
+    vec_matches <- gregexpr(vec_pattern, json_spec, perl = TRUE)
+    regmatches(json_spec, vec_matches) <- lapply(regmatches(json_spec, vec_matches),
+                                                 function(match) gsub("[\r\n]", "", match))
   }
 
   return(json_spec)
@@ -694,27 +691,27 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
               #browser()
               all_model_vars_info$ramps[[series_name]] <- lapply(all_model_vars_info$ramps[[series_name]], function(ramp) {
                 if (ramp$start == rp$start && ramp$end == rp$end) {  if(!is.null(jRegression$getFixedCoefficients(rp$name))){ramp$fixed_coef <- jRegression$getFixedCoefficients(rp$name)} else {ramp$fixed_coef <- 0} } #{ramp$fixed_coef <- NA}   }
-                    return(ramp)  })
+                return(ramp)  })
             }
 
           }
 
           ivs <- get_intervention_variables_from_java(ts)
-        #   if(length(ivs)>0)
-        #   {
-        #     #browser()
-        #     for (iv in ivs)
-        #     {
-        #       #browser()
-        #
-        #       # correspondingSequence = function that returns TRUE if the sequence of intervention_var is the same as the sequence of an iv
-        #       all_model_vars_info$intervention_vars[[series_name]] <- lapply(all_model_vars_info$intervention_vars[[series_name]], function(intervention_var) {
-        #         if(correspondingSequence && intervention_var$delta == iv$delta && intervention_var$delta_s == iv$delta_s && intervention_var$D1DS == iv$D1DS) {  if(!is.null(jRegression$getFixedCoefficients(iv$name))){intervention_var$fixed_coef <- jRegression$getFixedCoefficients(iv$name)} else {iv$fixed_coef <- 0} } #{iv$fixed_coef <- NA}   }
-        #         return(intervention_var)  })
-        #     }
-        #
-        #   }
-        #
+          #   if(length(ivs)>0)
+          #   {
+          #     #browser()
+          #     for (iv in ivs)
+          #     {
+          #       #browser()
+          #
+          #       # correspondingSequence = function that returns TRUE if the sequence of intervention_var is the same as the sequence of an iv
+          #       all_model_vars_info$intervention_vars[[series_name]] <- lapply(all_model_vars_info$intervention_vars[[series_name]], function(intervention_var) {
+          #         if(correspondingSequence && intervention_var$delta == iv$delta && intervention_var$delta_s == iv$delta_s && intervention_var$D1DS == iv$D1DS) {  if(!is.null(jRegression$getFixedCoefficients(iv$name))){intervention_var$fixed_coef <- jRegression$getFixedCoefficients(iv$name)} else {iv$fixed_coef <- 0} } #{iv$fixed_coef <- NA}   }
+          #         return(intervention_var)  })
+          #     }
+          #
+          #   }
+          #
 
 
         }
@@ -959,6 +956,27 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_in
   }
 
 
+  # ARIMA: ordini e coefficienti letti dalla specifica Java quando disponibile.
+  # Le specifiche R passate da simplify_leaves() perdono i coefficienti ARIMA
+  # (la tabella con una riga per coefficiente viene ridotta a una sola riga).
+  # Per le specifiche di base (RSA0, ...) non c'e' modello Java: si usa la specifica R.
+  if (java_model_available(jm) && !is.na(series_name) && !is.null(jm[[1]][[series_name]]))
+  {
+    arima_info <- get_arima_info_from_java(jm[[1]][[series_name]])
+  } else
+  {
+    arima_coef_info <- get_arima_coef_info(regarima_spec)
+    arima_info <- list(p  = regarima_spec$arima$specification$arima.p,
+                       d  = regarima_spec$arima$specification$arima.d,
+                       q  = regarima_spec$arima$specification$arima.q,
+                       bp = regarima_spec$arima$specification$arima.bp,
+                       bd = regarima_spec$arima$specification$arima.bd,
+                       bq = regarima_spec$arima$specification$arima.bq,
+                       coef        = arima_coef_info$value,
+                       coefType    = arima_coef_info$type,
+                       coefEnabled = regarima_spec$arima$specification$arima.coef)
+  }
+
   extended_tramoseats_spec <- Extended_tramoseats_spec(
     spec               = ifelse(basic_spec=="TS", "RSA0", basic_spec),
     series_name        = series_name, # custom field
@@ -1023,15 +1041,15 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_in
     automdl.ljungboxlimit = regarima_spec$arima$specification$automdl.ljungboxlimit,
     automdl.compare  = regarima_spec$arima$specification$compare,
     arima.mu = regarima_spec$arima$specification$arima.mu,
-    arima.p  = regarima_spec$arima$specification$arima.p,
-    arima.d  = regarima_spec$arima$specification$arima.d,
-    arima.q  = regarima_spec$arima$specification$arima.q,
-    arima.bp = regarima_spec$arima$specification$arima.bp,
-    arima.bd = regarima_spec$arima$specification$arima.bd,
-    arima.bq = regarima_spec$arima$specification$arima.bq,
-    arima.coef        = get_arima_coef_info(regarima_spec)$value, #ifelse(is.na(regarima_spec$arima$coefficients), NA, regarima_spec$arima$coefficients$Value),
-    arima.coefEnabled = regarima_spec$arima$specification$arima.coef,
-    arima.coefType    = get_arima_coef_info(regarima_spec)$type, #ifelse(regarima_spec$arima$specification$arima.coef, regarima_spec$arima$coefficients$Type, NA), # controllare
+    arima.p  = arima_info$p,
+    arima.d  = arima_info$d,
+    arima.q  = arima_info$q,
+    arima.bp = arima_info$bp,
+    arima.bd = arima_info$bd,
+    arima.bq = arima_info$bq,
+    arima.coef        = arima_info$coef,
+    arima.coefEnabled = arima_info$coefEnabled,
+    arima.coefType    = arima_info$coefType,
     fcst.horizon      = regarima_spec$forecast$horizon,
     seats.predictionLength = seats_spec$seats.predictionLength,
     seats.approx           = seats_spec$seats.approx,
@@ -1243,4 +1261,3 @@ get_intervention_variables_from_java<- function(series)
 
 
 }
-

@@ -474,7 +474,7 @@ JD_JSON_from_virtual_workspace <- function(ws, ext_reg_input_data_reader, JSON_f
 
   # Last specification without "," at the end
   current_spec <- series_spec_list[[n]]
-  json_spec <- to_JD_JSON(current_spec, indent = TRUE, diff = diff)
+  json_spec <- to_JD_JSON(current_spec, indent = TRUE, diff = diff, basic_spec = current_spec@spec) # basic_spec mancava per l'ultima serie
   writeLines(json_spec, con, sep = "")
 
   writeLines("\n]", con, sep = "")
