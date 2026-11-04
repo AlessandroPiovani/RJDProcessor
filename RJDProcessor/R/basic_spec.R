@@ -125,7 +125,7 @@ get_basic_spec <- function(spec)
       tradingdays.leapyear = FALSE,
       tradingdays.stocktd = 0,
       tradingdays.test = "None",
-      easter.type = "Unised",
+      easter.type = "Unused",
       easter.julian = FALSE,
       easter.duration = 6,
       easter.test = FALSE,
