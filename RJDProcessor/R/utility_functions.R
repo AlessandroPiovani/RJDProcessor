@@ -141,17 +141,33 @@ java_model_available <- function(jm)
 }
 
 
-# Legge ordini e coefficienti ARIMA direttamente dalla specifica Java della serie
-# (spec di dominio, la stessa che legge il processore Java).
+# Legge ordini e coefficienti ARIMA direttamente dalle specifiche Java della serie.
 # Serve perche' nelle specifiche R semplificate (simplify_leaves) la tabella dei
 # coefficienti ARIMA viene ridotta a una sola riga e si perdono i coefficienti.
 #
-# Ordine dei coefficienti: phi(1..p), bphi(1..bp), theta(1..q), btheta(1..bq),
-# lo stesso di RJDemetra (arima.coef) e del processore Java (splitArimaCoefficients).
+# Quale specifica: nei workspace importati da TS+ con il plugin il modello ARIMA vero
+# (es. (3,1,0) con phi(2) fisso) e' solo nella specifica Point (modello stimato),
+# mentre la Domain e' incompleta. Quindi:
+#  - modello automatico SPENTO e Point disponibile -> ARIMA dalla Point
+#  - altrimenti (automdl acceso, o nessun sa_item)  -> ARIMA dalla Domain
+#
+# Ordine dei coefficienti: phi(1..p), theta(1..q), bphi(1..bp), btheta(1..bq),
+# lo stesso di RJDemetra (arima.coef) e del processore Java (ArimaSplitter.splitArimaCoefficients).
 # Tipi: Fixed/Initial -> valore e tipo; Undefined/Estimated/altro -> NA e "Undefined" (libero).
-get_arima_info_from_java <- function(jsa_series)
+get_arima_info_from_java <- function(jsa_series, sa_item = NULL)
 {
-  jArima <- jsa_series$spec$getCore()$getTramoSpecification()$getArima()
+  jTramoDomain <- jsa_series$spec$getCore()$getTramoSpecification()
+  jArima       <- jTramoDomain$getArima()
+
+  if (!is.null(sa_item) && !isTRUE(jTramoDomain$getAutoModel()$isEnabled()))
+  {
+    sa_def     <- rJava::.jcall(sa_item, "Ljd2/datatypes/sa/SaItemType;", "getSaDefinition")
+    point_spec <- rJava::.jcall(sa_def, "Lec/satoolkit/ISaSpecification;", "getPointSpec")
+    if (!rJava::is.jnull(point_spec))
+    {
+      jArima <- point_spec$getTramoSpecification()$getArima()
+    }
+  }
 
   read_params <- function(params, order)
   {
@@ -191,8 +207,8 @@ get_arima_info_from_java <- function(jsa_series)
   theta  <- read_params(jArima$getTheta(),  q)
   btheta <- read_params(jArima$getBTheta(), bq)
 
-  coef     <- c(phi$value, bphi$value, theta$value, btheta$value)
-  coefType <- c(phi$type,  bphi$type,  theta$type,  btheta$type)
+  coef     <- c(phi$value, theta$value, bphi$value, btheta$value)
+  coefType <- c(phi$type,  theta$type,  bphi$type,  btheta$type)
 
   # Se nessun coefficiente e' fissato o iniziale, i coefficienti non sono usati:
   # stessi valori (NA) della specifica di base, cosi' il JSON ridotto non li riporta

@@ -1,5 +1,5 @@
-# setwd("C:\\Users\\UTENTE\\OneDrive - ISTAT\\Desktop\\RJDopenCruncher\\RJDProcessor")
-setwd("C:\\Users\\alessandro.piovani\\Desktop\\github_repo\\RJDProcessor\\RJDProcessor\\")
+setwd("C:\\Users\\UTENTE\\OneDrive - ISTAT\\Desktop\\RJDopenCruncher\\RJDProcessor")
+# setwd("C:\\Users\\alessandro.piovani\\Desktop\\github_repo\\RJDProcessor\\RJDProcessor\\")
 
 # install.packages("C:\\Users\\UTENTE\\OneDrive - ISTAT\\Desktop\\RJDopenCruncher\\RJDProcessor_1.2.1.tar.gz", repos = NULL, type = "source")
 
@@ -28,10 +28,9 @@ devtools::build()
 # Check the package
 check()
 
-# devtools::build_manual(pkg = "C:\\Users\\UTENTE\\OneDrive - ISTAT\\Desktop\\RJDopenCruncher\\RJDProcessor")
-devtools::build_manual(pkg = "C:\\Users\\alessandro.piovani\\Desktop\\github_repo\\RJDProcessor\\RJDProcessor\\")
+devtools::build_manual(pkg = "C:\\Users\\UTENTE\\OneDrive - ISTAT\\Desktop\\RJDopenCruncher\\RJDProcessor")
+# devtools::build_manual(pkg = "C:\\Users\\alessandro.piovani\\Desktop\\github_repo\\RJDProcessor\\RJDProcessor\\")
 
 
-#C:\Users\UTENTE\AppData\Local\Programs\MiKTeX\miktex\bin\x64\pdflatex.exe
-
-install.packages("C:\\Users\\alessandro.piovani\\Desktop\\github_repo\\RJDProcessor\\RJDProcessor_1.2.1.tar.gz", type="source", repos = NULL)
+install.packages("C:\\Users\\UTENTE\\OneDrive - ISTAT\\Desktop\\RJDopenCruncher\\RJDProcessor_1.2.1.tar.gz", type="source", repos = NULL)
+# install.packages("C:\\Users\\alessandro.piovani\\Desktop\\github_repo\\RJDProcessor\\RJDProcessor_1.2.1.tar.gz", type="source", repos = NULL)
