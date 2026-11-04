@@ -1,3 +1,4 @@
+
 require(RJDemetra)
 require(rjson)
 
@@ -174,67 +175,48 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_reader, ext_reg_d
 
   timestamps   <- rownames(mts_input_time_series)
   series_names <- colnames(mts_input_time_series)
-
-  # Auto detection of frequency, done once on the whole date grid of the input file.
-  # Months are counted as year*12 + month, so that a December -> January step is 1 (not 11).
-  dates_all   <- as.Date(timestamps)
-  if (any(is.na(dates_all)))
-    stop("Rownames of the input data are not valid dates (expected YYYY-MM-DD), e.g. '",
-         timestamps[which(is.na(dates_all))[1]], "'")
-  month_index <- as.integer(format(dates_all, "%Y")) * 12 + as.integer(format(dates_all, "%m"))
-  month_diff  <- unique(diff(month_index))
-  if (length(month_diff) != 1 || !(month_diff %in% c(1, 2, 3, 4, 6, 12)))
-    stop("Input dates are not regular: steps in months found = ", paste(month_diff, collapse = ", "))
-  freq <- 12 / month_diff
-
-  # Read the JSON once (it was read again for every series)
-  extended_tramoseats_spec_list <- read_spec_list_from_json_file(JSON_file, spec_format="list")
-
   for (i in 1:ncol(mts_input_time_series)) {
 
     #browser()
     if(all(is.na(series_to_proc_names)) || series_names[i] %in% series_to_proc_names)
     {
-      ts_name <- series_names[i]
-
-      # Skip series of the input file without a specification in the JSON
-      extended_tramoseats_spec_obj  <- extended_tramoseats_spec_list[[ts_name]]
-      if (is.null(extended_tramoseats_spec_obj)) {
-        warning("No specification in the JSON for series ", ts_name, ": skipped")
-        next
-      }
-
       # Extract the ts from mts matrix
       series <- mts_input_time_series[, i]
 
       # Find the position of the first non-NA value of the series
       start_index <- which(!is.na(series))[1]
 
-      # Skip series with no data at all
-      if (is.na(start_index)) {
-        warning("Series ", ts_name, " contains only NA values: skipped")
-        next
-      }
-
       # Extract the part of the series which starts from the first not-NA value
       series <- gsub(",", ".", series)
       series_trimmed <- as.numeric(series[start_index:length(series)])
 
       # Compute the start based on the first not-NA value
-      start_date <- dates_all[start_index]
+      start_date <- timestamps[start_index]
 
-      # Start as c(year, period): period = month for monthly data, quarter for quarterly data, ...
-      year   <- as.integer(format(start_date, "%Y"))
-      month  <- as.integer(format(start_date, "%m"))
-      period <- (month - 1) %/% month_diff + 1
+      # auto detection of frequency
+      d1         <- as.Date(timestamps[start_index])
+      d2         <- as.Date(timestamps[start_index+1])
+      month_diff <- abs(as.numeric(format(d1, "%m")) - as.numeric(format(d2, "%m")))
+      freq       <- 12/month_diff
 
-      start <- c(year, period)
+
+      # Extract year and month of start from the date
+      year  <- as.integer(substr(start_date, 1, 4))  # Extract the first 4 characters (year) and cast them to integer
+      month <- as.integer(substr(start_date, 6, 7))  # Extract characters 6 and 7 (month) and cast them to integer
+
+      start <- c(year, month)
 
       #browser()
 
 
       # Build the ts object
       ts_obj  <- ts(series_trimmed, start = start, frequency = freq)
+
+      ts_name <- series_names[i]
+
+      # browser()
+      extended_tramoseats_spec_list <- read_spec_list_from_json_file(JSON_file, spec_format="list")
+      extended_tramoseats_spec_obj  <- extended_tramoseats_spec_list[[ts_name]]
 
       #browser()
       tramoseats_spec_args <- to_tramoseats_spec_args(extended_tramoseats_spec_obj, ext_reg_data_reader)
@@ -257,6 +239,16 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_reader, ext_reg_d
       tramoseats_spec_args$series_start = NULL  # re-set it after do.call(...)
       tramoseats_spec_args$series_end   = NULL  # re-set it after do.call(...)
 
+      # Span della serie di tipo First / Last / Excluding (non supportato da tramoseats_spec)
+      series_first     <- tramoseats_spec_args$series_first
+      series_last      <- tramoseats_spec_args$series_last
+      series_exclFirst <- tramoseats_spec_args$series_exclFirst
+      series_exclLast  <- tramoseats_spec_args$series_exclLast
+      tramoseats_spec_args$series_first     = NULL
+      tramoseats_spec_args$series_last      = NULL
+      tramoseats_spec_args$series_exclFirst = NULL
+      tramoseats_spec_args$series_exclLast  = NULL
+
 
       spec <- do.call(RJDemetra::tramoseats_spec, tramoseats_spec_args)
       #browser()
@@ -275,7 +267,20 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_reader, ext_reg_d
 
       # browser()
 
-      if((is.null(series_start) || is.na(series_start)) && (is.null(series_end) || is.na(series_end)))
+      value_present <- function(x) !is.null(x) && length(x) > 0 && !is.na(x) && x != "NA"
+      excl_first <- if (value_present(series_exclFirst)) as.integer(series_exclFirst) else 0L
+      excl_last  <- if (value_present(series_exclLast))  as.integer(series_exclLast)  else 0L
+
+      if(value_present(series_first))      # span: prime N osservazioni (precedenza a first, come nel Java)
+      {
+        sa$spec$getBasic()$getSpan()$first(as.integer(series_first))
+      } else if(value_present(series_last)) # span: ultime N osservazioni
+      {
+        sa$spec$getBasic()$getSpan()$last(as.integer(series_last))
+      } else if(excl_first != 0 || excl_last != 0) # span: escludi prime / ultime N osservazioni
+      {
+        sa$spec$getBasic()$getSpan()$excluding(excl_first, excl_last)
+      } else if((is.null(series_start) || is.na(series_start)) && (is.null(series_end) || is.na(series_end)))
       {
         sa$spec$getBasic()$getSpan()$all()
       } else if(!(is.null(series_start) || is.na(series_start)) && (is.null(series_end) || is.na(series_end)))
@@ -709,3 +714,4 @@ from_full_to_reduced_JD_JSON_file<-function(JD_JSON_file, output_file_name=NA, i
 
 
 }
+

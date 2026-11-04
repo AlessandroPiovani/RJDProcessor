@@ -6,6 +6,10 @@ get_basic_spec <- function(spec)
       series_name = NA,
       series_start = NA_character_,
       series_end = NA_character_,
+      series_first = NA_integer_,       # span della serie: prime N osservazioni
+      series_last = NA_integer_,        # span della serie: ultime N osservazioni
+      series_exclFirst = 0,             # span della serie: escludi le prime N
+      series_exclLast  = 0,             # span della serie: escludi le ultime N
       spec = "RSA0",
       preliminary.check = TRUE,
       estimate.from = NA_character_,
@@ -96,6 +100,10 @@ get_basic_spec <- function(spec)
       series_name = NA,
       series_start = NA_character_,
       series_end = NA_character_,
+      series_first = NA_integer_,       # span della serie: prime N osservazioni
+      series_last = NA_integer_,        # span della serie: ultime N osservazioni
+      series_exclFirst = 0,             # span della serie: escludi le prime N
+      series_exclLast  = 0,             # span della serie: escludi le ultime N
       spec = "RSA1",
       preliminary.check = TRUE,
       estimate.from = NA_character_,
@@ -186,6 +194,10 @@ get_basic_spec <- function(spec)
       series_name = NA,
       series_start = NA_character_,
       series_end = NA_character_,
+      series_first = NA_integer_,       # span della serie: prime N osservazioni
+      series_last = NA_integer_,        # span della serie: ultime N osservazioni
+      series_exclFirst = 0,             # span della serie: escludi le prime N
+      series_exclLast  = 0,             # span della serie: escludi le ultime N
       spec = "RSA2",
       preliminary.check = TRUE,
       estimate.from = NA_character_,
@@ -212,7 +224,7 @@ get_basic_spec <- function(spec)
       tradingdays.mauto = "Unused",
       tradingdays.pftd = 0.01,
       tradingdays.option = "WorkingDays",
-      tradingdays.leapyear = FALSE,
+      tradingdays.leapyear = TRUE,   # come JDemetra+ (era FALSE)
       tradingdays.stocktd = 0,
       tradingdays.test = "Separate_T",
       easter.type = "Standard",
@@ -234,7 +246,7 @@ get_basic_spec <- function(spec)
       outlier.cv = 3.5,
       outlier.eml = FALSE,
       outlier.tcrate = 0.7,
-      automdl.enabled = TRUE,
+      automdl.enabled = FALSE,   # RSA2 = airline, come JDemetra+ (era TRUE)
       automdl.acceptdefault = FALSE,
       automdl.cancel = 0.05,
       automdl.ub1 = 0.97,
@@ -276,6 +288,10 @@ get_basic_spec <- function(spec)
       series_name = NA,
       series_start = NA_character_,
       series_end = NA_character_,
+      series_first = NA_integer_,       # span della serie: prime N osservazioni
+      series_last = NA_integer_,        # span della serie: ultime N osservazioni
+      series_exclFirst = 0,             # span della serie: escludi le prime N
+      series_exclLast  = 0,             # span della serie: escludi le ultime N
       spec = "RSA3",
       preliminary.check = TRUE,
       estimate.from = NA_character_,
@@ -366,6 +382,10 @@ get_basic_spec <- function(spec)
       series_name = NA,
       series_start = NA_character_,
       series_end = NA_character_,
+      series_first = NA_integer_,       # span della serie: prime N osservazioni
+      series_last = NA_integer_,        # span della serie: ultime N osservazioni
+      series_exclFirst = 0,             # span della serie: escludi le prime N
+      series_exclLast  = 0,             # span della serie: escludi le ultime N
       spec = "RSA4",
       preliminary.check = TRUE,
       estimate.from = NA_character_,
@@ -456,6 +476,10 @@ get_basic_spec <- function(spec)
       series_name = NA,
       series_start = NA_character_,
       series_end = NA_character_,
+      series_first = NA_integer_,       # span della serie: prime N osservazioni
+      series_last = NA_integer_,        # span della serie: ultime N osservazioni
+      series_exclFirst = 0,             # span della serie: escludi le prime N
+      series_exclLast  = 0,             # span della serie: escludi le ultime N
       spec = "RSA5",
       preliminary.check = TRUE,
       estimate.from = NA_character_,
@@ -546,6 +570,10 @@ get_basic_spec <- function(spec)
       series_name = NA,
       series_start = NA_character_,
       series_end = NA_character_,
+      series_first = NA_integer_,       # span della serie: prime N osservazioni
+      series_last = NA_integer_,        # span della serie: ultime N osservazioni
+      series_exclFirst = 0,             # span della serie: escludi le prime N
+      series_exclLast  = 0,             # span della serie: escludi le ultime N
       spec = "RSAfull",
       preliminary.check = TRUE,
       estimate.from = NA_character_,

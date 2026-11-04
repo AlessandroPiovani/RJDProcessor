@@ -9,6 +9,10 @@ setClass(
     series_name             = "character",    # ISTAT custom field
     series_start            = "character",    # ISTAT custom field
     series_end              = "character",    # ISTAT custom field
+    series_first            = "integer",      # ISTAT custom field: span serie, prime N osservazioni
+    series_last             = "integer",      # ISTAT custom field: span serie, ultime N osservazioni
+    series_exclFirst        = "integer",      # ISTAT custom field: span serie, escludi le prime N
+    series_exclLast         = "integer",      # ISTAT custom field: span serie, escludi le ultime N
     frequency               = "integer",
     method                  = "character",
     spec                    = "character",
@@ -100,7 +104,9 @@ setClass(
 # Costruttore
 #costruttore initialize per la classe
 setMethod("initialize", "Extended_tramoseats_spec",
-          function(.Object, series_name, series_start = NA_character_, series_end = NA_character_,frequency=NA_integer_, method ="TS" ,spec = "RSA0", preliminary.check = NA,
+          function(.Object, series_name, series_start = NA_character_, series_end = NA_character_,
+                   series_first = NA_integer_, series_last = NA_integer_,
+                   series_exclFirst = NA_integer_, series_exclLast = NA_integer_, frequency=NA_integer_, method ="TS" ,spec = "RSA0", preliminary.check = NA,
                    estimate.from = NA_character_, estimate.to = NA_character_,
                    estimate.first = NA_integer_, estimate.last = NA_integer_,
                    estimate.exclFirst = NA_integer_, estimate.exclLast = NA_integer_,
@@ -136,7 +142,7 @@ setMethod("initialize", "Extended_tramoseats_spec",
                    easterCoef=0) {
 
             # Convert possible numeric arguments to integer if they are compatible
-            integer_args_to_check <- c( "frequency", "estimate.first", "estimate.last", "estimate.exclFirst", "estimate.exclLast", "tradingdays.stocktd",
+            integer_args_to_check <- c( "frequency", "series_first", "series_last", "series_exclFirst", "series_exclLast", "estimate.first", "estimate.last", "estimate.exclFirst", "estimate.exclLast", "tradingdays.stocktd",
                                         "easter.duration", "outlier.first", "outlier.last", "outlier.exclFirst", "outlier.exclLast",
                                         "arima.p", "arima.d", "arima.q", "arima.bp", "arima.bd", "arima.bq",
                                         "seats.predictionLength")
@@ -249,7 +255,7 @@ setMethod("initialize", "Extended_tramoseats_spec",
             # .Object@seats.method <- seats.method
 
             # Set the default value as it is in the basic_spec (e.g. "RSA0") instead of NA if an argument is not specified
-            attributes <- c("series_start", "series_end", "preliminary.check", "estimate.from", "estimate.to",
+            attributes <- c("series_start", "series_end", "series_first", "series_last", "series_exclFirst", "series_exclLast", "preliminary.check", "estimate.from", "estimate.to",
                             "estimate.first", "estimate.last", "estimate.exclFirst",
                             "estimate.exclLast", "estimate.tol", "estimate.eml",
                             "estimate.urfinal", "transform.function", "transform.fct",
@@ -303,6 +309,8 @@ setMethod("initialize", "Extended_tramoseats_spec",
 # R-like Constructor:
 # Helper function for creating an Extended_tramoseats object
 Extended_tramoseats_spec_helper <- function(series_name = NULL, series_start = NA_character_, series_end = NA_character_,
+                                            series_first = NA_integer_, series_last = NA_integer_,
+                                            series_exclFirst = NA_integer_, series_exclLast = NA_integer_,
                                             frequency = NA_integer_, method = "TS" ,spec = NULL, preliminary.check = NA,
                                             estimate.from = NA_character_, estimate.to = NA_character_,
                                             estimate.first = NA_integer_, estimate.last = NA_integer_,
@@ -339,7 +347,9 @@ Extended_tramoseats_spec_helper <- function(series_name = NULL, series_start = N
                                             seats.method = NA, ramps = NA, intervention_variables = NA, #rampsCoef=NA, intervention_variablesCoef=NA, easterCoef=NA) {
                                             easterCoef=0) {
 
-  new("Extended_tramoseats_spec", series_start, series_end, series_name = series_name, frequency=frequency, method=method, spec = spec, preliminary.check = preliminary.check,
+  new("Extended_tramoseats_spec", series_start, series_end,
+      series_first = series_first, series_last = series_last,
+      series_exclFirst = series_exclFirst, series_exclLast = series_exclLast, series_name = series_name, frequency=frequency, method=method, spec = spec, preliminary.check = preliminary.check,
       estimate.from = estimate.from, estimate.to = estimate.to, estimate.first = estimate.first,
       estimate.last = estimate.last, estimate.exclFirst = estimate.exclFirst, estimate.exclLast = estimate.exclLast,
       estimate.tol = estimate.tol, estimate.eml = estimate.eml, estimate.urfinal = estimate.urfinal,
@@ -447,6 +457,10 @@ setMethod ("from_JD_JSON", "Extended_tramoseats_spec", function(object, json) {
     series_name = json_list$series_name,
     series_start = json_list$series_start,
     series_end = json_list$series_end,
+    series_first = json_list$series_first,
+    series_last = json_list$series_last,
+    series_exclFirst = json_list$series_exclFirst,
+    series_exclLast = json_list$series_exclLast,
     frequency   = frequency,
     method = json_list$method,
     spec = json_list$spec,
@@ -694,27 +708,27 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
               #browser()
               all_model_vars_info$ramps[[series_name]] <- lapply(all_model_vars_info$ramps[[series_name]], function(ramp) {
                 if (ramp$start == rp$start && ramp$end == rp$end) {  if(!is.null(jRegression$getFixedCoefficients(rp$name))){ramp$fixed_coef <- jRegression$getFixedCoefficients(rp$name)} else {ramp$fixed_coef <- 0} } #{ramp$fixed_coef <- NA}   }
-                return(ramp)  })
+                    return(ramp)  })
             }
 
           }
 
           ivs <- get_intervention_variables_from_java(ts)
-          #   if(length(ivs)>0)
-          #   {
-          #     #browser()
-          #     for (iv in ivs)
-          #     {
-          #       #browser()
-          #
-          #       # correspondingSequence = function that returns TRUE if the sequence of intervention_var is the same as the sequence of an iv
-          #       all_model_vars_info$intervention_vars[[series_name]] <- lapply(all_model_vars_info$intervention_vars[[series_name]], function(intervention_var) {
-          #         if(correspondingSequence && intervention_var$delta == iv$delta && intervention_var$delta_s == iv$delta_s && intervention_var$D1DS == iv$D1DS) {  if(!is.null(jRegression$getFixedCoefficients(iv$name))){intervention_var$fixed_coef <- jRegression$getFixedCoefficients(iv$name)} else {iv$fixed_coef <- 0} } #{iv$fixed_coef <- NA}   }
-          #         return(intervention_var)  })
-          #     }
-          #
-          #   }
-          #
+        #   if(length(ivs)>0)
+        #   {
+        #     #browser()
+        #     for (iv in ivs)
+        #     {
+        #       #browser()
+        #
+        #       # correspondingSequence = function that returns TRUE if the sequence of intervention_var is the same as the sequence of an iv
+        #       all_model_vars_info$intervention_vars[[series_name]] <- lapply(all_model_vars_info$intervention_vars[[series_name]], function(intervention_var) {
+        #         if(correspondingSequence && intervention_var$delta == iv$delta && intervention_var$delta_s == iv$delta_s && intervention_var$D1DS == iv$D1DS) {  if(!is.null(jRegression$getFixedCoefficients(iv$name))){intervention_var$fixed_coef <- jRegression$getFixedCoefficients(iv$name)} else {iv$fixed_coef <- 0} } #{iv$fixed_coef <- NA}   }
+        #         return(intervention_var)  })
+        #     }
+        #
+        #   }
+        #
 
 
         }
@@ -799,6 +813,10 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_in
   #leap_yearCoef         = NA
   series_start = NA
   series_end   = NA
+  series_first     = NA_integer_   # span della serie di tipo First / Last / Excluding
+  series_last      = NA_integer_
+  series_exclFirst = NA_integer_
+  series_exclLast  = NA_integer_
 
 
   suppressWarnings(NA_workspace <- is.na(workspace))
@@ -948,6 +966,16 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_in
       {
         series_start <- NA
         series_end   <- jm[[1]][[series_name]]$spec$getBasic()$getSpan()$getD1()
+      } else if((span_type=="First"))
+      {
+        series_first <- as.integer(jm[[1]][[series_name]]$spec$getBasic()$getSpan()$getN0())
+      } else if((span_type=="Last"))
+      {
+        series_last  <- as.integer(jm[[1]][[series_name]]$spec$getBasic()$getSpan()$getN1())
+      } else if((span_type=="Excluding"))
+      {
+        series_exclFirst <- as.integer(jm[[1]][[series_name]]$spec$getBasic()$getSpan()$getN0())
+        series_exclLast  <- as.integer(jm[[1]][[series_name]]$spec$getBasic()$getSpan()$getN1())
       } else # other options still to be implemented, anyway the current one are sufficient for all the settings
       {
         series_start <- NA
@@ -985,6 +1013,10 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_in
     series_name        = series_name, # custom field
     series_start       = series_start,# custom field
     series_end         = series_end,  # custom field
+    series_first       = series_first,     # custom field
+    series_last        = series_last,      # custom field
+    series_exclFirst   = series_exclFirst, # custom field
+    series_exclLast    = series_exclLast,  # custom field
     frequency          = frequency,   # custom field
     method             = method,      # custom field
     preliminary.check  = regarima_spec$estimate$preliminary.check,
@@ -1277,3 +1309,4 @@ get_intervention_variables_from_java<- function(series)
 
 
 }
+
