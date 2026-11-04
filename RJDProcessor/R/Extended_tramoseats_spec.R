@@ -593,6 +593,9 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
   #   m  <- get_r_model_from_j_model(m)
   # }
 
+  # SaItem del workspace (per leggere la specifica Point dell'ARIMA, vedi get_arima_info_from_java)
+  sa_items <- RJDemetra::get_all_objects(RJDemetra::get_object(workspace, 1))
+
   cat("Loading external variables\n")
   ##browser()
   all_model_vars_info <- data_reader_ext_reg@read_ext_reg_info(workspace)
@@ -764,7 +767,7 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
 
     #asd
     #browser()
-    spec <- from_SA_spec(series, series_name = series_name, frequency = frequency, method = method, basic_spec=basic_spec, all_model_vars_info = all_model_vars_info, data_reader_ext_reg = data_reader_ext_reg, workspace = workspace, easterCoef=easterCoef, jm=jm)
+    spec <- from_SA_spec(series, series_name = series_name, frequency = frequency, method = method, basic_spec=basic_spec, all_model_vars_info = all_model_vars_info, data_reader_ext_reg = data_reader_ext_reg, workspace = workspace, easterCoef=easterCoef, jm=jm, sa_item = sa_items[[series_name]])
     spec <- list(spec)
 
 
@@ -782,7 +785,7 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
 
 
 
-from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_integer_  ,method = "TS" ,basic_spec="RSA0", userdef.varFromFile=TRUE, all_model_vars_info=NULL, data_reader_ext_reg=NULL ,workspace=NA, easterCoef=0, jm=NA)#NA)
+from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_integer_  ,method = "TS" ,basic_spec="RSA0", userdef.varFromFile=TRUE, all_model_vars_info=NULL, data_reader_ext_reg=NULL ,workspace=NA, easterCoef=0, jm=NA, sa_item=NULL)#NA)
 {
   require(RJDemetra)
 
@@ -962,7 +965,7 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_in
   # Per le specifiche di base (RSA0, ...) non c'e' modello Java: si usa la specifica R.
   if (java_model_available(jm) && !is.na(series_name) && !is.null(jm[[1]][[series_name]]))
   {
-    arima_info <- get_arima_info_from_java(jm[[1]][[series_name]])
+    arima_info <- get_arima_info_from_java(jm[[1]][[series_name]], sa_item = sa_item)
   } else
   {
     arima_coef_info <- get_arima_coef_info(regarima_spec)
@@ -1173,6 +1176,19 @@ to_tramoseats_spec_args<-function(extended_tramoseats_spec, data_reader_ext_reg)
       vars_mts                  <- data_reader_ext_reg@read_ext_reg_data(info_list, series_name, frequency) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
       extended_tramoseats_spec[["usrdef.var"]] <- vars_mts
+    }
+  }
+
+  # Coefficienti letti dal JSON: se la lista mescola "NA" e numeri (es. ["NA", 0, "NA", "NA"])
+  # rjson la restituisce come list e RJDemetra la scarta ("wrong format of the arima.coef").
+  # Qui la si converte in un vettore numerico con NA (NA = coefficiente libero).
+  for (field in c("arima.coef", "usrdef.outliersCoef", "usrdef.varCoef"))
+  {
+    x <- extended_tramoseats_spec[[field]]
+    if (!is.null(x) && is.list(x))
+    {
+      x <- lapply(x, function(v) if (is.null(v) || length(v) == 0 || identical(v, "NA")) NA else v)
+      extended_tramoseats_spec[[field]] <- suppressWarnings(as.numeric(unlist(x)))
     }
   }
 
