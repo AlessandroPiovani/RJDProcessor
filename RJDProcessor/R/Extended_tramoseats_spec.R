@@ -73,6 +73,7 @@ setClass(
     automdl.ljungboxlimit   = "numeric",
     automdl.compare         = "logical",
     arima.mu                = "logical",
+    arima.muFixedValue      = "numeric",      # ISTAT custom field: media fissata (NA = stimata; usata solo se arima.mu = TRUE)
     arima.p                 = "integer",
     arima.d                 = "integer",
     arima.q                 = "integer",
@@ -131,7 +132,7 @@ setMethod("initialize", "Extended_tramoseats_spec",
                    automdl.ub1 = NA_integer_, automdl.ub2 = NA_integer_,
                    automdl.armalimit = NA_integer_, automdl.reducecv = NA_integer_,
                    automdl.ljungboxlimit = NA_integer_, automdl.compare = NA,
-                   arima.mu = NA, arima.p = NA_integer_, arima.d = NA_integer_,
+                   arima.mu = NA, arima.muFixedValue = NA, arima.p = NA_integer_, arima.d = NA_integer_,
                    arima.q = NA_integer_, arima.bp = NA_integer_, arima.bd = NA_integer_,
                    arima.bq = NA_integer_, arima.coefEnabled = NA, arima.coef = NA,
                    arima.coefType = NA, fcst.horizon = NA_integer_,
@@ -146,7 +147,7 @@ setMethod("initialize", "Extended_tramoseats_spec",
                                         "easter.duration", "outlier.first", "outlier.last", "outlier.exclFirst", "outlier.exclLast",
                                         "arima.p", "arima.d", "arima.q", "arima.bp", "arima.bd", "arima.bq",
                                         "seats.predictionLength")
-            numeric_args_with_NA_integer <- c("estimate.tol", "transform.fct", "outlier.cv", "outlier.tcrate", "automdl.cancel", "automdl.ub1", "automdl.ub2", "automdl.armalimit", "automdl.reducecv", "automdl.ljungboxlimit", "fcst.horizon", "seats.trendBoundary", "seats.seasdBoundary", "seats.seasdBoundary1", "seats.seasTol", "seats.maBoundary")
+            numeric_args_with_NA_integer <- c("arima.muFixedValue", "estimate.tol", "transform.fct", "outlier.cv", "outlier.tcrate", "automdl.cancel", "automdl.ub1", "automdl.ub2", "automdl.armalimit", "automdl.reducecv", "automdl.ljungboxlimit", "fcst.horizon", "seats.trendBoundary", "seats.seasdBoundary", "seats.seasdBoundary1", "seats.seasTol", "seats.maBoundary")
 
             for (arg_name in integer_args_to_check)
             {
@@ -273,7 +274,7 @@ setMethod("initialize", "Extended_tramoseats_spec",
                             "outlier.cv", "outlier.eml", "outlier.tcrate", "automdl.enabled",
                             "automdl.acceptdefault", "automdl.cancel", "automdl.ub1",
                             "automdl.ub2", "automdl.armalimit", "automdl.reducecv",
-                            "automdl.ljungboxlimit", "automdl.compare", "arima.mu",
+                            "automdl.ljungboxlimit", "automdl.compare", "arima.mu", "arima.muFixedValue",
                             "arima.p", "arima.d", "arima.q", "arima.bp", "arima.bd", "arima.bq",
                             "arima.coefEnabled", "arima.coef", "arima.coefType", "fcst.horizon",
                             "seats.predictionLength", "seats.approx", "seats.trendBoundary",
@@ -336,7 +337,7 @@ Extended_tramoseats_spec_helper <- function(series_name = NULL, series_start = N
                                             automdl.cancel = NA_integer_, automdl.ub1 = NA_integer_,
                                             automdl.ub2 = NA_integer_, automdl.armalimit = NA_integer_,
                                             automdl.reducecv = NA_integer_, automdl.ljungboxlimit = NA_integer_,
-                                            automdl.compare = NA, arima.mu = NA, arima.p = NA_integer_,
+                                            automdl.compare = NA, arima.mu = NA, arima.muFixedValue = NA, arima.p = NA_integer_,
                                             arima.d = NA_integer_, arima.q = NA_integer_, arima.bp = NA_integer_,
                                             arima.bd = NA_integer_, arima.bq = NA_integer_,
                                             arima.coefEnabled = NA, arima.coef = NA, arima.coefType = NA,
@@ -371,7 +372,7 @@ Extended_tramoseats_spec_helper <- function(series_name = NULL, series_start = N
       automdl.acceptdefault = automdl.acceptdefault, automdl.cancel = automdl.cancel,
       automdl.ub1 = automdl.ub1, automdl.ub2 = automdl.ub2, automdl.armalimit = automdl.armalimit,
       automdl.reducecv = automdl.reducecv, automdl.ljungboxlimit = automdl.ljungboxlimit,
-      automdl.compare = automdl.compare, arima.mu = arima.mu, arima.p = arima.p,
+      automdl.compare = automdl.compare, arima.mu = arima.mu, arima.muFixedValue = arima.muFixedValue, arima.p = arima.p,
       arima.d = arima.d, arima.q = arima.q, arima.bp = arima.bp, arima.bd = arima.bd,
       arima.bq = arima.bq, arima.coefEnabled = arima.coefEnabled, arima.coef = arima.coef,
       arima.coefType = arima.coefType, fcst.horizon = fcst.horizon,
@@ -521,6 +522,7 @@ setMethod ("from_JD_JSON", "Extended_tramoseats_spec", function(object, json) {
     automdl.ljungboxlimit = json_list$automdl.ljungboxlimit,
     automdl.compare = json_list$automdl.compare,
     arima.mu = json_list$arima.mu,
+    arima.muFixedValue = json_list$arima.muFixedValue,
     arima.p = json_list$arima.p,
     arima.d = json_list$arima.d,
     arima.q = json_list$arima.q,
@@ -708,27 +710,27 @@ extended_tramoseats_spec_list_from_workspace <-  function(workspace, data_reader
               #browser()
               all_model_vars_info$ramps[[series_name]] <- lapply(all_model_vars_info$ramps[[series_name]], function(ramp) {
                 if (ramp$start == rp$start && ramp$end == rp$end) {  if(!is.null(jRegression$getFixedCoefficients(rp$name))){ramp$fixed_coef <- jRegression$getFixedCoefficients(rp$name)} else {ramp$fixed_coef <- 0} } #{ramp$fixed_coef <- NA}   }
-                    return(ramp)  })
+                return(ramp)  })
             }
 
           }
 
           ivs <- get_intervention_variables_from_java(ts)
-        #   if(length(ivs)>0)
-        #   {
-        #     #browser()
-        #     for (iv in ivs)
-        #     {
-        #       #browser()
-        #
-        #       # correspondingSequence = function that returns TRUE if the sequence of intervention_var is the same as the sequence of an iv
-        #       all_model_vars_info$intervention_vars[[series_name]] <- lapply(all_model_vars_info$intervention_vars[[series_name]], function(intervention_var) {
-        #         if(correspondingSequence && intervention_var$delta == iv$delta && intervention_var$delta_s == iv$delta_s && intervention_var$D1DS == iv$D1DS) {  if(!is.null(jRegression$getFixedCoefficients(iv$name))){intervention_var$fixed_coef <- jRegression$getFixedCoefficients(iv$name)} else {iv$fixed_coef <- 0} } #{iv$fixed_coef <- NA}   }
-        #         return(intervention_var)  })
-        #     }
-        #
-        #   }
-        #
+          #   if(length(ivs)>0)
+          #   {
+          #     #browser()
+          #     for (iv in ivs)
+          #     {
+          #       #browser()
+          #
+          #       # correspondingSequence = function that returns TRUE if the sequence of intervention_var is the same as the sequence of an iv
+          #       all_model_vars_info$intervention_vars[[series_name]] <- lapply(all_model_vars_info$intervention_vars[[series_name]], function(intervention_var) {
+          #         if(correspondingSequence && intervention_var$delta == iv$delta && intervention_var$delta_s == iv$delta_s && intervention_var$D1DS == iv$D1DS) {  if(!is.null(jRegression$getFixedCoefficients(iv$name))){intervention_var$fixed_coef <- jRegression$getFixedCoefficients(iv$name)} else {iv$fixed_coef <- 0} } #{iv$fixed_coef <- NA}   }
+          #         return(intervention_var)  })
+          #     }
+          #
+          #   }
+          #
 
 
         }
@@ -1005,7 +1007,8 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_in
                        bq = regarima_spec$arima$specification$arima.bq,
                        coef        = arima_coef_info$value,
                        coefType    = arima_coef_info$type,
-                       coefEnabled = regarima_spec$arima$specification$arima.coef)
+                       coefEnabled = regarima_spec$arima$specification$arima.coef,
+                       muFixedValue = NA_real_)
   }
 
   extended_tramoseats_spec <- Extended_tramoseats_spec(
@@ -1076,6 +1079,7 @@ from_SA_spec <- function(SA_spec, series_name = NA_character_, frequency = NA_in
     automdl.ljungboxlimit = regarima_spec$arima$specification$automdl.ljungboxlimit,
     automdl.compare  = regarima_spec$arima$specification$compare,
     arima.mu = regarima_spec$arima$specification$arima.mu,
+    arima.muFixedValue = arima_info$muFixedValue,  # media fissata (NA = stimata)
     arima.p  = arima_info$p,
     arima.d  = arima_info$d,
     arima.q  = arima_info$q,
@@ -1309,4 +1313,3 @@ get_intervention_variables_from_java<- function(series)
 
 
 }
-

@@ -21,8 +21,24 @@ require(rjson)
 #' @param series_to_proc_names -optional- vector of names of time series to be
 #'                             processed (e.g. c('VATASA','VATPIA')) .
 #'                             Default=NA: all the series are processed
-#' @param java_processing -optional- Default=TRUE. Use only Java API (faster) for
-#'                        the internal computation
+#' @param java_processing -optional- Default=TRUE (recommended). Use only Java API
+#'                        (faster) for the internal computation and produce the
+#'                        diagnostic reports with create_diagnostic_report1 and
+#'                        create_diagnostic_report2. Use TRUE in production: the R
+#'                        processing (FALSE) does not support ramps and intervention
+#'                        variables, that RJDemetra does not accept as input.
+#'                        FALSE: R processing, with "processing_results.out" and
+#'                        "plots.pdf" as output.
+#' @param report_problems_file -optional- (Java processing only) file of the report
+#'                        of create_diagnostic_report1 (problems: Ljung-Box, normality,
+#'                        not significant coefficients).
+#'                        Default "processing_problems.out"
+#' @param report_details_file -optional- (Java processing only) file of the report
+#'                        of create_diagnostic_report2 (full model details of every
+#'                        series). Default "processing_model_details.out"
+#' @param exclude_non_seas -optional- (Java processing only) TRUE to exclude from the
+#'                        diagnostics the time series without a seasonal part.
+#'                        Default=TRUE
 #' @return a virtual workspace, already processed
 #' @examples
 #' require(RJDemetra)
@@ -59,7 +75,10 @@ require(rjson)
 #'               java_processing_old_model=FALSE)
 #' setwd(original_directory)
 #' @export
-JD_JSON_file_processor <- function(input_data_reader, ext_reg_data_reader, spec_file_name, output_workspace_dir=NA, series_to_proc_names=NA, java_processing=TRUE)
+JD_JSON_file_processor <- function(input_data_reader, ext_reg_data_reader, spec_file_name, output_workspace_dir=NA, series_to_proc_names=NA, java_processing=TRUE,
+                                   report_problems_file = "processing_problems.out",
+                                   report_details_file  = "processing_model_details.out",
+                                   exclude_non_seas     = TRUE)
 {
   require(RJDemetra)
 
@@ -82,7 +101,7 @@ JD_JSON_file_processor <- function(input_data_reader, ext_reg_data_reader, spec_
   if(java_processing==FALSE)
   {
     zz <- file("processing_results.out", open="wt")
-    sink(zz, type)
+    sink(zz)
     print(model)
     sink(file=NULL)
 
@@ -119,7 +138,13 @@ JD_JSON_file_processor <- function(input_data_reader, ext_reg_data_reader, spec_
   }
   else # Java Processing == TRUE
   {
-    print("No processing results file with Java processing yet (waiting for rjdmarkdown package to be fixed)")
+    # Report diagnostici (rjdmarkdown non viene piu' aggiornato):
+    #  1) problemi: Ljung-Box, Ljung-Box sui quadrati, normalita', coefficienti non significativi
+    #  2) dettaglio completo del modello di ogni serie
+    create_diagnostic_report1(workspace = wk, output_file = report_problems_file, exclude_non_seas = exclude_non_seas)
+    create_diagnostic_report2(workspace = wk, output_file = report_details_file,  exclude_non_seas = exclude_non_seas)
+    message("Diagnostic reports: ", normalizePath(report_problems_file, mustWork = FALSE),
+            " and ", normalizePath(report_details_file, mustWork = FALSE))
   }
 
 
@@ -404,4 +429,3 @@ compare_sa_ts <- function(new_r_model=NA, new_model_workspace, old_model_workspa
   closeAllConnections()
 
 }
-

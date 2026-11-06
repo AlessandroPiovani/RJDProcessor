@@ -68,6 +68,7 @@ get_basic_spec <- function(spec)
       automdl.ljungboxlimit = 0.95,
       automdl.compare = FALSE,
       arima.mu = TRUE,
+      arima.muFixedValue = NA_real_,    # media fissata (NA = stimata)
       arima.p = 0,
       arima.d = 1,
       arima.q = 1,
@@ -162,6 +163,7 @@ get_basic_spec <- function(spec)
       automdl.ljungboxlimit = 0.95,
       automdl.compare = FALSE,
       arima.mu = TRUE,
+      arima.muFixedValue = NA_real_,    # media fissata (NA = stimata)
       arima.p = 0,
       arima.d = 1,
       arima.q = 1,
@@ -256,6 +258,7 @@ get_basic_spec <- function(spec)
       automdl.ljungboxlimit = 0.95,
       automdl.compare = FALSE,
       arima.mu = TRUE,
+      arima.muFixedValue = NA_real_,    # media fissata (NA = stimata)
       arima.p = 0,
       arima.d = 1,
       arima.q = 1,
@@ -280,7 +283,7 @@ get_basic_spec <- function(spec)
       easterCoef            = 0#NA
       #rampsCoef             = NA,
       #intervention_variablesCoef = NA
-      )
+    )
     return(RSA2)
   }else if(spec == "RSA3")
   {
@@ -350,6 +353,7 @@ get_basic_spec <- function(spec)
       automdl.ljungboxlimit = 0.95,
       automdl.compare = FALSE,
       arima.mu = TRUE,
+      arima.muFixedValue = NA_real_,    # media fissata (NA = stimata)
       arima.p = 0,
       arima.d = 1,
       arima.q = 1,
@@ -444,6 +448,7 @@ get_basic_spec <- function(spec)
       automdl.ljungboxlimit = 0.95,
       automdl.compare = FALSE,
       arima.mu = TRUE,
+      arima.muFixedValue = NA_real_,    # media fissata (NA = stimata)
       arima.p = 0,
       arima.d = 1,
       arima.q = 1,
@@ -538,6 +543,7 @@ get_basic_spec <- function(spec)
       automdl.ljungboxlimit = 0.95,
       automdl.compare = FALSE,
       arima.mu = TRUE,
+      arima.muFixedValue = NA_real_,    # media fissata (NA = stimata)
       arima.p = 0,
       arima.d = 1,
       arima.q = 1,
@@ -632,6 +638,7 @@ get_basic_spec <- function(spec)
       automdl.ljungboxlimit = 0.95,
       automdl.compare = FALSE,
       arima.mu = TRUE,
+      arima.muFixedValue = NA_real_,    # media fissata (NA = stimata)
       arima.p = 0,
       arima.d = 1,
       arima.q = 1,
@@ -656,7 +663,7 @@ get_basic_spec <- function(spec)
       easterCoef            = 0#NA
       #rampsCoef             = NA,
       #intervention_variablesCoef = NA
-      )
+    )
     return(RSAfull)
   }
 

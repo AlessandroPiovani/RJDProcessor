@@ -10,7 +10,10 @@ JD_JSON_file_processor(
   spec_file_name,
   output_workspace_dir = NA,
   series_to_proc_names = NA,
-  java_processing = TRUE
+  java_processing = TRUE,
+  report_problems_file = "processing_problems.out",
+  report_details_file = "processing_model_details.out",
+  exclude_non_seas = TRUE
 )
 }
 \arguments{
@@ -31,8 +34,27 @@ in a directory called "output_workspace_container"}
 processed (e.g. c('VATASA','VATPIA')) .
 Default=NA: all the series are processed}
 
-\item{java_processing}{-optional- Default=TRUE. Use only Java API (faster) for
-the internal computation}
+\item{java_processing}{-optional- Default=TRUE (recommended). Use only Java API
+(faster) for the internal computation and produce the
+diagnostic reports with create_diagnostic_report1 and
+create_diagnostic_report2. Use TRUE in production: the R
+processing (FALSE) does not support ramps and intervention
+variables, that RJDemetra does not accept as input.
+FALSE: R processing, with "processing_results.out" and
+"plots.pdf" as output.}
+
+\item{report_problems_file}{-optional- (Java processing only) file of the report
+of create_diagnostic_report1 (problems: Ljung-Box, normality,
+not significant coefficients).
+Default "processing_problems.out"}
+
+\item{report_details_file}{-optional- (Java processing only) file of the report
+of create_diagnostic_report2 (full model details of every
+series). Default "processing_model_details.out"}
+
+\item{exclude_non_seas}{-optional- (Java processing only) TRUE to exclude from the
+diagnostics the time series without a seasonal part.
+Default=TRUE}
 }
 \value{
 a virtual workspace, already processed

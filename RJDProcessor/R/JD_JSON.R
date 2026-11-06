@@ -1,4 +1,3 @@
-
 require(RJDemetra)
 require(rjson)
 
@@ -135,6 +134,59 @@ rJavaRampsAndIVsHandling <- function(sa, ramps, intervention_variables)
 
 
 
+# Applica i coefficienti ARIMA del JSON direttamente sulla specifica Java della serie.
+# Serve perche' RJDemetra (tramoseats_spec) tratta un coefficiente pari a 0 come "libero"
+# anche se e' "Fixed": cosi' un vincolo come phi(2) = 0 andrebbe perso.
+# Ordine dei coefficienti (come RJDemetra e il processore Java):
+#   phi(1..p), theta(1..q), bphi(1..bp), btheta(1..bq)
+# Tipi: "Fixed" e "Initial" con il loro valore; tutto il resto = libero (stimato).
+apply_arima_coefficients <- function(sa, args)
+{
+  if (!isTRUE(as.logical(args$arima.coefEnabled))) return(sa)
+
+  coef <- args$arima.coef
+  type <- args$arima.coefType
+  if (is.null(coef) || is.null(type)) return(sa)
+  coef <- suppressWarnings(as.numeric(unlist(coef)))
+  type <- as.character(unlist(type))
+
+  order_of <- function(x) if (is.null(x) || length(x) == 0 || is.na(x)) 0L else as.integer(x)
+  ord <- c(p  = order_of(args$arima.p),  q  = order_of(args$arima.q),
+           bp = order_of(args$arima.bp), bq = order_of(args$arima.bq))
+  if (length(coef) != sum(ord) || length(type) != sum(ord))
+  {
+    warning("arima.coef / arima.coefType: ", length(coef), " / ", length(type),
+            " valori invece di ", sum(ord), " (p+q+bp+bq): coefficienti ARIMA non applicati")
+    return(sa)
+  }
+
+  ParameterType <- J("ec/tstoolkit/ParameterType")
+  new_param <- function(k)
+  {
+    if (type[k] == "Fixed" && !is.na(coef[k]))
+      return(.jnew("ec/tstoolkit/Parameter", as.double(coef[k]), ParameterType$Fixed))
+    if (type[k] == "Initial" && !is.na(coef[k]))
+      return(.jnew("ec/tstoolkit/Parameter", as.double(coef[k]), ParameterType$Initial))
+    return(.jnew("ec/tstoolkit/Parameter"))   # libero
+  }
+
+  jArima  <- sa$spec$getCore()$getTramoSpecification()$getArima()
+  setters <- c(p = "setPhi", q = "setTheta", bp = "setBPhi", bq = "setBTheta")
+  start   <- 0
+  for (nm in names(setters))
+  {
+    n <- ord[[nm]]
+    if (n > 0)
+    {
+      params <- .jarray(lapply(start + seq_len(n), new_param), contents.class = "ec/tstoolkit/Parameter")
+      .jcall(jArima, "V", setters[[nm]], params)
+      start <- start + n
+    }
+  }
+  return(sa)
+}
+
+
 #' Turn a JD_JSON in a virtual workspace
 #'
 #' This function obtain a virtual workspace from a JD_JSON file.
@@ -249,6 +301,10 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_reader, ext_reg_d
       tramoseats_spec_args$series_exclFirst = NULL
       tramoseats_spec_args$series_exclLast  = NULL
 
+      # Media fissata (non supportata da tramoseats_spec): applicata dopo, sulla specifica Java
+      arima_mu_fixed_value <- tramoseats_spec_args$arima.muFixedValue
+      tramoseats_spec_args$arima.muFixedValue = NULL
+
 
       spec <- do.call(RJDemetra::tramoseats_spec, tramoseats_spec_args)
       #browser()
@@ -264,6 +320,18 @@ JD_JSON_to_virtual_workspace <- function(JSON_file, input_data_reader, ext_reg_d
         jRegr$setFixedCoefficients( "easter", .jarray(as.double(easterCoef)))
       }
       sa <- rJavaRampsAndIVsHandling(sa, ramps, intervention_variables)
+
+      # Coefficienti ARIMA (anche quelli fissati a 0, che RJDemetra lascerebbe liberi)
+      sa <- apply_arima_coefficients(sa, tramoseats_spec_args)
+
+      # Media fissata al valore del JSON, solo se la media e' nel modello (arima.mu = TRUE)
+      if(isTRUE(as.logical(tramoseats_spec_args$arima.mu)) && !is.null(arima_mu_fixed_value) &&
+         length(arima_mu_fixed_value) > 0 && !is.na(arima_mu_fixed_value) && arima_mu_fixed_value != "NA")
+      {
+        ParameterType <- J("ec/tstoolkit/ParameterType")
+        jMu <- .jnew("ec/tstoolkit/Parameter", as.double(arima_mu_fixed_value), ParameterType$Fixed)
+        sa$spec$getCore()$getTramoSpecification()$getArima()$setMu(jMu)
+      }
 
       # browser()
 
@@ -714,4 +782,3 @@ from_full_to_reduced_JD_JSON_file<-function(JD_JSON_file, output_file_name=NA, i
 
 
 }
-
