@@ -62,6 +62,10 @@ setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg_csv", "ANY", "ANY
                # If the file being searched for is not present but a file that differs only by some uppercase letters is found, read that one.
                f_name <- find_file_case_insensitive(reg_directory, user_def_var$container)
 
+               if (is.na(f_name))
+               {
+                 stop("Regressore ", user_def_var$container, ": file non trovato in ", reg_directory)
+               }
                # Build the complete file path
                full_file_path <- file.path(reg_directory, f_name)
 
@@ -83,7 +87,8 @@ setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg_csv", "ANY", "ANY
                  closeAllConnections()
                })
 
-               dates_of_variables <- data[, 1]
+               # date del file (prima colonna, formato gg/mm/aaaa)
+               file_dates <- as.Date(data[, 1], format = "%d/%m/%Y")
                data <- data[, -1, drop = FALSE] # Remove the column with dates
 
 
@@ -124,8 +129,19 @@ setMethod ("read_ext_reg_data", signature("Data_reader_ext_reg_csv", "ANY", "ANY
 
                  #browser()
 
-                 index <- which(as.Date(dates_of_variables, format = "%d/%m/%Y") == start_date_ext_reg)
-                 column_data <- column_data[index:length(column_data)]
+                 # riga del file corrispondente alla data di inizio del JSON.
+                 # Il JSON indica il periodo nell'anno (mese o trimestre, base 1): il confronto
+                 # e' per anno e periodo, quindi funziona anche con date di fine periodo nel file.
+                 file_years   <- as.integer(format(file_dates, "%Y"))
+                 file_periods <- (as.integer(format(file_dates, "%m")) - 1) %/% (12 / frequency) + 1
+                 index <- which(file_years == y & file_periods == m)
+                 if (length(index) == 0)
+                 {
+                   stop("Regressore ", user_def_var$container, ": la data di inizio ", user_def_var$start,
+                        " non e' presente nel file (che va da ", format(min(file_dates, na.rm = TRUE)),
+                        " a ", format(max(file_dates, na.rm = TRUE)), ")")
+                 }
+                 column_data <- column_data[index[1]:length(column_data)]
 
                  # create a dummy variable allowing to work with an MTS instead of a TS. Working with MTS allows to set the series names
                  if(j==1 && length(ts_list)==0)
@@ -202,10 +218,17 @@ setMethod ("read_ext_reg_info", signature("Data_reader_ext_reg_csv", "ANY"),
            function(object, var_info_container, ...) {
 
              workspace <- var_info_container
+             # contesto del workspace: contiene le variabili (regressori) con le loro date
+             context <- tryCatch(.jcall(workspace, "Lec/tstoolkit/algorithm/ProcessingContext;", "getContext"),
+                                 error = function(e) NULL)
+             if (is.null(context))
+             {
+               warning("Contesto del workspace non disponibile: le date dei regressori saranno quelle delle serie")
+             }
 
              jmodel <- RJDemetra::get_jmodel(workspace, progress_bar = TRUE) # to retrieve external regressors by name
 
-             all_jmodel_vars <- getUserDefinedTdVariables_info_csv(jmodel) # per editare la scrittura
+             all_jmodel_vars <- getUserDefinedTdVariables_info_csv(jmodel, context=context) # per editare la scrittura
              return(all_jmodel_vars)
 
            })
@@ -243,7 +266,7 @@ Data_reader_ext_reg_csv <- function(input_source, ...) {
 # The variables values are available in files.
 # input_mode = TS_regressor_file the start date is the same as the input data series
 # input_mode = TODO JD_regressor_file file containing both dates and data
-getUserDefinedTdVariables_info_csv <- function(jmodel ,input_mode=c("TS_regressor_file", "JD_regressor_file", ), adjust_path=TRUE)
+getUserDefinedTdVariables_info_csv <- function(jmodel ,input_mode=c("TS_regressor_file", "JD_regressor_file", ), adjust_path=TRUE, context=NULL)
 {
   var_info_list   = list()
   ramps_info_list = list()
@@ -257,7 +280,8 @@ getUserDefinedTdVariables_info_csv <- function(jmodel ,input_mode=c("TS_regresso
       return(1)  # Returns a vector of one element with value 1
     } else {
       # Extract the prefix of every element
-      prefixes <- gsub("^(.*)_\\d+$", "\\1", jUser_Td_VarsString)
+      # (senza il prefisso "td|" che JD+ aggiunge ai regressori con coefficiente fissato)
+      prefixes <- gsub("^(.*)_\\d+$", "\\1", sub("^td\\|", "", jUser_Td_VarsString))
       # Count repetitions of the prefix
       repeat_counts <- table(prefixes)
       # Creation of the array that will contain the results
@@ -315,11 +339,8 @@ getUserDefinedTdVariables_info_csv <- function(jmodel ,input_mode=c("TS_regresso
         file_name  <- paste0(file_name, ".csv")
         #file_name <- gsub("^[rR]\\.", "", file_name)
 
-        year       <- start(get_ts(jSA_series))[1]
-        month      <- start(get_ts(jSA_series))[2]
-        start_date <- as.Date(paste(year, month, "01", sep = "-"))
-
-        start_date <- format(start_date, "%Y-%m-%d")
+        # data di inizio vera del regressore (dal workspace), non quella della serie
+        start_date <- get_regressor_start_date(context, varString, jSA_series)
         current    <- list(container = file_name, start = start_date, n_var=1) #frequency=frequency(get_ts(jSA_series)), #, type="userdef")
         if (!identical(current, previous)) # for the 6 variables case: all the variables belong to the same file, so the fileinfo will be replicated 6 time, but i save only one of them not incrementing idx_file_list
         {
@@ -361,14 +382,8 @@ getUserDefinedTdVariables_info_csv <- function(jmodel ,input_mode=c("TS_regresso
         # Removes "r." o "R." from string prefix (r. automatically put when an RJDemetra workspace with external variables is created)
         #file_name <- gsub("^[rR]\\.", "", file_name)
 
-        year  <- start(get_ts(jSA_series))[1]
-        month <- start(get_ts(jSA_series))[2]
-        start_date <- as.Date(paste(year, month, "01", sep = "-"))
-
-        #browser()
-
-
-        start_date <- format(start_date, "%Y-%m-%d")
+        # data di inizio vera del regressore (dal workspace), non quella della serie
+        start_date <- get_regressor_start_date(context, varString, jSA_series)
         current = list(container = file_name, start = start_date, n_var=repeated_vars[r_idx]) ##frequency=frequency(get_ts(jSA_series)), # type="td")
         r_idx <- r_idx + 1
         if (!identical(current, previous))  # for the 6 variables case: all the variables belong to the same file, so the fileinfo will be replicated 6 time, but i save only one of them not incrementing i
@@ -481,6 +496,37 @@ find_file_case_insensitive <- function(directory, target_filename) {
   return(NA)
 }
 
+
+# Data di inizio del regressore, letta dalla variabile nel contesto del workspace: e' la data
+# che usa la GUI di JD+. In precedenza veniva usata l'inizio della serie grezza, corretto solo
+# se il file del regressore inizia alla stessa data della serie (convenzione TS+).
+# Formato restituito: "AAAA-PP-01", con PP = periodo nell'anno a base 1 (mese per le serie mensili,
+# trimestre per le trimestrali), come start() di R e come lo legge Java: TsPeriod(freq, AAAA, PP-1).
+# Se la variabile non si trova nel contesto, si usa l'inizio della serie (comportamento precedente)
+# con un warning.
+# possible conflicts! leave this function equal in all the Data_reader_ext_reg scripts
+get_regressor_start_date <- function(context, var_name, jSA_series)
+{
+  if (!is.null(context))
+  {
+    # JD+ aggiunge "td|" ai regressori di calendario con coefficiente fissato (TramoModelBuilder):
+    # la variabile nel contesto ha il nome senza prefisso
+    jvar <- tryCatch(context$getTsVariable(sub("^td\\|", "", var_name)), error = function(e) NULL)
+    if (!is.null(jvar) && !rJava::is.jnull(jvar))
+    {
+      jdom <- tryCatch(jvar$getDefinitionDomain(), error = function(e) NULL)
+      if (!is.null(jdom) && !rJava::is.jnull(jdom))
+      {
+        jstart <- jdom$getStart()
+        return(sprintf("%04d-%02d-01", as.integer(jstart$getYear()), as.integer(jstart$getPosition()) + 1L))
+      }
+    }
+    warning("Regressore ", var_name, ": non trovato nelle variabili del workspace, ",
+            "come data di inizio uso quella della serie")
+  }
+  st <- start(get_ts(jSA_series))
+  sprintf("%04d-%02d-01", as.integer(st[1]), as.integer(st[2]))
+}
 
 # possible conflicts! leave these functions (get_ramps, get_intervention_vars) equals in all the scripts
 # TODO: move in utility_functions or assign a different name in every Data_reader_ext_reg!
