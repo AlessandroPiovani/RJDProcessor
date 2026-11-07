@@ -159,7 +159,9 @@ create_diagnostic_report1 <- function(workspace, output_file="report.txt", exclu
       time_series <- multiprocessing[[series_name]]
 
       ts <- get_indicators(x = time_series, "y")
-      freq <- 12 / frequency(ts)
+      # frequenza della serie (12 mensile, 4 trimestrale). get_indicators restituisce una lista:
+      # con frequency(ts) il valore era sempre 1 e la colonna Freq risultava sempre 12
+      freq <- frequency(ts[[1]])
 
       # Estrai i valori dei coefficienti
       p  <- get_indicators(x = time_series, "preprocessing.arima.p" )[[1]]
@@ -189,6 +191,14 @@ create_diagnostic_report1 <- function(workspace, output_file="report.txt", exclu
         lb          <- get_indicators(x = time_series, "preprocessing.residuals.lb")[[1]]
         lb_squared  <- get_indicators(x = time_series, "preprocessing.residuals.lb2")[[1]]
         arima_se    <- sqrt(diag(get_indicators(time_series, "preprocessing.model.pcovar")[[1]]))
+        # JD+ restituisce i parametri ARIMA nell'ordine phi, Bphi, theta, Btheta: si riordinano
+        # (valori ed errori standard) come nel modello (p,d,q)(bp,bd,bq), cioe' phi, theta, Bphi,
+        # Btheta, lo stesso ordine dei nomi costruiti qui sotto
+        arima_ord <- c(seq_len(p), p + bp + seq_len(q), p + seq_len(bp), p + bp + q + seq_len(bq))
+        if (length(arimaparams) == length(arima_ord) && length(arima_se) == length(arima_ord)) {
+          arimaparams <- arimaparams[arima_ord]
+          arima_se    <- arima_se[arima_ord]
+        }
 
 
 
@@ -471,6 +481,14 @@ create_diagnostic_report2 <- function(workspace, output_file="series_info.txt", 
 
         arimaparams <- get_indicators(x = time_series, "preprocessing.arima.parameters")[[1]]
         arima_se    <- sqrt(diag(get_indicators(time_series, "preprocessing.model.pcovar")[[1]]))
+        # JD+ restituisce i parametri ARIMA nell'ordine phi, Bphi, theta, Btheta: si riordinano
+        # (valori ed errori standard) come nel modello (p,d,q)(bp,bd,bq), cioe' phi, theta, Bphi,
+        # Btheta, lo stesso ordine dei nomi costruiti qui sotto
+        arima_ord <- c(seq_len(p), p + bp + seq_len(q), p + seq_len(bp), p + bp + q + seq_len(bq))
+        if (length(arimaparams) == length(arima_ord) && length(arima_se) == length(arima_ord)) {
+          arimaparams <- arimaparams[arima_ord]
+          arima_se    <- arima_se[arima_ord]
+        }
         arima_coeffs_T_stat <- arimaparams/ arima_se
 
         # Initialize coefficient names and model tracking
